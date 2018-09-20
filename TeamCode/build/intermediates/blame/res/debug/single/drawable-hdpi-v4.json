@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/TeamCode/build/intermediates/res/merged/debug/drawable-hdpi-v4/button_shape.xml",
+        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/drawable-hdpi-v4/button_shape.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/bundles/default/res/drawable-hdpi-v4/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/TeamCode/build/intermediates/res/merged/debug/drawable-hdpi-v4/ic_launcher.png",
+        "source": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/bundles/default/res/drawable-hdpi-v4/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/drawable-hdpi-v4/button_shape.xml",
+        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/drawable-hdpi-v4/button_shape.xml"
+    }
+]

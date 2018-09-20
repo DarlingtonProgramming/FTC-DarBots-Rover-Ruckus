@@ -1,0 +1,26 @@
+[
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/TeamCode/build/intermediates/res/merged/debug/menu/main_menu.xml",
+        "source": "/Users/dcao/.android/build-cache/939633c24f5b6e9bf047848aa3bc1f541309ddf2/output/res/menu/main_menu.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/menu/menu_server.xml",
+        "source": "/Users/dcao/.android/build-cache/8bc90a97e4bf0cf922d18172317756563f4f15ee/output/res/menu/menu_server.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/menu/main_menu.xml",
+        "source": "/Users/dcao/.android/build-cache/4388f98ff0813db7deb8acc47506c68ca55fad67/output/res/menu/main_menu.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/TeamCode/build/intermediates/res/merged/debug/menu/ftc_robot_controller.xml",
+        "source": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/bundles/default/res/menu/ftc_robot_controller.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/TeamCode/build/intermediates/res/merged/debug/menu/menu_server.xml",
+        "source": "/Users/dcao/.android/build-cache/0e4c64d941c8f04f42e1d9115677abdf003e7ba2/output/res/menu/menu_server.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/menu/ftc_robot_controller.xml",
+        "source": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/bundles/default/res/menu/ftc_robot_controller.xml"
+    }
+]

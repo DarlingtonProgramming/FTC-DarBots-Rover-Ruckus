@@ -1,0 +1,133 @@
+/*
+ * Written by David Cao for the year of 2018 - 2019
+ * To use this class, add the following code to your program
+ * import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotNonBlockingWheel;
+ */
+
+package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
+
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotWheel;
+
+public class RobotNonBlockingWheel implements RobotEventLoopable{
+    private RobotWheel m_Wheel;
+    private RobotNonBlockingMotor m_Motor;
+    protected static double calculateRotation(double Angle){ // -180 <= Angle < 180
+        while(Angle >= 180){
+            Angle -= 360;
+        }
+        while(Angle < -180){
+            Angle += 360;
+        }
+        return Angle;
+    }
+    public RobotNonBlockingWheel(RobotWheel Wheel, RobotNonBlockingMotor Motor){
+        this.m_Wheel = Wheel;
+        this.m_Motor = Motor;
+    }
+    public double getRadius(){
+        return this.m_Wheel.getRadius();
+    }
+    public void setRadius(double newRadius){
+        this.m_Wheel.setRadius(newRadius);
+    }
+    public double getInstalledAngle(){
+        return this.m_Wheel.getInstalledAngle();
+    }
+    public void setInstalledAngle(double newInstalledAngle){
+        this.m_Wheel.setInstalledAngle(newInstalledAngle);
+    }
+
+    public double getPerimeter(){
+        return this.m_Wheel.getPerimeter();
+    }
+    public double getArcLength(double AngleInDegree){
+        return this.m_Wheel.getArcLength(AngleInDegree);
+    }
+    public double[] getRobotAxisPerCycle(){
+        return this.m_Wheel.getRobotAxisPerCycle();
+    }
+    public double[] getRobotAxisForAngle(double RotatedAngleInDegree){
+        return this.m_Wheel.getRobotAxisForAngle(RotatedAngleInDegree);
+    }
+    public double calculateCycleForDistance(double Distance){
+        return this.m_Wheel.calculateCycleForDistance(Distance);
+    }
+    public DcMotor getDcMotor() {
+        return this.m_Motor.getDcMotor();
+    }
+
+    public void setDcMotor(DcMotor myDCMotor) {
+        this.m_Motor.setDcMotor(myDCMotor);
+    }
+
+    public double getRevPerCycle(){
+        return this.m_Motor.getRevPerCycle();
+    }
+
+    public void setRevPerCycle(double revPerCycle){
+        this.m_Motor.setRevPerCycle(revPerCycle);
+    }
+
+    public double getRevPerSec(){
+        return this.m_Motor.getRevPerSec();
+    }
+
+    public void setRevPerSec(double revPerSec){
+        this.m_Motor.setRevPerSec(revPerSec);
+    }
+
+    public boolean isBusy(){
+        return this.m_Motor.isBusy();
+    }
+
+    public void moveRev(int RevTotal, double Power){
+        this.m_Motor.moveRev(RevTotal,Power);
+    }
+
+    public void moveCycle(double Cycle, double Power){
+        this.m_Motor.moveCycle(Cycle,Power);
+    }
+
+    public int getLastMovedRev(){
+        return this.m_Motor.getLastMovedRev();
+    }
+
+    public double getLastMovedCycle(){
+        return this.m_Motor.getLastMovedCycle();
+    }
+
+    public double getLastMovedDistance(){
+        return this.getLastMovedCycle() * this.getPerimeter();
+    }
+
+    public int getRemainingRev(){
+        return this.m_Motor.getRemainingRev();
+    }
+
+    public double getRemainingDistance(){
+        return ((double) this.getRemainingRev()) / ((double) this.getRevPerCycle()) * this.m_Wheel.getPerimeter();
+    }
+
+    public void moveDistance(double Distance, double Power){
+        RobotDebugger.addDebug("RobotNonBlockingWheel","moveDistanceStart (" + Distance + ", " + Power + ")");
+        double rotationCycles = Distance / this.getPerimeter();
+        this.moveCycle(rotationCycles, Power);
+    }
+
+    public void moveRobotX(double X, double Power) throws RuntimeException{
+        this.moveDistance(this.m_Wheel.calculateDistanceByRobotAxisX(X),Power);
+    }
+
+    public void moveRobotY(double Y, double Power) throws RuntimeException{
+        this.moveDistance(this.m_Wheel.calculateDistanceByRobotAxisY(Y),Power);
+    }
+
+    @Override
+    public void doLoop(){
+        this.m_Motor.doLoop();
+    }
+}

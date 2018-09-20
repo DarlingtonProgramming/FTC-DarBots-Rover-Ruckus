@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/TeamCode/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/bundles/default/res/drawable-mdpi-v4/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/dcao/Documents/ftc_app-master/TeamCode/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/bundles/default/res/drawable-mdpi-v4/ic_launcher.png"
+    }
+]
