@@ -67,3 +67,7 @@ fastlane/readme.md
 # Mac Specific
 ._*
 .DS_Store
+
+# Project Specific
+FtcRobotController/build
+TeamCode/build
