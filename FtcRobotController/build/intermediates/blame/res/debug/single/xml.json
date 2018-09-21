@@ -1,82 +1,122 @@
 [
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/k9usbbot.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/k9usbbot.xml"
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9legacybot.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\k9legacybot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/squarebot.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/squarebot.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\squarebot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\squarebot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/k9legacybot.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/k9legacybot.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbotsens.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\pushbotsens.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/pushbotsens.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/pushbotsens.xml"
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\squarebot.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\squarebot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/maxmodules.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/maxmodules.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\pushbot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/app_settings.xml",
-        "source": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/src/main/res/xml/app_settings.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9usbbot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\k9usbbot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/k9legacybot.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/k9legacybot.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\maxmodules.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\maxmodules.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/squarebot.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/squarebot.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9usbbot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\k9usbbot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/app_settings.xml",
-        "source": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/src/main/res/xml/app_settings.xml"
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9usbbot.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\k9usbbot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/rev_scoot.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/rev_scoot.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\rev_scoot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\rev_scoot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/k9usbbot.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/k9usbbot.xml"
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\rev_scoot.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\rev_scoot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/advanced_rc_settings.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/advanced_rc_settings.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9legacybot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\k9legacybot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/rev_scoot.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/rev_scoot.xml"
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbot.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\pushbot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/pushbot.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/pushbot.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\advanced_rc_settings.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/device_filter.xml",
-        "source": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/src/main/res/xml/device_filter.xml"
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\maxmodules.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\maxmodules.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/advanced_rc_settings.xml",
-        "source": "/Users/dcao/.android/build-cache/57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f/output/res/xml/advanced_rc_settings.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\maxmodules.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\maxmodules.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/pushbot.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/pushbot.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\squarebot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\squarebot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/pushbotsens.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/pushbotsens.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\advanced_rc_settings.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/DarBots/FtcRobotController/build/intermediates/res/merged/debug/xml/maxmodules.xml",
-        "source": "/Users/dcao/.android/build-cache/7a3f135fde3bf94b7787ec6b2984ab46a845083f/output/res/xml/maxmodules.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\pushbot.xml"
     },
     {
-        "merged": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/build/intermediates/res/merged/debug/xml/device_filter.xml",
-        "source": "/Users/dcao/Documents/ftc_app-master/FtcRobotController/src/main/res/xml/device_filter.xml"
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\src\\main\\res\\xml\\device_filter.xml"
+    },
+    {
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "E:\\Robotics\\DarBots\\FtcRobotController\\src\\main\\res\\xml\\device_filter.xml"
+    },
+    {
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\app_settings.xml",
+        "source": "E:\\Robotics\\DarBots\\FtcRobotController\\src\\main\\res\\xml\\app_settings.xml"
+    },
+    {
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\app_settings.xml",
+        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\src\\main\\res\\xml\\app_settings.xml"
+    },
+    {
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\k9legacybot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\k9legacybot.xml"
+    },
+    {
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\advanced_rc_settings.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\advanced_rc_settings.xml"
+    },
+    {
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\device_filter.xml",
+        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\src\\main\\res\\xml\\device_filter.xml"
+    },
+    {
+        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbotsens.xml",
+        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\xml\\pushbotsens.xml"
+    },
+    {
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\rev_scoot.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\xml\\rev_scoot.xml"
+    },
+    {
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\app_settings.xml",
+        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\src\\main\\res\\xml\\app_settings.xml"
+    },
+    {
+        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\xml\\pushbotsens.xml",
+        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\xml\\pushbotsens.xml"
     }
 ]
