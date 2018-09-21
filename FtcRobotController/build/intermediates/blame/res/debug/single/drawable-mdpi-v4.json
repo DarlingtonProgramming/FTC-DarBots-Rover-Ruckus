@@ -1,14 +1,18 @@
 [
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
-        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
-        "source": "E:\\Robotics\\DarBots\\FtcRobotController\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\FtcRobotController\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
-        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/FtcRobotController/build/intermediates/res/merged/debug/drawable-mdpi-v4/ic_launcher.png",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/FtcRobotController/src/main/res/drawable-mdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4\\ic_launcher.png",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
     }
 ]

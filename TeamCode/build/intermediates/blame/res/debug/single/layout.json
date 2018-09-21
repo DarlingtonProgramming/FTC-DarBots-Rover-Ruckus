@@ -1,674 +1,898 @@
 [
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\simple_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\simple_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_about.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_remembered_groups.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\red_line.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\red_line.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_about.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_controller_banner.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\motor_controller_banner.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_configuration.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_configuration.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\0e4c64d941c8f04f42e1d9115677abdf003e7ba2\\output\\res\\layout\\activity_blocks.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\color_list_preference_line_item.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\b5ace0c2ed4b0a267e16ab7bf057bd550a0e5e7a\\output\\res\\layout\\color_list_preference_line_item.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/servo_controller_banner.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/servo_controller_banner.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_list.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\motor_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_ftc_wifi_remembered_groups.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_ftc_wifi_remembered_groups.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_output_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_output_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address_spin_item.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_generic_settings.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_generic_settings.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_input_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_list.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\servo_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\motor.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\color_list_preference_line_item.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\e29ed38c19e34a0a0a0f49f45341c799915aa44d\\output\\res\\layout\\color_list_preference_line_item.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrix_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\matrix_devices.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\file_info.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\file_info.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\servo_list.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\red_line.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\red_line.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_swap_usb_devices.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_swap_usb_devices.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\matrices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_usb_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_usb_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address_spin_item.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_fw_update.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_about.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\gray_line.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\gray_line.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_swap_usb_devices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_swap_usb_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\legacy.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\legacy.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\0e4c64d941c8f04f42e1d9115677abdf003e7ba2\\output\\res\\layout\\activity_blocks.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_load.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_load.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\loading_indicator_overlay.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\60572d81a90772b4f0d823b7611d56b3258a6216\\output\\res\\layout\\loading_indicator_overlay.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_about.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\feedback.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\e29ed38c19e34a0a0a0f49f45341c799915aa44d\\output\\res\\layout\\feedback.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\button_list.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\button_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_configuration.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_configuration.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\template_info.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\template_info.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_generic_settings.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_generic_settings.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\legacy.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\legacy.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_configure_from_template.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_configure_from_template.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_configuration.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_configuration.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_programming_mode.xml",
+        "source": "/Users/dcao/.android/build-cache/ed6a8d19bc06cc2fb65585bbb10fe84717022c45/output/res/layout/activity_programming_mode.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_load.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_load.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\port_attached_row.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\port_attached_row.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrix_devices.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\matrix_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_program_and_manage.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_program_and_manage.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_program_and_manage.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_program_and_manage.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\file_info.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\file_info.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_module.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_output_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_output_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_usb_device.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_usb_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/header.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/header.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\servo.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\motor_list.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_controller.xml",
-        "source": "E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\layout\\activity_ftc_controller.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_module_configure_address.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\digital_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/matrix_devices.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/matrix_devices.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrix_devices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\matrix_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_config_wifi_direct.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_config_wifi_direct.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_controller_banner.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\motor_controller_banner.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_address_update.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_programming_mode.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\8bc90a97e4bf0cf922d18172317756563f4f15ee\\output\\res\\layout\\activity_programming_mode.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/i2c_device.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/i2c_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\legacy.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\legacy.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\motor_list.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\matrices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\feedback.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\60572d81a90772b4f0d823b7611d56b3258a6216\\output\\res\\layout\\feedback.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\servo_controller_banner.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/simple_device.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/simple_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_inputs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_inputs.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_remembered_groups.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/lynx_module.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/lynx_module.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\header.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\header.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device_lynx.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\digital_device_lynx.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\digital_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_generic_settings.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_generic_settings.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrix_devices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\matrix_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\info_button.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\info_button.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_output_device.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_output_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\header.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\header.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\color_list_preference_line_item.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\60572d81a90772b4f0d823b7611d56b3258a6216\\output\\res\\layout\\color_list_preference_line_item.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/digital_devices.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/digital_devices.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\info_button.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\info_button.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\75c634cce84b102c0f6eff3c053c3fc25e71fdd4\\output\\res\\layout\\activity_inspection.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_view_logs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_view_logs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\digital_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\digital_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_controller.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\layout\\activity_ftc_controller.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_list.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\motor_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_address_update.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_list.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\motor_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\motor.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_module_configure_address.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_programming_mode.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\0e4c64d941c8f04f42e1d9115677abdf003e7ba2\\output\\res\\layout\\activity_programming_mode.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_fw_update.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\simple_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\simple_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\loading_indicator_overlay.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\b5ace0c2ed4b0a267e16ab7bf057bd550a0e5e7a\\output\\res\\layout\\loading_indicator_overlay.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/analog_inputs.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/analog_inputs.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_config_wifi_direct.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_config_wifi_direct.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwm_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\pwm_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\device_interface_module.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\device_interface_module.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\motor.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_view_logs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_view_logs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_configure_from_template.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_configure_from_template.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_devices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\digital_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_parent.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\item_list_parent.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_fw_update.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\loading_indicator_overlay.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\e29ed38c19e34a0a0a0f49f45341c799915aa44d\\output\\res\\layout\\loading_indicator_overlay.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_outputs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_outputs.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\servo_controller_banner.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/motor_controller_banner.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/motor_controller_banner.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_inputs.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_inputs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\banner_parent.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\banner_parent.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_generic_settings.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_generic_settings.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device_lynx.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\digital_device_lynx.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\servo_controller_banner.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_generic_settings.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_generic_settings.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\servo_controller_banner.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_parent.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\item_list_parent.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_inputs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_inputs.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_about.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_output_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_output_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_input_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\gray_line.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\gray_line.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwm_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\pwm_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address_spin_item.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_config_wifi_direct.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_config_wifi_direct.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_ftc_lynx_fw_update.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_ftc_lynx_fw_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\8bc90a97e4bf0cf922d18172317756563f4f15ee\\output\\res\\layout\\activity_blocks.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/gray_line.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/gray_line.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\red_line.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\red_line.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_program_and_manage.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_program_and_manage.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_controller_banner.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\motor_controller_banner.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/pwms.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/pwms.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\feedback.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\60572d81a90772b4f0d823b7611d56b3258a6216\\output\\res\\layout\\feedback.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\red_line.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\red_line.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_view_logs.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_view_logs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2cs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\i2cs.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_module.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\matrices.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\75c634cce84b102c0f6eff3c053c3fc25e71fdd4\\output\\res\\layout\\activity_inspection.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\4388f98ff0813db7deb8acc47506c68ca55fad67\\output\\res\\layout\\activity_inspection.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\port_attached_row.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\port_attached_row.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwm_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\pwm_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\button_list.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\button_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_program_and_manage.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_program_and_manage.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_inputs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_inputs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\file_info.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\file_info.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\motor.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\template_info.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\template_info.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_controller.xml",
-        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\layout\\activity_ftc_controller.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\i2c_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\simple_device.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\simple_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/digital_device.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/digital_device.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwm_device.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\pwm_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\i2c_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwm_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\pwm_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_address_update.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\red_line.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\red_line.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\servo.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_swap_usb_devices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_swap_usb_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/button_list.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/button_list.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\header.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\header.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrix_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\matrix_devices.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_outputs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_outputs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/motor_list.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/motor_list.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_configure_from_template.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_configure_from_template.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/template_info.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/template_info.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_generic_settings.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_generic_settings.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\8bc90a97e4bf0cf922d18172317756563f4f15ee\\output\\res\\layout\\activity_blocks.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\motor.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_parent.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\item_list_parent.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_load.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_load.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_config_wifi_direct.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_config_wifi_direct.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device_lynx.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\digital_device_lynx.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/feedback.xml",
+        "source": "/Users/dcao/.android/build-cache/28dd3208421ae6b35d3790db7f99db0a9db3713b/output/res/layout/feedback.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\port_attached_row.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\port_attached_row.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\i2c_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\simple_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\simple_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device_lynx.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\digital_device_lynx.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_controller_banner.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\motor_controller_banner.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\digital_devices.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwms.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\pwms.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/lynx_module_configure_address_spin_item.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/lynx_module_configure_address_spin_item.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\legacy.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\legacy.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/i2cs.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/i2cs.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_controller.xml",
-        "source": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\layout\\activity_ftc_controller.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_inputs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_inputs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\button_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\button_list.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_usb_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_usb_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/digital_device_lynx.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/digital_device_lynx.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\loading_indicator_overlay.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\e29ed38c19e34a0a0a0f49f45341c799915aa44d\\output\\res\\layout\\loading_indicator_overlay.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_output_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_output_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_input_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwms.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\pwms.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\info_button.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\info_button.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_remembered_groups.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2cs.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\i2cs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\939633c24f5b6e9bf047848aa3bc1f541309ddf2\\output\\res\\layout\\activity_inspection.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\gray_line.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\gray_line.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/color_list_preference_line_item.xml",
+        "source": "/Users/dcao/.android/build-cache/28dd3208421ae6b35d3790db7f99db0a9db3713b/output/res/layout/color_list_preference_line_item.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwms.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\pwms.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\color_list_preference_line_item.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\b5ace0c2ed4b0a267e16ab7bf057bd550a0e5e7a\\output\\res\\layout\\color_list_preference_line_item.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_module_configure_address.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_load.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_load.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\servo_controller_banner.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/red_line.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/red_line.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_program_and_manage.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_program_and_manage.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\servo.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_configuration.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_configuration.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/device_interface_module.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/device_interface_module.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\gray_line.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\gray_line.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/loading_indicator_overlay.xml",
+        "source": "/Users/dcao/.android/build-cache/28dd3208421ae6b35d3790db7f99db0a9db3713b/output/res/layout/loading_indicator_overlay.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\button_list.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\button_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_view_logs.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_view_logs.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address_spin_item.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_module.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_devices.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\digital_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/motor.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/motor.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\device_interface_module.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\device_interface_module.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_generic_settings.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_generic_settings.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\header.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\header.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_config_wifi_direct.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_config_wifi_direct.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_programming_mode.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\0e4c64d941c8f04f42e1d9115677abdf003e7ba2\\output\\res\\layout\\activity_programming_mode.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_blocks.xml",
+        "source": "/Users/dcao/.android/build-cache/ed6a8d19bc06cc2fb65585bbb10fe84717022c45/output/res/layout/activity_blocks.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_program_and_manage.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_program_and_manage.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\button_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\button_list.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\gray_line.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\gray_line.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_configuration.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_configuration.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_address_update.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_configuration.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_configuration.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_load.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_load.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_controller_banner.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\motor_controller_banner.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\template_info.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\template_info.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_controller.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\layout\\activity_ftc_controller.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\e19b854a88e932632c472efc393083fd7f6b8d3e\\output\\res\\layout\\activity_blocks.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device_lynx.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\digital_device_lynx.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_output_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_output_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_controller.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\FtcRobotController\\build\\intermediates\\bundles\\default\\res\\layout\\activity_ftc_controller.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\motor.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\digital_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device_lynx.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\digital_device_lynx.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\banner_parent.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\banner_parent.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrices.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\matrices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_inspection.xml",
+        "source": "/Users/dcao/.android/build-cache/13ab0ff4330f5f356f373e18cb903a399c244ad5/output/res/layout/activity_inspection.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_parent.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\item_list_parent.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_controller_banner.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\motor_controller_banner.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\4388f98ff0813db7deb8acc47506c68ca55fad67\\output\\res\\layout\\activity_inspection.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\red_line.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\red_line.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\file_info.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\file_info.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/file_info.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/file_info.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\template_info.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\template_info.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\info_button.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\info_button.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_list.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\servo_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_fw_update.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_module_configure_address.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\button_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\button_list.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\banner_parent.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\banner_parent.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_remembered_groups.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_address_update.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\legacy.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\legacy.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_list.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\servo_list.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\loading_indicator_overlay.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\b5ace0c2ed4b0a267e16ab7bf057bd550a0e5e7a\\output\\res\\layout\\loading_indicator_overlay.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_swap_usb_devices.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_swap_usb_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_view_logs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_view_logs.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\analog_input_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/servo_list.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/servo_list.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_module.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\template_info.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\template_info.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\servo.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\device_interface_module.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\device_interface_module.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address_spin_item.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_config_wifi_direct.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_config_wifi_direct.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_outputs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_outputs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\simple_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\simple_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwms.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\pwms.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_ftc_lynx_address_update.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_ftc_lynx_address_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_configure_from_template.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_configure_from_template.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/port_attached_row.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/port_attached_row.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\feedback.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\b5ace0c2ed4b0a267e16ab7bf057bd550a0e5e7a\\output\\res\\layout\\feedback.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_view_logs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_view_logs.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_remembered_groups.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\digital_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_address_update.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_lynx_address_update.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_fw_update.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\info_button.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\info_button.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_module.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\banner_parent.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\banner_parent.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_usb_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_usb_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_lynx_fw_update.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_lynx_fw_update.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_inputs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_inputs.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2cs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\i2cs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\loading_indicator_overlay.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\60572d81a90772b4f0d823b7611d56b3258a6216\\output\\res\\layout\\loading_indicator_overlay.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\i2c_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\gray_line.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\gray_line.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_usb_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_usb_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/matrices.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/matrices.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_parent.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\item_list_parent.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_input_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\servo.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_configure_from_template.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_configure_from_template.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_outputs.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_outputs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_view_logs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_view_logs.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\i2c_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\lynx_module.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_programming_mode.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\e19b854a88e932632c472efc393083fd7f6b8d3e\\output\\res\\layout\\activity_programming_mode.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwms.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\pwms.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_devices.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\digital_devices.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\port_attached_row.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\port_attached_row.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_configure_from_template.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_configure_from_template.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_controller_banner.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\servo_controller_banner.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_config_wifi_direct.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_config_wifi_direct.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_about.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_about.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2c_device.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\i2c_device.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/legacy.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/legacy.xml"
     },
     {
-        "merged": "E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\banner_parent.xml",
-        "source": "C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\banner_parent.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_load.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_load.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_inspection.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\939633c24f5b6e9bf047848aa3bc1f541309ddf2\\output\\res\\layout\\activity_inspection.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_usb_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_usb_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\file_info.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\file_info.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwm_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\pwm_device.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\device_interface_module.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\device_interface_module.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_configure_from_template.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_configure_from_template.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2cs.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\i2cs.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_ftc_configuration.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_ftc_configuration.xml"
     },
     {
-        "merged": "E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\port_attached_row.xml",
-        "source": "E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\port_attached_row.xml"
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\feedback.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\e29ed38c19e34a0a0a0f49f45341c799915aa44d\\output\\res\\layout\\feedback.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_swap_usb_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\file_info.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\file_info.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/analog_outputs.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/analog_outputs.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\port_attached_row.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\port_attached_row.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/analog_output_device.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/analog_output_device.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_load.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_load.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2cs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\i2cs.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\matrices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\digital_devices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\pwms.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\pwms.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_remembered_groups.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_ftc_wifi_remembered_groups.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/info_button.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/info_button.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\simple_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\simple_device.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_programming_mode.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\8bc90a97e4bf0cf922d18172317756563f4f15ee\\output\\res\\layout\\activity_programming_mode.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/lynx_usb_device.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/lynx_usb_device.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\header.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\header.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\template_info.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\template_info.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/servo.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/servo.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address_spin_item.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_module_configure_address_spin_item.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_blocks.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\e19b854a88e932632c472efc393083fd7f6b8d3e\\output\\res\\layout\\activity_blocks.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_program_and_manage.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_program_and_manage.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\color_list_preference_line_item.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\e29ed38c19e34a0a0a0f49f45341c799915aa44d\\output\\res\\layout\\color_list_preference_line_item.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\device_interface_module.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\device_interface_module.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/item_list_parent.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/item_list_parent.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_ftc_wifi_channel_selector.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\activity_ftc_wifi_channel_selector.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\i2cs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\i2cs.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\matrices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\servo_list.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\matrix_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\matrix_devices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_swap_usb_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\servo.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_swap_usb_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\activity_swap_usb_devices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\feedback.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\b5ace0c2ed4b0a267e16ab7bf057bd550a0e5e7a\\output\\res\\layout\\feedback.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\digital_devices.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\digital_devices.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_input_device.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_input_device.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\color_list_preference_line_item.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\60572d81a90772b4f0d823b7611d56b3258a6216\\output\\res\\layout\\color_list_preference_line_item.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\lynx_module_configure_address.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\info_button.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\info_button.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\servo_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\servo_list.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\header.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\header.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/analog_input_device.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/analog_input_device.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_outputs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\analog_outputs.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/lynx_module_configure_address.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/lynx_module_configure_address.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\activity_programming_mode.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\e19b854a88e932632c472efc393083fd7f6b8d3e\\output\\res\\layout\\activity_programming_mode.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_ftc_wifi_channel_selector.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_ftc_wifi_channel_selector.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\motor_list.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\motor_list.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Robotics\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\banner_parent.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/C:\\Users\\dcao\\.android\\build-cache\\fd50983ebc4b763714ef0c206ec3ad17e76b77a8\\output\\res\\layout\\banner_parent.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/pwm_device.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/pwm_device.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/banner_parent.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/banner_parent.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\analog_outputs.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\analog_outputs.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_about.xml",
+        "source": "/Users/dcao/.android/build-cache/12db07beb23cbddaef7d89985251b6624b8b08ab/output/res/layout/activity_about.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\legacy.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\legacy.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\device_interface_module.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\57e0a0fbd3f6e2f36aa09337cc743ea5a2c3269f\\output\\res\\layout\\device_interface_module.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\Documents\\ftc_app-master\\DarBots\\TeamCode\\build\\intermediates\\res\\merged\\debug\\layout\\item_list_parent.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/E:\\Users\\dcao\\.android\\build-cache\\7a3f135fde3bf94b7787ec6b2984ab46a845083f\\output\\res\\layout\\item_list_parent.xml"
+    },
+    {
+        "merged": "/Users/dcao/Documents/Robotics/DarBots/TeamCode/build/intermediates/res/merged/debug/layout/activity_ftc_controller.xml",
+        "source": "/Users/dcao/Documents/Robotics/DarBots/FtcRobotController/build/intermediates/bundles/default/res/layout/activity_ftc_controller.xml"
     }
 ]
