@@ -60,8 +60,8 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         //Motor Position: {16.34, 16.34}
         //RobotWheel Timeout Control: false
         RobotWheel m_Wheel0 = new RobotWheel(5.0,45);
-        RobotWheel m_Wheel1 = new RobotWheel(5.0,-45);
-        RobotWheel m_Wheel2 = new RobotWheel(5.0,135);
+        RobotWheel m_Wheel1 = new RobotWheel(5.0,135);
+        RobotWheel m_Wheel2 = new RobotWheel(5.0,-45);
         RobotWheel m_Wheel3 = new RobotWheel(5.0, -135);
         RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,865,2.5,false);
         RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,865,2.5,false);
