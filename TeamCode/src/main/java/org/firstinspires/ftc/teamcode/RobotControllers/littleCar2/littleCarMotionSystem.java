@@ -18,8 +18,16 @@ public class littleCarMotionSystem implements RobotMotionSystem, RobotEventLoopa
     private RobotPositionTracker m_PositionTracker;
     private RobotSensorWrapper<RobotNonBlockingWheel> m_LeftMotor, m_RightMotor;
 
+    @Override
     public boolean isBusy(){
         return this.m_LeftMotor.getSensor().isBusy() && this.m_RightMotor.getSensor().isBusy();
+    }
+
+    @Override
+    public void waitUntilMotionFinish(){
+        while(this.isBusy()){
+            this.doLoop();
+        }
     }
 
     public littleCarMotionSystem(RobotPositionTracker PositionTracker, DcMotor LeftMotor, DcMotor RightMotor){

@@ -9,6 +9,7 @@ package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
 public interface RobotMotionSystem {
     RobotPositionTracker getPositionTracker();
     boolean isBusy();
+    void waitUntilMotionFinish();
     void setPositionTracker(RobotPositionTracker newPositionTracker);
     double[] getCurrentFieldPos();
     double[] getRobotAxisFromFieldAxis(double[] FieldPosition);

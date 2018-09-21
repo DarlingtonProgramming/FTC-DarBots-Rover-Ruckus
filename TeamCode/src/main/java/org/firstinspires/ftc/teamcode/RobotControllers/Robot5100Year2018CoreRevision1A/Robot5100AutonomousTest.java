@@ -28,21 +28,14 @@ public class Robot5100AutonomousTest extends LinearOpMode {
         waitForStart();
         while(this.opModeIsActive()){
             this.m_MotionSystem.driveForward(30);
-            while(this.m_MotionSystem.isBusy()){
-                this.m_MotionSystem.doLoop();
-            }
+            this.m_MotionSystem.waitUntilMotionFinish();
             this.m_MotionSystem.turnOffsetAroundCenter(90);
-            while(this.m_MotionSystem.isBusy()){
-                this.m_MotionSystem.doLoop();
-            }
+            this.m_MotionSystem.waitUntilMotionFinish();
             this.m_MotionSystem.turnOffsetAroundCenter(-90);
-            while(this.m_MotionSystem.isBusy()){
-                this.m_MotionSystem.doLoop();
-            }
+            this.m_MotionSystem.waitUntilMotionFinish();
             this.m_MotionSystem.driveBackward(30);
-            while(this.m_MotionSystem.isBusy()){
-                this.m_MotionSystem.doLoop();
-            }
+            this.m_MotionSystem.waitUntilMotionFinish();
+            
             this.m_MotionSystem.doLoop();
         }
     }

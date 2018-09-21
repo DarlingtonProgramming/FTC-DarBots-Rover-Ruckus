@@ -15,8 +15,16 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     private RobotPositionTracker m_PositionTracker;
     private RobotSensorWrapper<RobotNonBlockingWheel> m_Motor0, m_Motor1, m_Motor2, m_Motor3;
 
+    @Override
     public boolean isBusy(){
         return (this.m_Motor0.getSensor().isBusy() && this.m_Motor1.getSensor().isBusy() && this.m_Motor2.getSensor().isBusy() && this.m_Motor3.getSensor().isBusy());
+    }
+
+    @Override
+    public void waitUntilMotionFinish(){
+        while(this.isBusy()){
+            this.doLoop();
+        }
     }
 
     public Robot5100MotionSystem(RobotPositionTracker PositionTracker, DcMotor Motor0, DcMotor Motor1, DcMotor Motor2, DcMotor Motor3){
