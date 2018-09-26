@@ -39,10 +39,10 @@ public class Robot5100AutonomousTest extends LinearOpMode {
 
     private void hardwareInit(){
         //FIELD: 365.76 * 365.76 CM^2
-        double[] Motor0Pos = {-16.34, 16.34};
-        double[] Motor1Pos = {16.34, 16.34};
-        double[] Motor2Pos = {-16.34,-16.34};
-        double[] Motor3Pos = {16.34,-16.34};
+        double[] Motor0Pos = {-16.34, -16.34};
+        double[] Motor1Pos = {16.34, -16.34};
+        double[] Motor2Pos = {-16.34,16.34};
+        double[] Motor3Pos = {16.34,16.34};
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,100,100,0,Motor0Pos,Motor1Pos,Motor2Pos,Motor3Pos);
         this.m_MotionSystem = new Robot5100MotionSystem(this.m_PositionTracker,this.hardwareMap.dcMotor.get("motor0"), this.hardwareMap.dcMotor.get("motor1"),this.hardwareMap.dcMotor.get("motor2"), this.hardwareMap.dcMotor.get("motor3"));
     }
