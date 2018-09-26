@@ -55,8 +55,9 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     public Robot5100MotionSystem(RobotPositionTracker PositionTracker, DcMotor Motor0, DcMotor Motor1, DcMotor Motor2, DcMotor Motor3){
         this.m_PositionTracker = PositionTracker;
-        //Robot CountsPerRev: 865
-        //Motor Speed 150RPM
+        //Robot CountsPerRev: 560
+        //http://www.revrobotics.com/content/docs/Encoder-Guide.pdf
+        //Motor Speed 300RPM
         //Diagonal Motor Distance Apart: 46.228 cm
         //Motor Position: {16.34, 16.34}
         //RobotWheel Timeout Control: false
@@ -64,14 +65,14 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         RobotWheel m_Wheel1 = new RobotWheel(5.0,-135);
         RobotWheel m_Wheel2 = new RobotWheel(5.0,45);
         RobotWheel m_Wheel3 = new RobotWheel(5.0, 135);
-        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,865,2.5,false);
-        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,865,2.5,false);
-        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,865,2.5,false);
-        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,865,2.5,false);
-        double[] Motor0Pos = {-16.34, 16.34};
-        double[] Motor1Pos = {16.34, 16.34};
-        double[] Motor2Pos = {-16.34,-16.34};
-        double[] Motor3Pos = {16.34,-16.34};
+        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,false);
+        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,false);
+        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,false);
+        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0,false);
+        double[] Motor0Pos = {-16.34, -16.34};
+        double[] Motor1Pos = {16.34, -16.34};
+        double[] Motor2Pos = {-16.34,16.34};
+        double[] Motor3Pos = {16.34,16.34};
         this.m_Motor0 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel0,NBMotor0),Motor0Pos);
         this.m_Motor1 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel1,NBMotor1),Motor1Pos);
         this.m_Motor2 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel2,NBMotor2),Motor2Pos);
