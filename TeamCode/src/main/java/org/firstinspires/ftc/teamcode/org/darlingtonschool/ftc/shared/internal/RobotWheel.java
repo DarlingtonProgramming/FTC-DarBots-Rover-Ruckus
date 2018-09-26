@@ -29,6 +29,8 @@ SOFTWARE.
  */
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal;
 
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
+
 public class RobotWheel {
     private double wheelRadius;
     private double wheelInstalledAngle;
@@ -85,12 +87,16 @@ public class RobotWheel {
         if(this.getInstalledAngle() == 0 || this.getInstalledAngle() == -180){
             throw new RuntimeException("You cannot move through RobotX Axis because the installed angle is vertical");
         }
-        return (X / Math.sin(Math.toRadians(this.getInstalledAngle())));
+        double Rst = X / Math.sin(Math.toRadians(this.getInstalledAngle()));
+        RobotDebugger.addDebug("RobotWheel(" + this.getInstalledAngle() + ")","calcDistanceByY(" + X + ") => " + Rst);
+        return Rst;
     }
     public double calculateDistanceByRobotAxisY(double Y) throws RuntimeException{
         if(this.getInstalledAngle() == 90 || this.getInstalledAngle() == -90){
             throw new RuntimeException("You cannot move through RobotY Axis because the installed angle is horizontal");
         }
-        return (Y / Math.cos(Math.toRadians(this.getInstalledAngle())));
+        double Rst = Y / Math.cos(Math.toRadians(this.getInstalledAngle()));
+        RobotDebugger.addDebug("RobotWheel(" + this.getInstalledAngle() + ")","calcDistanceByY(" + Y + ") => " + Rst);
+        return Rst;
     }
 }

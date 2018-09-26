@@ -28,6 +28,7 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
 
 @Autonomous (name = "5100Test", group = "David Cao")
@@ -49,6 +50,8 @@ public class Robot5100AutonomousTest extends LinearOpMode {
     }
 
     public void runOpMode(){
+        RobotDebugger.setTelemetry(this.telemetry);
+        RobotDebugger.setDebug(true);
         this.hardwareInit();
         waitForStart();
         while(this.opModeIsActive()){
@@ -62,6 +65,7 @@ public class Robot5100AutonomousTest extends LinearOpMode {
             this.m_MotionSystem.waitUntilMotionFinish();
 
             this.m_MotionSystem.doLoop();
+            RobotDebugger.doLoop();
         }
     }
 }

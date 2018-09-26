@@ -26,6 +26,7 @@ SOFTWARE.
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRevision1A;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotMotionSystem;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotNonBlockingWheel;
