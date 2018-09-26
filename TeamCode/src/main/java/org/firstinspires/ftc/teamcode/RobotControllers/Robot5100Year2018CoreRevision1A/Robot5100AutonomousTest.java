@@ -34,8 +34,6 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPosit
 @Autonomous (name = "5100Test", group = "David Cao")
 //@Disabled
 public class Robot5100AutonomousTest extends LinearOpMode {
-
-
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
 

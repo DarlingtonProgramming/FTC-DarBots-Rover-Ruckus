@@ -108,11 +108,12 @@ public class RobotPositionCorrectionSystem {
         this.m_HowManyCMPerAxisUnit = CMPerAxisUnit;
         this.m_CurrentRotation = this.calculateRotation(angleRotation);
     }
-    public double[] detectPosition(double[] fieldSize) throws RuntimeException{
-        double rLeftDistance = this.m_LeftDistanceSensor.getSensor().getDistance(DistanceUnit.CM);
-        double rRightDistance = this.m_RightDistanceSensor.getSensor().getDistance(DistanceUnit.CM);
-        double rFrontDistance = this.m_FrontDistanceSensor.getSensor().getDistance(DistanceUnit.CM);
-        double rBackDistance = this.m_BackDistanceSensor.getSensor().getDistance(DistanceUnit.CM);
+
+    public double[] detectPositionUsingSpecifiedSensor(double[] fieldSize, RobotSensorWrapper<DistanceSensor> leftDistanceSensor, RobotSensorWrapper<DistanceSensor> rightDistanceSensor, RobotSensorWrapper<DistanceSensor> frontDistanceSensor, RobotSensorWrapper<DistanceSensor> backDistanceSensor) throws RuntimeException {
+        double rLeftDistance = leftDistanceSensor != null ? leftDistanceSensor.getSensor().getDistance(DistanceUnit.CM) : DistanceSensor.distanceOutOfRange;
+        double rRightDistance = rightDistanceSensor != null? rightDistanceSensor.getSensor().getDistance(DistanceUnit.CM) : DistanceSensor.distanceOutOfRange;
+        double rFrontDistance = frontDistanceSensor != null ? frontDistanceSensor.getSensor().getDistance(DistanceUnit.CM) : DistanceSensor.distanceOutOfRange;
+        double rBackDistance = backDistanceSensor != null ? backDistanceSensor.getSensor().getDistance(DistanceUnit.CM) : DistanceSensor.distanceOutOfRange;
 
         double AFactorToH = 0;
         double leftPos = 0, rightPos = 0, topPos = 0, botPos = 0;
@@ -161,33 +162,32 @@ public class RobotPositionCorrectionSystem {
         rightPos *= AFactorToH;
         topPos *= AFactorToH;
         botPos *= AFactorToH;
-
         RobotPositionDistanceSortedSensor leftSensor = null, rightSensor = null, topSensor = null, botSensor = null;
         if(this.getCurrentRotation() > -45 && this.getCurrentRotation() <= 45){
-            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,this.m_LeftDistanceSensor.getPos());
-            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,this.m_RightDistanceSensor.getPos());
-            topSensor = new RobotPositionDistanceSortedSensor(topPos,this.m_FrontDistanceSensor.getPos());
-            botSensor = new RobotPositionDistanceSortedSensor(botPos,this.m_BackDistanceSensor.getPos());
+            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,leftDistanceSensor.getPos());
+            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,rightDistanceSensor.getPos());
+            topSensor = new RobotPositionDistanceSortedSensor(topPos,frontDistanceSensor.getPos());
+            botSensor = new RobotPositionDistanceSortedSensor(botPos,backDistanceSensor.getPos());
         }else if(this.getCurrentRotation() > -135 && this.getCurrentRotation() <= -45) {
-            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,this.m_FrontDistanceSensor.getPos());
-            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,this.m_BackDistanceSensor.getPos());
-            topSensor = new RobotPositionDistanceSortedSensor(topPos,this.m_RightDistanceSensor.getPos());
-            botSensor = new RobotPositionDistanceSortedSensor(botPos,this.m_LeftDistanceSensor.getPos());
+            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,frontDistanceSensor.getPos());
+            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,backDistanceSensor.getPos());
+            topSensor = new RobotPositionDistanceSortedSensor(topPos,rightDistanceSensor.getPos());
+            botSensor = new RobotPositionDistanceSortedSensor(botPos,leftDistanceSensor.getPos());
         }else if(this.getCurrentRotation() > 45 && this.getCurrentRotation() <= 135){
-            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,this.m_BackDistanceSensor.getPos());
-            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,this.m_FrontDistanceSensor.getPos());
-            topSensor = new RobotPositionDistanceSortedSensor(topPos,this.m_LeftDistanceSensor.getPos());
-            botSensor = new RobotPositionDistanceSortedSensor(botPos,this.m_RightDistanceSensor.getPos());
+            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,backDistanceSensor.getPos());
+            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,frontDistanceSensor.getPos());
+            topSensor = new RobotPositionDistanceSortedSensor(topPos,leftDistanceSensor.getPos());
+            botSensor = new RobotPositionDistanceSortedSensor(botPos,rightDistanceSensor.getPos());
         }else if(this.getCurrentRotation() >= -180 && this.getCurrentRotation() <= -135){
-            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,this.m_RightDistanceSensor.getPos());
-            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,this.m_LeftDistanceSensor.getPos());
-            topSensor = new RobotPositionDistanceSortedSensor(topPos,this.m_BackDistanceSensor.getPos());
-            botSensor = new RobotPositionDistanceSortedSensor(botPos,this.m_FrontDistanceSensor.getPos());
+            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,rightDistanceSensor.getPos());
+            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,leftDistanceSensor.getPos());
+            topSensor = new RobotPositionDistanceSortedSensor(topPos,backDistanceSensor.getPos());
+            botSensor = new RobotPositionDistanceSortedSensor(botPos,frontDistanceSensor.getPos());
         }else if(this.getCurrentRotation() > 135 && this.getCurrentRotation() < 180){
-            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,this.m_RightDistanceSensor.getPos());
-            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,this.m_LeftDistanceSensor.getPos());
-            topSensor = new RobotPositionDistanceSortedSensor(topPos,this.m_BackDistanceSensor.getPos());
-            botSensor = new RobotPositionDistanceSortedSensor(botPos,this.m_FrontDistanceSensor.getPos());
+            leftSensor = new RobotPositionDistanceSortedSensor(leftPos,rightDistanceSensor.getPos());
+            rightSensor = new RobotPositionDistanceSortedSensor(rightPos,leftDistanceSensor.getPos());
+            topSensor = new RobotPositionDistanceSortedSensor(topPos,backDistanceSensor.getPos());
+            botSensor = new RobotPositionDistanceSortedSensor(botPos,frontDistanceSensor.getPos());
         }
 
         if((!topAvailable) && (!botAvailable)){
@@ -213,5 +213,9 @@ public class RobotPositionCorrectionSystem {
         }
         double[] mResult = {robotX, robotY};
         return mResult;
+    }
+
+    public double[] detectPosition(double[] fieldSize) throws RuntimeException{
+        return this.detectPositionUsingSpecifiedSensor(fieldSize,this.getLeftDistanceSensor(),this.getRightDistanceSensor(),this.getFrontDistanceSensor(),this.getBackDistanceSensor());
     }
 }
