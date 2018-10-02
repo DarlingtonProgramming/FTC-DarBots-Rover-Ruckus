@@ -105,6 +105,8 @@ public class RobotNonBlockingWheel implements RobotEventLoopable{
         this.m_Motor.setRevPerSec(revPerSec);
     }
 
+    public void waitMotorOperationFinish(){ this.m_Motor.waitMotorOperationFinish(); }
+
     public boolean isBusy(){
         return this.m_Motor.isBusy();
     }

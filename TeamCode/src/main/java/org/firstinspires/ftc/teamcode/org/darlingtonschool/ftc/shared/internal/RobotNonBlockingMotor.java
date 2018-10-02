@@ -74,6 +74,12 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         this.m_TimeControl = Enabled;
     }
 
+    public void waitMotorOperationFinish(){
+        while(this.isBusy()){
+            this.doLoop();
+        }
+    }
+
     public boolean isBusy(){
         return this.m_isWorking;
     }
