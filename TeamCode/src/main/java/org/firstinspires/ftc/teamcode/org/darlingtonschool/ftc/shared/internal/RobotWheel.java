@@ -87,7 +87,7 @@ public class RobotWheel {
         if(this.getInstalledAngle() == 0 || this.getInstalledAngle() == -180){
             throw new RuntimeException("You cannot move through RobotX Axis because the installed angle is vertical");
         }
-        double Rst = X / Math.sin(Math.toRadians(this.getInstalledAngle()));
+        double Rst = X / this.calculateXToDistanceFactor();
         RobotDebugger.addDebug("RobotWheel(" + this.getInstalledAngle() + ")","calcDistanceByY(" + X + ") => " + Rst);
         return Rst;
     }
@@ -95,8 +95,20 @@ public class RobotWheel {
         if(this.getInstalledAngle() == 90 || this.getInstalledAngle() == -90){
             throw new RuntimeException("You cannot move through RobotY Axis because the installed angle is horizontal");
         }
-        double Rst = Y / Math.cos(Math.toRadians(this.getInstalledAngle()));
+        double Rst = Y / this.calculateYToDistanceFactor();
         RobotDebugger.addDebug("RobotWheel(" + this.getInstalledAngle() + ")","calcDistanceByY(" + Y + ") => " + Rst);
         return Rst;
+    }
+    public double calculateYToDistanceFactor(){//Returns Y / Distance
+        if(this.getInstalledAngle() == 90 || this.getInstalledAngle() == -90){
+            return 0;
+        }
+        return Math.cos(Math.toRadians(this.getInstalledAngle()));
+    }
+    public double calculateXToDistanceFactor(){ //Returns X / Distance
+        if(this.getInstalledAngle() == 0 || this.getInstalledAngle() == -180){
+            return 0;
+        }
+        return Math.sin(Math.toRadians(this.getInstalledAngle()));
     }
 }

@@ -113,9 +113,23 @@ public class RobotNonBlockingWheel implements RobotEventLoopable{
         this.m_Motor.moveRev(RevTotal,Power);
     }
 
+    public void moveWithFixedSpeed(double speed){
+        this.m_Motor.moveWithFixedSpeed(speed);
+    }
+
     public void moveCycle(double Cycle, double Power){
         this.m_Motor.moveCycle(Cycle,Power);
     }
+
+    public int stopRunning_getMovedRev(){
+        return this.m_Motor.stopRunning_getMovedRev();
+    }
+
+    public double stopRunning_getMovedCycle(){
+        return this.m_Motor.stopRunning_getMovedCycle();
+    }
+
+    public double stopRunning_getMovedDistance(){ return this.stopRunning_getMovedCycle() * this.getPerimeter(); }
 
     public int getLastMovedRev(){
         return this.m_Motor.getLastMovedRev();
@@ -149,6 +163,30 @@ public class RobotNonBlockingWheel implements RobotEventLoopable{
 
     public void moveRobotY(double Y, double Power) throws RuntimeException{
         this.moveDistance(this.m_Wheel.calculateDistanceByRobotAxisY(Y),Power);
+    }
+
+    public double moveRobotXWithFixedSpeed(double Power) throws RuntimeException{ //Returns X / Distance Factor, to get the X axis moved, just multiply the distance by the factor.
+        double isPositiveOrNegativeDist = this.m_Wheel.calculateDistanceByRobotAxisX(Power);
+        double realPower = 0;
+        if(isPositiveOrNegativeDist < 0){
+            realPower = -Math.abs(Power);
+        }else{
+            realPower = Math.abs(Power);
+        }
+        this.m_Motor.moveWithFixedSpeed(realPower);
+        return this.m_Wheel.calculateXToDistanceFactor();
+    }
+
+    public double moveRobotYWithFixedSpeed(double Power) throws RuntimeException{ //Returns Y / Distance Factor, to get the Y axis moved, just multiply the distance by the factor.
+        double isPositiveOrNegativeDist = this.m_Wheel.calculateDistanceByRobotAxisY(Power);
+        double realPower = 0;
+        if(isPositiveOrNegativeDist < 0){
+            realPower = -Math.abs(Power);
+        }else{
+            realPower = Math.abs(Power);
+        }
+        this.m_Motor.moveWithFixedSpeed(realPower);
+        return this.m_Wheel.calculateYToDistanceFactor();
     }
 
     @Override

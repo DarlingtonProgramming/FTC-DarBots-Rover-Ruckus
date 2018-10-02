@@ -37,7 +37,12 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 
 public class RobotNonBlockingMotor implements RobotEventLoopable{
+    enum workType{
+        ToPosition,
+        FixedSpeed
+    }
     private static final double EXCESSTIMEPCT = 30;//Percent of time excess
+    private workType m_runningType = workType.ToPosition;
     private DcMotor m_DCMotor;
     private double m_RevPerCycle = 0;
     private double m_RevPerSec = 0;
@@ -54,7 +59,7 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         this.m_RevPerSec = RevPerSec;
         this.m_DCMotor.setPower(1.0);
         this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
-        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.m_DCMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         this.m_MotorOperationTime = new ElapsedTime();
         this.m_isWorking = false;
@@ -71,6 +76,10 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
 
     public boolean isBusy(){
         return this.m_isWorking;
+    }
+
+    public boolean isRunningFixedSpeed(){
+        return (this.isBusy() && this.m_runningType == workType.FixedSpeed);
     }
 
     public DcMotor getDcMotor() {
@@ -112,9 +121,10 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         this.m_DCMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         this.m_DCMotor.setTargetPosition(StartPos + RevTotal);
 
-        if(!this.m_isWorking) {
+        if(!this.m_isWorking || this.m_runningType != workType.ToPosition) {
             this.m_OriginLocation = StartPos;
             this.m_MotorOperationTime.reset();
+            this.m_runningType = workType.ToPosition;
         }
         this.m_isWorking = true;
 
@@ -124,6 +134,44 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         this.m_FineTime += FineTime;
     }
 
+    public void moveWithFixedSpeed(double speed){
+        RobotDebugger.addDebug("RobotNonBlockingMotor","moveWithFixedSpeed (" + speed + ")");
+        int StartPos = this.m_DCMotor.getCurrentPosition();
+        if(speed == 0){
+            if(!this.m_isWorking) {
+                this.m_OriginLocation = StartPos;
+                this.m_MovedRev = 0;
+            }
+            return;
+        }
+
+        this.m_DCMotor.setPower(speed);
+        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        if(!this.m_isWorking || this.m_runningType != workType.FixedSpeed) {
+            this.m_OriginLocation = StartPos;
+            this.m_MotorOperationTime.reset();
+            this.m_runningType = workType.FixedSpeed;
+        }
+        this.m_isWorking = true;
+        this.m_FineTime = 0;
+    }
+
+    public int stopRunning_getMovedRev(){
+        if(!this.m_isWorking){
+            return this.getLastMovedRev();
+        }
+        this.m_isWorking = false;
+        this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
+        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.m_MovedRev = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
+        this.m_FineTime = 0;
+        return this.getLastMovedRev();
+    }
+
+    public double stopRunning_getMovedCycle(){
+        return ((double) this.stopRunning_getMovedRev()) / ((double) this.getRevPerCycle());
+    }
 
 
     public void moveCycle(double Cycle, double Power) throws RuntimeException{
@@ -151,22 +199,25 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         if(!this.m_isWorking){
             return;
         }
-        boolean workFinished = false;
-        if(this.m_DCMotor.isBusy()){
-            if(this.m_MotorOperationTime.time() > this.m_FineTime){
-                if(this.m_TimeControl) {
-                    workFinished = true;
+        if(this.m_runningType == workType.ToPosition) {
+            boolean workFinished = false;
+            if (this.m_DCMotor.isBusy()) {
+                if (this.m_MotorOperationTime.time() > this.m_FineTime) {
+                    if (this.m_TimeControl) {
+                        workFinished = true;
+                    }
                 }
+            } else {
+                workFinished = true;
             }
-        }else{
-            workFinished = true;
-        }
-        if(workFinished){
-            this.m_isWorking = false;
-            this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
-            this.m_MovedRev = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
-            this.m_FineTime = 0;
-            RobotDebugger.addDebug("RobotNonBlockingMotor","moveRevEnd (" + this.m_MovedRev + ")");
+            if (workFinished) {
+                this.m_isWorking = false;
+                this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
+                this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                this.m_MovedRev = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
+                this.m_FineTime = 0;
+                RobotDebugger.addDebug("RobotNonBlockingMotor", "moveRevEnd (" + this.m_MovedRev + ")");
+            }
         }
     }
 }

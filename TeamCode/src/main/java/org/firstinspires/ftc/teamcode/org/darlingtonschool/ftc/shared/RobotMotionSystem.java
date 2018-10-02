@@ -47,4 +47,9 @@ public interface RobotMotionSystem {
     void driveBackward(double Distance);
     void driveToLeft(double Distance);
     void driveToRight(double Distance);
+    void driveForwardWithSpeed(double Speed);
+    void driveBackwardWithSpeed(double Speed);
+    void driveToLeftWithSpeed(double Speed);
+    void driveToRightWithSpeed(double Speed);
+    void stopDrivingWithSpeed();
 }
