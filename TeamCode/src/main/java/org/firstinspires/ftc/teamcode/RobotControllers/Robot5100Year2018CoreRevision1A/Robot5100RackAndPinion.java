@@ -27,17 +27,18 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotRackAndPinion;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
 
-public class Robot5100ReckAndPinion implements RobotEventLoopable{
+public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndPinion{
     private RobotNonBlockingMotor m_myReckAndPinion;
     private final static double RNPCycleNum = 10.50;
     private final static double RNPMotorRevPerCycle = 1120;
     private final static double RNPMotorRevPerSec = 2.67*RNPMotorRevPerCycle;
     private double m_CurrentCycle = 0;
     private boolean m_isBusy = false;
-    public Robot5100ReckAndPinion(DcMotor ReckAndPinionMotor, double CurrentPercent){
+    public Robot5100RackAndPinion(DcMotor ReckAndPinionMotor, double CurrentPercent){
         this.m_myReckAndPinion = new RobotNonBlockingMotor(ReckAndPinionMotor,RNPMotorRevPerCycle,RNPMotorRevPerSec,false);
         this.m_CurrentCycle = CurrentPercent / 100 * RNPCycleNum;
     }
