@@ -42,12 +42,16 @@ public interface RobotMotionSystem {
     void setCurrentFieldPos(double[] Position);
     void turnToAbsFieldAngle(double AngleInDegree);
     void turnOffsetAroundCenter(double AngleInDegree);
+    void keepTurningOffsetAroundCenter(double Speed);
+    void stopTurningOffsetAroundCenter();
     void driveTo(double[] fieldPos);
     void driveForward(double Distance);
     void driveBackward(double Distance);
     void driveToLeft(double Distance);
     void driveToRight(double Distance);
     void driveForwardWithSpeed(double Speed);
+    boolean isDrivingInDirectionWithSpeed();
+    boolean isKeepingTurningOffsetAroundCenter();
     void driveBackwardWithSpeed(double Speed);
     void driveToLeftWithSpeed(double Speed);
     void driveToRightWithSpeed(double Speed);

@@ -43,6 +43,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     private boolean m_isDriving = false;
     private double[] m_MotorXFactor = {0,0,0,0};
     private double[] m_MotorYFactor = {0,0,0,0};
+    private boolean m_isTurningAround = false;
 
     @Override
     public boolean isBusy(){
@@ -68,10 +69,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         RobotWheel m_Wheel1 = new RobotWheel(5.0,135);
         RobotWheel m_Wheel2 = new RobotWheel(5.0,-45);
         RobotWheel m_Wheel3 = new RobotWheel(5.0, 45);
-        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,false);
-        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,false);
-        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,false);
-        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0,false);
+        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0*560,false);
+        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0*560,false);
+        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0*560,false);
+        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0*560,false);
         double[] Motor0Pos = {-16.34, -16.34};
         double[] Motor1Pos = {16.34, -16.34};
         double[] Motor2Pos = {-16.34,16.34};
@@ -260,5 +261,35 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         this.m_MotorYFactor[1] = 0;
         this.m_MotorYFactor[2] = 0;
         this.m_MotorYFactor[3] = 0;
+    }
+    @Override
+    public void keepTurningOffsetAroundCenter(double Speed){
+        this.m_Motor0.getSensor().moveWithFixedSpeed(Speed);
+        this.m_Motor1.getSensor().moveWithFixedSpeed(Speed);
+        this.m_Motor2.getSensor().moveWithFixedSpeed(Speed);
+        this.m_Motor3.getSensor().moveWithFixedSpeed(Speed);
+        this.m_isTurningAround = true;
+    }
+    @Override
+    public void stopTurningOffsetAroundCenter(){
+        if(!m_isTurningAround){
+            return;
+        }
+        double movedDistance = Math.min(Math.min(Math.min(this.m_Motor0.getSensor().stopRunning_getMovedDistance(),this.m_Motor1.getSensor().stopRunning_getMovedDistance()),this.m_Motor2.getSensor().stopRunning_getMovedDistance()),this.m_Motor3.getSensor().stopRunning_getMovedDistance());
+        double[] mPowerPoint = this.m_Motor0.getPos(), mFixedPoint = {0,0};
+        this.m_PositionTracker.moveWithRobotFixedPointAndPowerPoint(RobotPositionTracker.RotationType.Clockwise,mFixedPoint,mPowerPoint,movedDistance);
+        this.m_isTurningAround = false;
+    }
+    @Override
+    public boolean isDrivingInDirectionWithSpeed(){
+        if(m_MotorXFactor[0] == 0 && m_MotorXFactor[1] == 0 && m_MotorXFactor[2] == 0 && m_MotorXFactor[3] == 0 && m_MotorYFactor[0] == 0 && m_MotorYFactor[1] == 0 && m_MotorYFactor[2] == 0 && m_MotorYFactor[3] == 0){
+            return false;
+        }else{
+            return true;
+        }
+    }
+    @Override
+    public boolean isKeepingTurningOffsetAroundCenter(){
+        return this.m_isTurningAround;
     }
 }

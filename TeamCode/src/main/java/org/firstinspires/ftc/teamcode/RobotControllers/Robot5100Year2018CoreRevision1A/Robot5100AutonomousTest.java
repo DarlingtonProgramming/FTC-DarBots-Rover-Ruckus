@@ -39,6 +39,7 @@ public class Robot5100AutonomousTest extends LinearOpMode {
 
     private void hardwareInit(){
         //FIELD: 365.76 * 365.76 CM^2
+        //change the initialX and initialY
         double[] leftTopExtreme = {-16.34, 16.34};
         double[] rightTopExtreme = {16.34, 16.34};
         double[] leftBotExtreme = {-16.34,-16.34};
