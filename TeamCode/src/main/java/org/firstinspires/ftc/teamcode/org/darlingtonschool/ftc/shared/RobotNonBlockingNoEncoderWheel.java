@@ -90,12 +90,12 @@ public class RobotNonBlockingNoEncoderWheel implements RobotEventLoopable{
         this.m_Motor.setDcMotor(myDCMotor);
     }
 
-    public double getRevPerCycle(){
-        return this.m_Motor.getRevPerCycle();
+    public double getCountsPerRev(){
+        return this.m_Motor.getCountsPerRev();
     }
 
-    public void setRevPerCycle(double revPerCycle){
-        this.m_Motor.setRevPerCycle(revPerCycle);
+    public void setCountsPerRev(double CountsPerRev){
+        this.m_Motor.setCountsPerRev(CountsPerRev);
     }
 
     public double getRevPerSec(){
@@ -112,8 +112,8 @@ public class RobotNonBlockingNoEncoderWheel implements RobotEventLoopable{
         return this.m_Motor.isBusy();
     }
 
-    public void moveRev(int RevTotal, double Power){
-        this.m_Motor.moveRev(RevTotal,Power);
+    public void moveCounts(int RevTotal, double Power){
+        this.m_Motor.moveCounts(RevTotal,Power);
     }
 
     public void moveWithFixedSpeed(double speed){
@@ -134,8 +134,8 @@ public class RobotNonBlockingNoEncoderWheel implements RobotEventLoopable{
 
     public double stopRunning_getMovedDistance(){ return this.stopRunning_getMovedCycle() * this.getPerimeter(); }
 
-    public int getLastMovedRev(){
-        return this.m_Motor.getLastMovedRev();
+    public int getLastMovedCounts(){
+        return this.m_Motor.getLastMovedCounts();
     }
 
     public double getLastMovedCycle(){
@@ -146,12 +146,12 @@ public class RobotNonBlockingNoEncoderWheel implements RobotEventLoopable{
         return this.getLastMovedCycle() * this.getPerimeter();
     }
 
-    public int getRemainingRev(){
-        return this.m_Motor.getRemainingRev();
+    public int getRemainingCounts(){
+        return this.m_Motor.getRemainingCounts();
     }
 
     public double getRemainingDistance(){
-        return ((double) this.getRemainingRev()) / ((double) this.getRevPerCycle()) * this.m_Wheel.getPerimeter();
+        return ((double) this.getRemainingCounts()) / ((double) this.getCountsPerRev()) * this.m_Wheel.getPerimeter();
     }
 
     public void moveDistance(double Distance, double Power){
