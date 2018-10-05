@@ -84,10 +84,13 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
         this.m_isWorking = true;
 
         if(!this.m_isWorking || this.m_runningType != workType.ToPosition) {
-            this.m_DriveSpeed = Power;
-            this.m_MotorOperationTime.reset();
+            this.m_MovedCounts = 0;
             this.m_runningType = workType.ToPosition;
+        }else if(this.m_isWorking && this.m_runningType == workType.FixedSpeed){
+            this.m_MovedCounts += (int) Math.round(this.m_MotorOperationTime.time() * this.m_DriveSpeed * this.getRevPerSec() * this.getCountsPerRev());
         }
+        this.m_MotorOperationTime.reset();
+        this.m_DriveSpeed = Power;
 
         double EstimatedTime = Math.abs(((double) RevTotal) / ((double) this.getRevPerSec()));
         this.m_EstimatedTime += EstimatedTime;
@@ -104,13 +107,15 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
         }
 
         this.m_DCMotor.setPower(speed);
-
-        if(!this.m_isWorking || this.m_runningType != workType.FixedSpeed) {
-            this.m_DriveSpeed = speed;
-            this.m_MotorOperationTime.reset();
-            this.m_runningType = workType.FixedSpeed;
-        }
         this.m_isWorking = true;
+        if(!this.m_isWorking || this.m_runningType != workType.FixedSpeed) {
+            this.m_MovedCounts = 0;
+            this.m_runningType = workType.FixedSpeed;
+        }else{
+            this.m_MovedCounts += (int) Math.round(this.m_MotorOperationTime.time() * this.m_DriveSpeed * this.getRevPerSec() * this.getCountsPerRev());
+        }
+        this.m_DriveSpeed = speed;
+        this.m_MotorOperationTime.reset();
     }
 
     public int stopRunning_getMovedRev(){
@@ -119,7 +124,8 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
         }
         this.m_DCMotor.setPower(0.0);
         this.m_isWorking = false;
-        this.m_MovedCounts = (int) Math.round(this.m_MotorOperationTime.time() * this.m_DriveSpeed * this.getRevPerSec());
+        this.m_MovedCounts += (int) Math.round(this.m_MotorOperationTime.time() * this.m_DriveSpeed * this.getRevPerSec() * this.getCountsPerRev());
+        this.m_DriveSpeed = 0;
         return this.getLastMovedCounts();
     }
 
@@ -160,8 +166,9 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
             }
             if (workFinished) {
                 this.m_isWorking = false;
+                this.m_DriveSpeed = 0;
                 this.m_DCMotor.setPower(0.0);
-                this.m_MovedCounts = (int) Math.round(this.m_MotorOperationTime.time() * this.m_DriveSpeed * this.getRevPerSec());
+                this.m_MovedCounts += (int) Math.round(this.m_MotorOperationTime.time() * this.m_DriveSpeed * this.getRevPerSec() * this.getCountsPerRev());
                 RobotDebugger.addDebug("RobotNonBlockingNoEncoderMotor", "moveRevEnd (" + this.m_MovedCounts + ")");
             }
         }

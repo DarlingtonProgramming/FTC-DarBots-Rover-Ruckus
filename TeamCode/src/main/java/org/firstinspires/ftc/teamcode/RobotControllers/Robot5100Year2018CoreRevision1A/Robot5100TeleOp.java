@@ -41,7 +41,7 @@ public class Robot5100TeleOp extends LinearOpMode{
         }else{
             isRotating = true;
         }
-        if(Math.max(Math.abs(gamepad1.left_stick_x),Math.abs(gamepad1.left_stick_x)) < 0.05){
+        if(Math.max(Math.abs(gamepad1.left_stick_x),Math.abs(gamepad1.left_stick_y)) < 0.05){
             isDriving = false;
         }else{
             isDriving = true;
@@ -87,9 +87,10 @@ public class Robot5100TeleOp extends LinearOpMode{
         RobotDebugger.setTelemetry(this.telemetry);
         RobotDebugger.setDebug(false);
         this.hardwareInitialize();
-        this.waitForStart();
+        waitForStart();
         while(this.opModeIsActive()){
             movementControl();
+            rackAndPinionControl();
             this.m_MotionSystem.doLoop();
             this.m_RackAndPinion.doLoop();
         }
