@@ -133,7 +133,6 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
         return ((double) this.stopRunning_getMovedRev()) / ((double) this.getCountsPerRev());
     }
 
-
     public void moveCycle(double Cycle, double Power) throws RuntimeException{
         int Rev = (int) Math.round(Cycle * this.getCountsPerRev());
         this.moveCounts(Rev,Power);

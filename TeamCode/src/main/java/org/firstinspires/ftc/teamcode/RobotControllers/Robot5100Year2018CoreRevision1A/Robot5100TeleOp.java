@@ -3,15 +3,22 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotNonBlockingServoUsingMotor;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 @TeleOp (name = "5100TeleOp", group = "David Cao")
 public class Robot5100TeleOp extends LinearOpMode{
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
     private Robot5100RackAndPinion m_RackAndPinion;
+    private Servo m_DumperServo;
+    private RobotNonBlockingNoEncoderMotor m_CollectorMotor;
+    private RobotNonBlockingServoUsingMotor m_CollectorServo;
 
     private void hardwareInitialize(){
         //FIELD: 365.76 * 365.76 CM^2
@@ -24,6 +31,44 @@ public class Robot5100TeleOp extends LinearOpMode{
         this.m_MotionSystem = new Robot5100MotionSystem(this.m_PositionTracker,this.hardwareMap.dcMotor.get("motor0"), this.hardwareMap.dcMotor.get("motor1"),this.hardwareMap.dcMotor.get("motor2"), this.hardwareMap.dcMotor.get("motor3"));
         DcMotor rackAndPinionMotor = hardwareMap.dcMotor.get("rackMotor");
         this.m_RackAndPinion = new Robot5100RackAndPinion(rackAndPinionMotor,0);
+        this.m_DumperServo = hardwareMap.servo.get("dumperServo");
+        //this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
+        //this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(hardwareMap.dcMotor.get("collectorServo"),288, 0.0);
+    }
+
+    private void dumpingServoControl(){
+        if(gamepad1.left_bumper){
+            this.m_DumperServo.setPosition(this.m_DumperServo.getPosition() - 0.05);
+        }else if(gamepad1.right_bumper){
+            this.m_DumperServo.setPosition(this.m_DumperServo.getPosition() + 0.05);
+        }
+    }
+
+    private void collectorServoControl(){
+        if(gamepad1.dpad_left){
+            this.m_CollectorServo.setPosition(this.m_CollectorServo.getPosition() - 0.05);
+        }else if(gamepad1.dpad_right){
+            this.m_CollectorServo.setPosition(this.m_CollectorServo.getPosition() + 0.05);
+        }
+    }
+
+    private void collectorControl(){
+        boolean leftTrigger = false, rightTrigger = false;
+        if(gamepad1.left_trigger < 0.05){
+            leftTrigger = false;
+        }else{
+            leftTrigger = true;
+        }
+        if(gamepad1.right_trigger < 0.05){
+            rightTrigger = false;
+        }else{
+            rightTrigger = true;
+        }
+        if(leftTrigger){
+            this.m_CollectorMotor.moveWithFixedSpeed(1.0);
+        }else if(rightTrigger){
+            this.m_CollectorMotor.moveWithFixedSpeed(-1.0);
+        }
     }
 
     private void movementControl(){
@@ -91,6 +136,9 @@ public class Robot5100TeleOp extends LinearOpMode{
         while(this.opModeIsActive()){
             movementControl();
             rackAndPinionControl();
+            dumpingServoControl();
+            //collectorServoControl();
+            //collectorControl();
             this.m_MotionSystem.doLoop();
             this.m_RackAndPinion.doLoop();
         }

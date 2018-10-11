@@ -57,7 +57,7 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         this.m_DCMotor = RobotDcMotor;
         this.m_CountsPerRev = CountsPerRev;
         this.m_RevPerSec = RevPerSec;
-        this.m_DCMotor.setPower(1.0);
+        this.m_DCMotor.setPower(0);
         this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
         this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.m_DCMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -170,6 +170,7 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         this.m_isWorking = false;
         this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
         this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.m_DCMotor.setPower(0);
         this.m_MovedCounts = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
         this.m_FineTime = 0;
         return this.getLastMovedCounts();
@@ -220,6 +221,7 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
                 this.m_isWorking = false;
                 this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
                 this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                this.m_DCMotor.setPower(0);
                 this.m_MovedCounts = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
                 this.m_FineTime = 0;
                 RobotDebugger.addDebug("RobotNonBlockingMotor", "moveRevEnd (" + this.m_MovedCounts + ")");
