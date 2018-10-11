@@ -33,7 +33,9 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
 
-public class RobotPositionTracker {
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
+
+public class RobotPositionTracker implements RobotEventLoopable {
     private double totalX = 0;
     private double totalY = 0;
     private double currentX = 0;
@@ -237,14 +239,12 @@ public class RobotPositionTracker {
         this.m_robotAxisRightFrontExtreme = ExtremePoint;
     }
     public void moveThroughRobotAngle(double moveAngleInDegree, double Distance){
-        RobotDebugger.addDebug("PositionTracker","moveThroughRobotAngleStart("+ moveAngleInDegree + "," + Distance + ") {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}");
         double actualMovingAngle = this.calculateRotation(moveAngleInDegree);
         double movingToRelativePoint[] = new double[2];
         movingToRelativePoint[0] = Math.sin(Math.toRadians(actualMovingAngle)) * Distance;
         movingToRelativePoint[1] = Math.cos(Math.toRadians(actualMovingAngle)) * Distance;
         double movingToAbsolutePoint[] = this.fieldAxisFromRobotAxis(movingToRelativePoint);
         this.setCurrentPos(movingToAbsolutePoint);
-        RobotDebugger.addDebug("PositionTracker","moveThroughRobotAngleEnd {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}");
         this.fixBouncingBox();
 
     }
@@ -346,5 +346,9 @@ public class RobotPositionTracker {
     }
     public double calculateDistanceToRotateAroundFieldPoint(double[] fieldFixPoint, double[] powerPoint, double DeltaAngle){
         return this.calculateDistanceToRotateAroundRobotPoint(this.robotAxisFromFieldAxis(fieldFixPoint),this.robotAxisFromFieldAxis(powerPoint),DeltaAngle);
+    }
+    @Override
+    public void doLoop(){
+        RobotDebugger.addDebug("PositionTracker","Position:" + this.getCurrentPosX() + "," + this.getCurrentPosY());
     }
 }

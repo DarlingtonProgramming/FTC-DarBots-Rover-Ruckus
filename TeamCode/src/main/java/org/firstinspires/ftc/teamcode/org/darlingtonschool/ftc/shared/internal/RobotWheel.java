@@ -29,8 +29,6 @@ SOFTWARE.
  */
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal;
 
-import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
-
 public class RobotWheel {
     private double wheelRadius;
     private double wheelInstalledAngle;
@@ -88,7 +86,6 @@ public class RobotWheel {
             throw new RuntimeException("You cannot move through RobotX Axis because the installed angle is vertical");
         }
         double Rst = X / this.calculateXToDistanceFactor();
-        RobotDebugger.addDebug("RobotWheel(" + this.getInstalledAngle() + ")","calcDistanceByY(" + X + ") => " + Rst);
         return Rst;
     }
     public double calculateDistanceByRobotAxisY(double Y) throws RuntimeException{
@@ -96,7 +93,6 @@ public class RobotWheel {
             throw new RuntimeException("You cannot move through RobotY Axis because the installed angle is horizontal");
         }
         double Rst = Y / this.calculateYToDistanceFactor();
-        RobotDebugger.addDebug("RobotWheel(" + this.getInstalledAngle() + ")","calcDistanceByY(" + Y + ") => " + Rst);
         return Rst;
     }
     public double calculateYToDistanceFactor(){//Returns Y / Distance

@@ -34,8 +34,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.robot.Robot;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
-
 public class RobotNonBlockingMotor implements RobotEventLoopable{
     enum workType{
         ToPosition,
@@ -113,7 +111,6 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
     }
 
     public void moveCounts(int RevTotal, double Power) throws RuntimeException{
-        RobotDebugger.addDebug("RobotNonBlockingMotor","moveRev (" + RevTotal + ", " + Power + ")");
         int StartPos = this.m_DCMotor.getTargetPosition();
         if(RevTotal == 0){
             if(!this.m_isWorking) {
@@ -141,7 +138,6 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
     }
 
     public void moveWithFixedSpeed(double speed){
-        RobotDebugger.addDebug("RobotNonBlockingMotor","moveWithFixedSpeed (" + speed + ")");
         int StartPos = this.m_DCMotor.getCurrentPosition();
         if(speed == 0){
             if(!this.m_isWorking) {
@@ -224,7 +220,6 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
                 this.m_DCMotor.setPower(0);
                 this.m_MovedCounts = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
                 this.m_FineTime = 0;
-                RobotDebugger.addDebug("RobotNonBlockingMotor", "moveRevEnd (" + this.m_MovedCounts + ")");
             }
         }
     }

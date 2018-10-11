@@ -1,10 +1,7 @@
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal;
 
-import com.qualcomm.hardware.lynx.commands.core.LynxI2cConfigureChannelCommand;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 
 public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
     enum workType{
@@ -71,7 +68,6 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
     }
 
     public void moveCounts(int RevTotal, double Power) throws RuntimeException{
-        RobotDebugger.addDebug("RobotNonBlockingMotor","moveRev (" + RevTotal + ", " + Power + ")");
         if(RevTotal == 0){
             if(!this.m_isWorking) {
                 this.m_DriveSpeed = Power;
@@ -97,7 +93,6 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
     }
 
     public void moveWithFixedSpeed(double speed){
-        RobotDebugger.addDebug("RobotNonBlockingMotor","moveWithFixedSpeed (" + speed + ")");
         if(speed == 0){
             if(!this.m_isWorking) {
                 this.m_DriveSpeed = speed;
@@ -168,7 +163,6 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
                 this.m_DriveSpeed = 0;
                 this.m_DCMotor.setPower(0.0);
                 this.m_MovedCounts += (int) Math.round(this.m_MotorOperationTime.time() * this.m_DriveSpeed * this.getRevPerSec() * this.getCountsPerRev());
-                RobotDebugger.addDebug("RobotNonBlockingNoEncoderMotor", "moveRevEnd (" + this.m_MovedCounts + ")");
             }
         }
     }

@@ -154,7 +154,6 @@ public class RobotNonBlockingWheel implements RobotEventLoopable{
     }
 
     public void moveDistance(double Distance, double Power){
-        RobotDebugger.addDebug("RobotNonBlockingWheel","moveDistanceStart (" + Distance + ", " + Power + ")");
         double rotationCycles = Distance / this.getPerimeter();
         this.moveCycle(rotationCycles, Power);
     }

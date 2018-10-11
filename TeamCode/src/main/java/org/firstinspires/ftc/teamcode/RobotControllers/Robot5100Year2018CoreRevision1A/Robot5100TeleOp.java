@@ -141,6 +141,7 @@ public class Robot5100TeleOp extends LinearOpMode{
             //collectorControl();
             this.m_MotionSystem.doLoop();
             this.m_RackAndPinion.doLoop();
+            RobotDebugger.doLoop();
         }
     }
 }

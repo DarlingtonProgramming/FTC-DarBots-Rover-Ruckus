@@ -27,6 +27,7 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotRackAndPinion;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
@@ -64,6 +65,7 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
     }
 
     public void doLoop(){
+        RobotDebugger.addDebug("RackAndPinion","Position:" + this.getCurrentPercent());
         this.m_myReckAndPinion.doLoop();
         if(this.m_isBusy && !this.m_myReckAndPinion.isBusy()){
             this.m_isBusy = false;
