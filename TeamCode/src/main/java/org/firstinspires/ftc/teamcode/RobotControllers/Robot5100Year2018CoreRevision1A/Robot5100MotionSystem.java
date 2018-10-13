@@ -236,7 +236,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         this.driveToRightWithSpeed(Speed);
     }
     @Override
-    public void driveToRightWithSpeed(double Speed){
+    public void driveToRightWithSpeed(double Speed) {
         this.m_MotorYFactor[0] = 0;
         this.m_MotorYFactor[1] = 0;
         this.m_MotorYFactor[2] = 0;
