@@ -107,7 +107,8 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     public void dump(){
-        this.openLinearAppraoch();
+        this.stopSuckingMinerals();
+        this.setCollectingServoOut();
         this.getDumperServo().setPosition(0.0);
         try{
             wait(3000);
@@ -120,7 +121,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         }catch(Exception e){
 
         }
-        this.closeLinearApproach();
+        this.setCollectingServoIn();
     }
 
     @Override
