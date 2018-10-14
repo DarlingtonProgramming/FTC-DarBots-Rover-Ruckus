@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.BNO055IMUGyro;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotMotionSystem;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotNonBlockingServoUsingMotor;
@@ -26,6 +27,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     private ColorSensor m_ColorSensor;
     private Servo m_ColorSensorServo;
     private static final double LinearApproachRev = 1.0;
+    private BNO055IMUGyro m_GyroSensor;
 
     public Robot5100Core(@NonNull OpMode opModeController, double initialX, double initialY, double initialRotation, double initialRackAndPinionPos, double CollectorServoInitialPos){
         //FIELD: 365.76 * 365.76 CM^2
@@ -43,6 +45,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_LinearAppraochMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),560*LinearApproachRev,0);
         this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
+        this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
     }
 
     public Robot5100RackAndPinion getRackAndPinion(){
@@ -63,6 +66,10 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
 
     public RobotNonBlockingServoUsingMotor getLinearAppraochMotor(){
         return this.m_LinearAppraochMotor;
+    }
+
+    public BNO055IMUGyro getGyroSensor(){
+        return this.m_GyroSensor;
     }
 
     public ColorSensor getColorSensor(){
@@ -242,6 +249,10 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_MotionSystem.doLoop();
         this.m_PositionTracker.doLoop();
         this.m_RackAndPinion.doLoop();
+        this.m_GyroSensor.updateData();
+        RobotDebugger.addDebug("GyroX", "" + this.m_GyroSensor.getRawX());
+        RobotDebugger.addDebug("GyroY", "" + this.m_GyroSensor.getRawY());
+        RobotDebugger.addDebug("GyroZ", "" + this.m_GyroSensor.getRawZ());
         RobotDebugger.doLoop();
     }
 }

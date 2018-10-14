@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
 
+import android.support.annotation.NonNull;
+
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.GyroSensor;
@@ -19,7 +21,7 @@ import java.io.File;
 public class BNO055IMUGyro {
     private BNO055IMU m_Gyro;
     private Orientation angles;
-    public void BN055IMUGyro(HardwareMap hardwareMap, String GyroName){
+    public BNO055IMUGyro(@NonNull HardwareMap hardwareMap, String GyroName){
         m_Gyro = hardwareMap.get(BNO055IMU.class,GyroName);
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.mode                = BNO055IMU.SensorMode.IMU;
