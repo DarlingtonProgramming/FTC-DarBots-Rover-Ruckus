@@ -38,6 +38,7 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 
 import java.lang.reflect.Field;
 public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopable {
+    private static final double MaxSpeed = 0.5;
     private RobotPositionTracker m_PositionTracker;
     private RobotSensorWrapper<RobotNonBlockingWheel> m_Motor0, m_Motor1, m_Motor2, m_Motor3;
     private boolean m_isDriving = false;
@@ -69,10 +70,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         RobotWheel m_Wheel1 = new RobotWheel(5.0,135);
         RobotWheel m_Wheel2 = new RobotWheel(5.0,-45);
         RobotWheel m_Wheel3 = new RobotWheel(5.0, 45);
-        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0*560,false);
-        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0*560,false);
-        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0*560,false);
-        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0*560,false);
+        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,false);
+        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,false);
+        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,false);
+        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0,false);
         double[] Motor0Pos = {-16.34, -16.34};
         double[] Motor1Pos = {16.34, -16.34};
         double[] Motor2Pos = {-16.34,16.34};
@@ -81,7 +82,6 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         this.m_Motor1 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel1,NBMotor1),Motor1Pos);
         this.m_Motor2 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel2,NBMotor2),Motor2Pos);
         this.m_Motor3 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel3,NBMotor3),Motor3Pos);
-
     }
 
     public RobotSensorWrapper<RobotNonBlockingWheel> getMotor0() {
@@ -159,10 +159,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         double turningDistance1 = this.m_PositionTracker.calculateDistanceToRotateAroundRobotPoint(robotPoint,this.m_Motor1.getPos(),AngleInDegree);
         double turningDistance2 = this.m_PositionTracker.calculateDistanceToRotateAroundRobotPoint(robotPoint,this.m_Motor2.getPos(),AngleInDegree);
         double turningDistance3 = this.m_PositionTracker.calculateDistanceToRotateAroundRobotPoint(robotPoint,this.m_Motor3.getPos(),AngleInDegree);
-        this.m_Motor0.getSensor().moveDistance(turningDistance0,1.0);
-        this.m_Motor1.getSensor().moveDistance(turningDistance1,1.0);
-        this.m_Motor2.getSensor().moveDistance(turningDistance2,1.0);
-        this.m_Motor3.getSensor().moveDistance(turningDistance3,1.0);
+        this.m_Motor0.getSensor().moveDistance(turningDistance0,1.0 * MaxSpeed);
+        this.m_Motor1.getSensor().moveDistance(turningDistance1,1.0 * MaxSpeed);
+        this.m_Motor2.getSensor().moveDistance(turningDistance2,1.0 * MaxSpeed);
+        this.m_Motor3.getSensor().moveDistance(turningDistance3,1.0 * MaxSpeed);
         this.m_PositionTracker.rotateAroundRobotRelativePoint(robotPoint,AngleInDegree);
     }
 
@@ -179,10 +179,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         if(Math.abs(this.m_Motor0.getSensor().getRemainingDistance()) > Math.abs(Distance) || Math.abs(this.m_Motor1.getSensor().getRemainingDistance()) > Math.abs(Distance) || Math.abs(this.m_Motor2.getSensor().getRemainingDistance()) > Math.abs(Distance) || Math.abs(this.m_Motor3.getSensor().getRemainingDistance()) > Math.abs(Distance)){
             //return;
         }
-        this.m_Motor0.getSensor().moveRobotY(Distance,1.0);
-        this.m_Motor1.getSensor().moveRobotY(Distance, 1.0);
-        this.m_Motor2.getSensor().moveRobotY(Distance,1.0);
-        this.m_Motor3.getSensor().moveRobotY(Distance,1.0);
+        this.m_Motor0.getSensor().moveRobotY(Distance,1.0 * MaxSpeed);
+        this.m_Motor1.getSensor().moveRobotY(Distance, 1.0 * MaxSpeed);
+        this.m_Motor2.getSensor().moveRobotY(Distance,1.0 * MaxSpeed);
+        this.m_Motor3.getSensor().moveRobotY(Distance,1.0 * MaxSpeed);
         this.m_PositionTracker.moveThroughRobotAngle(0,Distance);
     }
 
@@ -201,10 +201,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         if(Math.abs(this.m_Motor0.getSensor().getRemainingDistance()) > Math.abs(Distance) || Math.abs(this.m_Motor1.getSensor().getRemainingDistance()) > Math.abs(Distance) || Math.abs(this.m_Motor2.getSensor().getRemainingDistance()) > Math.abs(Distance) || Math.abs(this.m_Motor3.getSensor().getRemainingDistance()) > Math.abs(Distance)){
             //return;
         }
-        this.m_Motor0.getSensor().moveRobotX(Distance,1.0);
-        this.m_Motor1.getSensor().moveRobotX(Distance,1.0);
-        this.m_Motor2.getSensor().moveRobotX(Distance,1.0);
-        this.m_Motor3.getSensor().moveRobotX(Distance,1.0);
+        this.m_Motor0.getSensor().moveRobotX(Distance,1.0 * MaxSpeed);
+        this.m_Motor1.getSensor().moveRobotX(Distance,1.0 * MaxSpeed);
+        this.m_Motor2.getSensor().moveRobotX(Distance,1.0 * MaxSpeed);
+        this.m_Motor3.getSensor().moveRobotX(Distance,1.0 * MaxSpeed);
         this.m_PositionTracker.moveThroughRobotAngle(90,Distance);
     }
 
@@ -222,10 +222,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         this.m_MotorXFactor[1] = 0;
         this.m_MotorXFactor[2] = 0;
         this.m_MotorXFactor[3] = 0;
-        this.m_MotorYFactor[0] = this.m_Motor0.getSensor().moveRobotYWithFixedSpeed(Speed);
-        this.m_MotorYFactor[1] = this.m_Motor1.getSensor().moveRobotYWithFixedSpeed(Speed);
-        this.m_MotorYFactor[2] = this.m_Motor2.getSensor().moveRobotYWithFixedSpeed(Speed);
-        this.m_MotorYFactor[3] = this.m_Motor3.getSensor().moveRobotYWithFixedSpeed(Speed);
+        this.m_MotorYFactor[0] = this.m_Motor0.getSensor().moveRobotYWithFixedSpeed(Speed * MaxSpeed);
+        this.m_MotorYFactor[1] = this.m_Motor1.getSensor().moveRobotYWithFixedSpeed(Speed * MaxSpeed);
+        this.m_MotorYFactor[2] = this.m_Motor2.getSensor().moveRobotYWithFixedSpeed(Speed * MaxSpeed);
+        this.m_MotorYFactor[3] = this.m_Motor3.getSensor().moveRobotYWithFixedSpeed(Speed * MaxSpeed);
     }
     @Override
     public void driveBackwardWithSpeed(double Speed){
@@ -236,21 +236,25 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         this.driveToRightWithSpeed(Speed);
     }
     @Override
-    public void driveToRightWithSpeed(double Speed){
+    public void driveToRightWithSpeed(double Speed) {
         this.m_MotorYFactor[0] = 0;
         this.m_MotorYFactor[1] = 0;
         this.m_MotorYFactor[2] = 0;
         this.m_MotorYFactor[3] = 0;
-        this.m_MotorXFactor[0] = this.m_Motor0.getSensor().moveRobotXWithFixedSpeed(Speed);
-        this.m_MotorXFactor[1] = this.m_Motor1.getSensor().moveRobotXWithFixedSpeed(Speed);
-        this.m_MotorXFactor[2] = this.m_Motor2.getSensor().moveRobotXWithFixedSpeed(Speed);
-        this.m_MotorXFactor[3] = this.m_Motor3.getSensor().moveRobotXWithFixedSpeed(Speed);
+        this.m_MotorXFactor[0] = this.m_Motor0.getSensor().moveRobotXWithFixedSpeed(Speed * MaxSpeed);
+        this.m_MotorXFactor[1] = this.m_Motor1.getSensor().moveRobotXWithFixedSpeed(Speed * MaxSpeed);
+        this.m_MotorXFactor[2] = this.m_Motor2.getSensor().moveRobotXWithFixedSpeed(Speed * MaxSpeed);
+        this.m_MotorXFactor[3] = this.m_Motor3.getSensor().moveRobotXWithFixedSpeed(Speed * MaxSpeed);
     }
     @Override
     public void stopDrivingWithSpeed(){
         double movedDistanceX = 0, movedDistanceY = 0;
-        movedDistanceX = Math.min(Math.min(Math.min(this.m_MotorXFactor[0]*this.m_Motor0.getSensor().stopRunning_getMovedDistance(),this.m_MotorXFactor[1]*this.m_Motor1.getSensor().stopRunning_getMovedDistance()),this.m_MotorXFactor[2]*this.m_Motor2.getSensor().stopRunning_getMovedDistance()),this.m_MotorXFactor[3]*this.m_Motor3.getSensor().stopRunning_getMovedDistance());
-        movedDistanceY = Math.min(Math.min(Math.min(this.m_MotorYFactor[0]*this.m_Motor0.getSensor().stopRunning_getMovedDistance(),this.m_MotorYFactor[1]*this.m_Motor1.getSensor().stopRunning_getMovedDistance()),this.m_MotorYFactor[2]*this.m_Motor2.getSensor().stopRunning_getMovedDistance()),this.m_MotorYFactor[3]*this.m_Motor3.getSensor().stopRunning_getMovedDistance());
+        double motor0MovedDistance = this.m_Motor0.getSensor().stopRunning_getMovedDistance();
+        double motor1MovedDistance = this.m_Motor1.getSensor().stopRunning_getMovedDistance();
+        double motor2MovedDistance = this.m_Motor2.getSensor().stopRunning_getMovedDistance();
+        double motor3MovedDistance = this.m_Motor3.getSensor().stopRunning_getMovedDistance();
+        movedDistanceX = Math.min(Math.min(Math.min(this.m_MotorXFactor[0]*motor0MovedDistance,this.m_MotorXFactor[1]*motor1MovedDistance),this.m_MotorXFactor[2]*motor2MovedDistance),this.m_MotorXFactor[3]*motor3MovedDistance);
+        movedDistanceY = Math.min(Math.min(Math.min(this.m_MotorYFactor[0]*motor0MovedDistance,this.m_MotorYFactor[1]*motor1MovedDistance),this.m_MotorYFactor[2]*motor2MovedDistance),this.m_MotorYFactor[3]*motor3MovedDistance);
         this.m_PositionTracker.moveThroughRobotAngle(90,movedDistanceX);
         this.m_PositionTracker.moveThroughRobotAngle(0,movedDistanceY);
         this.m_MotorXFactor[0] = 0;
@@ -264,10 +268,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     }
     @Override
     public void keepTurningOffsetAroundCenter(double Speed){
-        this.m_Motor0.getSensor().moveWithFixedSpeed(Speed);
-        this.m_Motor1.getSensor().moveWithFixedSpeed(Speed);
-        this.m_Motor2.getSensor().moveWithFixedSpeed(Speed);
-        this.m_Motor3.getSensor().moveWithFixedSpeed(Speed);
+        this.m_Motor0.getSensor().moveWithFixedSpeed(Speed * MaxSpeed);
+        this.m_Motor1.getSensor().moveWithFixedSpeed(Speed * MaxSpeed);
+        this.m_Motor2.getSensor().moveWithFixedSpeed(Speed * MaxSpeed);
+        this.m_Motor3.getSensor().moveWithFixedSpeed(Speed * MaxSpeed);
         this.m_isTurningAround = true;
     }
     @Override

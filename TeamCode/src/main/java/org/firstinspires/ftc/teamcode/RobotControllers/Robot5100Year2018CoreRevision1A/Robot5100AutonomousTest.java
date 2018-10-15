@@ -34,18 +34,10 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPosit
 @Autonomous (name = "5100Test", group = "David Cao")
 //@Disabled
 public class Robot5100AutonomousTest extends LinearOpMode {
-    private Robot5100MotionSystem m_MotionSystem;
-    private RobotPositionTracker m_PositionTracker;
+    private Robot5100Core m_RobotController;
 
     private void hardwareInit(){
-        //FIELD: 365.76 * 365.76 CM^2
-        //change the initialX and initialY
-        double[] leftTopExtreme = {-16.34, 16.34};
-        double[] rightTopExtreme = {16.34, 16.34};
-        double[] leftBotExtreme = {-16.34,-16.34};
-        double[] rightBotExtreme = {16.34,-16.34};
-        this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,100,100,0,leftTopExtreme,rightTopExtreme,leftBotExtreme,rightBotExtreme);
-        this.m_MotionSystem = new Robot5100MotionSystem(this.m_PositionTracker,this.hardwareMap.dcMotor.get("motor0"), this.hardwareMap.dcMotor.get("motor1"),this.hardwareMap.dcMotor.get("motor2"), this.hardwareMap.dcMotor.get("motor3"));
+        this.m_RobotController = new Robot5100Core(this,100,100,0,0,0);
     }
 
     public void runOpMode(){
@@ -53,18 +45,9 @@ public class Robot5100AutonomousTest extends LinearOpMode {
         RobotDebugger.setDebug(true);
         this.hardwareInit();
         waitForStart();
+        this.m_RobotController.setRackAndPinionHook();
         while(this.opModeIsActive()){
-            this.m_MotionSystem.driveForward(30);
-            this.m_MotionSystem.waitUntilMotionFinish();
-            this.m_MotionSystem.turnOffsetAroundCenter(90);
-            this.m_MotionSystem.waitUntilMotionFinish();
-            this.m_MotionSystem.turnOffsetAroundCenter(-90);
-            this.m_MotionSystem.waitUntilMotionFinish();
-            this.m_MotionSystem.driveBackward(30);
-            this.m_MotionSystem.waitUntilMotionFinish();
 
-            this.m_MotionSystem.doLoop();
-            RobotDebugger.doLoop();
         }
     }
 }

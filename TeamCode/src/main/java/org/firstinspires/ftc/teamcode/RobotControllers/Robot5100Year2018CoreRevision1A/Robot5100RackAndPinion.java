@@ -34,13 +34,13 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 
 public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndPinion{
     private RobotNonBlockingMotor m_myReckAndPinion;
-    private final static double RNPCycleNum = 10.50;
-    private final static double RNPMotorRevPerCycle = 1120;
-    private final static double RNPMotorRevPerSec = 2.67*RNPMotorRevPerCycle;
+    private final static double RNPCycleNum = 5.50;
+    private final static double RNPMotorCountsPerCycle = 288;
+    private final static double RNPMotorRevPerSec = 2.08;
     private double m_CurrentCycle = 0;
     private boolean m_isBusy = false;
     public Robot5100RackAndPinion(DcMotor ReckAndPinionMotor, double CurrentPercent){
-        this.m_myReckAndPinion = new RobotNonBlockingMotor(ReckAndPinionMotor,RNPMotorRevPerCycle,RNPMotorRevPerSec,false);
+        this.m_myReckAndPinion = new RobotNonBlockingMotor(ReckAndPinionMotor,RNPMotorCountsPerCycle,RNPMotorRevPerSec,false);
         this.m_CurrentCycle = CurrentPercent / 100 * RNPCycleNum;
     }
     public double getCurrentPercent(){

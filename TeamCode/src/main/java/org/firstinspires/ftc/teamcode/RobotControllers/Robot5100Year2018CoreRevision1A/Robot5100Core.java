@@ -3,23 +3,33 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.BNO055IMUGyro;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotMotionSystem;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotNonBlockingServoUsingMotor;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
+    private static final double LinearApproachRev = 1.0;
+    private static final double RackAndPinionHookPct = 50;
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
     private Robot5100RackAndPinion m_RackAndPinion;
     private Servo m_DumperServo;
     private RobotNonBlockingNoEncoderMotor m_CollectorMotor;
     private RobotNonBlockingServoUsingMotor m_CollectorServo;
+    private RobotNonBlockingServoUsingMotor m_LinearAppraochMotor;
+    private ColorSensor m_ColorSensor;
+    private Servo m_ColorSensorServo;
+    private BNO055IMUGyro m_GyroSensor;
+
     public Robot5100Core(@NonNull OpMode opModeController, double initialX, double initialY, double initialRotation, double initialRackAndPinionPos, double CollectorServoInitialPos){
         //FIELD: 365.76 * 365.76 CM^2
         double[] leftTopExtreme = {-16.34, 16.34};
@@ -33,15 +43,118 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_DumperServo = opModeController.hardwareMap.servo.get("dumperServo");
         this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
         this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288, CollectorServoInitialPos);
+        this.m_LinearAppraochMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),560*LinearApproachRev,0);
+        this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
+        this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
+        this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
     }
+
+    public Robot5100RackAndPinion getRackAndPinion(){
+        return this.m_RackAndPinion;
+    }
+
+    public Servo getDumperServo(){
+        return this.m_DumperServo;
+    }
+
+    public RobotNonBlockingNoEncoderMotor getCollectorMotor(){
+        return this.m_CollectorMotor;
+    }
+
+    public RobotNonBlockingServoUsingMotor getCollectorServo(){
+        return this.m_CollectorServo;
+    }
+
+    public RobotNonBlockingServoUsingMotor getLinearAppraochMotor(){
+        return this.m_LinearAppraochMotor;
+    }
+
+    public BNO055IMUGyro getGyroSensor(){
+        return this.m_GyroSensor;
+    }
+
+    public ColorSensor getColorSensor(){
+        return this.m_ColorSensor;
+    }
+
+    public Servo getColorSensorServo(){
+        return this.m_ColorSensorServo;
+    }
+
+    public void setCollectingServoStayPos(){
+        this.getCollectorServo().setPosition(0.5);
+    }
+    public void setCollectingServoOut(){
+        this.getCollectorServo().setPosition(1.0);
+    }
+
+    public void setCollectingServoIn(){
+        this.getCollectorServo().setPosition(0.0);
+    }
+
+    public void openLinearAppraoch(){
+        this.setCollectingServoStayPos();
+        this.getLinearAppraochMotor().setPosition(1.0);
+    }
+
+    public void closeLinearApproach(){
+        this.setCollectingServoStayPos();
+        this.getLinearAppraochMotor().setPosition(0.0);
+    }
+
+    public void startSuckingMinerals(){
+        this.getCollectorMotor().moveWithFixedSpeed(-1.0);
+    }
+
+    public void startVomitingMinerals(){
+        this.getCollectorMotor().moveWithFixedSpeed(1.0);
+    }
+
+    public void stopSuckingMinerals(){
+        this.getCollectorMotor().stopRunning_getMovedRev();
+    }
+
+    public void dump(){
+        this.stopSuckingMinerals();
+        this.setCollectingServoOut();
+        this.waitUntilMotionFinish();
+        this.openRackAndPinion();
+        this.waitUntilMotionFinish();
+        this.getDumperServo().setPosition(0.0);
+        try{
+            wait(3000);
+        }catch(Exception e){
+
+        }
+        this.getDumperServo().setPosition(1.0);
+        this.closeRackAndPinion();
+        this.waitUntilMotionFinish();
+        this.setCollectingServoIn();
+        this.waitUntilMotionFinish();
+    }
+
+    public void openRackAndPinion(){
+        this.getRackAndPinion().setPosition(100);
+    }
+
+    public void closeRackAndPinion(){
+        this.getRackAndPinion().setPosition(0);
+    }
+
+    public void setRackAndPinionHook(){
+        this.getRackAndPinion().setPosition(this.RackAndPinionHookPct / 100.0);
+    }
+
     @Override
     public boolean isBusy(){
-        return this.m_MotionSystem.isBusy();
+        return (this.m_MotionSystem.isBusy() || this.getRackAndPinion().isBusy() || this.getCollectorServo().isBusy() || this.getLinearAppraochMotor().isBusy());
     }
 
     @Override
     public void waitUntilMotionFinish(){
-        this.m_MotionSystem.waitUntilMotionFinish();
+        while(this.isBusy()){
+            this.doLoop();
+        }
     }
 
     @Override
@@ -152,6 +265,10 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_MotionSystem.doLoop();
         this.m_PositionTracker.doLoop();
         this.m_RackAndPinion.doLoop();
+        this.m_GyroSensor.updateData();
+        RobotDebugger.addDebug("GyroX", "" + this.m_GyroSensor.getRawX());
+        RobotDebugger.addDebug("GyroY", "" + this.m_GyroSensor.getRawY());
+        RobotDebugger.addDebug("GyroZ", "" + this.m_GyroSensor.getRawZ());
         RobotDebugger.doLoop();
     }
 }
