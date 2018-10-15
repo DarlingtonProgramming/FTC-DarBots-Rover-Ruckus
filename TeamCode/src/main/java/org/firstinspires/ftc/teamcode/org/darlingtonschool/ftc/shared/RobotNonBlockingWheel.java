@@ -53,6 +53,18 @@ public class RobotNonBlockingWheel implements RobotEventLoopable{
         this.m_Wheel = Wheel;
         this.m_Motor = Motor;
     }
+    public RobotWheel getRobotWheel(){
+        return this.m_Wheel;
+    }
+    public void setRobotWheel(RobotWheel Wheel){
+        this.m_Wheel = Wheel;
+    }
+    public RobotNonBlockingMotor getMotor(){
+        return this.m_Motor;
+    }
+    public void setMotor(RobotNonBlockingMotor Motor){
+        this.m_Motor = Motor;
+    }
     public double getRadius(){
         return this.m_Wheel.getRadius();
     }
