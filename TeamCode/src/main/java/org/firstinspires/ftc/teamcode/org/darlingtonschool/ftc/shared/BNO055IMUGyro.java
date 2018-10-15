@@ -40,14 +40,14 @@ public class BNO055IMUGyro {
     }
 
     public float getRawX(){
-        return angles.angleUnit.toDegrees(angles.thirdAngle);
+        return AngleUnit.DEGREES.normalize(angles.angleUnit.toDegrees(angles.thirdAngle));
     }
 
     public float getRawY(){
-        return angles.angleUnit.toDegrees(angles.secondAngle);
+        return AngleUnit.DEGREES.normalize(angles.angleUnit.toDegrees(angles.secondAngle));
     }
 
     public float getRawZ(){
-        return angles.angleUnit.toDegrees(angles.firstAngle);
+        return AngleUnit.DEGREES.normalize(angles.angleUnit.toDegrees(angles.firstAngle));
     }
 }

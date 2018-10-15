@@ -13,6 +13,9 @@ public class RobotNonBlockingServoUsingMotor {
         this.setCountsPerRev(CountsPerRev);
         this.m_StartCount -= fixPosition(StartPosition) * this.getCountsPerRev();
     }
+    public boolean isBusy(){
+        return this.m_Motor.isBusy();
+    }
     public DcMotor getMotor(){
         return m_Motor;
     }
