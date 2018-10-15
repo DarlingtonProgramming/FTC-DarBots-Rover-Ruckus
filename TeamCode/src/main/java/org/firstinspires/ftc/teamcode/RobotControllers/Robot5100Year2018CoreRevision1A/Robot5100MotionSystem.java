@@ -70,10 +70,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         RobotWheel m_Wheel1 = new RobotWheel(5.0,135);
         RobotWheel m_Wheel2 = new RobotWheel(5.0,-45);
         RobotWheel m_Wheel3 = new RobotWheel(5.0, 45);
-        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0*560,false);
-        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0*560,false);
-        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0*560,false);
-        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0*560,false);
+        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,false);
+        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,false);
+        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,false);
+        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0,false);
         double[] Motor0Pos = {-16.34, -16.34};
         double[] Motor1Pos = {16.34, -16.34};
         double[] Motor2Pos = {-16.34,16.34};

@@ -117,6 +117,9 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     public void dump(){
         this.stopSuckingMinerals();
         this.setCollectingServoOut();
+        this.waitUntilMotionFinish();
+        this.openRackAndPinion();
+        this.waitUntilMotionFinish();
         this.getDumperServo().setPosition(0.0);
         try{
             wait(3000);
@@ -124,12 +127,10 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
 
         }
         this.getDumperServo().setPosition(1.0);
-        try{
-            wait(1000);
-        }catch(Exception e){
-
-        }
+        this.closeRackAndPinion();
+        this.waitUntilMotionFinish();
         this.setCollectingServoIn();
+        this.waitUntilMotionFinish();
     }
 
     public void openRackAndPinion(){
@@ -146,12 +147,14 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
 
     @Override
     public boolean isBusy(){
-        return this.m_MotionSystem.isBusy();
+        return (this.m_MotionSystem.isBusy() || this.getRackAndPinion().isBusy() || this.getCollectorServo().isBusy() || this.getLinearAppraochMotor().isBusy());
     }
 
     @Override
     public void waitUntilMotionFinish(){
-        this.m_MotionSystem.waitUntilMotionFinish();
+        while(this.isBusy()){
+            this.doLoop();
+        }
     }
 
     @Override
