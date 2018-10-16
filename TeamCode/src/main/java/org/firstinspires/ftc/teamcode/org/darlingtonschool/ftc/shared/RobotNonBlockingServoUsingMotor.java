@@ -49,11 +49,12 @@ public class RobotNonBlockingServoUsingMotor {
     public double getPosition(){
         int movedCounts = this.m_Motor.getCurrentPosition() - this.m_StartCount;
         int validCounts = fixCounts(movedCounts);
-        return (((double) validCounts) / this.getCountsPerRev());
+        return fixPosition(((double) validCounts) / this.getCountsPerRev());
     }
-    public void setPosition(double Pos){
-        int absCount = (int) Math.round(Pos * this.getCountsPerRev());
+    public void setPosition(double Pos, double Speed){
+        int absCount = (int) Math.round(fixPosition(Pos) * this.getCountsPerRev());
         int movedCounts = this.m_Motor.getCurrentPosition() - this.m_StartCount;
+        this.m_Motor.setPower(Speed);
         int validCounts = fixCounts(movedCounts);
         int countsOffset = absCount - validCounts;
         this.m_Motor.setTargetPosition(this.m_Motor.getCurrentPosition() + countsOffset);

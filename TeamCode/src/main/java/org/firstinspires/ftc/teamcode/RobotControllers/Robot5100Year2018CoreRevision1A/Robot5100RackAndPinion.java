@@ -48,7 +48,7 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
         return this.m_RackAndPinionMotor.isBusy();
     }
     public void setPosition(double Position){
-        this.m_RackAndPinionMotor.setPosition(Position);
+        this.m_RackAndPinionMotor.setPosition(Position,0.2);
     }
 
     public void waitRackAndPinionFinish(){

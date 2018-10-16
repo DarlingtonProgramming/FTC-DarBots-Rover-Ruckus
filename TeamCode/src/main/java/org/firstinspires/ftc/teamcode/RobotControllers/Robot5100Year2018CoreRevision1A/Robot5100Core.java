@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
-    private static final double LinearApproachRev = 8.0;
+    private static final double LinearApproachRev = 7.5;
     private static final double RackAndPinionHookPos = 0.5;
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
@@ -44,7 +44,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_DumperServo = opModeController.hardwareMap.servo.get("dumperServo");
         this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
         this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288, CollectorServoInitialPos);
-        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),560*LinearApproachRev,0);
+        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),1120*LinearApproachRev,0);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
         this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
@@ -83,24 +83,24 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     public void setCollectingServoStayPos(){
-        this.getCollectorServo().setPosition(0.5);
+        this.getCollectorServo().setPosition(0.25,0.2);
     }
     public void setCollectingServoOut(){
-        this.getCollectorServo().setPosition(1.0);
+        this.getCollectorServo().setPosition(0.5,0.2);
     }
 
     public void setCollectingServoIn(){
-        this.getCollectorServo().setPosition(0.0);
+        this.getCollectorServo().setPosition(0.0,0.2);
     }
 
     public void openLinearAppraoch(){
         this.setCollectingServoStayPos();
-        this.getLinearApproachMotor().setPosition(1.0);
+        this.getLinearApproachMotor().setPosition(1.0,0.2);
     }
 
     public void closeLinearApproach(){
         this.setCollectingServoStayPos();
-        this.getLinearApproachMotor().setPosition(0.0);
+        this.getLinearApproachMotor().setPosition(0.0,0.2);
     }
 
     public void startSuckingMinerals(){
@@ -122,11 +122,6 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.openRackAndPinion();
         this.waitUntilMotionFinish();
         this.getDumperServo().setPosition(0.0);
-        try{
-            wait(3000);
-        }catch(Exception e){
-
-        }
         this.getDumperServo().setPosition(1.0);
         this.closeRackAndPinion();
         this.waitUntilMotionFinish();
