@@ -37,13 +37,11 @@ import org.firstinspires.ftc.robotcore.external.Telemetry;
 public class RobotDebugger {
     private static boolean m_isDebugging = false;
     private static Telemetry m_Telemetry;
-    private static int m_LogNum = 0;
     public static Telemetry getTelemetry(){
         return m_Telemetry;
     }
     public static void setTelemetry(Telemetry telemetry){
         m_Telemetry = telemetry;
-        m_LogNum = 0;
     }
     public static void setDebug(boolean isDebug){
         m_isDebugging = isDebug;
@@ -55,13 +53,11 @@ public class RobotDebugger {
     public static void clearDebug(){
         if(isDebug()) {
             m_Telemetry.clear();
-            m_LogNum = 0;
         }
     }
     public static void addDebug(String title, String Content){
         if(isDebug()) {
-            m_Telemetry.addData("Debug" + m_LogNum,title + ":" + Content);
-            m_LogNum++;
+            m_Telemetry.addData(title, Content);
         }
     }
     public static void doLoop(){
