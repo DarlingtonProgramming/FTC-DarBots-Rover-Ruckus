@@ -17,8 +17,13 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
+<<<<<<< HEAD
     private static final double LinearApproachRev = 8.0;
     private static final double RackAndPinionHookPos = 0.5;
+=======
+    private static final double LinearApproachRev = 1;
+    private static final double RackAndPinionHookPct = 50;
+>>>>>>> 5f93bab7f8562e7b5a27bb79b757a848ea2da695
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
     private Robot5100RackAndPinion m_RackAndPinion;
@@ -44,8 +49,8 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
         this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288, CollectorServoInitialPos);
         this.m_LinearAppraochMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),560*LinearApproachRev,0);
-        this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
-        this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
+        //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
+        //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
         this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
     }
 
@@ -269,6 +274,8 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         RobotDebugger.addDebug("GyroX", "" + this.m_GyroSensor.getRawX());
         RobotDebugger.addDebug("GyroY", "" + this.m_GyroSensor.getRawY());
         RobotDebugger.addDebug("GyroZ", "" + this.m_GyroSensor.getRawZ());
+        RobotDebugger.addDebug("CollectorServoPos","" + this.m_CollectorServo.getPosition());
+        RobotDebugger.addDebug("LinearAppraochPos", "" + this.m_LinearAppraochMotor.getPosition());
         RobotDebugger.doLoop();
     }
 }

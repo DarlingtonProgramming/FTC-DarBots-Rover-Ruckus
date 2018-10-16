@@ -47,15 +47,15 @@ public class RobotNonBlockingServoUsingMotor {
         return tempPos;
     }
     public double getPosition(){
-        int movedCounts = this.m_Motor.getTargetPosition() - this.m_StartCount;
+        int movedCounts = this.m_Motor.getCurrentPosition() - this.m_StartCount;
         int validCounts = fixCounts(movedCounts);
         return (((double) validCounts) / this.getCountsPerRev());
     }
     public void setPosition(double Pos){
         int absCount = (int) Math.round(Pos * this.getCountsPerRev());
-        int movedCounts = this.m_Motor.getTargetPosition() - this.m_StartCount;
+        int movedCounts = this.m_Motor.getCurrentPosition() - this.m_StartCount;
         int validCounts = fixCounts(movedCounts);
         int countsOffset = absCount - validCounts;
-        this.m_Motor.setTargetPosition(this.m_Motor.getTargetPosition() + countsOffset);
+        this.m_Motor.setTargetPosition(this.m_Motor.getCurrentPosition() + countsOffset);
     }
 }
