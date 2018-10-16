@@ -17,20 +17,15 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
-<<<<<<< HEAD
     private static final double LinearApproachRev = 8.0;
     private static final double RackAndPinionHookPos = 0.5;
-=======
-    private static final double LinearApproachRev = 1;
-    private static final double RackAndPinionHookPct = 50;
->>>>>>> 5f93bab7f8562e7b5a27bb79b757a848ea2da695
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
     private Robot5100RackAndPinion m_RackAndPinion;
     private Servo m_DumperServo;
     private RobotNonBlockingNoEncoderMotor m_CollectorMotor;
     private RobotNonBlockingServoUsingMotor m_CollectorServo;
-    private RobotNonBlockingServoUsingMotor m_LinearAppraochMotor;
+    private RobotNonBlockingServoUsingMotor m_LinearApproachMotor;
     private ColorSensor m_ColorSensor;
     private Servo m_ColorSensorServo;
     private BNO055IMUGyro m_GyroSensor;
@@ -48,7 +43,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_DumperServo = opModeController.hardwareMap.servo.get("dumperServo");
         this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
         this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288, CollectorServoInitialPos);
-        this.m_LinearAppraochMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),560*LinearApproachRev,0);
+        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),560*LinearApproachRev,0);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
         this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
@@ -70,8 +65,8 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         return this.m_CollectorServo;
     }
 
-    public RobotNonBlockingServoUsingMotor getLinearAppraochMotor(){
-        return this.m_LinearAppraochMotor;
+    public RobotNonBlockingServoUsingMotor getLinearApproachMotor(){
+        return this.m_LinearApproachMotor;
     }
 
     public BNO055IMUGyro getGyroSensor(){
@@ -99,12 +94,12 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
 
     public void openLinearAppraoch(){
         this.setCollectingServoStayPos();
-        this.getLinearAppraochMotor().setPosition(1.0);
+        this.getLinearApproachMotor().setPosition(1.0);
     }
 
     public void closeLinearApproach(){
         this.setCollectingServoStayPos();
-        this.getLinearAppraochMotor().setPosition(0.0);
+        this.getLinearApproachMotor().setPosition(0.0);
     }
 
     public void startSuckingMinerals(){
@@ -152,7 +147,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
 
     @Override
     public boolean isBusy(){
-        return (this.m_MotionSystem.isBusy() || this.getRackAndPinion().isBusy() || this.getCollectorServo().isBusy() || this.getLinearAppraochMotor().isBusy());
+        return (this.m_MotionSystem.isBusy() || this.getRackAndPinion().isBusy() || this.getCollectorServo().isBusy() || this.getLinearApproachMotor().isBusy());
     }
 
     @Override
@@ -275,7 +270,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         RobotDebugger.addDebug("GyroY", "" + this.m_GyroSensor.getRawY());
         RobotDebugger.addDebug("GyroZ", "" + this.m_GyroSensor.getRawZ());
         RobotDebugger.addDebug("CollectorServoPos","" + this.m_CollectorServo.getPosition());
-        RobotDebugger.addDebug("LinearAppraochPos", "" + this.m_LinearAppraochMotor.getPosition());
+        RobotDebugger.addDebug("LinearAppraochPos", "" + this.m_LinearApproachMotor.getPosition());
         RobotDebugger.doLoop();
     }
 }
