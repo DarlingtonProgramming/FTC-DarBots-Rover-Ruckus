@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.robot.Robot;
 
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.BNO055IMUGyro;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
@@ -189,38 +190,38 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     @Override
-    public void turnToAbsFieldAngle(double AngleInDegree){
-        this.m_MotionSystem.turnToAbsFieldAngle(AngleInDegree);
+    public void turnToAbsFieldAngle(double AngleInDegree, double Speed){
+        this.m_MotionSystem.turnToAbsFieldAngle(AngleInDegree, Speed);
     }
 
     @Override
-    public void turnOffsetAroundCenter(double AngleInDegree){
-        this.m_MotionSystem.turnOffsetAroundCenter(AngleInDegree);
+    public void turnOffsetAroundCenter(double AngleInDegree, double Speed){
+        this.m_MotionSystem.turnOffsetAroundCenter(AngleInDegree, Speed);
     }
 
     @Override
-    public void driveTo(double[] fieldPos){
-        this.m_MotionSystem.driveTo(fieldPos);
+    public void driveTo(double[] fieldPos, double Speed){
+        this.m_MotionSystem.driveTo(fieldPos,Speed);
     }
 
     @Override
-    public void driveForward(double Distance) throws RuntimeException{
-        this.m_MotionSystem.driveForward(Distance);
+    public void driveForward(double Distance, double Speed) throws RuntimeException{
+        this.m_MotionSystem.driveForward(Distance,Speed);
     }
 
     @Override
-    public void driveBackward(double Distance) throws RuntimeException{
-        this.m_MotionSystem.driveBackward(Distance);
+    public void driveBackward(double Distance, double Speed) throws RuntimeException{
+        this.m_MotionSystem.driveBackward(Distance,Speed);
     }
 
     @Override
-    public void driveToLeft(double Distance) throws RuntimeException{
-        this.m_MotionSystem.driveToLeft(Distance);
+    public void driveToLeft(double Distance, double Speed) throws RuntimeException{
+        this.m_MotionSystem.driveToLeft(Distance,Speed);
     }
 
     @Override
-    public void driveToRight(double Distance) throws RuntimeException{
-        this.m_MotionSystem.driveToRight(Distance);
+    public void driveToRight(double Distance, double Speed) throws RuntimeException{
+        this.m_MotionSystem.driveToRight(Distance,Speed);
     }
 
     @Override
@@ -271,6 +272,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         RobotDebugger.addDebug("GyroZ", "" + this.m_GyroSensor.getRawZ());
         RobotDebugger.addDebug("CollectorServoPos","" + this.m_CollectorServo.getPosition());
         RobotDebugger.addDebug("LinearAppraochPos", "" + this.m_LinearApproachMotor.getPosition());
+        RobotDebugger.addDebug("RobotPosition", "" + this.m_PositionTracker.getCurrentPosX() + "," + this.m_PositionTracker.getCurrentPosY());
         RobotDebugger.doLoop();
     }
 }
