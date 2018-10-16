@@ -268,6 +268,8 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         RobotDebugger.addDebug("CollectorServoPos","" + this.m_CollectorServo.getPosition());
         RobotDebugger.addDebug("LinearAppraochPos", "" + this.m_LinearApproachMotor.getPosition());
         RobotDebugger.addDebug("RobotPosition", "" + this.m_PositionTracker.getCurrentPosX() + "," + this.m_PositionTracker.getCurrentPosY() + "(" + this.m_PositionTracker.getRobotRotation() + ")");
+        RobotDebugger.addDebug("DumperServoPosition", "" + this.m_DumperServo.getPosition());
+        RobotDebugger.addDebug("RackAndPinionPos", "" + this.getRackAndPinion().getPosition());
         RobotDebugger.doLoop();
     }
 }

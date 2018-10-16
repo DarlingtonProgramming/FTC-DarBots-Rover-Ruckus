@@ -58,6 +58,6 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
     }
 
     public void doLoop(){
-        RobotDebugger.addDebug("RackAndPinion","Position:" + this.getPosition());
+
     }
 }
