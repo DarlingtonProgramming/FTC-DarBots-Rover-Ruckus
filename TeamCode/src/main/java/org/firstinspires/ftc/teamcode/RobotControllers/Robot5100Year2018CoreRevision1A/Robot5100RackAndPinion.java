@@ -28,49 +28,36 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotNonBlockingServoUsingMotor;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotRackAndPinion;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
 
 public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndPinion{
-    private RobotNonBlockingMotor m_myReckAndPinion;
+    private RobotNonBlockingServoUsingMotor m_RackAndPinionMotor;
     private final static double RNPCycleNum = 5.50;
     private final static double RNPMotorCountsPerCycle = 288;
     private final static double RNPMotorRevPerSec = 2.08;
-    private double m_CurrentCycle = 0;
-    private boolean m_isBusy = false;
-    public Robot5100RackAndPinion(DcMotor ReckAndPinionMotor, double CurrentPercent){
-        this.m_myReckAndPinion = new RobotNonBlockingMotor(ReckAndPinionMotor,RNPMotorCountsPerCycle,RNPMotorRevPerSec,false);
-        this.m_CurrentCycle = CurrentPercent / 100 * RNPCycleNum;
+    public Robot5100RackAndPinion(DcMotor RackAndPinionMotor, double CurrentPos){
+        this.m_RackAndPinionMotor = new RobotNonBlockingServoUsingMotor(RackAndPinionMotor,RNPMotorCountsPerCycle * RNPCycleNum,CurrentPos);
     }
-    public double getCurrentPercent(){
-        return this.m_CurrentCycle / RNPCycleNum * 100.0;
+    public double getPosition(){
+        return this.m_RackAndPinionMotor.getPosition();
     }
     public boolean isBusy(){
-        return m_isBusy;
+        return this.m_RackAndPinionMotor.isBusy();
     }
-    public void setPosition(double Percent){
-        if(Percent < 0 || Percent > 100){
-            return;
-        }
-        double TargetCycle = Percent / 100 * RNPCycleNum;
-        this.m_myReckAndPinion.moveCycle(TargetCycle - m_CurrentCycle,1.0);
-        this.m_isBusy = true;
+    public void setPosition(double Position){
+        this.m_RackAndPinionMotor.setPosition(Position);
     }
 
-    public void waitReckAndPinionFinish(){
+    public void waitRackAndPinionFinish(){
         while(this.isBusy()){
             this.doLoop();
         }
     }
 
     public void doLoop(){
-        RobotDebugger.addDebug("RackAndPinion","Position:" + this.getCurrentPercent());
-        this.m_myReckAndPinion.doLoop();
-        if(this.m_isBusy && !this.m_myReckAndPinion.isBusy()){
-            this.m_isBusy = false;
-            double movedCycle = this.m_myReckAndPinion.getLastMovedCycle();
-            this.m_CurrentCycle += movedCycle;
-        }
+        RobotDebugger.addDebug("RackAndPinion","Position:" + this.getPosition());
     }
 }

@@ -25,9 +25,9 @@ SOFTWARE.
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
 
 public interface RobotRackAndPinion {
-        double getCurrentPercent();
+        double getPosition();
         boolean isBusy();
         void setPosition(double Percent);
-        void waitReckAndPinionFinish();
+        void waitRackAndPinionFinish();
         void doLoop();
 }

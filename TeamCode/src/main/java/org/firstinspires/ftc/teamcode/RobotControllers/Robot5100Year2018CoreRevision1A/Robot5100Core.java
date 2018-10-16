@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
-    private static final double LinearApproachRev = 1.0;
-    private static final double RackAndPinionHookPct = 50;
+    private static final double LinearApproachRev = 8.0;
+    private static final double RackAndPinionHookPos = 0.5;
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
     private Robot5100RackAndPinion m_RackAndPinion;
@@ -134,15 +134,15 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     public void openRackAndPinion(){
-        this.getRackAndPinion().setPosition(100);
+        this.getRackAndPinion().setPosition(1.0);
     }
 
     public void closeRackAndPinion(){
-        this.getRackAndPinion().setPosition(0);
+        this.getRackAndPinion().setPosition(0.0);
     }
 
     public void setRackAndPinionHook(){
-        this.getRackAndPinion().setPosition(this.RackAndPinionHookPct / 100.0);
+        this.getRackAndPinion().setPosition(this.RackAndPinionHookPos);
     }
 
     @Override
