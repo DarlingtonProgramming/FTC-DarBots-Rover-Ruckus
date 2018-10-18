@@ -9,6 +9,7 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebug
 @TeleOp (name = "5100TeleOp", group = "David Cao")
 //@Disabled
 public class Robot5100TeleOp extends LinearOpMode{
+    private static final double TRIGGERVALUE = 0.1;
     private Robot5100Core m_RobotController;
 
     private void hardwareInitialize(){
@@ -33,12 +34,12 @@ public class Robot5100TeleOp extends LinearOpMode{
 
     private void collectorControl(){
         boolean leftTrigger = false, rightTrigger = false;
-        if(gamepad1.left_trigger < 0.05){
+        if(gamepad1.left_trigger < TRIGGERVALUE){
             leftTrigger = false;
         }else{
             leftTrigger = true;
         }
-        if(gamepad1.right_trigger < 0.05){
+        if(gamepad1.right_trigger < TRIGGERVALUE){
             rightTrigger = false;
         }else{
             rightTrigger = true;
@@ -62,12 +63,12 @@ public class Robot5100TeleOp extends LinearOpMode{
         }else{
             isControllingX = false;
         }
-        if(Math.abs(gamepad1.right_stick_x) < 0.05){
+        if(Math.abs(gamepad1.right_stick_x) < TRIGGERVALUE){
             isRotating = false;
         }else{
             isRotating = true;
         }
-        if(Math.max(Math.abs(gamepad1.left_stick_x),Math.abs(gamepad1.left_stick_y)) < 0.05){
+        if(Math.max(Math.abs(gamepad1.left_stick_x),Math.abs(gamepad1.left_stick_y)) < TRIGGERVALUE){
             isDriving = false;
         }else{
             isDriving = true;
