@@ -17,15 +17,17 @@ public class Robot5100TeleOp extends LinearOpMode{
 
     private void dumpingServoControl(){
         if(gamepad1.right_bumper){
-            this.m_RobotController.dump();
+            this.m_RobotController.getDumperServo().setPosition(this.m_RobotController.getDumperServo().getPosition() + 0.05);
+        }else if(gamepad1.left_bumper){
+            this.m_RobotController.getDumperServo().setPosition(this.m_RobotController.getDumperServo().getPosition() - 0.05);
         }
     }
 
     private void collectorServoControl(){
         if(gamepad1.dpad_left){
-            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() + 0.05,0.2);
+            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() + 0.02,1.0);
         }else if(gamepad1.dpad_right){
-            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() - 0.05,0.2);
+            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() - 0.02,1.0);
         }
     }
 

@@ -36,10 +36,10 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndPinion{
     private RobotNonBlockingServoUsingMotor m_RackAndPinionMotor;
     private final static double RNPCycleNum = 5.50;
-    private final static double RNPMotorCountsPerCycle = 288;
+    private final static int RNPMotorCountsPerCycle = 288;
     private final static double RNPMotorRevPerSec = 2.08;
     public Robot5100RackAndPinion(DcMotor RackAndPinionMotor, double CurrentPos){
-        this.m_RackAndPinionMotor = new RobotNonBlockingServoUsingMotor(RackAndPinionMotor,RNPMotorCountsPerCycle * RNPCycleNum,CurrentPos);
+        this.m_RackAndPinionMotor = new RobotNonBlockingServoUsingMotor(RackAndPinionMotor,RNPMotorCountsPerCycle,CurrentPos,true,RNPCycleNum);
     }
     public double getPosition(){
         return this.m_RackAndPinionMotor.getPosition();

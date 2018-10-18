@@ -43,8 +43,8 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_RackAndPinion = new Robot5100RackAndPinion(rackAndPinionMotor,initialRackAndPinionPos);
         this.m_DumperServo = opModeController.hardwareMap.servo.get("dumperServo");
         this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
-        this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288, CollectorServoInitialPos);
-        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),1120*LinearApproachRev,0);
+        this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288, CollectorServoInitialPos,true, 0.3);
+        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),(int) Math.round(1120*LinearApproachRev),0, false, 1);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
         this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
@@ -83,32 +83,32 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     public void setCollectingServoStayPos(){
-        this.getCollectorServo().setPosition(0.25,0.2);
+        this.getCollectorServo().setPosition(0.1,1.0);
     }
     public void setCollectingServoOut(){
-        this.getCollectorServo().setPosition(0.5,0.2);
+        this.getCollectorServo().setPosition(0.3,1.0);
     }
 
     public void setCollectingServoIn(){
-        this.getCollectorServo().setPosition(0.0,0.2);
+        this.getCollectorServo().setPosition(0.0,1.0);
     }
 
     public void openLinearAppraoch(){
         this.setCollectingServoStayPos();
-        this.getLinearApproachMotor().setPosition(1.0,0.2);
+        this.getLinearApproachMotor().setPosition(1.0,1.0);
     }
 
     public void closeLinearApproach(){
         this.setCollectingServoStayPos();
-        this.getLinearApproachMotor().setPosition(0.0,0.2);
+        this.getLinearApproachMotor().setPosition(0.0,1.0);
     }
 
     public void startSuckingMinerals(){
-        this.getCollectorMotor().moveWithFixedSpeed(-1.0);
+        this.getCollectorMotor().moveWithFixedSpeed(1.0);
     }
 
     public void startVomitingMinerals(){
-        this.getCollectorMotor().moveWithFixedSpeed(1.0);
+        this.getCollectorMotor().moveWithFixedSpeed(-1.0);
     }
 
     public void stopSuckingMinerals(){

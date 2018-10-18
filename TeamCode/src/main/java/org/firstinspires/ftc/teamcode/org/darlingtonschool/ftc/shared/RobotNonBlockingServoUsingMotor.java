@@ -4,37 +4,58 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
 
+import java.lang.annotation.Target;
+
 public class RobotNonBlockingServoUsingMotor {
     private DcMotor m_Motor;
-    private double m_CountsPerRev;
+    private int m_CountsPerRev;
     private int m_StartCount;
-    public RobotNonBlockingServoUsingMotor(DcMotor Motor, double CountsPerRev, double StartPosition){
-        this.setMotor(Motor);
-        this.setCountsPerRev(CountsPerRev);
-        this.m_StartCount -= fixPosition(StartPosition) * this.getCountsPerRev();
+    private boolean m_Reversed;
+    private double m_TotalRotation;
+    //private int m_EndCount;
+    public RobotNonBlockingServoUsingMotor(DcMotor Motor, int CountsPerRev, double StartPosition, boolean reversed, double totalRotation){
+
+        this.m_CountsPerRev = CountsPerRev;
+        this.m_Reversed = reversed;
+        if(!reversed) {
+            this.setMotor(Motor, (int) -Math.round(StartPosition * this.getCountsPerRev()));
+        }else{
+            this.setMotor(Motor, (int) Math.round(StartPosition * this.getCountsPerRev()));
+        }
     }
     public boolean isBusy(){
         return this.m_Motor.isBusy();
     }
+    public double getTotalRotation(){
+        return this.m_TotalRotation;
+    }
+    public void setTotalRotation(double TotalRotation){
+        this.m_TotalRotation = TotalRotation;
+    }
     public DcMotor getMotor(){
         return m_Motor;
     }
-    public void setMotor(DcMotor Motor){
+    public boolean isReversed(){
+        return this.m_Reversed;
+    }
+    protected void setMotor(DcMotor Motor, int CountsOffset){
         Motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        this.m_StartCount = Motor.getCurrentPosition();
+        this.m_StartCount = Motor.getCurrentPosition() + CountsOffset;
+        //this.m_EndCount = this.m_StartCount + this.getCountsPerRev() + CountsOffset;
         Motor.setTargetPosition(this.m_StartCount);
         Motor.setPower(1.0);
         this.m_Motor = Motor;
     }
-    public double getCountsPerRev(){
+    public int getCountsPerRev(){
         return this.m_CountsPerRev;
     }
-    public void setCountsPerRev(double CountsPerRev){
+    public void setCountsPerRev(int CountsPerRev){
         this.m_CountsPerRev = CountsPerRev;
+        //this.m_EndCount = this.m_StartCount + CountsPerRev;
     }
     protected int fixCounts(int Counts){
-        return ((int) Math.round(Counts % this.getCountsPerRev()));
+        return Counts % this.getCountsPerRev();
     }
     protected static double fixPosition(double Pos){
         double tempPos = Pos;
@@ -47,16 +68,36 @@ public class RobotNonBlockingServoUsingMotor {
         return tempPos;
     }
     public double getPosition(){
-        int movedCounts = this.m_Motor.getCurrentPosition() - this.m_StartCount;
-        int validCounts = fixCounts(movedCounts);
-        return fixPosition(((double) validCounts) / this.getCountsPerRev());
+        int movedCounts = 0;
+        if(!this.isReversed()){
+            movedCounts = this.m_Motor.getTargetPosition() - this.m_StartCount;
+        }else{
+            movedCounts = this.m_StartCount - this.m_Motor.getTargetPosition();
+        }
+        return ((double) movedCounts) / ((double) this.getCountsPerRev());
     }
+    public double getCurrentPosition(){
+        int movedCounts = 0;
+        if(!this.isReversed()){
+            movedCounts = this.m_Motor.getCurrentPosition() - this.m_StartCount;
+        }else{
+            movedCounts = this.m_StartCount - this.m_Motor.getTargetPosition();
+        }
+        return ((double) movedCounts) / ((double) this.getCountsPerRev());
+    }
+
     public void setPosition(double Pos, double Speed){
-        int absCount = (int) Math.round(fixPosition(Pos) * this.getCountsPerRev());
-        int movedCounts = this.m_Motor.getCurrentPosition() - this.m_StartCount;
+        if(Pos > this.getTotalRotation())
+            Pos = this.getTotalRotation();
+        if(Pos < 0)
+            Pos=0;
+        int TargetPos = 0;
+        if(!this.isReversed()) {
+            TargetPos = this.m_StartCount + (int) Math.round(Pos * this.getCountsPerRev());
+        }else{
+            TargetPos = this.m_StartCount - (int) Math.round(Pos * this.getCountsPerRev());
+        }
         this.m_Motor.setPower(Speed);
-        int validCounts = fixCounts(movedCounts);
-        int countsOffset = absCount - validCounts;
-        this.m_Motor.setTargetPosition(this.m_Motor.getCurrentPosition() + countsOffset);
+        this.m_Motor.setTargetPosition(TargetPos);
     }
 }
