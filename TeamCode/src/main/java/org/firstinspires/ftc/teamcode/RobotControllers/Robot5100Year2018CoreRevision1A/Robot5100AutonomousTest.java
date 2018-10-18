@@ -45,31 +45,59 @@ public class Robot5100AutonomousTest extends LinearOpMode {
         RobotDebugger.setDebug(true);
         hardwareInit();
         waitForStart();
-        this.m_RobotController.setRackAndPinionHook();
-        this.m_RobotController.waitUntilMotionFinish();
-        this.m_RobotController.driveToLeft(20,1.0);
-        this.m_RobotController.waitUntilMotionFinish();
-        this.m_RobotController.closeRackAndPinion();
-        this.m_RobotController.waitUntilMotionFinish();
-        double[] tempPos = {160,0};
-        this.m_RobotController.driveTo(tempPos,1.0);
-        this.m_RobotController.waitUntilMotionFinish();
-        double[] declPos = {60,0};
-        this.m_RobotController.driveTo(declPos,1.0);
-        this.m_RobotController.waitUntilMotionFinish();
-        this.m_RobotController.setCollectingServoOut();
-        this.m_RobotController.waitUntilMotionFinish();
-        this.m_RobotController.startVomitingMinerals();
-        try{
-            Thread.sleep(2000);
-        }catch(Exception e){
-
+        if(this.opModeIsActive()) {
+            this.m_RobotController.setRackAndPinionHook();
+            this.m_RobotController.waitUntilMotionFinish();
         }
-        this.m_RobotController.stopSuckingMinerals();
-        double[] mineralsPos = {50, 260};
-        this.m_RobotController.driveTo(mineralsPos,1.0);
-        this.m_RobotController.waitUntilMotionFinish();
-        this.m_RobotController.setCollectingServoOut();
-        this.m_RobotController.waitUntilMotionFinish();
+        if(this.opModeIsActive()) {
+            this.m_RobotController.driveToLeft(20, 1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.closeRackAndPinion();
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.turnToAbsFieldAngle(-180, 1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.driveForward(96.52, 1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.turnToAbsFieldAngle(-90, 1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.driveForward(127, 1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.setCollectingServoOut();
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.startVomitingMinerals();
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+
+            }
+            this.m_RobotController.stopSuckingMinerals();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.turnToAbsFieldAngle(0, 1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.driveForward(304.8, 1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        if(this.opModeIsActive()) {
+            this.m_RobotController.setCollectingServoOut();
+            this.m_RobotController.waitUntilMotionFinish();
+        }
+        this.m_RobotController.setCollectingServoIn();
     }
 }
