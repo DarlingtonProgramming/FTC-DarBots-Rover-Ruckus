@@ -65,10 +65,14 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         //Diagonal Motor Distance Apart: 46.228 cm
         //Motor Position: {16.34, 16.34}
         //RobotWheel Timeout Control: false
-        RobotWheel m_Wheel0 = new RobotWheel(5.0,-135);
-        RobotWheel m_Wheel1 = new RobotWheel(5.0,135);
-        RobotWheel m_Wheel2 = new RobotWheel(5.0,-45);
-        RobotWheel m_Wheel3 = new RobotWheel(5.0, 45);
+        RobotWheel m_Wheel0 = new RobotWheel(5.0,45);
+        RobotWheel m_Wheel1 = new RobotWheel(5.0,-45);
+        RobotWheel m_Wheel2 = new RobotWheel(5.0,135);
+        RobotWheel m_Wheel3 = new RobotWheel(5.0, -135);
+        Motor0.setDirection(DcMotorSimple.Direction.REVERSE);
+        Motor1.setDirection(DcMotorSimple.Direction.REVERSE);
+        Motor2.setDirection(DcMotorSimple.Direction.REVERSE);
+        Motor3.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,false);
         RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,false);
         RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,false);
@@ -192,7 +196,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     @Override
     public void driveToLeft(double Distance, double Speed) throws RuntimeException{
-        this.driveToRight(Distance, Speed);
+        this.driveToRight(-Distance, Speed);
     }
 
     @Override

@@ -109,6 +109,9 @@ public class Robot5100TeleOp extends LinearOpMode{
             double newPct = this.m_RobotController.getRackAndPinion().getPosition() - 0.1;
             this.m_RobotController.getRackAndPinion().setPosition(newPct);
         }
+        if(gamepad2.left_bumper){
+            this.m_RobotController.setRackAndPinionHook();
+        }
     }
 
     public void runOpMode(){

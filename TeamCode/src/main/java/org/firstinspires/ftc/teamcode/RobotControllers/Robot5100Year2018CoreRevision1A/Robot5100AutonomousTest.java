@@ -31,23 +31,45 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
 
-@Autonomous (name = "5100Test", group = "David Cao")
+@Autonomous (name = "5100BluePos1", group = "David Cao")
 //@Disabled
 public class Robot5100AutonomousTest extends LinearOpMode {
     private Robot5100Core m_RobotController;
 
     private void hardwareInit(){
-        this.m_RobotController = new Robot5100Core(this,100,100,0,0,0);
+        this.m_RobotController = new Robot5100Core(this,139.065,139.065,-135,0,0);
     }
 
     public void runOpMode(){
         RobotDebugger.setTelemetry(this.telemetry);
         RobotDebugger.setDebug(true);
-        this.hardwareInit();
+        hardwareInit();
         waitForStart();
         this.m_RobotController.setRackAndPinionHook();
-        while(this.opModeIsActive()){
+        this.m_RobotController.waitUntilMotionFinish();
+        this.m_RobotController.driveToLeft(20,1.0);
+        this.m_RobotController.waitUntilMotionFinish();
+        this.m_RobotController.closeRackAndPinion();
+        this.m_RobotController.waitUntilMotionFinish();
+        double[] tempPos = {160,0};
+        this.m_RobotController.driveTo(tempPos,1.0);
+        this.m_RobotController.waitUntilMotionFinish();
+        double[] declPos = {60,0};
+        this.m_RobotController.driveTo(declPos,1.0);
+        this.m_RobotController.waitUntilMotionFinish();
+        this.m_RobotController.setCollectingServoOut();
+        this.m_RobotController.waitUntilMotionFinish();
+        this.m_RobotController.startVomitingMinerals();
+        try{
+            Thread.sleep(2000);
+        }catch(Exception e){
 
         }
+        this.m_RobotController.stopSuckingMinerals();
+        double[] mineralsPos = {50, 260};
+        this.m_RobotController.driveTo(mineralsPos,1.0);
+        this.m_RobotController.waitUntilMotionFinish();
+        this.m_RobotController.setCollectingServoOut();
+        this.m_RobotController.waitUntilMotionFinish();
     }
 }

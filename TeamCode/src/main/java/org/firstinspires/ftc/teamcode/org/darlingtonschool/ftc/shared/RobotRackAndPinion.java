@@ -30,4 +30,6 @@ public interface RobotRackAndPinion {
         void setPosition(double Percent);
         void waitRackAndPinionFinish();
         void doLoop();
+        double getBiggestPos();
+        double getSmallestPos();
 }

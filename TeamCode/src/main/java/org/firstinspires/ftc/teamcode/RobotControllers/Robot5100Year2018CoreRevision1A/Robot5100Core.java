@@ -52,7 +52,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         RobotNonBlockingMotor CollectorServoNonBlockingMotor = new RobotNonBlockingMotor(CollectorServoDcMotor,288,2.08,true);
         this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(CollectorServoNonBlockingMotor,CollectorServoInitialPos,CollectorServoBiggestVal,CollectorServoSmallestVal);
         DcMotor LinearApproachDCMotor = opModeController.hardwareMap.dcMotor.get("linearApproachMotor");
-        LinearApproachDCMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        //LinearApproachDCMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotNonBlockingMotor LinearApproachServoNonBlockingMotor = new RobotNonBlockingMotor(LinearApproachDCMotor,1120,2.67,true);
         this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(LinearApproachServoNonBlockingMotor,0,LinearApproachBiggestVal,LinearAppraochSmallestVal);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
@@ -93,7 +93,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     public void setCollectingServoStayPos(){
-        this.getCollectorServo().setPosition(0.1,1.0);
+        this.getCollectorServo().setPosition(0.2,1.0);
     }
     public void setCollectingServoOut(){
         this.getCollectorServo().setPosition(0.3,1.0);
@@ -140,11 +140,11 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     public void openRackAndPinion(){
-        this.getRackAndPinion().setPosition(1.0);
+        this.getRackAndPinion().setPosition(this.getRackAndPinion().getBiggestPos());
     }
 
     public void closeRackAndPinion(){
-        this.getRackAndPinion().setPosition(0.0);
+        this.getRackAndPinion().setPosition(this.getRackAndPinion().getSmallestPos());
     }
 
     public void setRackAndPinionHook(){

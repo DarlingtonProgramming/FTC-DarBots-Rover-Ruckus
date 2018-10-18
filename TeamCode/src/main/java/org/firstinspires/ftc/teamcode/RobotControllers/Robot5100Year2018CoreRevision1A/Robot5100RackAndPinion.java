@@ -63,4 +63,10 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
     public void doLoop(){
         this.m_RackAndPinionMotor.doLoop();
     }
+    public double getBiggestPos(){
+        return RNPCycleNum;
+    }
+    public double getSmallestPos(){
+        return 0;
+    }
 }
