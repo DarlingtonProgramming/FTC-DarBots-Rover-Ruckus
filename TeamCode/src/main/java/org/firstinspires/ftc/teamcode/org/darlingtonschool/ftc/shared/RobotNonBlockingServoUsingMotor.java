@@ -12,11 +12,11 @@ public class RobotNonBlockingServoUsingMotor implements RobotEventLoopable {
     private RobotNonBlockingMotor m_Motor;
     private int m_StartCount = 0;
     private double m_SmallestPos = 0;
-    private double m_BigegstPos = 0;
+    private double m_BiggestPos = 0;
     public RobotNonBlockingServoUsingMotor(@NonNull RobotNonBlockingMotor Motor, double CurrentPosition, double BiggestPos, double SmallestPos){
         this.m_Motor = Motor;
         this.m_StartCount = Motor.getDcMotor().getCurrentPosition() - (int) Math.round(CurrentPosition * Motor.getCountsPerRev());
-        this.m_BigegstPos = BiggestPos;
+        this.m_BiggestPos = BiggestPos;
         this.m_SmallestPos = SmallestPos;
     }
     public boolean isBusy(){
@@ -29,10 +29,10 @@ public class RobotNonBlockingServoUsingMotor implements RobotEventLoopable {
         this.m_SmallestPos = SmallestPos;
     }
     public double getBiggestPos(){
-        return this.m_BigegstPos;
+        return this.m_BiggestPos;
     }
     public void setBiggestPos(double BiggestPos){
-        this.m_BigegstPos = BiggestPos;
+        this.m_BiggestPos = BiggestPos;
     }
     public RobotNonBlockingMotor getMotor(){
         return m_Motor;
