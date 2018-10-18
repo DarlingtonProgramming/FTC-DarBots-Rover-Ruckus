@@ -88,7 +88,7 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
         this.m_MotorOperationTime.reset();
         this.m_DriveSpeed = Power;
 
-        double EstimatedTime = Math.abs(((double) RevTotal) / ((double) this.getRevPerSec()));
+        double EstimatedTime = Math.abs(((double) RevTotal) / Math.abs(this.getRevPerSec() * Power));
         this.m_EstimatedTime += EstimatedTime;
     }
 

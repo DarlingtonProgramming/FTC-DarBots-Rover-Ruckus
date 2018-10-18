@@ -18,8 +18,11 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
-    private static final double LinearApproachRev = 7.5;
+    private static final double LinearApproachBiggestVal = 7.5;
+    private static final double LinearAppraochSmallestVal = 0;
     private static final double RackAndPinionHookPos = 0.5;
+    private static final double CollectorServoBiggestVal = 0.3;
+    private static final double CollectorServoSmallestVal = 0;
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
     private Robot5100RackAndPinion m_RackAndPinion;
@@ -43,8 +46,10 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_RackAndPinion = new Robot5100RackAndPinion(rackAndPinionMotor,initialRackAndPinionPos);
         this.m_DumperServo = opModeController.hardwareMap.servo.get("dumperServo");
         this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
-        this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288, CollectorServoInitialPos,true, 0.3);
-        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),(int) Math.round(1120*LinearApproachRev),0, false, 1);
+        RobotNonBlockingMotor CollectorServoNonBlockingMotor = new RobotNonBlockingMotor(opModeController.hardwareMap.dcMotor.get("collectorServo"),288,2.08,true);
+        this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(CollectorServoNonBlockingMotor,CollectorServoInitialPos,CollectorServoBiggestVal,CollectorServoSmallestVal);
+        RobotNonBlockingMotor LinearApproachServoNonBlockingMotor = new RobotNonBlockingMotor(opModeController.hardwareMap.dcMotor.get("linearApproachMotor"),1120,2.67,true);
+        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(LinearApproachServoNonBlockingMotor,0,LinearApproachBiggestVal,LinearAppraochSmallestVal);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
         this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
@@ -262,6 +267,8 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_PositionTracker.doLoop();
         this.m_RackAndPinion.doLoop();
         this.m_GyroSensor.updateData();
+        this.m_LinearApproachMotor.doLoop();
+        this.m_CollectorServo.doLoop();
         RobotDebugger.addDebug("GyroX", "" + this.m_GyroSensor.getRawX());
         RobotDebugger.addDebug("GyroY", "" + this.m_GyroSensor.getRawY());
         RobotDebugger.addDebug("GyroZ", "" + this.m_GyroSensor.getRawZ());

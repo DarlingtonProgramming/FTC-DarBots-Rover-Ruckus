@@ -39,7 +39,8 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
     private final static int RNPMotorCountsPerCycle = 288;
     private final static double RNPMotorRevPerSec = 2.08;
     public Robot5100RackAndPinion(DcMotor RackAndPinionMotor, double CurrentPos){
-        this.m_RackAndPinionMotor = new RobotNonBlockingServoUsingMotor(RackAndPinionMotor,RNPMotorCountsPerCycle,CurrentPos,true,RNPCycleNum);
+        RobotNonBlockingMotor RNPNonBlockingMotor = new RobotNonBlockingMotor(RackAndPinionMotor,RNPMotorCountsPerCycle,RNPMotorRevPerSec,true);
+        this.m_RackAndPinionMotor = new RobotNonBlockingServoUsingMotor(RNPNonBlockingMotor,CurrentPos,RNPCycleNum,0);
     }
     public double getPosition(){
         return this.m_RackAndPinionMotor.getPosition();
@@ -48,7 +49,7 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
         return this.m_RackAndPinionMotor.isBusy();
     }
     public void setPosition(double Position){
-        this.m_RackAndPinionMotor.setPosition(Position,0.2);
+        this.m_RackAndPinionMotor.setPosition(Position,1);
     }
 
     public void waitRackAndPinionFinish(){
@@ -58,6 +59,6 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
     }
 
     public void doLoop(){
-
+        this.m_RackAndPinionMotor.doLoop();
     }
 }
