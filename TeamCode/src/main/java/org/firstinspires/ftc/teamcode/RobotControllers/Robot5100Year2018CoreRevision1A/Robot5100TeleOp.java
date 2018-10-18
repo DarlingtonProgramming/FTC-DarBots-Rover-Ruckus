@@ -57,7 +57,7 @@ public class Robot5100TeleOp extends LinearOpMode{
         boolean isControllingX = false;
         boolean isRotating = false;
         boolean isDriving = false;
-
+        RobotDebugger.addDebug("RightStickX:", "" + gamepad1.right_stick_x);
         if(Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)){
             isControllingX = true;
         }else{
