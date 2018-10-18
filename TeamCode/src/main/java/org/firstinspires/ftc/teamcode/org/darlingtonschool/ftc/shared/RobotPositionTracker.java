@@ -33,6 +33,9 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
+
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
 
 public class RobotPositionTracker implements RobotEventLoopable {
@@ -52,14 +55,7 @@ public class RobotPositionTracker implements RobotEventLoopable {
     }
 
     protected static double calculateRotation(double Degree) { // -180 <= return val < 180
-        double newDeg = Degree;
-        while (newDeg >= 180) {
-            newDeg -= 360;
-        }
-        while (newDeg < -180) {
-            newDeg += 360;
-        }
-        return newDeg;
+        return AngleUnit.DEGREES.normalize(Degree);
     }
     public RobotPositionTracker(double fieldTotalX, double fieldTotalY, double initialX, double initialY, double initialRotation, double[] leftFrontExtremePoint, double[] rightFrontExtremePoint, double[] leftBackExtremePoint, double[] rightBackExtremePoint){
         this.totalX = fieldTotalX;
@@ -254,13 +250,11 @@ public class RobotPositionTracker implements RobotEventLoopable {
         this.fixBouncingBox();
     }
     public void moveThroughFieldAngle(double moveAngleInDegree, double Distance){
-        RobotDebugger.addDebug("PositionTracker","moveThroughFieldAngleStart("+ moveAngleInDegree + "," + Distance + ") {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}");
         double actualMovingAngle = this.calculateRotation(moveAngleInDegree);
         double movingToAbsolutePoint[] = this.getCurrentPos();
         movingToAbsolutePoint[0] += Math.sin(Math.toRadians(actualMovingAngle)) * Distance;
         movingToAbsolutePoint[1] += Math.cos(Math.toRadians(actualMovingAngle)) * Distance;
         this.setCurrentPos(movingToAbsolutePoint);
-        RobotDebugger.addDebug("PositionTracker","moveThroughFieldAngleEnd {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}");
         this.fixBouncingBox();
     }
     public void moveThroughFieldAxis(double[] axisValues){
@@ -278,7 +272,6 @@ public class RobotPositionTracker implements RobotEventLoopable {
             this.fixBouncingBox();
             return;
         }
-        RobotDebugger.addDebug("PositionTracker","rotateAroundRobotRelativePointStart({"+ point[0] + "," + point[1] + "}, " + angleInDegree + ") {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}");
         double[] originRelativePoint = {-point[0],-point[1]};
         double h = Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1],2));
         double alpha = Math.asin(-point[0]/h);
@@ -291,7 +284,6 @@ public class RobotPositionTracker implements RobotEventLoopable {
         newRobotAxisPoint[1] = newRelativePoint[1] + point[1];
         this.setCurrentPos(this.fieldAxisFromRobotAxis(newRobotAxisPoint));
         this.setRobotRotation(this.getRobotRotation() + angleInDegree);
-        RobotDebugger.addDebug("PositionTracker","rotateAroundRobotRelativePointEnd {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}(" + this.getRobotRotation() + ")");
         this.fixBouncingBox();
     }
     public void rotateAroundFieldAbsolutePoint(double[] point, double angleInDegree){
@@ -349,6 +341,6 @@ public class RobotPositionTracker implements RobotEventLoopable {
     }
     @Override
     public void doLoop(){
-        RobotDebugger.addDebug("PositionTracker","Position:" + this.getCurrentPosX() + "," + this.getCurrentPosY());
+
     }
 }

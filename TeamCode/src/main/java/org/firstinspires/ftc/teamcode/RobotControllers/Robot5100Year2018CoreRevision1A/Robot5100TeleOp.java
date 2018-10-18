@@ -18,17 +18,24 @@ public class Robot5100TeleOp extends LinearOpMode{
 
     private void dumpingServoControl(){
         if(gamepad1.right_bumper){
-            this.m_RobotController.getDumperServo().setPosition(this.m_RobotController.getDumperServo().getPosition() + 0.05);
+            this.m_RobotController.getDumperServo().setPosition(0.0);
         }else if(gamepad1.left_bumper){
-            this.m_RobotController.getDumperServo().setPosition(this.m_RobotController.getDumperServo().getPosition() - 0.05);
+            this.m_RobotController.getDumperServo().setPosition(1.0);
+        }
+    }
+    private void linearApproachControl(){
+        if(gamepad1.a){
+            this.m_RobotController.getLinearApproachMotor().setPosition(this.m_RobotController.getLinearApproachMotor().getPosition() - 0.1,1.0);
+        }else if(gamepad1.b){
+            this.m_RobotController.getLinearApproachMotor().setPosition(this.m_RobotController.getLinearApproachMotor().getPosition() + 0.1, 1.0);
         }
     }
 
     private void collectorServoControl(){
         if(gamepad1.dpad_left){
-            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() + 0.02,1.0);
+            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() + 0.1,1.0);
         }else if(gamepad1.dpad_right){
-            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() - 0.02,1.0);
+            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() - 0.1,1.0);
         }
     }
 
@@ -115,6 +122,7 @@ public class Robot5100TeleOp extends LinearOpMode{
             dumpingServoControl();
             collectorServoControl();
             collectorControl();
+            linearApproachControl();
             this.m_RobotController.doLoop();
             RobotDebugger.doLoop();
         }

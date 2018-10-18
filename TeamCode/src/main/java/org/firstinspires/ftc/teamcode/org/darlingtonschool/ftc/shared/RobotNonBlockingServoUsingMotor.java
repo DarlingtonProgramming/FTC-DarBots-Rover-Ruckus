@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
 import android.support.annotation.NonNull;
 
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingMotor;
 
@@ -13,6 +15,7 @@ public class RobotNonBlockingServoUsingMotor implements RobotEventLoopable {
     private int m_StartCount = 0;
     private double m_SmallestPos = 0;
     private double m_BiggestPos = 0;
+    private boolean m_isWorking = false;
     public RobotNonBlockingServoUsingMotor(@NonNull RobotNonBlockingMotor Motor, double CurrentPosition, double BiggestPos, double SmallestPos){
         this.m_Motor = Motor;
         this.m_StartCount = Motor.getDcMotor().getCurrentPosition() - (int) Math.round(CurrentPosition * Motor.getCountsPerRev());
@@ -55,11 +58,18 @@ public class RobotNonBlockingServoUsingMotor implements RobotEventLoopable {
             Pos = this.getSmallestPos();
         int TargetPos = 0;
         TargetPos = this.m_StartCount + (int) Math.round(Pos * this.m_Motor.getCountsPerRev());
-        int DeltaCount = TargetPos - this.m_Motor.getDcMotor().getCurrentPosition();
+        int DeltaCount = TargetPos - this.m_Motor.getDcMotor().getTargetPosition();
         this.m_Motor.moveCounts(DeltaCount,Speed);
+        this.m_isWorking = true;
     }
 
     public void doLoop(){
         this.m_Motor.doLoop();
+        if(this.m_isWorking && !this.m_Motor.isBusy()){
+            this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
+            this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            this.m_Motor.getDcMotor().setPower(1.0);
+            this.m_isWorking = false;
+        }
     }
 }
