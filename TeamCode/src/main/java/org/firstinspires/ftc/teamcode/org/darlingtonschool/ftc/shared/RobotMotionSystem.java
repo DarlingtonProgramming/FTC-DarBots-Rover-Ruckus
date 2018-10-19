@@ -36,10 +36,6 @@ public interface RobotMotionSystem {
     boolean isBusy();
     void waitUntilMotionFinish();
     void setPositionTracker(RobotPositionTracker newPositionTracker);
-    double[] getCurrentFieldPos();
-    double[] getRobotAxisFromFieldAxis(double[] FieldPosition);
-    double[] getFieldAxisFromRobotAxis(double[] RobotPosition);
-    void setCurrentFieldPos(double[] Position);
     void turnToAbsFieldAngle(double AngleInDegree, double Speed);
     void turnOffsetAroundCenter(double AngleInDegree, double Speed);
     void keepTurningOffsetAroundCenter(double Speed);

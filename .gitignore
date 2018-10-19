@@ -13,6 +13,9 @@ bin/
 gen/
 out/
 
+# ftc docs
+doc/
+
 # Gradle files
 .gradle/
 build/
@@ -68,6 +71,9 @@ fastlane/readme.md
 # Mac Specific
 ._*
 .DS_Store
+
+# Windows thumbnail db
+Thumbs.db
 
 # Project Specific
 FtcRobotController/build

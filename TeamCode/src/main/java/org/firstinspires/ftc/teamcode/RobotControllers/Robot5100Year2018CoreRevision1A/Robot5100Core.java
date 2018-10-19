@@ -175,26 +175,6 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     }
 
     @Override
-    public double[] getCurrentFieldPos(){
-        return this.m_PositionTracker.getCurrentPos();
-    }
-
-    @Override
-    public double[] getRobotAxisFromFieldAxis(double[] FieldPosition){
-        return this.getRobotAxisFromFieldAxis(FieldPosition);
-    }
-
-    @Override
-    public double[] getFieldAxisFromRobotAxis(double[] RobotPosition){
-        return this.m_MotionSystem.getFieldAxisFromRobotAxis(RobotPosition);
-    }
-
-    @Override
-    public void setCurrentFieldPos(double[] Position){
-        this.m_MotionSystem.setCurrentFieldPos(Position);
-    }
-
-    @Override
     public void turnToAbsFieldAngle(double AngleInDegree, double Speed){
         this.m_MotionSystem.turnToAbsFieldAngle(AngleInDegree, Speed);
     }

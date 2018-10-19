@@ -130,26 +130,6 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     }
 
     @Override
-    public double[] getCurrentFieldPos(){
-        return this.m_PositionTracker.getCurrentPos();
-    }
-
-    @Override
-    public double[] getRobotAxisFromFieldAxis(double[] FieldPosition){
-        return this.m_PositionTracker.robotAxisFromFieldAxis(FieldPosition);
-    }
-
-    @Override
-    public double[] getFieldAxisFromRobotAxis(double[] RobotPosition){
-        return this.m_PositionTracker.fieldAxisFromRobotAxis(RobotPosition);
-    }
-
-    @Override
-    public void setCurrentFieldPos(double[] Position){
-        this.m_PositionTracker.setCurrentPos(Position);
-    }
-
-    @Override
     public void turnToAbsFieldAngle(double AngleInDegree, double Speed){
         double mDeltaAngle = AngleInDegree - this.m_PositionTracker.getRobotRotation();
         this.turnOffsetAroundCenter(mDeltaAngle, Speed);
