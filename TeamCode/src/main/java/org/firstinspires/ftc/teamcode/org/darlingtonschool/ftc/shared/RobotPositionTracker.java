@@ -39,12 +39,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
 
 public class RobotPositionTracker implements RobotEventLoopable {
-    private double totalX = 0;
-    private double totalY = 0;
-    private double currentX = 0;
-    private double currentY = 0;
-    private double rotation = 0; //-180 to 180
-    private boolean recommendPositionFix = false;
+    private double m_TotalX = 0;
+    private double m_TotalY = 0;
+    private double m_CurrentX = 0;
+    private double m_CurrentY = 0;
+    private double m_Rotation = 0; //-180 to 180
+    private boolean m_RecommendPositionFix = false;
     private double[] m_robotAxisLeftFrontExtreme;
     private double[] m_robotAxisRightFrontExtreme;
     private double[] m_robotAxisLeftBackExtreme;
@@ -58,16 +58,16 @@ public class RobotPositionTracker implements RobotEventLoopable {
         return AngleUnit.DEGREES.normalize(Degree);
     }
     public RobotPositionTracker(double fieldTotalX, double fieldTotalY, double initialX, double initialY, double initialRotation, double[] leftFrontExtremePoint, double[] rightFrontExtremePoint, double[] leftBackExtremePoint, double[] rightBackExtremePoint){
-        this.totalX = fieldTotalX;
-        this.totalY = fieldTotalY;
-        this.currentX = initialX;
-        this.currentY = initialY;
-        this.rotation = this.calculateRotation(initialRotation);
+        this.m_TotalX = fieldTotalX;
+        this.m_TotalY = fieldTotalY;
+        this.m_CurrentX = initialX;
+        this.m_CurrentY = initialY;
+        this.m_Rotation = this.calculateRotation(initialRotation);
         this.m_robotAxisLeftBackExtreme = leftBackExtremePoint;
         this.m_robotAxisLeftFrontExtreme = leftFrontExtremePoint;
         this.m_robotAxisRightBackExtreme = rightBackExtremePoint;
         this.m_robotAxisRightFrontExtreme = rightFrontExtremePoint;
-        this.recommendPositionFix = false;
+        this.m_RecommendPositionFix = false;
     }
     public double[] robotAxisFromFieldAxis(double[] FieldAxis){
         double fieldRelativeX = FieldAxis[0] - this.getCurrentPosX();
@@ -118,81 +118,68 @@ public class RobotPositionTracker implements RobotEventLoopable {
         return RobotExtremes;
     }
     protected void fixBouncingBox(){
-        double[][] RobotExtremes = this.getRobotExtremePoints_fieldAxis();
-        double Offset = 0;
-        for(double[] EachExtreme : RobotExtremes){
-            Offset = 0;
-            if(EachExtreme[0] < 0){
-                this.recommendPositionFix = true;
-                Offset = 0 - EachExtreme[0];
-                for(double[] EachFixExtreme : RobotExtremes) {
-                    EachFixExtreme[0] += Offset;
-                }
+        double[][] RobotExtremes = new double[4][2];
+        for(int i=0; i<4; i++){
+            RobotExtremes = this.getRobotExtremePoints_fieldAxis();
+            double[] EachExtreme = RobotExtremes[i];
+            double Offset = 0;
+            if(EachExtreme[0] < 0 || EachExtreme[0] > this.getFieldTotalX() || EachExtreme[1] < 0 || EachExtreme[1] > this.getFieldTotalY()) {
+                this.m_RecommendPositionFix = true;
+            }
+            if(EachExtreme[0] < 0) {
+                Offset = -EachExtreme[0];
                 this.setCurrentPosX(this.getCurrentPosX() + Offset);
             }else if(EachExtreme[0] > this.getFieldTotalX()){
-                this.recommendPositionFix = true;
                 Offset = EachExtreme[0] - this.getFieldTotalX();
-                for(double[] EachFixExtreme : RobotExtremes){
-                    EachFixExtreme[0] -= Offset;
-                }
                 this.setCurrentPosX(this.getCurrentPosX() - Offset);
-            }
-            if(EachExtreme[1] < 0){
-                this.recommendPositionFix = true;
-                Offset = 0 - EachExtreme[1];
-                for(double[] EachFixExtreme : RobotExtremes){
-                    EachFixExtreme[1] += Offset;
-                }
+            }else if(EachExtreme[1] < 0){
+                Offset = -EachExtreme[1];
                 this.setCurrentPosY(this.getCurrentPosY() + Offset);
             }else if(EachExtreme[1] > this.getFieldTotalY()){
-                this.recommendPositionFix = true;
                 Offset = EachExtreme[1] - this.getFieldTotalY();
-                for(double[] EachFixExtreme : RobotExtremes){
-                    EachFixExtreme[1] -= Offset;
-                }
                 this.setCurrentPosY(this.getCurrentPosY() - Offset);
             }
         }
     }
     public boolean needToFixPosition(){
-        return this.recommendPositionFix;
+        return this.m_RecommendPositionFix;
     }
     public void fixPositionFinished(){
-        this.recommendPositionFix = false;
+        this.m_RecommendPositionFix = false;
     }
     public double getFieldTotalX(){
-        return this.totalX;
+        return this.m_TotalX;
     }
     public void setFieldTotalX(double newTotalX){
-        this.totalX = newTotalX;
+        this.m_TotalX = newTotalX;
     }
     public double getFieldTotalY(){
-        return this.totalY;
+        return this.m_TotalY;
     }
     public void setFieldTotalY(double newTotalY){
-        this.totalY = newTotalY;
+        this.m_TotalY = newTotalY;
     }
-    public double[] getFieldDimension(){
+    public double[] getFieldSize(){
         double[] mResult = new double[2];
         mResult[0] = this.getFieldTotalX();
         mResult[1] = this.getFieldTotalY();
         return mResult;
     }
-    public void setFieldDimension(double[] newDimension){
+    public void setFieldSize(double[] newDimension){
         this.setFieldTotalX(newDimension[0]);
         this.setFieldTotalY(newDimension[1]);
     }
     public double getCurrentPosX(){
-        return this.currentX;
+        return this.m_CurrentX;
     }
     public void setCurrentPosX(double newPosX){
-        this.currentX = newPosX;
+        this.m_CurrentX = newPosX;
     }
     public double getCurrentPosY(){
-        return this.currentY;
+        return this.m_CurrentY;
     }
     public void setCurrentPosY(double newPosY){
-        this.currentY = newPosY;
+        this.m_CurrentY = newPosY;
     }
     public double[] getCurrentPos(){
         double[] mResult = new double[2];
@@ -205,10 +192,10 @@ public class RobotPositionTracker implements RobotEventLoopable {
         this.setCurrentPosY(newPos[1]);
     }
     public double getRobotRotation() {
-        return this.rotation;
+        return this.m_Rotation;
     }
     public void setRobotRotation(double newRotation){
-        this.rotation = this.calculateRotation(newRotation);
+        this.m_Rotation = this.calculateRotation(newRotation);
     }
     public double[] getRobotLeftFrontExtreme(){
         return this.m_robotAxisLeftFrontExtreme;
@@ -239,55 +226,46 @@ public class RobotPositionTracker implements RobotEventLoopable {
         double movingToRelativePoint[] = new double[2];
         movingToRelativePoint[0] = Math.sin(Math.toRadians(actualMovingAngle)) * Distance;
         movingToRelativePoint[1] = Math.cos(Math.toRadians(actualMovingAngle)) * Distance;
-        double movingToAbsolutePoint[] = this.fieldAxisFromRobotAxis(movingToRelativePoint);
-        this.setCurrentPos(movingToAbsolutePoint);
-        this.fixBouncingBox();
-
+        this.moveThroughRobotAxis(movingToRelativePoint);
     }
+
     public void moveThroughRobotAxis(double[] axisValues){
         double movingToRelativePoint[] = {axisValues[0], axisValues[1]};
         this.setCurrentPos(this.fieldAxisFromRobotAxis(movingToRelativePoint));
         this.fixBouncingBox();
     }
+
     public void moveThroughFieldAngle(double moveAngleInDegree, double Distance){
         double actualMovingAngle = this.calculateRotation(moveAngleInDegree);
-        double movingToAbsolutePoint[] = this.getCurrentPos();
-        movingToAbsolutePoint[0] += Math.sin(Math.toRadians(actualMovingAngle)) * Distance;
-        movingToAbsolutePoint[1] += Math.cos(Math.toRadians(actualMovingAngle)) * Distance;
-        this.setCurrentPos(movingToAbsolutePoint);
-        this.fixBouncingBox();
+        double movingToAbsolutePoint[] = new double[2];
+        movingToAbsolutePoint[0] = Math.sin(Math.toRadians(actualMovingAngle)) * Distance;
+        movingToAbsolutePoint[1] = Math.cos(Math.toRadians(actualMovingAngle)) * Distance;
+        this.moveThroughFieldAxis(movingToAbsolutePoint);
     }
     public void moveThroughFieldAxis(double[] axisValues){
-        RobotDebugger.addDebug("PositionTracker","moveThroughFieldAxisStart("+ axisValues[0] + "," + axisValues[1] + ") {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}");
         double movingToAbsolutePoint[] = this.getCurrentPos();
         movingToAbsolutePoint[0] += axisValues[0];
         movingToAbsolutePoint[1] += axisValues[1];
         this.setCurrentPos(movingToAbsolutePoint);
-        RobotDebugger.addDebug("PositionTracker","moveThroughFieldAxisEnd {" + this.getCurrentPosX() + ", " + this.getCurrentPosY() + "}");
         this.fixBouncingBox();
     }
     public void rotateAroundRobotRelativePoint(double[] point, double angleInDegree){
-        if(point[0] == 0 && point[1] == 0){
-            this.setRobotRotation(this.getRobotRotation() + angleInDegree);
-            this.fixBouncingBox();
-            return;
-        }
-        double[] originRelativePoint = {-point[0],-point[1]};
-        double h = Math.sqrt(Math.pow(point[0],2) + Math.pow(point[1],2));
-        double alpha = Math.asin(-point[0]/h);
-        double angle = alpha + Math.toRadians(angleInDegree);
-        double[] newRelativePoint = new double[2];
-        newRelativePoint[0] = Math.sin(angle) * h;
-        newRelativePoint[1] = Math.cos(angle) * h;
-        double[] newRobotAxisPoint = new double[2];
-        newRobotAxisPoint[0] = newRelativePoint[0] + point[0];
-        newRobotAxisPoint[1] = newRelativePoint[1] + point[1];
-        this.setCurrentPos(this.fieldAxisFromRobotAxis(newRobotAxisPoint));
-        this.setRobotRotation(this.getRobotRotation() + angleInDegree);
-        this.fixBouncingBox();
+        this.rotateAroundFieldAbsolutePoint(this.fieldAxisFromRobotAxis(point),angleInDegree);
     }
     public void rotateAroundFieldAbsolutePoint(double[] point, double angleInDegree){
-        this.rotateAroundRobotRelativePoint(this.robotAxisFromFieldAxis(point),angleInDegree);
+        if(point[0] == this.getCurrentPosX() && point[1] == this.getCurrentPosY()){
+            this.setRobotRotation(this.getRobotRotation() + angleInDegree);
+            return;
+        }
+        double robotOriginToFixedPointDistance = Math.sqrt(Math.pow(this.getCurrentPosX() - point[0],2) + Math.pow(this.getCurrentPosX() - point[1],2));
+        double originalRobotOriginToFixedPointAngle = Math.asin((this.getCurrentPosX()-point[0])/robotOriginToFixedPointDistance);
+        double newRobotOriginToFixedPointAngle = originalRobotOriginToFixedPointAngle + Math.toRadians(angleInDegree);
+        double newRobotX = Math.sin(newRobotOriginToFixedPointAngle) * robotOriginToFixedPointDistance + point[0];
+        double newRobotY = Math.cos(newRobotOriginToFixedPointAngle) * robotOriginToFixedPointDistance + point[1];
+        this.setCurrentPosX(newRobotX);
+        this.setCurrentPosY(newRobotY);
+        this.setRobotRotation(this.getRobotRotation() + angleInDegree);
+        this.fixBouncingBox();
     }
     public void moveWithRobotFixedPoint(RotationType positiveDistanceRotationType, double[] fixedPoint, double powerRadius, double Distance){
         double moveAngleRad = Distance / powerRadius;

@@ -147,8 +147,9 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
             return;
         }
 
-        this.m_DCMotor.setPower(speed);
         this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.m_DCMotor.setPower(speed);
+
 
         if(!this.m_isWorking || this.m_runningType != workType.FixedSpeed) {
             this.m_OriginLocation = StartPos;
