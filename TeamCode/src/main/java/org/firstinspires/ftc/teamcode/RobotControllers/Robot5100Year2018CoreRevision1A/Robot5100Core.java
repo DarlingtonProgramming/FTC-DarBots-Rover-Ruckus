@@ -20,7 +20,7 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     private static final double LinearApproachBiggestVal = 8.5;
-    private static final double LinearAppraochSmallestVal = 0;
+    private static final double LinearApproachSmallestVal = 0;
     private static final double RackAndPinionHookPos = 2.368;
     private static final double CollectorServoBiggestVal = 0.5;
     private static final double CollectorServoSmallestVal = 0;
@@ -54,7 +54,7 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         DcMotor LinearApproachDCMotor = opModeController.hardwareMap.dcMotor.get("linearApproachMotor");
         //LinearApproachDCMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotNonBlockingMotor LinearApproachServoNonBlockingMotor = new RobotNonBlockingMotor(LinearApproachDCMotor,1120,2.67,true);
-        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(LinearApproachServoNonBlockingMotor,0,LinearApproachBiggestVal,LinearAppraochSmallestVal);
+        this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(LinearApproachServoNonBlockingMotor,0,LinearApproachBiggestVal,LinearApproachSmallestVal);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
         this.m_GyroSensor = new BNO055IMUGyro(opModeController.hardwareMap,"imu");
