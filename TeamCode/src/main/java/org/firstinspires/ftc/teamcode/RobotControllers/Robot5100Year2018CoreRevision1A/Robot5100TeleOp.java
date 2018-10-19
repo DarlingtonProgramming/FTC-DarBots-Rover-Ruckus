@@ -17,36 +17,44 @@ public class Robot5100TeleOp extends LinearOpMode{
     }
 
     private void dumpingServoControl(){
-        if(gamepad1.right_bumper){
+        if(gamepad2.right_bumper){
             this.m_RobotController.getDumperServo().setPosition(0.0);
-        }else if(gamepad1.left_bumper){
+        }else if(gamepad2.left_bumper){
             this.m_RobotController.getDumperServo().setPosition(1.0);
         }
     }
     private void linearApproachControl(){
-        if(gamepad1.a){
-            this.m_RobotController.getLinearApproachMotor().setPosition(this.m_RobotController.getLinearApproachMotor().getPosition() - 0.1,1.0);
-        }else if(gamepad1.b){
-            this.m_RobotController.getLinearApproachMotor().setPosition(this.m_RobotController.getLinearApproachMotor().getPosition() + 0.1, 1.0);
+        boolean isControllingLinearApproach = false;
+        if(Math.abs(gamepad2.left_stick_y) < TRIGGERVALUE && Math.abs(gamepad2.left_stick_y) > Math.abs(gamepad2.left_stick_x)){
+            isControllingLinearApproach = false;
+        }else{
+            isControllingLinearApproach = true;
+        }
+        if(isControllingLinearApproach){
+            this.m_RobotController.getLinearApproachMotor().setPosition(this.m_RobotController.getLinearApproachMotor().getPosition() + (0.2 * -gamepad2.left_stick_y),1.0);
         }
     }
 
     private void collectorServoControl(){
-        if(gamepad1.dpad_left){
-            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() + 0.1,1.0);
-        }else if(gamepad1.dpad_right){
-            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() - 0.1,1.0);
+        boolean isControllingCollectorServo = false;
+        if(Math.abs(gamepad2.right_stick_y) < TRIGGERVALUE){
+            isControllingCollectorServo = false;
+        }else{
+            isControllingCollectorServo = true;
+        }
+        if(isControllingCollectorServo){
+            this.m_RobotController.getCollectorServo().setPosition(this.m_RobotController.getCollectorServo().getPosition() + (0.2 * -gamepad2.right_stick_y),1.0);
         }
     }
 
     private void collectorControl(){
         boolean leftTrigger = false, rightTrigger = false;
-        if(gamepad1.left_trigger < TRIGGERVALUE){
+        if(gamepad2.left_trigger < TRIGGERVALUE){
             leftTrigger = false;
         }else{
             leftTrigger = true;
         }
-        if(gamepad1.right_trigger < TRIGGERVALUE){
+        if(gamepad2.right_trigger < TRIGGERVALUE){
             rightTrigger = false;
         }else{
             rightTrigger = true;
@@ -63,16 +71,21 @@ public class Robot5100TeleOp extends LinearOpMode{
     private void movementControl(){
         boolean isControllingX = false;
         boolean isRotating = false;
+        boolean isPad1Rotating = false;
         boolean isDriving = false;
-        RobotDebugger.addDebug("RightStickX:", "" + gamepad1.right_stick_x);
         if(Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)){
             isControllingX = true;
         }else{
             isControllingX = false;
         }
-        if(Math.abs(gamepad1.right_stick_x) < TRIGGERVALUE){
+        if(Math.abs(gamepad1.right_stick_x) < TRIGGERVALUE && Math.abs(gamepad2.left_stick_x) < TRIGGERVALUE){
             isRotating = false;
         }else{
+            if(Math.abs(gamepad1.right_stick_x) >= TRIGGERVALUE){
+                isPad1Rotating = true;
+            }else{
+                isPad1Rotating = false;
+            }
             isRotating = true;
         }
         if(Math.max(Math.abs(gamepad1.left_stick_x),Math.abs(gamepad1.left_stick_y)) < TRIGGERVALUE){
@@ -88,7 +101,11 @@ public class Robot5100TeleOp extends LinearOpMode{
             this.m_RobotController.stopTurningOffsetAroundCenter();
         }
         if(isRotating){
-            this.m_RobotController.keepTurningOffsetAroundCenter(gamepad1.right_stick_x);
+            if(isPad1Rotating) {
+                this.m_RobotController.keepTurningOffsetAroundCenter(gamepad1.right_stick_x);
+            }else{
+                this.m_RobotController.keepTurningOffsetAroundCenter(gamepad2.left_stick_x);
+            }
         }else{
             if(isControllingX){
                 this.m_RobotController.driveToRightWithSpeed(gamepad1.left_stick_x);
@@ -102,14 +119,31 @@ public class Robot5100TeleOp extends LinearOpMode{
         if(this.m_RobotController.getRackAndPinion().isBusy()){
             return;
         }
-        if(gamepad1.dpad_up){
-            double newPct = this.m_RobotController.getRackAndPinion().getPosition() + 0.1;
+        boolean isLeftTrigger = false, isRightTrigger = false;
+        if(gamepad1.left_trigger < TRIGGERVALUE){
+            isLeftTrigger = false;
+        }else{
+            isLeftTrigger = true;
+        }
+        if(gamepad1.right_trigger < TRIGGERVALUE){
+            isRightTrigger = false;
+        }else{
+            isRightTrigger = true;
+        }
+
+        if(isLeftTrigger){
+            double newPct = this.m_RobotController.getRackAndPinion().getPosition() + (0.2 * gamepad1.left_trigger);
             this.m_RobotController.getRackAndPinion().setPosition(newPct);
-        }else if(gamepad1.dpad_down){
-            double newPct = this.m_RobotController.getRackAndPinion().getPosition() - 0.1;
+        }else if(isRightTrigger){
+            double newPct = this.m_RobotController.getRackAndPinion().getPosition() - (0.2 * gamepad1.right_trigger);
             this.m_RobotController.getRackAndPinion().setPosition(newPct);
         }
-        if(gamepad2.left_bumper){
+        if(gamepad1.left_bumper){
+            this.m_RobotController.openRackAndPinion();
+        }else if(gamepad1.right_bumper){
+            this.m_RobotController.closeRackAndPinion();
+        }
+        if(gamepad1.a){
             this.m_RobotController.setRackAndPinionHook();
         }
     }

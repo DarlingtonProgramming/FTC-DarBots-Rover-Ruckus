@@ -173,8 +173,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     public void driveTo(double[] fieldPos, double Speed){
         double turningDeg = this.m_PositionTracker.calculateAngleDeltaMovingToFieldPoint(fieldPos);
         this.turnOffsetAroundCenter(turningDeg,Speed);
+        this.waitUntilMotionFinish();
         double DistanceMoving = this.m_PositionTracker.calculateDistanceToFixedPoint(fieldPos);
         this.driveForward(DistanceMoving, Speed);
+        this.waitUntilMotionFinish();
     }
 
     @Override

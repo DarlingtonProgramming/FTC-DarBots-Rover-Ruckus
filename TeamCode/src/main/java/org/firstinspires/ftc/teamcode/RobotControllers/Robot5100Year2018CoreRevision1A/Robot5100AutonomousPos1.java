@@ -33,7 +33,7 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPosit
 
 @Autonomous (name = "5100BluePos1", group = "David Cao")
 //@Disabled
-public class Robot5100AutonomousTest extends LinearOpMode {
+public class Robot5100AutonomousPos1 extends LinearOpMode {
     private Robot5100Core m_RobotController;
 
     private void hardwareInit(){
