@@ -46,7 +46,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     @Override
     public boolean isBusy(){
-        return (this.m_Motor0.getSensor().isBusy() && this.m_Motor1.getSensor().isBusy() && this.m_Motor2.getSensor().isBusy() && this.m_Motor3.getSensor().isBusy());
+        return (this.m_Motor0.getSensor().isBusy() || this.m_Motor1.getSensor().isBusy() || this.m_Motor2.getSensor().isBusy() || this.m_Motor3.getSensor().isBusy());
     }
 
     @Override
