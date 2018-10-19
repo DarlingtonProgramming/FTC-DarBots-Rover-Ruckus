@@ -11,6 +11,7 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebug
 public class Robot5100TeleOp extends LinearOpMode{
     private static final double TRIGGERVALUE = 0.1;
     private Robot5100Core m_RobotController;
+    private static final double MOVEMENTPROPORTION = 0.4;
 
     private void hardwareInitialize(){
         m_RobotController = new Robot5100Core(this,100,100,0,0,0);
@@ -102,15 +103,15 @@ public class Robot5100TeleOp extends LinearOpMode{
         }
         if(isRotating){
             if(isPad1Rotating) {
-                this.m_RobotController.keepTurningOffsetAroundCenter(gamepad1.right_stick_x);
+                this.m_RobotController.keepTurningOffsetAroundCenter(MOVEMENTPROPORTION * gamepad1.right_stick_x);
             }else{
-                this.m_RobotController.keepTurningOffsetAroundCenter(gamepad2.left_stick_x);
+                this.m_RobotController.keepTurningOffsetAroundCenter(MOVEMENTPROPORTION * gamepad2.left_stick_x);
             }
         }else{
             if(isControllingX){
-                this.m_RobotController.driveToRightWithSpeed(gamepad1.left_stick_x);
+                this.m_RobotController.driveToRightWithSpeed(MOVEMENTPROPORTION * gamepad1.left_stick_x);
             }else{
-                this.m_RobotController.driveForwardWithSpeed(-gamepad1.left_stick_y);
+                this.m_RobotController.driveForwardWithSpeed(MOVEMENTPROPORTION * (-gamepad1.left_stick_y));
             }
         }
     }
