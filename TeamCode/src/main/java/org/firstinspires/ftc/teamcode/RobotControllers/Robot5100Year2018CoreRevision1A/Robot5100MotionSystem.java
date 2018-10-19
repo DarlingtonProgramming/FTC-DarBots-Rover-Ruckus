@@ -40,7 +40,6 @@ import java.lang.reflect.Field;
 public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopable {
     private RobotPositionTracker m_PositionTracker;
     private RobotSensorWrapper<RobotNonBlockingWheel> m_Motor0, m_Motor1, m_Motor2, m_Motor3;
-    private boolean m_isDriving = false;
     private double[] m_MotorXFactor = {0,0,0,0};
     private double[] m_MotorYFactor = {0,0,0,0};
     private boolean m_isTurningAround = false;
@@ -218,7 +217,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     }
     @Override
     public void driveToLeftWithSpeed(double Speed){
-        this.driveToRightWithSpeed(Speed);
+        this.driveToRightWithSpeed(-Speed);
     }
     @Override
     public void driveToRightWithSpeed(double Speed) {

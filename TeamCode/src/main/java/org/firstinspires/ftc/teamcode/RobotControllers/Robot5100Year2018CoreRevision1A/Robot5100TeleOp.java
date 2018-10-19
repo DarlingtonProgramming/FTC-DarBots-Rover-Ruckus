@@ -78,7 +78,7 @@ public class Robot5100TeleOp extends LinearOpMode{
         }else{
             isControllingX = false;
         }
-        if(Math.abs(gamepad1.right_stick_x) < TRIGGERVALUE && Math.abs(gamepad2.left_stick_x) < TRIGGERVALUE){
+        if(Math.abs(gamepad1.right_stick_x) < TRIGGERVALUE && (Math.abs(gamepad2.left_stick_x) < TRIGGERVALUE || Math.abs(gamepad2.left_stick_x) < Math.abs(gamepad2.left_stick_y))){
             isRotating = false;
         }else{
             if(Math.abs(gamepad1.right_stick_x) >= TRIGGERVALUE){
