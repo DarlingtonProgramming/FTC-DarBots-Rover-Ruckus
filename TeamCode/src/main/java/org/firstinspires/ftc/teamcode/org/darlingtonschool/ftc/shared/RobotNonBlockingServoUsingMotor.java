@@ -21,6 +21,11 @@ public class RobotNonBlockingServoUsingMotor implements RobotEventLoopable {
         this.m_StartCount = Motor.getDcMotor().getCurrentPosition() - (int) Math.round(CurrentPosition * Motor.getCountsPerRev());
         this.m_BiggestPos = BiggestPos;
         this.m_SmallestPos = SmallestPos;
+        //Locking Position from the beginning.
+        this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
+        this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.m_Motor.getDcMotor().setPower(1.0);
+        this.m_isWorking = false;
     }
     public boolean isBusy(){
         return this.m_Motor.isBusy();
@@ -53,9 +58,9 @@ public class RobotNonBlockingServoUsingMotor implements RobotEventLoopable {
 
     public void setPosition(double Pos, double Speed){
         if(Pos > this.getBiggestPos())
-            Pos = this.getBiggestPos();
+            return;
         if(Pos < this.getSmallestPos())
-            Pos = this.getSmallestPos();
+            return;
         int TargetPos = 0;
         TargetPos = this.m_StartCount + (int) Math.round(Pos * this.m_Motor.getCountsPerRev());
         int DeltaCount = TargetPos - this.m_Motor.getDcMotor().getTargetPosition();
@@ -71,5 +76,8 @@ public class RobotNonBlockingServoUsingMotor implements RobotEventLoopable {
             this.m_Motor.getDcMotor().setPower(1.0);
             this.m_isWorking = false;
         }
+    }
+    public void adjustPosition(double currentPos){
+        this.m_StartCount = this.m_Motor.getDcMotor().getCurrentPosition() - (int) Math.round(currentPos * this.m_Motor.getCountsPerRev());
     }
 }

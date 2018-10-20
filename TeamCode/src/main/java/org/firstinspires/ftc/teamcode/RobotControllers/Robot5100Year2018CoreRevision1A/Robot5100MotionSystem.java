@@ -62,7 +62,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         //http://www.revrobotics.com/content/docs/Encoder-Guide.pdf
         //Motor Speed 300RPM
         //Diagonal Motor Distance Apart: 46.228 cm
-        //Motor Position: {16.34, 16.34}
+        //Motor Position: {18.0, 18.0}
         //RobotWheel Timeout Control: false
         RobotWheel m_Wheel0 = new RobotWheel(5.0,45);
         RobotWheel m_Wheel1 = new RobotWheel(5.0,-45);
@@ -72,14 +72,14 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         Motor1.setDirection(DcMotorSimple.Direction.REVERSE);
         Motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         Motor3.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,false);
-        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,false);
-        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,false);
-        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0,false);
-        double[] Motor0Pos = {-16.34, -16.34};
-        double[] Motor1Pos = {16.34, -16.34};
-        double[] Motor2Pos = {-16.34,16.34};
-        double[] Motor3Pos = {16.34,16.34};
+        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,true);
+        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,true);
+        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,true);
+        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0,true);
+        double[] Motor0Pos = {-18.0, -18.0};
+        double[] Motor1Pos = {18.0, -18.0};
+        double[] Motor2Pos = {-18.0,18.0};
+        double[] Motor3Pos = {18.0,18.0};
         this.m_Motor0 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel0,NBMotor0),Motor0Pos);
         this.m_Motor1 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel1,NBMotor1),Motor1Pos);
         this.m_Motor2 = new RobotSensorWrapper<RobotNonBlockingWheel>(new RobotNonBlockingWheel(m_Wheel2,NBMotor2),Motor2Pos);
@@ -263,7 +263,11 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         if(!m_isTurningAround){
             return;
         }
-        double movedDistance = Math.min(Math.min(Math.min(this.m_Motor0.getSensor().stopRunning_getMovedDistance(),this.m_Motor1.getSensor().stopRunning_getMovedDistance()),this.m_Motor2.getSensor().stopRunning_getMovedDistance()),this.m_Motor3.getSensor().stopRunning_getMovedDistance());
+        double motor0MovedDistance = this.m_Motor0.getSensor().stopRunning_getMovedDistance();
+        double motor1MovedDistance = this.m_Motor1.getSensor().stopRunning_getMovedDistance();
+        double motor2MovedDistance = this.m_Motor2.getSensor().stopRunning_getMovedDistance();
+        double motor3MovedDistance = this.m_Motor3.getSensor().stopRunning_getMovedDistance();
+        double movedDistance = Math.min(Math.min(Math.min(motor0MovedDistance,motor1MovedDistance),motor2MovedDistance),motor3MovedDistance);
         double[] mPowerPoint = this.m_Motor0.getPos(), mFixedPoint = {0,0};
         this.m_PositionTracker.moveWithRobotFixedPointAndPowerPoint(RobotPositionTracker.RotationType.Clockwise,mFixedPoint,mPowerPoint,movedDistance);
         this.m_isTurningAround = false;

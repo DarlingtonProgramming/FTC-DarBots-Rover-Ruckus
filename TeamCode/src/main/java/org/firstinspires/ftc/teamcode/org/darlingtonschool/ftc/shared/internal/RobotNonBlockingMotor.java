@@ -39,7 +39,7 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         ToPosition,
         FixedSpeed
     }
-    private static final double EXCESSTIMEPCT = 50;//Percent of time excess
+    private static final double EXCESSTIMEPCT = 200;//Percent of time excess
     private workType m_runningType = workType.ToPosition;
     private DcMotor m_DCMotor;
     private double m_CountsPerRev = 0;
@@ -131,7 +131,7 @@ public class RobotNonBlockingMotor implements RobotEventLoopable{
         }
         this.m_isWorking = true;
 
-        double EstimatedTime = Math.abs(((double) RevTotal) / Math.abs(this.getRevPerSec() * Power));
+        double EstimatedTime = Math.abs(((double) RevTotal) / Math.abs(this.getRevPerSec() * this.getCountsPerRev() * Power));
         double FineTime = EstimatedTime * (1.0 + (this.EXCESSTIMEPCT / 100.0));
 
         this.m_FineTime += FineTime;

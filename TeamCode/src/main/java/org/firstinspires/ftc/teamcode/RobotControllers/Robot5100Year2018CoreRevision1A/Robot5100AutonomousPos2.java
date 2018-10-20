@@ -31,9 +31,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
 
-@Autonomous (name = "5100AutonomousPos1", group = "David Cao")
+@Autonomous (name = "5100AutonomousPos2", group = "David Cao")
 //@Disabled
-public class Robot5100AutonomousPos1 extends LinearOpMode {
+public class Robot5100AutonomousPos2 extends LinearOpMode {
     private Robot5100Core m_RobotController;
 
     private void hardwareInit(){
@@ -59,39 +59,11 @@ public class Robot5100AutonomousPos1 extends LinearOpMode {
         }
         if(this.opModeIsActive()) {
             this.m_RobotController.closeRackAndPinion();
+            this.m_RobotController.driveForward(90, 1.0);
             this.m_RobotController.waitUntilMotionFinish();
             this.m_RobotController.closeLinearApproach();
-            this.m_RobotController.waitUntilMotionFinish();
-        }
-        if(this.opModeIsActive()) {
-            this.m_RobotController.turnOffsetAroundCenter(-45, 1.0);
-            this.m_RobotController.waitUntilMotionFinish();
-        }
-        if(this.opModeIsActive()) {
-            this.m_RobotController.driveForward(96.52, 1.0);
-            this.m_RobotController.waitUntilMotionFinish();
-        }
-        if(this.opModeIsActive()) {
-            this.m_RobotController.turnOffsetAroundCenter(90, 1.0);
-            this.m_RobotController.waitUntilMotionFinish();
-        }
-        if(this.opModeIsActive()) {
-            this.m_RobotController.driveForward(60, 1.0);
-            this.m_RobotController.waitUntilMotionFinish();
-        }
-        if(this.opModeIsActive()) {
             this.m_RobotController.setCollectingServoOut();
             this.m_RobotController.waitUntilMotionFinish();
-            this.m_RobotController.startVomitingMinerals(1.0);
-            try {
-                Thread.sleep(2000);
-            } catch (Exception e) {
-
-            }
-            this.m_RobotController.stopSuckingMinerals();
-            this.m_RobotController.setCollectingServoIn();
-            this.m_RobotController.waitUntilMotionFinish();
         }
-
     }
 }

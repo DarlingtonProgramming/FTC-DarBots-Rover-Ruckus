@@ -3,25 +3,26 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 
-@TeleOp (name = "5100TeleOp", group = "David Cao")
+@TeleOp (name = "5100TeleOpPos1", group = "David Cao")
 //@Disabled
-public class Robot5100TeleOp extends LinearOpMode{
+public class Robot5100TeleOpPos1 extends LinearOpMode{
     private static final double TRIGGERVALUE = 0.1;
     private Robot5100Core m_RobotController;
     private static final double MOVEMENTPROPORTION = 0.4;
 
     private void hardwareInitialize(){
-        m_RobotController = new Robot5100Core(this,100,100,0,0,0);
+        m_RobotController = new Robot5100Core(this,100,100,0,0,0,0);
     }
 
     private void dumpingServoControl(){
-        if(gamepad2.right_bumper){
-            this.m_RobotController.getDumperServo().setPosition(0.0);
-        }else if(gamepad2.left_bumper){
-            this.m_RobotController.getDumperServo().setPosition(1.0);
+        if(gamepad2.x){
+            this.m_RobotController.getDumperServo().setPosition(Servo.MIN_POSITION);
+        }else if(gamepad2.a){
+            this.m_RobotController.getDumperServo().setPosition(Servo.MAX_POSITION);
         }
     }
     private void linearApproachControl(){
@@ -33,6 +34,9 @@ public class Robot5100TeleOp extends LinearOpMode{
         }
         if(isControllingLinearApproach){
             this.m_RobotController.getLinearApproachMotor().setPosition(this.m_RobotController.getLinearApproachMotor().getPosition() + (0.2 * -gamepad2.left_stick_y),1.0);
+        }
+        if(gamepad2.y){
+            this.m_RobotController.getLinearApproachMotor().adjustPosition(0);
         }
     }
 
@@ -61,9 +65,9 @@ public class Robot5100TeleOp extends LinearOpMode{
             rightTrigger = true;
         }
         if(leftTrigger){
-            this.m_RobotController.startVomitingMinerals();
+            this.m_RobotController.startVomitingMinerals(gamepad2.left_trigger);
         }else if(rightTrigger){
-            this.m_RobotController.startSuckingMinerals();
+            this.m_RobotController.startSuckingMinerals(gamepad2.right_trigger);
         }else{
             this.m_RobotController.stopSuckingMinerals();
         }

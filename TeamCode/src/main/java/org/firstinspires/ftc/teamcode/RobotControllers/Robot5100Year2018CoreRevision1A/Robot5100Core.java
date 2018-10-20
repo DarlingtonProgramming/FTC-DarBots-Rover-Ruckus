@@ -19,10 +19,10 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotNonBlockingNoEncoderMotor;
 
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
-    private static final double LinearApproachBiggestVal = 8.5;
-    private static final double LinearApproachSmallestVal = 0;
+    public static final double LinearApproachBiggestVal = 3.2;
+    private static final double LinearApproachSmallestVal = -200;
     private static final double RackAndPinionHookPos = 2.368;
-    private static final double CollectorServoBiggestVal = 0.5;
+    public static final double CollectorServoBiggestVal = 0.45;
     private static final double CollectorServoSmallestVal = 0;
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;
@@ -35,12 +35,12 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     private Servo m_ColorSensorServo;
     private BNO055IMUGyro m_GyroSensor;
 
-    public Robot5100Core(@NonNull OpMode opModeController, double initialX, double initialY, double initialRotation, double initialRackAndPinionPos, double CollectorServoInitialPos){
+    public Robot5100Core(@NonNull OpMode opModeController, double initialX, double initialY, double initialRotation, double initialRackAndPinionPos, double CollectorServoInitialPos, double LinearApproachInitialPos){
         //FIELD: 365.76 * 365.76 CM^2
-        double[] leftTopExtreme = {-16.34, 16.34};
-        double[] rightTopExtreme = {16.34, 16.34};
-        double[] leftBotExtreme = {-16.34,-16.34};
-        double[] rightBotExtreme = {16.34,-16.34};
+        double[] leftTopExtreme = {-18, 18.0};
+        double[] rightTopExtreme = {18.0, 18.0};
+        double[] leftBotExtreme = {-18.0,-18.0};
+        double[] rightBotExtreme = {18.0,-18.0};
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,initialX,initialY,initialRotation,leftTopExtreme,rightTopExtreme,leftBotExtreme,rightBotExtreme);
         this.m_MotionSystem = new Robot5100MotionSystem(this.m_PositionTracker,opModeController.hardwareMap.dcMotor.get("motor0"), opModeController.hardwareMap.dcMotor.get("motor1"),opModeController.hardwareMap.dcMotor.get("motor2"), opModeController.hardwareMap.dcMotor.get("motor3"));
         DcMotor rackAndPinionMotor = opModeController.hardwareMap.dcMotor.get("rackMotor");
@@ -49,11 +49,11 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
         DcMotor CollectorServoDcMotor = opModeController.hardwareMap.dcMotor.get("collectorServo");
         CollectorServoDcMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotNonBlockingMotor CollectorServoNonBlockingMotor = new RobotNonBlockingMotor(CollectorServoDcMotor,288,2.08,true);
+        RobotNonBlockingMotor CollectorServoNonBlockingMotor = new RobotNonBlockingMotor(CollectorServoDcMotor,288,2.08,false);
         this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(CollectorServoNonBlockingMotor,CollectorServoInitialPos,CollectorServoBiggestVal,CollectorServoSmallestVal);
         DcMotor LinearApproachDCMotor = opModeController.hardwareMap.dcMotor.get("linearApproachMotor");
         //LinearApproachDCMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotNonBlockingMotor LinearApproachServoNonBlockingMotor = new RobotNonBlockingMotor(LinearApproachDCMotor,1120,2.67,true);
+        RobotNonBlockingMotor LinearApproachServoNonBlockingMotor = new RobotNonBlockingMotor(LinearApproachDCMotor,1120,2.67,false);
         this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(LinearApproachServoNonBlockingMotor,0,LinearApproachBiggestVal,LinearApproachSmallestVal);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");
@@ -96,29 +96,27 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         this.getCollectorServo().setPosition(0.2,1.0);
     }
     public void setCollectingServoOut(){
-        this.getCollectorServo().setPosition(0.3,1.0);
+        this.getCollectorServo().setPosition(this.getCollectorServo().getBiggestPos(),0.5);
     }
 
     public void setCollectingServoIn(){
-        this.getCollectorServo().setPosition(0.0,1.0);
+        this.getCollectorServo().setPosition(this.getCollectorServo().getSmallestPos(),0.5);
     }
 
     public void openLinearAppraoch(){
-        this.setCollectingServoStayPos();
-        this.getLinearApproachMotor().setPosition(1.0,1.0);
+        this.getLinearApproachMotor().setPosition(this.getLinearApproachMotor().getBiggestPos(),1.0);
     }
 
     public void closeLinearApproach(){
-        this.setCollectingServoStayPos();
         this.getLinearApproachMotor().setPosition(0.0,1.0);
     }
 
-    public void startSuckingMinerals(){
-        this.getCollectorMotor().moveWithFixedSpeed(1.0);
+    public void startSuckingMinerals(double speed){
+        this.getCollectorMotor().moveWithFixedSpeed(speed);
     }
 
-    public void startVomitingMinerals(){
-        this.getCollectorMotor().moveWithFixedSpeed(-1.0);
+    public void startVomitingMinerals(double speed){
+        this.getCollectorMotor().moveWithFixedSpeed(-speed);
     }
 
     public void stopSuckingMinerals(){
