@@ -45,23 +45,22 @@ public class Robot5100AutonomousPos2 extends LinearOpMode {
         RobotDebugger.setDebug(true);
         hardwareInit();
         waitForStart();
-        if(this.opModeIsActive()){
-            this.m_RobotController.getLinearApproachMotor().setPosition(1.0,1.0);
-            this.m_RobotController.waitUntilMotionFinish();
-        }
         if(this.opModeIsActive()) {
             this.m_RobotController.setRackAndPinionHook();
             this.m_RobotController.waitUntilMotionFinish();
         }
         if(this.opModeIsActive()) {
-            this.m_RobotController.driveToLeft(20, 1.0);
+            this.m_RobotController.driveBackward(15,1.0);
+            this.m_RobotController.waitUntilMotionFinish();
+            this.m_RobotController.driveToLeft(25, 1.0);
             this.m_RobotController.waitUntilMotionFinish();
         }
         if(this.opModeIsActive()) {
             this.m_RobotController.closeRackAndPinion();
-            this.m_RobotController.driveForward(90, 1.0);
+            this.m_RobotController.driveForward(120, 1.0);
             this.m_RobotController.waitUntilMotionFinish();
-            this.m_RobotController.closeLinearApproach();
+            this.m_RobotController.getLinearApproachMotor().setPosition(2.0,1.0);
+            this.m_RobotController.waitUntilMotionFinish();
             this.m_RobotController.setCollectingServoOut();
             this.m_RobotController.waitUntilMotionFinish();
         }

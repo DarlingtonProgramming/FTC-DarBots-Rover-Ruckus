@@ -22,6 +22,25 @@ public class Robot5100TeleOpPos1 extends LinearOpMode{
         if(gamepad2.x){
             this.m_RobotController.getDumperServo().setPosition(Servo.MIN_POSITION);
         }else if(gamepad2.a){
+            this.m_RobotController.getDumperServo().setPosition(Servo.MAX_POSITION / 4.0);
+            try {
+                sleep(500);
+            }catch(Exception e){
+
+            }
+
+            this.m_RobotController.getDumperServo().setPosition(Servo.MAX_POSITION / 3.0);
+            try {
+                sleep(500);
+            }catch(Exception e){
+
+            }
+            this.m_RobotController.getDumperServo().setPosition(Servo.MAX_POSITION / 2.0);
+            try {
+                sleep(500);
+            }catch(Exception e){
+
+            }
             this.m_RobotController.getDumperServo().setPosition(Servo.MAX_POSITION);
         }
     }
@@ -109,7 +128,7 @@ public class Robot5100TeleOpPos1 extends LinearOpMode{
             if(isPad1Rotating) {
                 this.m_RobotController.keepTurningOffsetAroundCenter(MOVEMENTPROPORTION * gamepad1.right_stick_x);
             }else{
-                this.m_RobotController.keepTurningOffsetAroundCenter(MOVEMENTPROPORTION * gamepad2.left_stick_x);
+                this.m_RobotController.keepTurningOffsetAroundCenter(MOVEMENTPROPORTION * gamepad2.left_stick_x * 0.3);
             }
         }else{
             if(isControllingX){

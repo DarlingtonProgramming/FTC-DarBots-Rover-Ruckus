@@ -46,8 +46,8 @@ import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.R
 public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     public static final double LinearApproachBiggestVal = 3.2;
     private static final double LinearApproachSmallestVal = -200;
-    private static final double RackAndPinionHookPos = 2.368;
-    public static final double CollectorServoBiggestVal = 0.45;
+    private static final double RackAndPinionHookPos = 2.480;
+    public static final double CollectorServoBiggestVal = 0.40;
     private static final double CollectorServoSmallestVal = 0;
     private Robot5100MotionSystem m_MotionSystem;
     private RobotPositionTracker m_PositionTracker;

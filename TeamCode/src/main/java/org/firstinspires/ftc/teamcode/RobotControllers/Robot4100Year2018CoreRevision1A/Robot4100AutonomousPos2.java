@@ -87,13 +87,10 @@ public class Robot4100AutonomousPos2 extends LinearOpMode {
 
     public void descend(){
         lift1.setPower(0.3);
-        sleep(3500);
+        sleep(5000);
         lift1.setPower(0);
         sleep(1000);
-        movement(0.3,500,"left");
-        lift1.setPower(-0.5);
-        sleep(1200);
-        lift1.setPower(0);
+        movement(0.3,800,"left");
         LeftFront.setPower(0);
         LeftBack.setPower(0);
         RightFront.setPower(0);
