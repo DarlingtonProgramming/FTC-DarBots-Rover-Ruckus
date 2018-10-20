@@ -92,6 +92,5 @@ public class Robot5100AutonomousPos1 extends LinearOpMode {
             this.m_RobotController.setCollectingServoIn();
             this.m_RobotController.waitUntilMotionFinish();
         }
-
     }
 }
