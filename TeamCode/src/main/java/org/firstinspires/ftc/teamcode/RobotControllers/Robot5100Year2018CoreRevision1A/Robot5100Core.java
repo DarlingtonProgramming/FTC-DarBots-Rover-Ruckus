@@ -271,7 +271,6 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
     public void doLoop(){
         this.m_CollectorMotor.doLoop();
         this.m_MotionSystem.doLoop();
-        this.m_PositionTracker.doLoop();
         this.m_RackAndPinion.doLoop();
         this.m_GyroSensor.updateData();
         this.m_LinearApproachMotor.doLoop();
