@@ -72,10 +72,10 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         Motor1.setDirection(DcMotorSimple.Direction.REVERSE);
         Motor2.setDirection(DcMotorSimple.Direction.REVERSE);
         Motor3.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,560,5.0,true);
-        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,560,5.0,true);
-        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,560,5.0,true);
-        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,560,5.0,true);
+        RobotNonBlockingMotor NBMotor0 = new RobotNonBlockingMotor(Motor0,1120,2.5,true,20);
+        RobotNonBlockingMotor NBMotor1 = new RobotNonBlockingMotor(Motor1,1120,2.5,true,20);
+        RobotNonBlockingMotor NBMotor2 = new RobotNonBlockingMotor(Motor2,1120,2.5,true,20);
+        RobotNonBlockingMotor NBMotor3 = new RobotNonBlockingMotor(Motor3,1120,2.5,true,20);
         double[] Motor0Pos = {-18.0, -18.0};
         double[] Motor1Pos = {18.0, -18.0};
         double[] Motor2Pos = {-18.0,18.0};
@@ -269,7 +269,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         double motor3MovedDistance = this.m_Motor3.getSensor().stopRunning_getMovedDistance();
         double movedDistance = Math.min(Math.min(Math.min(motor0MovedDistance,motor1MovedDistance),motor2MovedDistance),motor3MovedDistance);
         double[] mPowerPoint = this.m_Motor0.getPos(), mFixedPoint = {0,0};
-        this.m_PositionTracker.moveWithRobotFixedPointAndPowerPoint(RobotPositionTracker.RotationType.Clockwise,mFixedPoint,mPowerPoint,movedDistance);
+        this.m_PositionTracker.moveWithRobotFixedPointAndPowerPoint(mFixedPoint,mPowerPoint,movedDistance);
         this.m_isTurningAround = false;
     }
     @Override

@@ -32,9 +32,8 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.robot.Robot;
 
-import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.BNO055IMUGyro;
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.BNO055IMUGyro;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotDebugger;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotMotionSystem;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotNonBlockingServoUsingMotor;
@@ -71,14 +70,14 @@ public class Robot5100Core implements RobotMotionSystem, RobotEventLoopable {
         DcMotor rackAndPinionMotor = opModeController.hardwareMap.dcMotor.get("rackMotor");
         this.m_RackAndPinion = new Robot5100RackAndPinion(rackAndPinionMotor,initialRackAndPinionPos);
         this.m_DumperServo = opModeController.hardwareMap.servo.get("dumperServo");
-        this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08,false);
+        this.m_CollectorMotor = new RobotNonBlockingNoEncoderMotor(opModeController.hardwareMap.dcMotor.get("collectorMotor"),288,2.08);
         DcMotor CollectorServoDcMotor = opModeController.hardwareMap.dcMotor.get("collectorServo");
         CollectorServoDcMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotNonBlockingMotor CollectorServoNonBlockingMotor = new RobotNonBlockingMotor(CollectorServoDcMotor,288,2.08,false);
+        RobotNonBlockingMotor CollectorServoNonBlockingMotor = new RobotNonBlockingMotor(CollectorServoDcMotor,288,2.08,false,200);
         this.m_CollectorServo = new RobotNonBlockingServoUsingMotor(CollectorServoNonBlockingMotor,CollectorServoInitialPos,CollectorServoBiggestVal,CollectorServoSmallestVal);
         DcMotor LinearApproachDCMotor = opModeController.hardwareMap.dcMotor.get("linearApproachMotor");
         //LinearApproachDCMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotNonBlockingMotor LinearApproachServoNonBlockingMotor = new RobotNonBlockingMotor(LinearApproachDCMotor,1120,2.67,false);
+        RobotNonBlockingMotor LinearApproachServoNonBlockingMotor = new RobotNonBlockingMotor(LinearApproachDCMotor,1120,2.67,false,20);
         this.m_LinearApproachMotor = new RobotNonBlockingServoUsingMotor(LinearApproachServoNonBlockingMotor,0,LinearApproachBiggestVal,LinearApproachSmallestVal);
         //this.m_ColorSensor = opModeController.hardwareMap.colorSensor.get("colorSensor");
         //this.m_ColorSensorServo = opModeController.hardwareMap.servo.get("colorServo");

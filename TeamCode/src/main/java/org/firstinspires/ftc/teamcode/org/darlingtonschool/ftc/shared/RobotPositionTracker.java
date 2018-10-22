@@ -33,12 +33,10 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
 
-import com.qualcomm.hardware.bosch.BNO055IMU;
-
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEventLoopable;
-
-public class RobotPositionTracker implements RobotEventLoopable {
+import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.XYPlaneCalculations;
+public class RobotPositionTracker {
     private double m_TotalX = 0;
     private double m_TotalY = 0;
     private double m_CurrentX = 0;
@@ -50,12 +48,15 @@ public class RobotPositionTracker implements RobotEventLoopable {
     private double[] m_robotAxisLeftBackExtreme;
     private double[] m_robotAxisRightBackExtreme;
 
-    public enum RotationType{
-        Clockwise, CounterClockwise
-    }
-
     protected static double calculateRotation(double Degree) { // -180 <= return val < 180
-        return AngleUnit.DEGREES.normalize(Degree);
+        double mDeg = Degree;
+        while(mDeg < -180) {
+            mDeg+=360;
+        }
+        while(mDeg >= 180) {
+            mDeg-=360;
+        }
+        return mDeg;
     }
     public RobotPositionTracker(double fieldTotalX, double fieldTotalY, double initialX, double initialY, double initialRotation, double[] leftFrontExtremePoint, double[] rightFrontExtremePoint, double[] leftBackExtremePoint, double[] rightBackExtremePoint){
         this.m_TotalX = fieldTotalX;
@@ -72,32 +73,19 @@ public class RobotPositionTracker implements RobotEventLoopable {
     public double[] robotAxisFromFieldAxis(double[] FieldAxis){
         double fieldRelativeX = FieldAxis[0] - this.getCurrentPosX();
         double fieldRelativeY = FieldAxis[1] - this.getCurrentPosY();
-        if(fieldRelativeX == 0 && fieldRelativeY == 0){
-            double[] mTempResult = {0,0};
-            return mTempResult;
-        }
-        double hField = Math.sqrt(Math.pow(fieldRelativeX,2) + Math.pow(fieldRelativeY,2));
-        double theta = 0;
-        theta = Math.asin(fieldRelativeX / hField);
-        double hRobot = hField;
-        double angleInRobotAxis = theta - Math.toRadians(this.getRobotRotation());
-        double xRobot = Math.sin(angleInRobotAxis) * hRobot;
-        double yRobot = Math.cos(angleInRobotAxis) * hRobot;
-        double[] mResult = {xRobot,yRobot};
+        double[] fieldRelativePoint = {fieldRelativeX,fieldRelativeY};
+        double[] origin = {0,0};
+        double[] mResult = XYPlaneCalculations.rotatePointAroundFixedPoint(fieldRelativePoint, origin, -this.getRobotRotation());
         return mResult;
     }
     public double[] fieldAxisFromRobotAxis(double[] robotAxis){
         if(robotAxis[0] == 0 && robotAxis[1] == 0){
             return this.getCurrentPos();
         }
-        double hRobot = Math.sqrt(Math.pow(robotAxis[0],2) + Math.pow(robotAxis[1],2));
-        double angleInRobotAxis = Math.asin(robotAxis[0] / hRobot);
-        double theta = angleInRobotAxis + Math.toRadians(this.getRobotRotation());
-        double hField= hRobot;
-        double xRelativeField = Math.sin(theta) * hField;
-        double yRelativeField = Math.cos(theta) * hField;
-        double[] mResult = {this.getCurrentPosX() + xRelativeField, this.getCurrentPosY() + yRelativeField};
-        return mResult;
+        double[] origin = {0,0};
+        double[] relativeRobotRotationFixedPoint = XYPlaneCalculations.rotatePointAroundFixedPoint(robotAxis, origin, this.getRobotRotation());
+        double[] result = {relativeRobotRotationFixedPoint[0] + this.getCurrentPosX(), relativeRobotRotationFixedPoint[1] + this.getCurrentPosY()};
+        return result;
     }
     public double[][] getRobotExtremePoints_robotAxis(){
 
@@ -257,34 +245,26 @@ public class RobotPositionTracker implements RobotEventLoopable {
             this.setRobotRotation(this.getRobotRotation() + angleInDegree);
             return;
         }
-        double robotOriginToFixedPointDistance = Math.sqrt(Math.pow(this.getCurrentPosX() - point[0],2) + Math.pow(this.getCurrentPosX() - point[1],2));
-        double originalRobotOriginToFixedPointAngle = Math.asin((this.getCurrentPosX()-point[0])/robotOriginToFixedPointDistance);
-        double newRobotOriginToFixedPointAngle = originalRobotOriginToFixedPointAngle + Math.toRadians(angleInDegree);
-        double newRobotX = Math.sin(newRobotOriginToFixedPointAngle) * robotOriginToFixedPointDistance + point[0];
-        double newRobotY = Math.cos(newRobotOriginToFixedPointAngle) * robotOriginToFixedPointDistance + point[1];
-        this.setCurrentPosX(newRobotX);
-        this.setCurrentPosY(newRobotY);
+        double[] newRobotPosition = XYPlaneCalculations.rotatePointAroundFixedPoint(point, this.getCurrentPos(), angleInDegree);
+        this.setCurrentPos(newRobotPosition);
         this.setRobotRotation(this.getRobotRotation() + angleInDegree);
         this.fixBouncingBox();
     }
-    public void moveWithRobotFixedPoint(RotationType positiveDistanceRotationType, double[] fixedPoint, double powerRadius, double Distance){
+    public void moveWithRobotFixedPoint(double[] fixedPoint, double powerRadius, double Distance){
         double moveAngleRad = Distance / powerRadius;
         double moveAngleDeg = Math.toDegrees(moveAngleRad);
-        if(positiveDistanceRotationType == RotationType.CounterClockwise){
-            moveAngleDeg = -moveAngleDeg;
-        }
         this.rotateAroundRobotRelativePoint(fixedPoint,moveAngleDeg);
     }
-    public void moveWithFieldFixedPoint(RotationType positiveDistanceRotationType, double[] fixedPoint, double powerRadius, double Distance){
-        this.moveWithRobotFixedPoint(positiveDistanceRotationType,this.robotAxisFromFieldAxis(fixedPoint),powerRadius,Distance);
+    public void moveWithFieldFixedPoint(double[] fixedPoint, double powerRadius, double Distance){
+        this.moveWithRobotFixedPoint(this.robotAxisFromFieldAxis(fixedPoint),powerRadius,Distance);
     }
-    public void moveWithRobotFixedPointAndPowerPoint(RotationType positiveDistanceRotationType, double[] fixedPoint, double[] powerPoint, double Distance){
+    public void moveWithRobotFixedPointAndPowerPoint(double[] fixedPoint, double[] powerPoint, double Distance){
         double powerDistance = Math.sqrt(Math.pow((powerPoint[1]-fixedPoint[1]),2) + Math.pow((powerPoint[0]-fixedPoint[0]),2));
-        this.moveWithRobotFixedPoint(positiveDistanceRotationType,fixedPoint,powerDistance,Distance);
+        this.moveWithRobotFixedPoint(fixedPoint,powerDistance,Distance);
     }
-    public void moveWithFieldFixedPointAndPowerPoint(RotationType positiveDistanceRotationType, double[] fixedPoint, double[] powerPoint, double Distance){
+    public void moveWithFieldFixedPointAndPowerPoint(double[] fixedPoint, double[] powerPoint, double Distance){
         double powerDistance = Math.sqrt(Math.pow((powerPoint[1]-fixedPoint[1]),2) + Math.pow((powerPoint[0]-fixedPoint[0]),2));
-        this.moveWithFieldFixedPoint(positiveDistanceRotationType,fixedPoint,powerDistance,Distance);
+        this.moveWithFieldFixedPoint(fixedPoint,powerDistance,Distance);
     }
     public double calculateAngleDeltaMovingToRobotPoint(double[] robotFixPoint){
         if(robotFixPoint[1] == 0){
@@ -317,8 +297,5 @@ public class RobotPositionTracker implements RobotEventLoopable {
     public double calculateDistanceToRotateAroundFieldPoint(double[] fieldFixPoint, double[] powerPoint, double DeltaAngle){
         return this.calculateDistanceToRotateAroundRobotPoint(this.robotAxisFromFieldAxis(fieldFixPoint),this.robotAxisFromFieldAxis(powerPoint),DeltaAngle);
     }
-    @Override
-    public void doLoop(){
-
-    }
 }
+

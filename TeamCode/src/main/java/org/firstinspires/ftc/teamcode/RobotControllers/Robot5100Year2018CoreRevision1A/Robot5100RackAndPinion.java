@@ -41,7 +41,7 @@ public class Robot5100RackAndPinion implements RobotEventLoopable, RobotRackAndP
     private final static double RNPMotorRevPerSec = 2.08;
     public Robot5100RackAndPinion(DcMotor RackAndPinionMotor, double CurrentPos){
         RackAndPinionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotNonBlockingMotor RNPNonBlockingMotor = new RobotNonBlockingMotor(RackAndPinionMotor,RNPMotorCountsPerCycle,RNPMotorRevPerSec,true);
+        RobotNonBlockingMotor RNPNonBlockingMotor = new RobotNonBlockingMotor(RackAndPinionMotor,RNPMotorCountsPerCycle,RNPMotorRevPerSec,true,50);
         this.m_RackAndPinionMotor = new RobotNonBlockingServoUsingMotor(RNPNonBlockingMotor,CurrentPos,RNPCycleNum,0);
     }
     public double getPosition(){

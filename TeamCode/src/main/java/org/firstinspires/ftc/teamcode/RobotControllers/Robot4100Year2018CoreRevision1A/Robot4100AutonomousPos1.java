@@ -79,7 +79,7 @@ public class Robot4100AutonomousPos1 extends LinearOpMode {
 
 
 //           zs-a90r sleep(300);
-            lift2.se6tPower(-0.3);
+            lift2.setPower(-0.3);
             sleep(500);
             lift2.setPower(0);
 

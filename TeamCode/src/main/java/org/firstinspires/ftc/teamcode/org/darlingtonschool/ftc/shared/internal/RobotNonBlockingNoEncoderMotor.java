@@ -18,7 +18,7 @@ public class RobotNonBlockingNoEncoderMotor implements RobotEventLoopable {
     private boolean m_isWorking = false;
     private int m_MovedCounts = 0;
 
-    public RobotNonBlockingNoEncoderMotor(DcMotor RobotDcMotor, double CountsPerRev, double RevPerSec, boolean TimeControl){
+    public RobotNonBlockingNoEncoderMotor(DcMotor RobotDcMotor, double CountsPerRev, double RevPerSec){
         this.m_DCMotor = RobotDcMotor;
         this.m_CountsPerRev = CountsPerRev;
         this.m_RevPerSec = RevPerSec;

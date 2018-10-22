@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared;
+package org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal;
 
 import android.support.annotation.NonNull;
 
@@ -18,7 +18,7 @@ import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
 
 import java.io.File;
 
-public class BNO055IMUGyro {
+public class BNO055IMUGyro implements RobotEventLoopable{
     private BNO055IMU m_Gyro;
     private Orientation angles;
     public BNO055IMUGyro(@NonNull HardwareMap hardwareMap, String GyroName){
@@ -49,5 +49,10 @@ public class BNO055IMUGyro {
 
     public float getRawZ(){
         return AngleUnit.DEGREES.normalize(angles.angleUnit.toDegrees(angles.firstAngle));
+    }
+
+    @Override
+    public void doLoop(){
+        this.updateData();
     }
 }
