@@ -256,10 +256,12 @@ public class RobotEncoderMotor implements RobotNonBlockingDevice, RobotMotor, Ro
 
     @Override
     public void doLoop() {
-        if(this.m_CurrentJob instanceof MotorCountsSpecificJob){
-            MotorCountsSpecificJob<RobotEncoderSpecificData> CountsJob = (MotorCountsSpecificJob) this.m_CurrentJob;
-            if(!this.getDcMotor().isBusy()){
-                this.stopCurrentTask();
+        if(this.m_CurrentJob != null) {
+            if (this.m_CurrentJob instanceof MotorCountsSpecificJob) {
+                MotorCountsSpecificJob<RobotEncoderSpecificData> CountsJob = (MotorCountsSpecificJob) this.m_CurrentJob;
+                if (!this.getDcMotor().isBusy()) {
+                    this.stopCurrentTask();
+                }
             }
         }
     }
