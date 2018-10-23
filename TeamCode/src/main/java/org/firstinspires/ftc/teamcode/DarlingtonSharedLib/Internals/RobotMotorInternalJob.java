@@ -37,4 +37,5 @@ public abstract class RobotMotorInternalJob<T> extends CustomDataCarrier<T> {
     public abstract boolean isWorking();
     public abstract void StartDoingJob();
     public abstract double JobFinished(int CountsMoved);
+    public abstract double getElapsedTime();
 }

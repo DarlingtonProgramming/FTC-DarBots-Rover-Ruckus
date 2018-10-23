@@ -26,7 +26,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         LeftBackDC.setDirection(DcMotorSimple.Direction.REVERSE);
         RightBackDC.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotEncoderMotor FrontWheelMotor = new RobotEncoderMotor(FrontDC,Robot5100Settings.frontMotorCountsPerRev,Robot5100Settings.frontMotorRevPerSec);
-        RobotEncoderMotor LeftBackWheelMotor = new RobotEncoderMotor(LeftBackDC,Robot5100Settings.leftBackMotorCountsPerRev,Robot5100Settings.rightBackMotorRevPerSec);
+        RobotEncoderMotor LeftBackWheelMotor = new RobotEncoderMotor(LeftBackDC,Robot5100Settings.leftBackMotorCountsPerRev,Robot5100Settings.leftBackMotorRevPerSec);
         RobotEncoderMotor RightBackWheelMotor = new RobotEncoderMotor(RightBackDC,Robot5100Settings.rightBackMotorCountsPerRev,Robot5100Settings.rightBackMotorRevPerSec);
         RobotWheel FrontWheel = new RobotWheel(Robot5100Settings.frontWheelRadius,Robot5100Settings.frontWheelAngle);
         RobotWheel LeftBackWheel = new RobotWheel(Robot5100Settings.leftBackWheelRadius,Robot5100Settings.leftBackWheelAngle);

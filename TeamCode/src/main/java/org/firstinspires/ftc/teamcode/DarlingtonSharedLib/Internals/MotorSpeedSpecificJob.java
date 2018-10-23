@@ -103,4 +103,9 @@ public class MotorSpeedSpecificJob<T> extends RobotMotorInternalJob<T> {
         }
         return this.m_ElpasedTime.time(TimeUnit.SECONDS);
     }
+
+    @Override
+    public double getElapsedTime() {
+        return this.m_ElpasedTime.time(TimeUnit.SECONDS);
+    }
 }

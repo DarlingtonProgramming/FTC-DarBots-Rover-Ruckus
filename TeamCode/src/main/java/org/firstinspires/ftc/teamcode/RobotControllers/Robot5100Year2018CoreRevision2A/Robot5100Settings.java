@@ -3,6 +3,8 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 public class Robot5100Settings {
     public static final String posSaveFile = "5100PositionFile.json";
 
+    public static final double gamepadTriggerValue = 0.2;
+
     public static final boolean motionTimeControl = true;
     public static final double motionTimeControlPct = 20;
 
@@ -31,4 +33,7 @@ public class Robot5100Settings {
     public static final double[] rightFrontExtremePos = {0,0};
     public static final double[] leftBackExtremePos = {0,0};
     public static final double[] rightBackExtremePos = {0,0};
+
+    public static final String gyroConfigurationName = "imu";
+    public static final boolean gyroReversed = false;
 }
