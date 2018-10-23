@@ -2,10 +2,10 @@
  * $Id: JSONParser.java,v 1.1 2006/04/15 14:10:48 platform Exp $
  * Created on 2006-4-15
  */
-package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.parser;
+package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.parser;
 
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.JSONArray;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.JSONObject;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.JSONArray;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.JSONObject;
 
 import java.io.IOException;
 import java.io.Reader;

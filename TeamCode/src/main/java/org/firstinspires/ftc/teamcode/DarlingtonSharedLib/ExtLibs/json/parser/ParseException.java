@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.parser;
+package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.parser;
 
 /**
  * ParseException explains why and where the error occurs in source JSON text.

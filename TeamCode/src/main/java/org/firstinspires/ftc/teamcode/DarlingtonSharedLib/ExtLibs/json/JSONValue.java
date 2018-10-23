@@ -2,10 +2,10 @@
  * $Id: JSONValue.java,v 1.1 2006/04/15 14:37:04 platform Exp $
  * Created on 2006-4-15
  */
-package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple;
+package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json;
 
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.parser.JSONParser;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.parser.ParseException;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.parser.JSONParser;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.parser.ParseException;
 
 import java.io.IOException;
 import java.io.Reader;

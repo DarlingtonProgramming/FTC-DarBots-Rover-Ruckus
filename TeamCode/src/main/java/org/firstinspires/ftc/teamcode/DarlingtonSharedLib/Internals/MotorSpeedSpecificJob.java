@@ -22,15 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 */
-
-/*
- * Written by David Cao for the year of 2018 - 2019
- * To use this class, add the following code to your program.
- * import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
- * Additional Information:
- * I recommend you to use the X,Y values in CM.
- */
-
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Internals;
 
 import com.qualcomm.robotcore.hardware.DcMotor;

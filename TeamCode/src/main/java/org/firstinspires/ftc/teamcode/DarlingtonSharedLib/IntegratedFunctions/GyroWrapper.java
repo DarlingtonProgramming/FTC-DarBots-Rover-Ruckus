@@ -23,18 +23,12 @@ SOFTWARE.
 
 */
 
-/*
- * Written by David Cao for the year of 2018 - 2019
- * To use this class, add the following code to your program.
- * import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
- * Additional Information:
- * I recommend you to use the X,Y values in CM.
- */
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.BNO055IMUGyro;
+
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 
 public class GyroWrapper implements RobotEventLoopable {

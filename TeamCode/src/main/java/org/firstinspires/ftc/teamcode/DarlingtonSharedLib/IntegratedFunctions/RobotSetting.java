@@ -23,22 +23,14 @@ SOFTWARE.
 
 */
 
-/*
- * Written by David Cao for the year of 2018 - 2019
- * To use this class, add the following code to your program.
- * import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.RobotPositionTracker;
- * Additional Information:
- * I recommend you to use the X,Y values in CM.
- */
-
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions;
 
 import com.qualcomm.robotcore.util.ReadWriteFile;
 
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.JSONObject;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.parser.JSONParser;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple.parser.ParseException;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.JSONObject;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.parser.JSONParser;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.parser.ParseException;
 
 import java.io.File;
 

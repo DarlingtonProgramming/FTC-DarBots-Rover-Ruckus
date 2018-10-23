@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.simple;
+package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json;
 
 /**
  * Beans that support customized output of JSON text shall implement this interface.  
