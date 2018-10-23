@@ -42,7 +42,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotorCallBackToMotionCallBack;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
 
-public class RobotMotion<T> extends CustomDataCarrier<T> {
+public class RobotMotion{
     private RobotMotor m_Motor;
     private RobotWheel m_Wheel;
     public RobotMotion(@NonNull RobotMotor Motor, @NonNull RobotWheel Wheel){

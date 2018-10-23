@@ -258,9 +258,7 @@ public class RobotEncoderMotor implements RobotNonBlockingDevice, RobotMotor, Ro
     public void doLoop() {
         if(this.m_CurrentJob instanceof MotorCountsSpecificJob){
             MotorCountsSpecificJob<RobotEncoderSpecificData> CountsJob = (MotorCountsSpecificJob) this.m_CurrentJob;
-            int movedCounts = Math.abs(this.m_Motor.getCurrentPosition() - CountsJob.getCustomData().getStartCount());
-            int needMoveCounts = Math.abs(CountsJob.getCountsTask().getMovingCounts());
-            if(Math.abs(movedCounts - needMoveCounts) <= 2){
+            if(!this.getDcMotor().isBusy()){
                 this.stopCurrentTask();
             }
         }

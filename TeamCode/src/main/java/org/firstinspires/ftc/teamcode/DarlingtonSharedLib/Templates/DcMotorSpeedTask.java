@@ -39,14 +39,12 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Internals.RobotUUIDGen
 
 public class DcMotorSpeedTask {
     private RobotMotorCallBack m_CallBack;
-    private Object m_CustomData;
     private boolean m_TaskTimeControl;
     private double m_TaskTime;
     private String m_TaskID;
     private double m_MovingSpeed;
 
-    public DcMotorSpeedTask(double Speed,RobotMotorCallBack MotorJobCallBack, Object CustomData, boolean timeControl, double TaskTimeInSeconds){
-        this.m_CustomData = CustomData;
+    public DcMotorSpeedTask(double Speed,RobotMotorCallBack MotorJobCallBack, boolean timeControl, double TaskTimeInSeconds){
         this.m_CallBack = MotorJobCallBack;
         this.m_TaskTimeControl = timeControl;
         this.m_TaskTime = TaskTimeInSeconds;
@@ -64,12 +62,6 @@ public class DcMotorSpeedTask {
     }
     public void setMovingSpeed(double Speed){
         this.m_MovingSpeed = Speed;
-    }
-    public Object getCustomData(){
-        return this.m_CustomData;
-    }
-    public void setCustomData(Object CustomData){
-        this.m_CustomData = CustomData;
     }
     public boolean isTaskTimeControlEnabled(){
         return this.m_TaskTimeControl;

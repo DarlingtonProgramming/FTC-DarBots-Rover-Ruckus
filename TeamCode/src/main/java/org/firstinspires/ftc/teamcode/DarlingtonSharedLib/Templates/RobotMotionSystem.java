@@ -34,6 +34,19 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 
 public interface RobotMotionSystem {
+    enum motionType{
+        turningFixedAngle,
+        keepingTurningWithSpeed,
+        movingFixedDistance,
+        keepingMovingWithFixedSpeed,
+        stopped
+    }
+    enum RobotMotionDirection{
+        inX,
+        inY,
+        rotating,
+        inCustomDirection
+    }
     RobotPositionTracker getPositionTracker();
     boolean isBusy();
     void waitUntilMotionFinish();
@@ -41,17 +54,16 @@ public interface RobotMotionSystem {
     void turnToAbsFieldAngle(double AngleInDegree, double Speed);
     void turnOffsetAroundCenter(double AngleInDegree, double Speed);
     void keepTurningOffsetAroundCenter(double Speed);
-    void stopTurningOffsetAroundCenter();
     void driveTo(double[] fieldPos, double Speed);
     void driveForward(double Distance, double Speed);
     void driveBackward(double Distance, double Speed);
     void driveToLeft(double Distance, double Speed);
     void driveToRight(double Distance, double Speed);
     void driveForwardWithSpeed(double Speed);
-    boolean isDrivingInDirectionWithSpeed();
-    boolean isKeepingTurningOffsetAroundCenter();
+    motionType getCurrentMotionType();
+    RobotMotionDirection getMovingDirection();
     void driveBackwardWithSpeed(double Speed);
     void driveToLeftWithSpeed(double Speed);
     void driveToRightWithSpeed(double Speed);
-    void stopDrivingWithSpeed();
+    void stopMoving();
 }

@@ -47,17 +47,31 @@ public class RobotEncoderServo implements RobotEventLoopable {
     private double m_SmallestPos = 0;
     private double m_BiggestPos = 0;
     private boolean m_isWorking = false;
-    public RobotEncoderServo(@NonNull RobotEncoderMotor Motor, double CurrentPosition, double BiggestPos, double SmallestPos){
+    private boolean m_LockPosition;
+    public RobotEncoderServo(@NonNull RobotEncoderMotor Motor, double CurrentPosition, double BiggestPos, double SmallestPos, boolean lockPosition){
         this.m_Motor = Motor;
         this.m_StartCount = Motor.getDcMotor().getCurrentPosition() - (int) Math.round(CurrentPosition * Motor.getCountsPerRev());
         this.m_BiggestPos = BiggestPos;
         this.m_SmallestPos = SmallestPos;
-        //Locking Position from the beginning.
-        this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
-        this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        this.m_Motor.getDcMotor().setPower(1.0);
+
+        this.m_LockPosition = lockPosition;
         this.m_isWorking = false;
+
+        if(this.isLockingPosition()) {
+            //Locking Position from the beginning.
+            this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
+            this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            this.m_Motor.getDcMotor().setPower(1.0);
+        }
     }
+    public boolean isLockingPosition(){
+        return this.m_LockPosition;
+    }
+
+    public void setLockingPosition(boolean lockingPosition){
+        this.m_LockPosition = lockingPosition;
+    }
+
     public boolean isBusy(){
         return this.m_Motor.isBusy();
     }
@@ -104,9 +118,11 @@ public class RobotEncoderServo implements RobotEventLoopable {
     public void doLoop(){
         this.m_Motor.doLoop();
         if(this.m_isWorking && !this.m_Motor.isBusy()){
-            this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
-            this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            this.m_Motor.getDcMotor().setPower(1.0);
+            if(this.isLockingPosition()) {
+                this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
+                this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                this.m_Motor.getDcMotor().setPower(1.0);
+            }
             this.m_isWorking = false;
         }
     }
