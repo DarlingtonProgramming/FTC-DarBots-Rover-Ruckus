@@ -35,10 +35,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 
-
-public class RobotEncoderMotion implements RobotEventLoopable {
+public class RobotNoEncoderMotion implements RobotEventLoopable {
     private RobotWheel m_Wheel;
-    private RobotEncoderMotor m_Motor;
+    private RobotNoEncoderMotor m_Motor;
     protected static double calculateRotation(double Angle){ // -180 <= Angle < 180
         while(Angle >= 180){
             Angle -= 360;
@@ -48,7 +47,7 @@ public class RobotEncoderMotion implements RobotEventLoopable {
         }
         return Angle;
     }
-    public RobotEncoderMotion(RobotWheel Wheel, RobotEncoderMotor Motor){
+    public RobotNoEncoderMotion(RobotWheel Wheel, RobotNoEncoderMotor Motor){
         this.m_Wheel = Wheel;
         this.m_Motor = Motor;
     }
@@ -58,10 +57,10 @@ public class RobotEncoderMotion implements RobotEventLoopable {
     public void setWheel(RobotWheel Wheel){
         this.m_Wheel = Wheel;
     }
-    public RobotEncoderMotor getMotor(){
+    public RobotNoEncoderMotor getMotor(){
         return this.m_Motor;
     }
-    public void setMotor(RobotEncoderMotor Motor){
+    public void setMotor(RobotNoEncoderMotor Motor){
         this.m_Motor = Motor;
     }
     public double getRadius(){
@@ -134,8 +133,8 @@ public class RobotEncoderMotion implements RobotEventLoopable {
         this.m_Motor.moveCycle(Cycle,Power);
     }
 
-    public int stopRunning_getMovedCounts(){
-        return this.m_Motor.stopRunning_getMovedCounts();
+    public int stopRunning_getMovedRev(){
+        return this.m_Motor.stopRunning_getMovedRev();
     }
 
     public double stopRunning_getMovedCycle(){

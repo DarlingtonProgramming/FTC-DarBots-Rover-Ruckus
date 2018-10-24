@@ -22,238 +22,216 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 */
+/*
+ * Written by David Cao for the year of 2018 - 2019
+ * To use this class, add the following code to your program
+ * import org.firstinspires.ftc.teamcode.org.darlingtonschool.ftc.shared.internal.RobotEncoderMotor;
+ */
 
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
-import android.support.annotation.NonNull;
-
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.robot.Robot;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Internals.MotorCountsSpecificJob;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Internals.MotorSpeedSpecificJob;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Internals.RobotMotorInternalJob;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DcMotorCountsTask;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DcMotorCyclesTask;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DcMotorSpeedTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotor;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
 
-import java.util.ArrayList;
-
-public class RobotEncoderMotor implements RobotNonBlockingDevice, RobotMotor, RobotEventLoopable {
-    public class RobotEncoderSpecificData{
-        int m_StartCount = 0;
-        public RobotEncoderSpecificData(int StartCount){
-            this.m_StartCount = StartCount;
-        }
-        public int getStartCount(){
-            return this.m_StartCount;
-        }
-        public void setStartCount(int StartCount){
-            this.m_StartCount = StartCount;
-        }
+public class RobotEncoderMotor implements RobotEventLoopable {
+    enum workType{
+        ToPosition,
+        FixedSpeed
     }
-    private DcMotor m_Motor;
-    private ArrayList<RobotMotorInternalJob<RobotEncoderSpecificData>> m_WaitingJobs;
-    private RobotMotorInternalJob<RobotEncoderSpecificData> m_CurrentJob;
-    private double m_CountsPerRev;
-    private double m_RevPerSec;
-    private int m_MovedCounts;
-    private double m_MovedTimeInSec;
+    private double m_TimeCtlPct = 200;//Percent of time excess
+    private workType m_runningType = workType.ToPosition;
+    private DcMotor m_DCMotor;
+    private double m_CountsPerRev = 0;
+    private double m_RevPerSec = 0;
+    private ElapsedTime m_MotorOperationTime;
+    private int m_OriginLocation = 0;
+    private boolean m_isWorking = false;
+    private double m_FineTime = 0;
+    private int m_MovedCounts = 0;
+    private boolean m_TimeControl = false;
 
-    public RobotEncoderMotor(@NonNull DcMotor Motor, double CountsPerRev, double RevPerSec){
-        this.setDcMotor(Motor);
+    public RobotEncoderMotor(DcMotor RobotDcMotor, double CountsPerRev, double RevPerSec, boolean TimeControl, double timeControlExcessPercent){
+        this.m_DCMotor = RobotDcMotor;
         this.m_CountsPerRev = CountsPerRev;
         this.m_RevPerSec = RevPerSec;
-        this.m_WaitingJobs = new ArrayList<RobotMotorInternalJob<RobotEncoderSpecificData>>();
-        this.m_CurrentJob = null;
-        this.m_MovedCounts = 0;
-        this.m_MovedTimeInSec = 0;
+        this.m_DCMotor.setPower(0);
+        this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
+        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.m_DCMotor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.m_MotorOperationTime = new ElapsedTime();
+        this.m_isWorking = false;
+        this.m_TimeControl = TimeControl;
+        this.m_TimeCtlPct = timeControlExcessPercent;
     }
 
-    @Override
-    public boolean isBusy(){
-        return this.m_WaitingJobs.isEmpty() && m_CurrentJob == null;
+    public double getTimeControlExcessPercent(){
+        return this.m_TimeCtlPct;
     }
-    @Override
-    public void waitUntilFinish(){
+
+    public void setTimeControlExcessPercent(double NewPercent){
+        this.m_TimeCtlPct = NewPercent;
+    }
+
+    public boolean getTimeControlEnabled(){
+        return this.m_TimeControl;
+    }
+
+    public void setTimeControlEnabled(boolean Enabled){
+        this.m_TimeControl = Enabled;
+    }
+
+    public void waitMotorOperationFinish(){
         while(this.isBusy()){
             this.doLoop();
         }
     }
 
-    @Override
-    public boolean isRunningFixedSpeed() {
-        return m_CurrentJob instanceof MotorSpeedSpecificJob;
+    public boolean isBusy(){
+        return this.m_isWorking;
     }
 
-    @Override
+    public boolean isRunningFixedSpeed(){
+        return (this.isBusy() && this.m_runningType == workType.FixedSpeed);
+    }
+
     public DcMotor getDcMotor() {
-        return this.m_Motor;
+        return this.m_DCMotor;
     }
 
-    @Override
     public void setDcMotor(DcMotor myDCMotor) {
-        this.m_Motor = myDCMotor;
-        if(!this.m_Motor.isBusy()) {
-            this.m_Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-            this.m_Motor.setPower(0.0);
-        }
-        this.m_Motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        this.m_DCMotor = myDCMotor;
     }
 
-    @Override
-    public double getCountsPerRev() {
+    public double getCountsPerRev(){
         return this.m_CountsPerRev;
     }
 
-    @Override
-    public void setCountsPerRev(double CountsPerRev) {
+    public void setCountsPerRev(double CountsPerRev){
         this.m_CountsPerRev = CountsPerRev;
     }
 
-    @Override
-    public double getRevPerSec() {
+    public double getRevPerSec(){
         return this.m_RevPerSec;
     }
 
-    @Override
-    public void setRevPerSec(double revPerSec) {
+    public void setRevPerSec(double revPerSec){
         this.m_RevPerSec = revPerSec;
     }
 
-    @Override
-    public void addCountsTask(DcMotorCountsTask CountsTask) {
-        MotorCountsSpecificJob<RobotEncoderSpecificData> myJob = new MotorCountsSpecificJob<>(CountsTask,this);
-        this.m_WaitingJobs.add(myJob);
-        this.scheduleTask();
-    }
-
-    protected void scheduleTask(){
-        if(!this.m_WaitingJobs.isEmpty() && this.m_CurrentJob == null){
-            this.m_CurrentJob = this.m_WaitingJobs.get(0);
-            this.m_WaitingJobs.remove(0);
-            this.m_CurrentJob.setCustomData(new RobotEncoderSpecificData(this.getDcMotor().getCurrentPosition()));
-            if(this.m_CurrentJob instanceof MotorCountsSpecificJob){
-                MotorCountsSpecificJob<RobotEncoderSpecificData> CountsJob = (MotorCountsSpecificJob) this.m_CurrentJob;
-                this.m_Motor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-                int movingTo = this.m_Motor.getCurrentPosition() + CountsJob.getCountsTask().getMovingCounts();
-                this.m_Motor.setTargetPosition(movingTo);
-                this.m_Motor.setPower(CountsJob.getCountsTask().getMovingSpeed());
-            }else if(this.m_CurrentJob instanceof  MotorSpeedSpecificJob){
-                MotorSpeedSpecificJob<RobotEncoderSpecificData> SpeedJob = (MotorSpeedSpecificJob<RobotEncoderSpecificData>) this.m_CurrentJob;
-                this.m_Motor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                this.m_Motor.setPower(SpeedJob.getSpeedTask().getMovingSpeed());
+    public void moveCounts(int RevTotal, double Power) throws RuntimeException{
+        int StartPos = this.m_DCMotor.getTargetPosition();
+        if(RevTotal == 0){
+            if(!this.m_isWorking) {
+                this.m_OriginLocation = StartPos;
+                this.m_MovedCounts = 0;
             }
-            this.m_CurrentJob.StartDoingJob();
+            return;
         }
-    }
 
-    @Override
-    public void addFixedSpeedTask(DcMotorSpeedTask SpeedTask) {
-        MotorSpeedSpecificJob<RobotEncoderSpecificData> myJob = new MotorSpeedSpecificJob<>(SpeedTask,this);
-        this.m_WaitingJobs.add(myJob);
-        this.scheduleTask();
-    }
+        this.m_DCMotor.setPower(Power);
+        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        this.m_DCMotor.setTargetPosition(StartPos + RevTotal);
 
-    @Override
-    public void addCycleTask(DcMotorCyclesTask CycleTask){
-        this.addCountsTask(CycleTask);
-    }
-
-    @Override
-    public int numberTasksLeft() {
-        int totalNumber = 0;
-        if(this.m_CurrentJob != null){
-            totalNumber++;
+        if(!this.m_isWorking || this.m_runningType != workType.ToPosition) {
+            this.m_OriginLocation = StartPos;
+            this.m_MotorOperationTime.reset();
+            this.m_runningType = workType.ToPosition;
         }
-        totalNumber += this.m_WaitingJobs.size();
-        return totalNumber;
+        this.m_isWorking = true;
+
+        double EstimatedTime = Math.abs(((double) RevTotal) / Math.abs(this.getRevPerSec() * this.getCountsPerRev() * Power));
+        double FineTime = EstimatedTime * (1.0 + (this.m_TimeCtlPct / 100.0));
+
+        this.m_FineTime += FineTime;
     }
 
-    @Override
-    public boolean taskExist(int Index) {
-        if(Index == 0){
-            return this.m_CurrentJob == null;
-        }else{
-            return this.m_WaitingJobs.size() > Index;
-        }
-    }
-
-    @Override
-    public void deleteTask(int Index) {
-        if(taskExist(Index)){
-            if(Index == 0){
-                this.stopCurrentTask();
-            }else{
-                this.m_WaitingJobs.remove(Index-1);
+    public void moveWithFixedSpeed(double speed){
+        int StartPos = this.m_DCMotor.getCurrentPosition();
+        if(speed == 0){
+            if(!this.m_isWorking) {
+                this.m_OriginLocation = StartPos;
+                this.m_MovedCounts = 0;
             }
+            return;
         }
+
+        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.m_DCMotor.setPower(speed);
+
+
+        if(!this.m_isWorking || this.m_runningType != workType.FixedSpeed) {
+            this.m_OriginLocation = StartPos;
+            this.m_MotorOperationTime.reset();
+            this.m_runningType = workType.FixedSpeed;
+        }
+        this.m_isWorking = true;
+        this.m_FineTime = 0;
     }
 
-    @Override
-    public int stopCurrentTaskAndGetMovedCounts() {
-        this.stopCurrentTask();
+    public int stopRunning_getMovedCounts(){
+        if(!this.m_isWorking){
+            return this.getLastMovedCounts();
+        }
+        this.m_isWorking = false;
+        this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
+        this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        this.m_DCMotor.setPower(0);
+        this.m_MovedCounts = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
+        this.m_FineTime = 0;
+        return this.getLastMovedCounts();
+    }
+
+    public double stopRunning_getMovedCycle(){
+        return ((double) this.stopRunning_getMovedCounts()) / ((double) this.getCountsPerRev());
+    }
+
+
+    public void moveCycle(double Cycle, double Power) throws RuntimeException{
+        int Rev = (int) Math.round(Cycle * this.getCountsPerRev());
+        this.moveCounts(Rev,Power);
+    }
+
+    public int getLastMovedCounts(){
         return this.m_MovedCounts;
     }
 
-    @Override
-    public double stopCurrentTaskAndGetMovedCycles() {
-        return this.stopCurrentTaskAndGetMovedCounts() / this.getCountsPerRev();
+    public double getLastMovedCycle(){
+        return ((double) this.getLastMovedCounts()) / ((double) this.getCountsPerRev());
     }
 
-    @Override
-    public void stopCurrentTask() {
-        if(this.m_CurrentJob != null){
-            this.m_MovedCounts = this.getDcMotor().getCurrentPosition() - this.m_CurrentJob.getCustomData().getStartCount();
-            this.m_MovedTimeInSec = this.m_CurrentJob.JobFinished(this.m_MovedCounts);
-            this.m_CurrentJob = null;
-            this.scheduleTask();
+    public int getRemainingCounts(){
+        if(!this.m_isWorking){
+            return 0;
         }
+        return this.m_DCMotor.getTargetPosition() - this.m_DCMotor.getCurrentPosition();
     }
 
     @Override
-    public double getLastTaskMovedTimeInSec(){
-        return this.m_MovedTimeInSec;
-    }
-
-    @Override
-    public void deleteAllTasks() {
-        this.m_WaitingJobs.clear();
-        this.deleteTask(0);
-    }
-
-    @Override
-    public int deleteAllTasksAndGetMovedCountsForCurrentTask() {
-        this.deleteAllTasks();
-        return this.getLastTaskMovedCounts();
-    }
-
-    @Override
-    public double deleteAllTasksAndGetMovedCyclesForCurrentTask() {
-        this.deleteAllTasks();
-        return this.getLastTaskMovedCycle();
-    }
-
-    @Override
-    public int getLastTaskMovedCounts() {
-        return this.m_MovedCounts;
-    }
-
-    @Override
-    public double getLastTaskMovedCycle() {
-        return this.m_MovedCounts / this.getCountsPerRev();
-    }
-
-    @Override
-    public void doLoop() {
-        if(this.m_CurrentJob != null) {
-            if (this.m_CurrentJob instanceof MotorCountsSpecificJob) {
-                MotorCountsSpecificJob<RobotEncoderSpecificData> CountsJob = (MotorCountsSpecificJob) this.m_CurrentJob;
-                if (!this.getDcMotor().isBusy()) {
-                    this.stopCurrentTask();
+    public void doLoop(){
+        if(!this.m_isWorking){
+            return;
+        }
+        if(this.m_runningType == workType.ToPosition) {
+            boolean workFinished = false;
+            if (this.m_DCMotor.isBusy()) {
+                if (this.m_MotorOperationTime.time() > this.m_FineTime) {
+                    if (this.m_TimeControl) {
+                        workFinished = true;
+                    }
                 }
+            } else {
+                workFinished = true;
+            }
+            if (workFinished) {
+                this.m_isWorking = false;
+                this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
+                this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                this.m_DCMotor.setPower(0);
+                this.m_MovedCounts = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
+                this.m_FineTime = 0;
             }
         }
     }

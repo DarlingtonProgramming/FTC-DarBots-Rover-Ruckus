@@ -13,11 +13,11 @@ public class Robot5100TeleOp extends LinearOpMode {
         this.m_RobotCore = new Robot5100Core(this,100,100,0,true);
     }
 
-    private void movementControl(){
+    protected void movementControl(){
         boolean isMoving = false;
         boolean isRotating = false;
         boolean isControllingX = false;
-        if(Math.abs(gamepad1.left_stick_x) >= Robot5100Settings.gamepadTriggerValue || Math.abs(gamepad2.left_stick_y) >= Robot5100Settings.gamepadTriggerValue){
+        if(Math.abs(gamepad1.left_stick_x) >= Robot5100Settings.gamepadTriggerValue || Math.abs(gamepad1.left_stick_y) >= Robot5100Settings.gamepadTriggerValue){
             isMoving = true;
             if(Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)){
                 isControllingX = true;

@@ -1,36 +1,12 @@
-/*
-MIT License
-
-Copyright (c) 2018 DarBots Collaborators
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-
-*/
-
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
 import android.support.annotation.NonNull;
 
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DcMotorCountsTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
+
 
 
 public class RobotEncoderServo implements RobotEventLoopable {
@@ -39,31 +15,27 @@ public class RobotEncoderServo implements RobotEventLoopable {
     private double m_SmallestPos = 0;
     private double m_BiggestPos = 0;
     private boolean m_isWorking = false;
-    private boolean m_LockPosition;
+    private boolean m_Lock = false;
     public RobotEncoderServo(@NonNull RobotEncoderMotor Motor, double CurrentPosition, double BiggestPos, double SmallestPos, boolean lockPosition){
         this.m_Motor = Motor;
         this.m_StartCount = Motor.getDcMotor().getCurrentPosition() - (int) Math.round(CurrentPosition * Motor.getCountsPerRev());
         this.m_BiggestPos = BiggestPos;
         this.m_SmallestPos = SmallestPos;
-
-        this.m_LockPosition = lockPosition;
-        this.m_isWorking = false;
-
-        if(this.isLockingPosition()) {
-            //Locking Position from the beginning.
+        this.m_Lock = lockPosition;
+        //Locking Position from the beginning.
+        if(this.m_Lock) {
             this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
             this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
             this.m_Motor.getDcMotor().setPower(1.0);
         }
+        this.m_isWorking = false;
     }
     public boolean isLockingPosition(){
-        return this.m_LockPosition;
+        return this.m_Lock;
     }
-
-    public void setLockingPosition(boolean lockingPosition){
-        this.m_LockPosition = lockingPosition;
+    public void setLockingPosition(boolean Enabled){
+        this.m_Lock = Enabled;
     }
-
     public boolean isBusy(){
         return this.m_Motor.isBusy();
     }
@@ -93,7 +65,7 @@ public class RobotEncoderServo implements RobotEventLoopable {
         return movedCounts / this.m_Motor.getCountsPerRev();
     }
 
-    public void setPosition(double Pos, double Speed, boolean timeControl, double TimeControlPct){
+    public void setPosition(double Pos, double Speed){
         if(Pos > this.getBiggestPos())
             return;
         if(Pos < this.getSmallestPos())
@@ -101,9 +73,7 @@ public class RobotEncoderServo implements RobotEventLoopable {
         int TargetPos = 0;
         TargetPos = this.m_StartCount + (int) Math.round(Pos * this.m_Motor.getCountsPerRev());
         int DeltaCount = TargetPos - this.m_Motor.getDcMotor().getTargetPosition();
-        this.m_Motor.deleteAllTasks();
-        DcMotorCountsTask CountsTask = new DcMotorCountsTask(Speed,DeltaCount,null,timeControl,TimeControlPct);
-        this.m_Motor.addCountsTask(CountsTask);
+        this.m_Motor.moveCounts(DeltaCount,Speed);
         this.m_isWorking = true;
     }
 

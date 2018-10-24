@@ -5,11 +5,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotSensorWrapper;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotEncoderMotion;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotEncoderMotor;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotion;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotEncoderMotion;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotWheel;
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DcMotorSpeedTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 
@@ -25,15 +23,18 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         FrontDC.setDirection(DcMotorSimple.Direction.REVERSE);
         LeftBackDC.setDirection(DcMotorSimple.Direction.REVERSE);
         RightBackDC.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotEncoderMotor FrontWheelMotor = new RobotEncoderMotor(FrontDC,Robot5100Settings.frontMotorCountsPerRev,Robot5100Settings.frontMotorRevPerSec);
-        RobotEncoderMotor LeftBackWheelMotor = new RobotEncoderMotor(LeftBackDC,Robot5100Settings.leftBackMotorCountsPerRev,Robot5100Settings.leftBackMotorRevPerSec);
-        RobotEncoderMotor RightBackWheelMotor = new RobotEncoderMotor(RightBackDC,Robot5100Settings.rightBackMotorCountsPerRev,Robot5100Settings.rightBackMotorRevPerSec);
+        RobotEncoderMotor FrontWheelMotor = new RobotEncoderMotor(FrontDC,Robot5100Settings.frontMotorCountsPerRev,Robot5100Settings.frontMotorRevPerSec,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
+        RobotEncoderMotor LeftBackWheelMotor = new RobotEncoderMotor(LeftBackDC,Robot5100Settings.leftBackMotorCountsPerRev,Robot5100Settings.leftBackMotorRevPerSec,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
+        RobotEncoderMotor RightBackWheelMotor = new RobotEncoderMotor(RightBackDC,Robot5100Settings.rightBackMotorCountsPerRev,Robot5100Settings.rightBackMotorRevPerSec,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
         RobotWheel FrontWheel = new RobotWheel(Robot5100Settings.frontWheelRadius,Robot5100Settings.frontWheelAngle);
         RobotWheel LeftBackWheel = new RobotWheel(Robot5100Settings.leftBackWheelRadius,Robot5100Settings.leftBackWheelAngle);
         RobotWheel RightBackWheel = new RobotWheel(Robot5100Settings.rightBackWheelRadius,Robot5100Settings.rightBackWheelAngle);
-        this.m_FrontWheel = new RobotSensorWrapper<RobotEncoderMotion>(new RobotEncoderMotion(FrontWheelMotor,FrontWheel),Robot5100Settings.frontWheelPos);
-        this.m_LeftBackWheel = new RobotSensorWrapper<RobotEncoderMotion>(new RobotEncoderMotion(LeftBackWheelMotor,LeftBackWheel),Robot5100Settings.leftBackWheelPos);
-        this.m_RightBackWheel = new RobotSensorWrapper<RobotEncoderMotion>(new RobotEncoderMotion(RightBackWheelMotor,RightBackWheel),Robot5100Settings.rightBackWheelPos);
+        this.m_FrontWheel = new RobotSensorWrapper<RobotEncoderMotion>(new RobotEncoderMotion(FrontWheel,FrontWheelMotor),Robot5100Settings.frontWheelPos);
+        this.m_LeftBackWheel = new RobotSensorWrapper<RobotEncoderMotion>(new RobotEncoderMotion(LeftBackWheel,LeftBackWheelMotor),Robot5100Settings.leftBackWheelPos);
+        this.m_RightBackWheel = new RobotSensorWrapper<RobotEncoderMotion>(new RobotEncoderMotion(RightBackWheel,RightBackWheelMotor),Robot5100Settings.rightBackWheelPos);
+        this.m_PositionTracker = PositionTracker;
+        this.m_CurrentDirection = RobotMotionDirection.inY;
+        this.m_CurrentMotionType = motionType.stopped;
     }
 
     public RobotMotionDirection getMovingDirection(){
@@ -82,7 +83,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     @Override
     public void turnOffsetAroundCenter(double AngleInDegree, double Speed) {
-        if(this.isBusy()){
+        if(this.isBusy() && (this.getCurrentMotionType() != motionType.turningFixedAngle || this.getMovingDirection() != RobotMotionDirection.rotating)){
             this.stopMoving();
         }
         this.m_CurrentMotionType = motionType.turningFixedAngle;
@@ -94,14 +95,14 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         double distanceLeftBackWheel = this.getPositionTracker().calculateDistanceToRotateAroundRobotPoint(robotFixedPoint,leftBackPowerPoint,AngleInDegree);
         double[] rightBackPowerPoint = this.getRightBackWheel().getPos();
         double distanceRightBackWheel = this.getPositionTracker().calculateDistanceToRotateAroundRobotPoint(robotFixedPoint,rightBackPowerPoint,AngleInDegree);
-        this.getFrontWheel().getSensor().addDistanceTask(distanceFrontWheel,Speed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
-        this.getLeftBackWheel().getSensor().addDistanceTask(distanceLeftBackWheel,Speed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
-        this.getRightBackWheel().getSensor().addDistanceTask(distanceRightBackWheel,Speed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
+        this.getFrontWheel().getSensor().moveDistance(distanceFrontWheel,Speed);
+        this.getLeftBackWheel().getSensor().moveDistance(distanceLeftBackWheel,Speed);
+        this.getRightBackWheel().getSensor().moveDistance(distanceRightBackWheel,Speed);
     }
 
     @Override
     public void keepTurningOffsetAroundCenter(double Speed) {
-        if(this.isBusy()){
+        if(this.isBusy() && (this.getCurrentMotionType() != motionType.keepingTurningWithSpeed || this.getMovingDirection() != RobotMotionDirection.rotating)){
             this.stopMoving();
         }
         this.m_CurrentMotionType = motionType.keepingTurningWithSpeed;
@@ -117,9 +118,9 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         double speedFrontMoving = distanceFront * commonFactor;
         double speedLeftBackMoving = distanceLeftBack * commonFactor;
         double speedRightBackMoving = distanceRightBack * commonFactor;
-        this.getFrontWheel().getSensor().getEncoderMotor().addFixedSpeedTask(new DcMotorSpeedTask(speedFrontMoving,null,false,0));
-        this.getLeftBackWheel().getSensor().getEncoderMotor().addFixedSpeedTask(new DcMotorSpeedTask(speedLeftBackMoving,null,false,0));
-        this.getRightBackWheel().getSensor().getEncoderMotor().addFixedSpeedTask(new DcMotorSpeedTask(speedRightBackMoving,null,false,0));
+        this.getFrontWheel().getSensor().moveWithFixedSpeed(speedFrontMoving);
+        this.getLeftBackWheel().getSensor().moveWithFixedSpeed(speedLeftBackMoving);
+        this.getRightBackWheel().getSensor().moveWithFixedSpeed(speedRightBackMoving);
     }
 
     @Override
@@ -133,15 +134,15 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     @Override
     public void driveForward(double Distance, double Speed) {
-        if(this.isBusy()){
+        if(this.isBusy() && (this.getCurrentMotionType() != motionType.movingFixedDistance || this.getMovingDirection() != RobotMotionDirection.inY)){
             this.stopMoving();
         }
         this.m_CurrentMotionType = motionType.movingFixedDistance;
         this.m_CurrentDirection = RobotMotionDirection.inY;
         double leftBackDistance = this.getLeftBackWheel().getSensor().getWheel().calculateDistanceByRobotAxisY(Distance);
         double rightBackDistance = this.getRightBackWheel().getSensor().getWheel().calculateDistanceByRobotAxisY(Distance);
-        this.m_LeftBackWheel.getSensor().addDistanceTask(leftBackDistance,Speed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
-        this.m_RightBackWheel.getSensor().addDistanceTask(rightBackDistance,Speed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
+        this.m_LeftBackWheel.getSensor().moveDistance(leftBackDistance,Speed);
+        this.m_RightBackWheel.getSensor().moveDistance(rightBackDistance,Speed);
     }
 
     @Override
@@ -156,7 +157,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     @Override
     public void driveToRight(double Distance, double Speed) {
-        if(this.isBusy()){
+        if(this.isBusy() && (this.getCurrentMotionType() != motionType.movingFixedDistance || this.getMovingDirection() != RobotMotionDirection.inX)){
             this.stopMoving();
         }
         this.m_CurrentMotionType = motionType.movingFixedDistance;
@@ -169,20 +170,20 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         double frontSpeed = frontDistance * speedFactor;
         double leftBackSpeed = leftBackDistance * speedFactor;
         double rightBackSpeed = rightBackDistance * speedFactor;
-        this.getFrontWheel().getSensor().addDistanceTask(frontDistance,frontSpeed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
-        this.getLeftBackWheel().getSensor().addDistanceTask(leftBackDistance,leftBackSpeed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
-        this.getRightBackWheel().getSensor().addDistanceTask(rightBackDistance,rightBackSpeed,null,Robot5100Settings.motionTimeControl,Robot5100Settings.motionTimeControlPct);
+        this.getFrontWheel().getSensor().moveDistance(frontDistance,frontSpeed);
+        this.getLeftBackWheel().getSensor().moveDistance(leftBackDistance,leftBackSpeed);
+        this.getRightBackWheel().getSensor().moveDistance(rightBackDistance,rightBackSpeed);
     }
 
     @Override
     public void driveForwardWithSpeed(double Speed) {
-        if(this.isBusy()){
+        if(this.isBusy() && (this.getCurrentMotionType() != motionType.keepingMovingWithFixedSpeed || this.getMovingDirection() != RobotMotionDirection.inY)){
             this.stopMoving();
         }
         this.m_CurrentMotionType = motionType.keepingMovingWithFixedSpeed;
         this.m_CurrentDirection = RobotMotionDirection.inY;
-        this.getLeftBackWheel().getSensor().getMotor().addFixedSpeedTask(new DcMotorSpeedTask(Speed,null,false,0));
-        this.getRightBackWheel().getSensor().getMotor().addFixedSpeedTask(new DcMotorSpeedTask(-Speed,null,false,0));
+        this.getLeftBackWheel().getSensor().getMotor().moveWithFixedSpeed(Speed);
+        this.getRightBackWheel().getSensor().getMotor().moveWithFixedSpeed(-Speed);
     }
 
     @Override
@@ -202,22 +203,23 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     @Override
     public void driveToRightWithSpeed(double Speed) {
-        if(this.isBusy()){
+        if(this.isBusy() && (this.getCurrentMotionType() != motionType.keepingMovingWithFixedSpeed || this.getMovingDirection() != RobotMotionDirection.inX)){
             this.stopMoving();
         }
         this.m_CurrentMotionType = motionType.keepingMovingWithFixedSpeed;
         this.m_CurrentDirection = RobotMotionDirection.inX;
-        double frontDistance = this.getFrontWheel().getSensor().getWheel().calculateDistanceByRobotAxisX(1);
-        double leftBackDistance = this.getLeftBackWheel().getSensor().getWheel().calculateDistanceByRobotAxisX(1);
-        double rightBackDistance = this.getRightBackWheel().getSensor().getWheel().calculateDistanceByRobotAxisX(1);
-        double biggestDistance = Math.max(Math.max(Math.abs(frontDistance),Math.abs(leftBackDistance)),Math.abs(rightBackDistance));
-        double speedFactor = Speed / biggestDistance;
-        double frontSpeed = frontDistance * speedFactor;
-        double leftBackSpeed = leftBackDistance * speedFactor;
-        double rightBackSpeed = rightBackDistance * speedFactor;
-        this.getFrontWheel().getSensor().getMotor().addFixedSpeedTask(new DcMotorSpeedTask(frontSpeed,null,false,0));
-        this.getLeftBackWheel().getSensor().getMotor().addFixedSpeedTask(new DcMotorSpeedTask(leftBackSpeed,null,false,0));
-        this.getRightBackWheel().getSensor().getMotor().addFixedSpeedTask(new DcMotorSpeedTask(rightBackSpeed,null,false,0));
+        double frontArc = this.getFrontWheel().getSensor().getWheel().getArcLength(1);
+        double leftBackArc = this.getLeftBackWheel().getSensor().getWheel().getArcLength(1);
+        double rightBackArc = this.getRightBackWheel().getSensor().getWheel().getArcLength(1);
+        double biggestArc = Math.max(Math.max(Math.abs(frontArc),Math.abs(leftBackArc)),Math.abs(rightBackArc));
+        double speedFactor = Speed / biggestArc;
+        double frontSpeed = frontArc * speedFactor;
+        double leftBackSpeed = leftBackArc * speedFactor / 3 * 2;
+        double rightBackSpeed = rightBackArc * speedFactor / 3 * 2;
+
+        this.getFrontWheel().getSensor().moveRobotXWithFixedSpeed(frontSpeed);
+        this.getLeftBackWheel().getSensor().moveRobotXWithFixedSpeed(leftBackSpeed);
+        this.getRightBackWheel().getSensor().moveRobotXWithFixedSpeed(rightBackSpeed);
     }
 
     @Override
@@ -227,36 +229,36 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
             return;
         }
         double[] robotOrigin = {0,0};
-        this.getFrontWheel().getSensor().getMotor().deleteAllTasks();
-        this.getLeftBackWheel().getSensor().getMotor().deleteAllTasks();
-        this.getRightBackWheel().getSensor().getMotor().deleteAllTasks();
+        this.getFrontWheel().getSensor().getMotor().stopRunning_getMovedCounts();
+        this.getLeftBackWheel().getSensor().getMotor().stopRunning_getMovedCounts();
+        this.getRightBackWheel().getSensor().getMotor().stopRunning_getMovedCounts();
+        this.m_CurrentMotionType = motionType.stopped;
         switch(this.m_CurrentMotionType){
             case turningFixedAngle:
             case keepingTurningWithSpeed:
-                this.getPositionTracker().moveWithRobotFixedPointAndPowerPoint(robotOrigin,this.getFrontWheel().getPos(),this.getFrontWheel().getSensor().getLastTaskMovedDistance());
+                this.getPositionTracker().moveWithRobotFixedPointAndPowerPoint(robotOrigin,this.getFrontWheel().getPos(),this.getFrontWheel().getSensor().getLastMovedDistance());
                 break;
             case movingFixedDistance:
             case keepingMovingWithFixedSpeed:
                 switch(this.m_CurrentDirection){
                     case inY:
-                        double YMoved = this.getLeftBackWheel().getSensor().getLastTaskMovedDistance() * this.getLeftBackWheel().getSensor().getWheel().getYPerDistance();
+                        double YMoved = this.getLeftBackWheel().getSensor().getLastMovedDistance() * this.getLeftBackWheel().getSensor().getWheel().getYPerDistance();
                         this.getPositionTracker().moveThroughRobotAngle(0,YMoved);
                         break;
                     case inX:
-                        double XMoved = this.getLeftBackWheel().getSensor().getLastTaskMovedDistance() * this.getLeftBackWheel().getSensor().getWheel().getXPerDistance();
+                        double XMoved = this.getLeftBackWheel().getSensor().getLastMovedDistance() * this.getLeftBackWheel().getSensor().getWheel().getXPerDistance();
                         this.getPositionTracker().moveThroughRobotAngle(90,XMoved);
                         break;
                 }
                 break;
         }
-        this.m_CurrentMotionType = motionType.stopped;
     }
 
     @Override
     public void doLoop() {
-        this.getFrontWheel().getSensor().getEncoderMotor().doLoop();
-        this.getLeftBackWheel().getSensor().getEncoderMotor().doLoop();
-        this.getRightBackWheel().getSensor().getEncoderMotor().doLoop();
+        this.getFrontWheel().getSensor().doLoop();
+        this.getLeftBackWheel().getSensor().doLoop();
+        this.getRightBackWheel().getSensor().doLoop();
         if(!this.isBusy() && this.m_CurrentMotionType != motionType.stopped){
             this.stopMoving();
         }

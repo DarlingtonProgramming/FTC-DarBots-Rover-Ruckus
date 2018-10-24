@@ -48,7 +48,7 @@ public class Robot4100AutonomousPos1 extends LinearOpMode {
     //    private CRServo dumping;
     private Servo teammarking, dump;
 
-//    public RobotNonBlockingMotor m;
+//    public RobotEncoderMotor m;
 
 
     static final double     COUNTS_PER_MOTOR_REV    = 1150 ;
