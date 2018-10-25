@@ -60,12 +60,24 @@ public class Robot5100AutoTest extends LinearOpMode {
         }
         if(isMoving && !isRotating){
             if(isControllingX){
-                this.m_RobotCore.getMotionSystem().driveToRight(20,Robot5100Settings.Autonomous_BiggestSpeed);
-            }else{
-                this.m_RobotCore.getMotionSystem().driveForward(20,Robot5100Settings.Autonomous_BiggestSpeed);
+                if(gamepad1.left_stick_x > 0) {
+                    this.m_RobotCore.getMotionSystem().driveToRight(20, Robot5100Settings.Autonomous_BiggestSpeed);
+                }else{
+                    this.m_RobotCore.getMotionSystem().driveToLeft(20,Robot5100Settings.Autonomous_BiggestSpeed);
+                }
+            }else {
+                if (gamepad1.left_stick_y > 0){
+                    this.m_RobotCore.getMotionSystem().driveForward(20, Robot5100Settings.Autonomous_BiggestSpeed);
+                }else{
+                    this.m_RobotCore.getMotionSystem().driveBackward(20,Robot5100Settings.Autonomous_BiggestSpeed);
+                }
             }
         }else if(!isMoving && isRotating){
-            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(90,Robot5100Settings.Autonomous_BiggestSpeed);
+            if(gamepad1.right_stick_x > 0) {
+                this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(90, Robot5100Settings.Autonomous_BiggestSpeed);
+            }else{
+                this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-90,Robot5100Settings.Autonomous_BiggestSpeed);
+            }
         }
     }
 
