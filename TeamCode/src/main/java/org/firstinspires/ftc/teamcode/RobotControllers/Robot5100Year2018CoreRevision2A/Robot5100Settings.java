@@ -32,9 +32,9 @@ public class Robot5100Settings {
     public static final double TeleOP_BiggestSpeed = 0.2;
     public static final double Autonomous_BiggestSpeed = 0.2;
 
-
     public static final boolean motionTimeControl = true;
     public static final double motionTimeControlPct = 20;
+    public static final double backMotorFactor = 2 / 3;
 
     public static final String frontMotorConfigurationName = "frontMotor";
     public static final double[] frontWheelPos = {0,11.4+3.567};

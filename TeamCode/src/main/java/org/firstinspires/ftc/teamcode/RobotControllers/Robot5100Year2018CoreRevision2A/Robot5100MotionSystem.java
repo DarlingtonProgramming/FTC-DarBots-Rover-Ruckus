@@ -192,8 +192,8 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         double leftBackArc = this.getLeftBackWheel().getSensor().getWheel().getArcLength(1);
         double rightBackArc = this.getRightBackWheel().getSensor().getWheel().getArcLength(1);
         double biggestArc = Math.max(Math.max(Math.abs(frontArc),Math.abs(leftBackArc)),Math.abs(rightBackArc));
-        double leftBackDistance = Distance * (leftBackArc / biggestArc) * 2 / 3;
-        double rightBackDistance = Distance * (rightBackArc / biggestArc) * 2 / 3;
+        double leftBackDistance = Distance * (leftBackArc / biggestArc) * Robot5100Settings.backMotorFactor;
+        double rightBackDistance = Distance * (rightBackArc / biggestArc) * Robot5100Settings.backMotorFactor;
         double maxDistance = Math.max(Math.max(Math.abs(frontDistance),Math.abs(leftBackDistance)),Math.abs(rightBackDistance));
         double frontSpeed = (frontDistance / Distance) * Speed;
         double leftBackSpeed = (leftBackDistance / Distance) * Speed;
@@ -248,8 +248,8 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         double rightBackArc = this.getRightBackWheel().getSensor().getWheel().getArcLength(1);
         double biggestArc = Math.max(Math.max(Math.abs(frontArc),Math.abs(leftBackArc)),Math.abs(rightBackArc));
         double frontSpeed = (frontArc / biggestArc) * Speed;
-        double leftBackSpeed = (leftBackArc / biggestArc) * Speed * 2 / 3;
-        double rightBackSpeed = (rightBackArc / biggestArc) * Speed * 2 / 3;
+        double leftBackSpeed = (leftBackArc / biggestArc) * Speed * Robot5100Settings.backMotorFactor;
+        double rightBackSpeed = (rightBackArc / biggestArc) * Speed * Robot5100Settings.backMotorFactor;
 
         this.getFrontWheel().getSensor().moveRobotXWithFixedSpeed(frontSpeed);
         this.getLeftBackWheel().getSensor().moveRobotXWithFixedSpeed(leftBackSpeed);
