@@ -39,6 +39,9 @@ public class Robot5100AutoTest extends LinearOpMode {
     }
 
     protected void movementControl(){
+        if(this.m_RobotCore.isBusy()){
+            return;
+        }
         boolean isMoving = false;
         boolean isRotating = false;
         boolean isControllingX = false;
