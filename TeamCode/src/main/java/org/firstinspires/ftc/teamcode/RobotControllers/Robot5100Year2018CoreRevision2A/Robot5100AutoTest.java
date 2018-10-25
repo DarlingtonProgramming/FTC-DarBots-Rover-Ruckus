@@ -30,8 +30,8 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 
-@TeleOp (name = "Robot5100TeleOp",group = "David Cao")
-public class Robot5100TeleOp extends LinearOpMode {
+@TeleOp (name = "Robot5100AutoTest",group = "David Cao")
+public class Robot5100AutoTest extends LinearOpMode {
     private Robot5100Core m_RobotCore;
 
     public void hardWareInitialize(){
@@ -55,19 +55,14 @@ public class Robot5100TeleOp extends LinearOpMode {
         if(Math.abs(gamepad1.right_stick_x) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
             isRotating = true;
         }
-        if(!isMoving && !isRotating){
-            if(this.m_RobotCore.getMotionSystem().getCurrentMotionType() != RobotMotionSystem.motionType.stopped){
-                this.m_RobotCore.getMotionSystem().stopMoving();
-            }
-        }
         if(isMoving && !isRotating){
             if(isControllingX){
-                this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(gamepad1.left_stick_x);
+                this.m_RobotCore.getMotionSystem().driveToRight(20,Robot5100Settings.Autonomous_BiggestSpeed);
             }else{
-                this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(-gamepad1.left_stick_y);
+                this.m_RobotCore.getMotionSystem().driveForward(20,Robot5100Settings.Autonomous_BiggestSpeed);
             }
         }else if(!isMoving && isRotating){
-            this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x);
+            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(90,Robot5100Settings.Autonomous_BiggestSpeed);
         }
     }
 
