@@ -58,6 +58,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     @Override
     public void doLoop() {
         this.m_MotionSystem.doLoop();
+        this.m_Gyro.doLoop();
 
         RobotDebugger.addDebug("GyroMeasuredAngle","" + this.m_Gyro.getCurrentAngle());
         RobotDebugger.addDebug("GyroX", "" + this.m_Gyro.getGyro().getRawX());
