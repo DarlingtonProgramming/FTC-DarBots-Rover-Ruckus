@@ -62,12 +62,12 @@ public class Robot5100TeleOp extends LinearOpMode {
         }
         if(isMoving && !isRotating){
             if(isControllingX){
-                this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(gamepad1.left_stick_x);
+                this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(gamepad1.left_stick_x * Robot5100Settings.TeleOP_BiggestSpeed);
             }else{
-                this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(-gamepad1.left_stick_y);
+                this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(-gamepad1.left_stick_y * Robot5100Settings.TeleOP_BiggestSpeed);
             }
         }else if(!isMoving && isRotating){
-            this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x);
+            this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x * Robot5100Settings.TeleOP_BiggestSpeed);
         }
     }
 
