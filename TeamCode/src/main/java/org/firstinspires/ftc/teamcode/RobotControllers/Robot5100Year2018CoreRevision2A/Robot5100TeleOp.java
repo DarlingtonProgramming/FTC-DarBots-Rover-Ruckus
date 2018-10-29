@@ -71,6 +71,14 @@ public class Robot5100TeleOp extends LinearOpMode {
         }
     }
 
+    protected void rackAndPinionControl(){
+        if(gamepad1.dpad_up){
+            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() + 0.05);
+        }else{
+            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() - 0.05);
+        }
+    }
+
     @Override
     public void runOpMode() {
         this.hardWareInitialize();

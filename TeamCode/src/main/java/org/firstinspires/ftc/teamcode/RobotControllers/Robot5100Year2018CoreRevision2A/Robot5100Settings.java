@@ -64,4 +64,15 @@ public class Robot5100Settings {
 
     public static final String gyroConfigurationName = "imu";
     public static final boolean gyroReversed = false;
+
+    public static final String rackAndPinionConfigurationName = "rackMotor";
+    public static final double rackAndPinionMotorCountsPerRev = 1680;
+    public static final double rackAndPinionRevPerSec = 1.75;
+    public static final boolean rackAndPinionTimeControl = true;
+    public static final double rackAndPinionTimeControlPercent = 20;
+    public static final double rackAndPinionBiggestPos = 1000;
+    public static final double rackAndPinionSmallestPos = -1000;
+    public static final double rackAndPinionSpeed = 1.0;
+    public static final double rackAndPinionHookPos = 2.0;
+
 }

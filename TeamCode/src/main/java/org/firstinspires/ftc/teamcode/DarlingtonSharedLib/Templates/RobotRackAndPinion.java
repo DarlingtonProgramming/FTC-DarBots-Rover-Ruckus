@@ -27,7 +27,7 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates;
 public interface RobotRackAndPinion {
         double getPosition();
         boolean isBusy();
-        void setPosition(double Percent);
+        void setPosition(double position);
         void waitRackAndPinionFinish();
         void doLoop();
         double getBiggestPos();
