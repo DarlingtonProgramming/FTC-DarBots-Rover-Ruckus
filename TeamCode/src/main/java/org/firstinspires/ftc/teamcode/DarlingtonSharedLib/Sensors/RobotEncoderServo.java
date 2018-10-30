@@ -23,7 +23,7 @@ public class RobotEncoderServo implements RobotEventLoopable {
         this.m_SmallestPos = SmallestPos;
         this.m_Lock = lockPosition;
         //Locking Position from the beginning.
-        if(this.m_Lock) {
+        if(lockPosition) {
             this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
             this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
             this.m_Motor.getDcMotor().setPower(1.0);

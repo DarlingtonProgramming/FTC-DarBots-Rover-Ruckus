@@ -12,7 +12,7 @@ public class Robot5100RackAndPinion implements RobotRackAndPinion {
     public Robot5100RackAndPinion(DcMotor RackAndPinionMotor){
         RackAndPinionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotEncoderMotor Motor = new RobotEncoderMotor(RackAndPinionMotor,Robot5100Settings.rackAndPinionMotorCountsPerRev,Robot5100Settings.rackAndPinionRevPerSec,Robot5100Settings.rackAndPinionTimeControl,Robot5100Settings.rackAndPinionTimeControlPercent);
-        this.m_Servo = new RobotEncoderServo(Motor,0,Robot5100Settings.rackAndPinionBiggestPos,Robot5100Settings.rackAndPinionSmallestPos,true);
+        this.m_Servo = new RobotEncoderServo(Motor,0, Robot5100Settings.rackAndPinionBiggestPos,Robot5100Settings.rackAndPinionSmallestPos,true);
     }
     @Override
     public double getPosition() {

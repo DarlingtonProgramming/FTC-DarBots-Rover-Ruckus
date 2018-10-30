@@ -85,6 +85,7 @@ public class Robot5100TeleOp extends LinearOpMode {
         this.waitForStart();
         while(this.opModeIsActive()){
             this.movementControl();
+            this.rackAndPinionControl();
             this.m_RobotCore.doLoop();
         }
     }

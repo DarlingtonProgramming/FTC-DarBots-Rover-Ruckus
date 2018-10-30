@@ -29,12 +29,12 @@ public class Robot5100Settings {
     public static final String posSaveFile = "5100PositionFile.json";
 
     public static final double TeleOP_GamepadTriggerValue = 0.1;
-    public static final double TeleOP_BiggestSpeed = 0.2;
+    public static final double TeleOP_BiggestSpeed = 0.3;
     public static final double Autonomous_BiggestSpeed = 0.2;
 
     public static final boolean motionTimeControl = true;
     public static final double motionTimeControlPct = 20;
-    public static final double backMotorFactor = 2 / 3;
+    public static final double backMotorFactor = 2.0 / 3.0;
 
     public static final String frontMotorConfigurationName = "frontMotor";
     public static final double[] frontWheelPos = {0,11.4+3.567};
@@ -69,9 +69,9 @@ public class Robot5100Settings {
     public static final double rackAndPinionMotorCountsPerRev = 1680;
     public static final double rackAndPinionRevPerSec = 1.75;
     public static final boolean rackAndPinionTimeControl = true;
-    public static final double rackAndPinionTimeControlPercent = 20;
-    public static final double rackAndPinionBiggestPos = 1000;
-    public static final double rackAndPinionSmallestPos = -1000;
+    public static final double rackAndPinionTimeControlPercent = 200;
+    public static final double rackAndPinionBiggestPos = 8.5;
+    public static final double rackAndPinionSmallestPos = 0;
     public static final double rackAndPinionSpeed = 1.0;
     public static final double rackAndPinionHookPos = 2.0;
 

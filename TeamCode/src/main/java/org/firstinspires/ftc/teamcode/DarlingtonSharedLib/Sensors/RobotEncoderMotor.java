@@ -217,21 +217,14 @@ public class RobotEncoderMotor implements RobotEventLoopable {
         if(this.m_runningType == workType.ToPosition) {
             boolean workFinished = false;
             if (this.m_DCMotor.isBusy()) {
-                if (this.m_MotorOperationTime.time() > this.m_FineTime) {
-                    if (this.m_TimeControl) {
-                        workFinished = true;
-                    }
+                if (this.m_MotorOperationTime.time() > this.m_FineTime && this.m_TimeControl) {
+                    workFinished = true;
                 }
             } else {
                 workFinished = true;
             }
             if (workFinished) {
-                this.m_isWorking = false;
-                this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
-                this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                this.m_DCMotor.setPower(0);
-                this.m_MovedCounts = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
-                this.m_FineTime = 0;
+               this.stopRunning_getMovedCounts();
             }
         }
     }
