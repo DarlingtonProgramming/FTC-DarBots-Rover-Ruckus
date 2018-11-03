@@ -25,22 +25,27 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRevision2A;
 
+import android.support.annotation.NonNull;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.MineralDetection;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.GyroWrapper;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotSetting;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
+import org.firstinspires.ftc.teamcode.RobotControllers.DarbotsPrivateInfo.PrivateSettings;
 
 public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable {
     private RobotPositionTracker m_PositionTracker;
     private Robot5100MotionSystem m_MotionSystem;
     private GyroWrapper m_Gyro;
     private Robot5100RackAndPinion m_RackAndPinion;
+    private MineralDetection m_MineralDetection;
 
-    public Robot5100Core(OpMode runningOpMode, double initialX, double initialY, double initialRotation, boolean readSetting){
+    public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, boolean readSetting){
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,initialX,initialY,initialRotation,Robot5100Settings.leftFrontExtremePos,Robot5100Settings.rightFrontExtremePos,Robot5100Settings.leftBackExtremePos,Robot5100Settings.rightBackExtremePos);
         if(readSetting){
@@ -48,6 +53,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         }
         this.m_MotionSystem = new Robot5100MotionSystem(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.frontMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.leftBackMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rightBackMotorConfigurationName),this.m_PositionTracker);
         this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName));
+        this.m_MineralDetection = new MineralDetection(runningOpMode,PrivateSettings.VUFORIALICENSE);
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
     }
@@ -70,6 +76,10 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
 
     public RobotPositionTracker getPositionTracker(){
         return this.m_PositionTracker;
+    }
+
+    public MineralDetection getMineralDetection(){
+        return this.m_MineralDetection;
     }
 
     public void readSavedPosition(double defaultX, double defaultY, double defaultRotations){
