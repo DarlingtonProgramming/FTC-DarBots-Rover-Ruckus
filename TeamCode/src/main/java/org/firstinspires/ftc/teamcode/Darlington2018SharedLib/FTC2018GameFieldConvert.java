@@ -2,20 +2,43 @@ package org.firstinspires.ftc.teamcode.Darlington2018SharedLib;
 
 import android.support.annotation.NonNull;
 
+import com.vuforia.Vuforia;
+
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.XYPlaneCalculations;
 
 public class FTC2018GameFieldConvert {
-    public static double[] convert2DFieldAxisFrom2DVuforiaField(@NonNull double[] VuforiaField, @NonNull double[] FieldAxisFieldSize){
-        double[] FieldAxis = {0,0};
-        FieldAxis[0] = FieldAxisFieldSize[0] / 2.0 - VuforiaField[1];
-        FieldAxis[1] = FieldAxisFieldSize[1] / 2.0 + VuforiaField[0];
-        return FieldAxis;
+    public static double[] convertFieldAxisFromVuforiaField(@NonNull double[] VuforiaField, @NonNull double[] FieldAxisFieldSize){
+        if(VuforiaField.length == 2) {
+            double[] FieldAxis = {0, 0};
+            FieldAxis[0] = FieldAxisFieldSize[0] / 2.0 - VuforiaField[1];
+            FieldAxis[1] = FieldAxisFieldSize[1] / 2.0 + VuforiaField[0];
+            return FieldAxis;
+        }else if(VuforiaField.length == 3){
+            double[] FieldAxis = {0,0,0};
+            FieldAxis[0] = FieldAxisFieldSize[0] / 2.0 - VuforiaField[1];
+            FieldAxis[1] = FieldAxisFieldSize[1] / 2.0 + VuforiaField[0];
+            FieldAxis[2] = VuforiaField[2];
+            return FieldAxis;
+        }else{
+            throw new RuntimeException("You cannot pass an coordination that has length of neither 2 or 3!");
+        }
     }
-    public static double[] convert2DVuforiaFieldFrom2DFieldAxis(@NonNull double[] FieldAxis, @NonNull double[] FieldAxisFieldSize){
-        double[] VuforiaField = {0,0};
-        VuforiaField[0] = FieldAxis[1] - FieldAxisFieldSize[1] / 2.0;
-        VuforiaField[1] = FieldAxisFieldSize[0] / 2.0 - FieldAxis[0];
-        return VuforiaField;
+
+    public static double[] convertVuforiaFieldFromFieldAxis(@NonNull double[] FieldAxis, @NonNull double[] FieldAxisFieldSize){
+        if(FieldAxis.length == 2) {
+            double[] VuforiaField = {0, 0};
+            VuforiaField[0] = FieldAxis[1] - FieldAxisFieldSize[1] / 2.0;
+            VuforiaField[1] = FieldAxisFieldSize[0] / 2.0 - FieldAxis[0];
+            return VuforiaField;
+        }else if(FieldAxis.length == 3){
+            double[] VuforiaField = {0, 0, 0};
+            VuforiaField[0] = FieldAxis[1] - FieldAxisFieldSize[1] / 2.0;
+            VuforiaField[1] = FieldAxisFieldSize[0] / 2.0 - FieldAxis[0];
+            VuforiaField[2] = FieldAxis[2];
+            return VuforiaField;
+        }else{
+            throw new RuntimeException("You cannot pass an coordination that has length of neither 2 or 3!");
+        }
     }
     public static double[] convert3DFieldRotationFrom3DVuforiaFieldRotation(@NonNull double[] VuforiaRotation){
         double[] FieldRotation = {0,0,0};
@@ -31,17 +54,37 @@ public class FTC2018GameFieldConvert {
         VuforiaRotation[2] = XYPlaneCalculations.normalizeDeg(FieldRotation[2] + 90);
         return VuforiaRotation;
     }
-    public static double[] convert2DRobotAxisFrom2DVuforiaRobot(@NonNull double[] VuforiaRobot) {
-        double[] RobotAxis = {0,0};
-        RobotAxis[0] = -VuforiaRobot[1];
-        RobotAxis[1] = VuforiaRobot[0];
-        return RobotAxis;
+    public static double[] convertRobotAxisFromVuforiaRobot(@NonNull double[] VuforiaRobot) {
+        if(VuforiaRobot.length == 2) {
+            double[] RobotAxis = {0, 0};
+            RobotAxis[0] = -VuforiaRobot[1];
+            RobotAxis[1] = VuforiaRobot[0];
+            return RobotAxis;
+        }else if(VuforiaRobot.length == 3){
+            double[] RobotAxis = {0, 0, 0};
+            RobotAxis[0] = -VuforiaRobot[1];
+            RobotAxis[1] = VuforiaRobot[0];
+            RobotAxis[2] = VuforiaRobot[2];
+            return RobotAxis;
+        }else{
+            throw new RuntimeException("You cannot pass an coordination that has length of neither 2 or 3!");
+        }
     }
-    public static double[] convert2DVuforiaRobotFrom2DRobotAxis(@NonNull double[] RobotAxis){
-        double[] VuforiaRobot = {0,0};
-        VuforiaRobot[0] = RobotAxis[1];
-        VuforiaRobot[1] = -RobotAxis[0];
-        return VuforiaRobot;
+    public static double[] convertVuforiaRobotFromRobotAxis(@NonNull double[] RobotAxis){
+        if(RobotAxis.length == 2) {
+            double[] VuforiaRobot = {0, 0};
+            VuforiaRobot[0] = RobotAxis[1];
+            VuforiaRobot[1] = -RobotAxis[0];
+            return VuforiaRobot;
+        }else if(RobotAxis.length == 3){
+            double[] VuforiaRobot = {0,0,0};
+            VuforiaRobot[0] = RobotAxis[1];
+            VuforiaRobot[1] = -RobotAxis[0];
+            VuforiaRobot[2] = RobotAxis[2];
+            return VuforiaRobot;
+        }else{
+            throw new RuntimeException("You cannot pass an coordination that has length of neither 2 or 3!");
+        }
     }
     public static double[] convert3DRobotRotationFrom3DVuforiaRobotRotation(@NonNull double[] VuforiaRotation){
         double[] RobotRotation = {0,0,0};

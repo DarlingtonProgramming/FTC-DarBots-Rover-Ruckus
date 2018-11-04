@@ -22,7 +22,6 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGR
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
-import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.FRONT;
 
 public class FTC2018GameSpecificFunctions {
     public enum MineralType{
@@ -120,10 +119,17 @@ public class FTC2018GameSpecificFunctions {
     private double[] m_phoneLocation; //size: 3 in X,Y,Z
     private double[] m_phoneRotation; //size: 3 in X,Y,Z
     private List<VuforiaTrackable> allTrackables;
-    public FTC2018GameSpecificFunctions(@NonNull OpMode controllerOp, VuforiaLocalizer.CameraDirection CameraDirection, double[] phoneLocationInRobotAxis, double[] phoneRotationInRobotAxis, String VUFORIAKEY){
+    public FTC2018GameSpecificFunctions(@NonNull OpMode controllerOp, VuforiaLocalizer.CameraDirection CameraDirection, double[] phone3DLocationInRobotAxis, double[] phoneRotationInRobotAxis, String VUFORIAKEY){
         this.m_opMode = controllerOp;
         this.m_CameraDirection = CameraDirection;
-        this.m_phoneLocation = FTC2018GameFieldConvert.convert2DVuforiaRobotFrom2DRobotAxis(phoneLocationInRobotAxis);
+        this.m_phoneLocation = FTC2018GameFieldConvert.convertVuforiaRobotFromRobotAxis(phone3DLocationInRobotAxis);
+
+        //Convert unit of phoneLocation from cm to mm.
+        this.m_phoneLocation[0] *= 10.0;
+        this.m_phoneLocation[1] *= 10.0;
+        this.m_phoneLocation[2] *= 10.0;
+        //Finish converting
+
         this.m_phoneRotation = FTC2018GameFieldConvert.convert3DVuforiaRobotRotationFrom3DRobotRotation(phoneRotationInRobotAxis);
         this.VUFORIA_KEY = VUFORIAKEY;
         initVoforia();
@@ -226,12 +232,12 @@ public class FTC2018GameSpecificFunctions {
             // express position (translation) of robot in inches.
             VectorF translation = lastLocation.getTranslation();
 
-            double[] m_VuforiaFieldPos = {translation.get(0) / 10.0,translation.get(1) / 10.0}; //The unit for vuforia detection is mm. Convert to cm.
+            double[] m_VuforiaFieldPos = {translation.get(0) / 10.0,translation.get(1) / 10.0, translation.get(2) / 10.0}; //The unit for vuforia detection is mm. Convert to cm.
             //translation.get(2) yields the height of the robot.
             // express the rotation of the robot in degrees.
             Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
             double[] m_VuforiaFieldRotation = {rotation.firstAngle,rotation.secondAngle,rotation.thirdAngle};
-            double[] m_FieldAxisPos = FTC2018GameFieldConvert.convert2DFieldAxisFrom2DVuforiaField(m_VuforiaFieldPos,FieldAxisSize);
+            double[] m_FieldAxisPos = FTC2018GameFieldConvert.convertFieldAxisFromVuforiaField(m_VuforiaFieldPos,FieldAxisSize);
             double[] m_FieldRotation = FTC2018GameFieldConvert.convert3DFieldRotationFrom3DVuforiaFieldRotation(m_VuforiaFieldRotation);
             NavigationResult m_Result = new NavigationResult(VisibleSigns,(float) m_FieldAxisPos[0],(float) m_FieldAxisPos[1], (float) m_FieldRotation[2]);
             return m_Result;
