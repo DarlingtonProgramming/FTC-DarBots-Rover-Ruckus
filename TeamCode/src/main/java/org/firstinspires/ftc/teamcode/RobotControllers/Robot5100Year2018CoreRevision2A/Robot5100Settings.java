@@ -28,6 +28,9 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 public class Robot5100Settings {
     public static final String posSaveFile = "5100PositionFile.json";
 
+    public static final double[] phonePos = {0,0,0}; //RobotAxis X, Y, Height
+    public static final double[] phoneRotation = {0,0,0}; //RobotAxisRotation X, Y, Z(Z is the axis pointing upwards)
+
     public static final double TeleOP_GamepadTriggerValue = 0.1;
     public static final double TeleOP_BiggestSpeed = 0.3;
     public static final double Autonomous_BiggestSpeed = 0.2;
@@ -41,21 +44,21 @@ public class Robot5100Settings {
     public static final double frontMotorCountsPerRev = 1120;
     public static final double frontMotorRevPerSec = 2.5;
     public static final double frontWheelRadius = 5;
-    public static final double frontWheelAngle = 90;
+    public static final double frontWheelAngle = 0;
 
     public static final String leftBackMotorConfigurationName = "leftBackMotor";
     public static final double[] leftBackWheelPos = {-14.4-1.2,-14.4-1.2};
     public static final double leftBackMotorCountsPerRev = 1120;
     public static final double leftBackMotorRevPerSec = 2.5;
     public static final double leftBackWheelRadius = 5;
-    public static final double leftBackWheelAngle = -45;
+    public static final double leftBackWheelAngle = -135;
 
     public static final String rightBackMotorConfigurationName = "rightBackMotor";
     public static final double[] rightBackWheelPos = {14.4+1.2,-14.4-1.2};
     public static final double rightBackMotorCountsPerRev = 1120;
     public static final double rightBackMotorRevPerSec = 2.5;
     public static final double rightBackWheelRadius = 5;
-    public static final double rightBackWheelAngle = -135;
+    public static final double rightBackWheelAngle = 135;
 
     public static final double[] leftFrontExtremePos = {0,0};
     public static final double[] rightFrontExtremePos = {0,0};

@@ -29,7 +29,8 @@ import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.MineralDetection;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.GyroWrapper;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
@@ -43,7 +44,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     private Robot5100MotionSystem m_MotionSystem;
     private GyroWrapper m_Gyro;
     private Robot5100RackAndPinion m_RackAndPinion;
-    private MineralDetection m_MineralDetection;
+    private FTC2018GameSpecificFunctions m_2018Specific;
 
     public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, boolean readSetting){
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
@@ -53,7 +54,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         }
         this.m_MotionSystem = new Robot5100MotionSystem(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.frontMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.leftBackMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rightBackMotorConfigurationName),this.m_PositionTracker);
         this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName));
-        this.m_MineralDetection = new MineralDetection(runningOpMode,PrivateSettings.VUFORIALICENSE);
+        this.m_2018Specific = new FTC2018GameSpecificFunctions(runningOpMode,VuforiaLocalizer.CameraDirection.BACK,Robot5100Settings.phonePos,Robot5100Settings.phoneRotation,PrivateSettings.VUFORIALICENSE);
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
     }
@@ -78,8 +79,8 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         return this.m_PositionTracker;
     }
 
-    public MineralDetection getMineralDetection(){
-        return this.m_MineralDetection;
+    public FTC2018GameSpecificFunctions getGameSpecificFunction(){
+        return this.m_2018Specific;
     }
 
     public void readSavedPosition(double defaultX, double defaultY, double defaultRotations){
@@ -127,5 +128,16 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         while(this.isBusy()){
             this.doLoop();
         }
+    }
+
+    public boolean calibratePositionUsingVuforiaMarks(){
+        FTC2018GameSpecificFunctions.NavigationResult m_Result = this.getGameSpecificFunction().navigateVuforiaMarks(this.getPositionTracker().getFieldSize());
+        if(m_Result.getResultType() == FTC2018GameSpecificFunctions.NavigationResultType.Unknown){
+            return false;
+        }
+        this.getPositionTracker().setCurrentPosX(m_Result.getX());
+        this.getPositionTracker().setCurrentPosY(m_Result.getY());
+        this.getPositionTracker().setRobotRotation(m_Result.getRotation());
+        return true;
     }
 }
