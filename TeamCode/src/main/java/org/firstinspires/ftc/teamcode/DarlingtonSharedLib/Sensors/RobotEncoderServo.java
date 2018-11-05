@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLo
 
 
 public class RobotEncoderServo implements RobotEventLoopable {
+    public static final double ignoreValue = 0.05;
     private RobotEncoderMotor m_Motor;
     private int m_StartCount = 0;
     private double m_SmallestPos = 0;
@@ -66,10 +67,20 @@ public class RobotEncoderServo implements RobotEventLoopable {
     }
 
     public void setPosition(double Pos, double Speed){
-        if(Pos > this.getBiggestPos())
-            return;
-        if(Pos < this.getSmallestPos())
-            return;
+        if(Pos > this.getBiggestPos()){
+            if(Pos - this.getBiggestPos() >= ignoreValue){
+                Pos = this.getBiggestPos();
+            }else{
+                return;
+            }
+        }
+        if(Pos < this.getSmallestPos()){
+            if(this.getSmallestPos() - Pos >= ignoreValue){
+                Pos = this.getSmallestPos();
+            }else{
+                return;
+            }
+        }
         int TargetPos = 0;
         TargetPos = this.m_StartCount + (int) Math.round(Pos * this.m_Motor.getCountsPerRev());
         int DeltaCount = TargetPos - this.m_Motor.getDcMotor().getTargetPosition();

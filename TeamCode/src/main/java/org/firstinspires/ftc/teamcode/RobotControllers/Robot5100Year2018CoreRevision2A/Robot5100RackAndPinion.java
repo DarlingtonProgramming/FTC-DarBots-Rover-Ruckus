@@ -9,10 +9,10 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotRackAnd
 
 public class Robot5100RackAndPinion implements RobotRackAndPinion {
     private RobotEncoderServo m_Servo;
-    public Robot5100RackAndPinion(DcMotor RackAndPinionMotor){
+    public Robot5100RackAndPinion(DcMotor RackAndPinionMotor, double CurrentPos){
         RackAndPinionMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotEncoderMotor Motor = new RobotEncoderMotor(RackAndPinionMotor,Robot5100Settings.rackAndPinionMotorCountsPerRev,Robot5100Settings.rackAndPinionRevPerSec,Robot5100Settings.rackAndPinionTimeControl,Robot5100Settings.rackAndPinionTimeControlPercent);
-        this.m_Servo = new RobotEncoderServo(Motor,0, Robot5100Settings.rackAndPinionBiggestPos,Robot5100Settings.rackAndPinionSmallestPos,true);
+        this.m_Servo = new RobotEncoderServo(Motor,CurrentPos, Robot5100Settings.rackAndPinionBiggestPos,Robot5100Settings.rackAndPinionSmallestPos,true);
     }
     @Override
     public double getPosition() {
@@ -49,5 +49,10 @@ public class Robot5100RackAndPinion implements RobotRackAndPinion {
     @Override
     public double getSmallestPos() {
         return this.m_Servo.getBiggestPos();
+    }
+
+    @Override
+    public void adjustPosition(double currentPos){
+        this.m_Servo.adjustPosition(currentPos);
     }
 }

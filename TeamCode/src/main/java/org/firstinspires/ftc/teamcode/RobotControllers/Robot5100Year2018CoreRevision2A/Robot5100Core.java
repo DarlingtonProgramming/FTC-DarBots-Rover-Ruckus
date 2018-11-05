@@ -40,16 +40,16 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     private GyroWrapper m_Gyro;
     private Robot5100RackAndPinion m_RackAndPinion;
 
-    public Robot5100Core(OpMode runningOpMode, double initialX, double initialY, double initialRotation, boolean readSetting){
+    public Robot5100Core(OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, boolean readSetting){
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,initialX,initialY,initialRotation,Robot5100Settings.leftFrontExtremePos,Robot5100Settings.rightFrontExtremePos,Robot5100Settings.leftBackExtremePos,Robot5100Settings.rightBackExtremePos);
-        if(readSetting){
-            this.readSavedPosition(initialX,initialY,initialRotation);
-        }
         this.m_MotionSystem = new Robot5100MotionSystem(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.frontMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.leftBackMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rightBackMotorConfigurationName),this.m_PositionTracker);
-        this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName));
+        this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName),rackAndPinionPosition);
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
+        if(readSetting){
+            this.readSavedPosition(initialX,initialY,initialRotation,rackAndPinionPosition);
+        }
     }
 
     public GyroWrapper getGyro() {
@@ -60,9 +60,17 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         return this.m_RackAndPinion;
     }
 
-    public void setRackAndPinionToHook(){
+    public void openRackAndPinionToHook(){
         this.m_RackAndPinion.setPosition(Robot5100Settings.rackAndPinionHookPos);
     }
+    public void closeRackAndPinion(){
+        this.m_RackAndPinion.setPosition(this.m_RackAndPinion.getSmallestPos());
+    }
+    public void openRackAndPinion(){
+        this.m_RackAndPinion.setPosition(this.m_RackAndPinion.getBiggestPos());
+    }
+
+
 
     public Robot5100MotionSystem getMotionSystem(){
         return this.m_MotionSystem;
@@ -72,15 +80,17 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         return this.m_PositionTracker;
     }
 
-    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations){
+    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos){
         RobotSetting.settingFile = Robot5100Settings.posSaveFile;
         double X = RobotSetting.getSetting("RobotX",new Double(defaultX));
         double Y = RobotSetting.getSetting("RobotY",new Double(defaultY));
         double Rotation = RobotSetting.getSetting("Rotation", new Double(defaultRotations));
+        double rackAndPinionPos = RobotSetting.getSetting("rackPosition", new Double(defaultRackAndPinionPos));
         this.m_PositionTracker.setCurrentPosX(X);
         this.m_PositionTracker.setCurrentPosY(Y);
         this.m_PositionTracker.setRobotRotation(Rotation);
         this.m_Gyro.adjustCurrentAngle((float) Rotation);
+        this.m_RackAndPinion.adjustPosition(rackAndPinionPos);
     }
 
     public void savePosition(){
@@ -88,6 +98,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         RobotSetting.saveSetting("RobotX",this.m_PositionTracker.getCurrentPosX());
         RobotSetting.saveSetting("RobotY",this.m_PositionTracker.getCurrentPosY());
         RobotSetting.saveSetting("Rotation",this.m_PositionTracker.getRobotRotation());
+        RobotSetting.saveSetting("rackPosition",this.m_RackAndPinion.getPosition());
     }
 
     @Override

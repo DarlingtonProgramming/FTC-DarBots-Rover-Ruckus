@@ -32,4 +32,5 @@ public interface RobotRackAndPinion {
         void doLoop();
         double getBiggestPos();
         double getSmallestPos();
+        void adjustPosition(double currentPos);
 }
