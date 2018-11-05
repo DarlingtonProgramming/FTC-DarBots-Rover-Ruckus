@@ -46,20 +46,11 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     private Robot5100RackAndPinion m_RackAndPinion;
     private FTC2018GameSpecificFunctions m_2018Specific;
 
-<<<<<<< HEAD
     public Robot5100Core(OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, boolean readSetting){
-=======
-    public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, boolean readSetting){
->>>>>>> 072cd12e399d2ae87f42635e32d0fbda17a2b302
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,initialX,initialY,initialRotation,Robot5100Settings.leftFrontExtremePos,Robot5100Settings.rightFrontExtremePos,Robot5100Settings.leftBackExtremePos,Robot5100Settings.rightBackExtremePos);
         this.m_MotionSystem = new Robot5100MotionSystem(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.frontMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.leftBackMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rightBackMotorConfigurationName),this.m_PositionTracker);
-<<<<<<< HEAD
-        this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName),rackAndPinionPosition);
-=======
-        this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName));
         this.m_2018Specific = new FTC2018GameSpecificFunctions(runningOpMode,VuforiaLocalizer.CameraDirection.BACK,Robot5100Settings.phonePos,Robot5100Settings.phoneRotation,PrivateSettings.VUFORIALICENSE);
->>>>>>> 072cd12e399d2ae87f42635e32d0fbda17a2b302
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
@@ -94,16 +85,11 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     public RobotPositionTracker getPositionTracker(){
         return this.m_PositionTracker;
     }
-
-<<<<<<< HEAD
-    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos){
-=======
+    
     public FTC2018GameSpecificFunctions getGameSpecificFunction(){
         return this.m_2018Specific;
     }
-
-    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations){
->>>>>>> 072cd12e399d2ae87f42635e32d0fbda17a2b302
+    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos){
         RobotSetting.settingFile = Robot5100Settings.posSaveFile;
         double X = RobotSetting.getSetting("RobotX",new Double(defaultX));
         double Y = RobotSetting.getSetting("RobotY",new Double(defaultY));
