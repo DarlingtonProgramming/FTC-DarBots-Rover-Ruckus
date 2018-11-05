@@ -25,26 +25,41 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRevision2A;
 
+import android.support.annotation.NonNull;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.GyroWrapper;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotSetting;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
+import org.firstinspires.ftc.teamcode.RobotControllers.DarbotsPrivateInfo.PrivateSettings;
 
 public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable {
     private RobotPositionTracker m_PositionTracker;
     private Robot5100MotionSystem m_MotionSystem;
     private GyroWrapper m_Gyro;
     private Robot5100RackAndPinion m_RackAndPinion;
+    private FTC2018GameSpecificFunctions m_2018Specific;
 
+<<<<<<< HEAD
     public Robot5100Core(OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, boolean readSetting){
+=======
+    public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, boolean readSetting){
+>>>>>>> 072cd12e399d2ae87f42635e32d0fbda17a2b302
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,initialX,initialY,initialRotation,Robot5100Settings.leftFrontExtremePos,Robot5100Settings.rightFrontExtremePos,Robot5100Settings.leftBackExtremePos,Robot5100Settings.rightBackExtremePos);
         this.m_MotionSystem = new Robot5100MotionSystem(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.frontMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.leftBackMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rightBackMotorConfigurationName),this.m_PositionTracker);
+<<<<<<< HEAD
         this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName),rackAndPinionPosition);
+=======
+        this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName));
+        this.m_2018Specific = new FTC2018GameSpecificFunctions(runningOpMode,VuforiaLocalizer.CameraDirection.BACK,Robot5100Settings.phonePos,Robot5100Settings.phoneRotation,PrivateSettings.VUFORIALICENSE);
+>>>>>>> 072cd12e399d2ae87f42635e32d0fbda17a2b302
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
@@ -80,7 +95,15 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         return this.m_PositionTracker;
     }
 
+<<<<<<< HEAD
     public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos){
+=======
+    public FTC2018GameSpecificFunctions getGameSpecificFunction(){
+        return this.m_2018Specific;
+    }
+
+    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations){
+>>>>>>> 072cd12e399d2ae87f42635e32d0fbda17a2b302
         RobotSetting.settingFile = Robot5100Settings.posSaveFile;
         double X = RobotSetting.getSetting("RobotX",new Double(defaultX));
         double Y = RobotSetting.getSetting("RobotY",new Double(defaultY));
@@ -128,5 +151,16 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         while(this.isBusy()){
             this.doLoop();
         }
+    }
+
+    public boolean calibratePositionUsingVuforiaMarks(){
+        FTC2018GameSpecificFunctions.NavigationResult m_Result = this.getGameSpecificFunction().navigateVuforiaMarks(this.getPositionTracker().getFieldSize());
+        if(m_Result.getResultType() == FTC2018GameSpecificFunctions.NavigationResultType.Unknown){
+            return false;
+        }
+        this.getPositionTracker().setCurrentPosX(m_Result.getX());
+        this.getPositionTracker().setCurrentPosY(m_Result.getY());
+        this.getPositionTracker().setRobotRotation(m_Result.getRotation());
+        return true;
     }
 }

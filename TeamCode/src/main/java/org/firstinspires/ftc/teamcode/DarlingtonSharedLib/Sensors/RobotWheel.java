@@ -34,7 +34,7 @@ public class RobotWheel {
     }
     public RobotWheel(double Radius, double InstalledAngle){
         this.wheelRadius = Radius;
-        this.wheelInstalledAngle = this.calculateRotation(InstalledAngle);
+        this.setInstalledAngle(InstalledAngle);
     }
     public double getRadius(){
         return this.wheelRadius;
@@ -43,10 +43,10 @@ public class RobotWheel {
         this.wheelRadius = newRadius;
     }
     public double getInstalledAngle(){
-        return this.wheelInstalledAngle;
+        return this.calculateRotation(this.wheelInstalledAngle - 90);
     }
     public void setInstalledAngle(double newInstalledAngle){
-        this.wheelInstalledAngle = this.calculateRotation(newInstalledAngle);
+        this.wheelInstalledAngle = this.calculateRotation(newInstalledAngle + 90);
     }
 
     public double getPerimeter(){
@@ -73,29 +73,29 @@ public class RobotWheel {
         return (this.getPerimeter() / Distance);
     }
     public double calculateDistanceByRobotAxisX(double X) throws RuntimeException{
-        if(this.getInstalledAngle() == 0 || this.getInstalledAngle() == -180){
+        if(this.wheelInstalledAngle == 0 || this.wheelInstalledAngle == -180){
             throw new RuntimeException("You cannot move through RobotX Axis because the installed angle is vertical");
         }
         double Rst = X / this.getXPerDistance();
         return Rst;
     }
     public double calculateDistanceByRobotAxisY(double Y) throws RuntimeException{
-        if(this.getInstalledAngle() == 90 || this.getInstalledAngle() == -90){
+        if(this.wheelInstalledAngle == 90 || this.wheelInstalledAngle == -90){
             throw new RuntimeException("You cannot move through RobotY Axis because the installed angle is horizontal");
         }
         double Rst = Y / this.getYPerDistance();
         return Rst;
     }
     public double getYPerDistance(){//Returns Y / Distance
-        if(this.getInstalledAngle() == 90 || this.getInstalledAngle() == -90){
+        if(this.wheelInstalledAngle == 90 || this.wheelInstalledAngle == -90){
             return 0;
         }
-        return Math.cos(Math.toRadians(this.getInstalledAngle()));
+        return Math.cos(Math.toRadians(this.wheelInstalledAngle));
     }
     public double getXPerDistance(){ //Returns X / Distance
-        if(this.getInstalledAngle() == 0 || this.getInstalledAngle() == -180){
+        if(this.wheelInstalledAngle == 0 || this.wheelInstalledAngle == -180){
             return 0;
         }
-        return Math.sin(Math.toRadians(this.getInstalledAngle()));
+        return Math.sin(Math.toRadians(this.wheelInstalledAngle));
     }
 }
