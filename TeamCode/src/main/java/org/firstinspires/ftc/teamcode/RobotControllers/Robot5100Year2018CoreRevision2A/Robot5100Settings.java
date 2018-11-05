@@ -78,4 +78,13 @@ public class Robot5100Settings {
     public static final double rackAndPinionSpeed = 1.0;
     public static final double rackAndPinionHookPos = 2.0;
 
+    public static final String dumperConfigurationName = "dumperMotor";
+    public static final double dumperMotorCountsPerRev = 288;
+    public static final double dumperRevPerSec = 2.08;
+    public static final boolean dumperTimeControl = true;
+    public static final double dumperTimeControlPercent = 200;
+    public static final double dumperBiggestPos = 1000;
+    public static final double dumperSmallestPos = -1000;
+    public static final double dumperSpeed = 1.0;
+
 }

@@ -35,7 +35,7 @@ public class Robot5100AutoTest extends LinearOpMode {
     private Robot5100Core m_RobotCore;
 
     public void hardWareInitialize(){
-        this.m_RobotCore = new Robot5100Core(this,100,100,0,true);
+        this.m_RobotCore = new Robot5100Core(this,100,100,0,0,0,true);
     }
 
     protected void movementControl(){

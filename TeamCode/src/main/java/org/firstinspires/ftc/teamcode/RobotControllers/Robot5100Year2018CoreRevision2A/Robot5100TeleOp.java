@@ -35,7 +35,15 @@ public class Robot5100TeleOp extends LinearOpMode {
     private Robot5100Core m_RobotCore;
 
     public void hardWareInitialize(){
-        this.m_RobotCore = new Robot5100Core(this,100,100,0,true);
+        this.m_RobotCore = new Robot5100Core(this,100,100,0,0,0,true);
+    }
+
+    protected void dumperControl(){
+        if(gamepad1.right_bumper){
+            this.m_RobotCore.getDumper().setPosition(this.m_RobotCore.getDumper().getPosition() + 0.1);
+        }else if(gamepad1.left_bumper){
+            this.m_RobotCore.getDumper().setPosition(this.m_RobotCore.getDumper().getPosition() - 0.1);
+        }
     }
 
     protected void movementControl(){
@@ -73,9 +81,9 @@ public class Robot5100TeleOp extends LinearOpMode {
 
     protected void rackAndPinionControl(){
         if(gamepad1.dpad_up){
-            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() + 0.05);
+            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() + 0.1);
         }else{
-            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() - 0.05);
+            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() - 0.1);
         }
     }
 

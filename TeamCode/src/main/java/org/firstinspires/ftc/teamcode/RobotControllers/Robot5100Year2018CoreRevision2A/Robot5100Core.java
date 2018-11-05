@@ -44,22 +44,29 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     private Robot5100MotionSystem m_MotionSystem;
     private GyroWrapper m_Gyro;
     private Robot5100RackAndPinion m_RackAndPinion;
+    private Robot5100Dumper m_Dumper;
     private FTC2018GameSpecificFunctions m_2018Specific;
 
-    public Robot5100Core(OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, boolean readSetting){
+    public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, double dumperPosition, boolean readSetting){
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,initialX,initialY,initialRotation,Robot5100Settings.leftFrontExtremePos,Robot5100Settings.rightFrontExtremePos,Robot5100Settings.leftBackExtremePos,Robot5100Settings.rightBackExtremePos);
         this.m_MotionSystem = new Robot5100MotionSystem(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.frontMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.leftBackMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rightBackMotorConfigurationName),this.m_PositionTracker);
         this.m_2018Specific = new FTC2018GameSpecificFunctions(runningOpMode,VuforiaLocalizer.CameraDirection.BACK,Robot5100Settings.phonePos,Robot5100Settings.phoneRotation,PrivateSettings.VUFORIALICENSE);
+        this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName),rackAndPinionPosition);
+        this.m_Dumper = new Robot5100Dumper(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.dumperConfigurationName),dumperPosition);
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
-            this.readSavedPosition(initialX,initialY,initialRotation,rackAndPinionPosition);
+            this.readSavedPosition(initialX,initialY,initialRotation,rackAndPinionPosition,dumperPosition);
         }
     }
 
     public GyroWrapper getGyro() {
         return this.m_Gyro;
+    }
+
+    public Robot5100Dumper getDumper(){
+        return this.m_Dumper;
     }
 
     public Robot5100RackAndPinion getRackAndPinion(){
@@ -85,21 +92,23 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     public RobotPositionTracker getPositionTracker(){
         return this.m_PositionTracker;
     }
-    
+
     public FTC2018GameSpecificFunctions getGameSpecificFunction(){
         return this.m_2018Specific;
     }
-    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos){
+    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos, double defaultDumperPos){
         RobotSetting.settingFile = Robot5100Settings.posSaveFile;
         double X = RobotSetting.getSetting("RobotX",new Double(defaultX));
         double Y = RobotSetting.getSetting("RobotY",new Double(defaultY));
         double Rotation = RobotSetting.getSetting("Rotation", new Double(defaultRotations));
         double rackAndPinionPos = RobotSetting.getSetting("rackPosition", new Double(defaultRackAndPinionPos));
+        double dumperPos = RobotSetting.getSetting("dumperPosition",new Double(defaultDumperPos));
         this.m_PositionTracker.setCurrentPosX(X);
         this.m_PositionTracker.setCurrentPosY(Y);
         this.m_PositionTracker.setRobotRotation(Rotation);
         this.m_Gyro.adjustCurrentAngle((float) Rotation);
         this.m_RackAndPinion.adjustPosition(rackAndPinionPos);
+        this.m_Dumper.adjustPosition(dumperPos);
     }
 
     public void savePosition(){
@@ -108,6 +117,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         RobotSetting.saveSetting("RobotY",this.m_PositionTracker.getCurrentPosY());
         RobotSetting.saveSetting("Rotation",this.m_PositionTracker.getRobotRotation());
         RobotSetting.saveSetting("rackPosition",this.m_RackAndPinion.getPosition());
+        RobotSetting.saveSetting("dumperPosition",this.m_Dumper.getPosition());
     }
 
     @Override
@@ -115,6 +125,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         this.m_MotionSystem.doLoop();
         this.m_Gyro.doLoop();
         this.m_RackAndPinion.doLoop();
+        this.m_Dumper.doLoop();
 
         RobotDebugger.addDebug("RackAndPinionPos","" + this.m_RackAndPinion.getPosition());
         RobotDebugger.addDebug("GyroMeasuredAngle","" + this.m_Gyro.getCurrentAngle());
