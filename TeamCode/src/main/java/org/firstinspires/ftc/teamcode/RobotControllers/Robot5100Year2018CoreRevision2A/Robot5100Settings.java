@@ -35,8 +35,8 @@ public class Robot5100Settings {
     public static final double TeleOP_BiggestSpeed = 0.3;
     public static final double Autonomous_BiggestSpeed = 0.2;
 
-    public static final boolean motionTimeControl = true;
-    public static final double motionTimeControlPct = 20;
+    public static final boolean motionTimeControl = false;
+    public static final double motionTimeControlPct = 200;
     public static final double backMotorFactor = 2.0 / 3.0;
 
     public static final String frontMotorConfigurationName = "frontMotor";
@@ -77,14 +77,41 @@ public class Robot5100Settings {
     public static final double rackAndPinionSmallestPos = 0;
     public static final double rackAndPinionSpeed = 1.0;
     public static final double rackAndPinionHookPos = 2.0;
+    public static final double rackAndPinionInitialPos = 0;
 
     public static final String dumperConfigurationName = "dumperMotor";
     public static final double dumperMotorCountsPerRev = 288;
     public static final double dumperRevPerSec = 2.08;
     public static final boolean dumperTimeControl = true;
     public static final double dumperTimeControlPercent = 200;
-    public static final double dumperBiggestPos = 1000;
-    public static final double dumperSmallestPos = -1000;
+    public static final double dumperBiggestPos = 3.68;
+    public static final double dumperSmallestPos = 0;
     public static final double dumperSpeed = 1.0;
+    public static final double dumperInitialPos = 0;
+
+    public static final String linearReachConfigurationName = "linearReachMotor";
+    public static final double linearReachCountsPerRev = 288;
+    public static final double linearReachRevPerSec = 2.08;
+    public static final boolean linearReachTimeControl = true;
+    public static final double linearReachTimeControlPercent = 200;
+    public static final double linearReachBiggestPos = 1000;
+    public static final double linearReachSmallestPos = -1000;
+    public static final double linearReachSpeed = 1.0;
+    public static final double linearReachInitialPos = 0;
+
+    public static final String collectorServoConfigurationName = "collectorServoMotor";
+    public static final double collectorServoCountsPerRev = 288;
+    public static final double collectorServoRevPerSec = 2.08;
+    public static final boolean collectorServoTimeControl = true;
+    public static final double collectorServoTimeControlPercent = 200;
+    public static final double collectorServoBiggestPos = 1000;
+    public static final double collectorServoSmallestPos = -1000;
+    public static final double collectorServoSpeed = 1.0;
+    public static final double collectorServoInitialPos = 0;
+
+    public static final String collectorSweeperConfigurationName = "collectorSweeperMotor";
+    public static final double collectorSweeperCountsPerRev = 288;
+    public static final double collectorSweeperRevPerSec = 2.08;
+    public static final double collectorSweeperSpeed = 1.0;
 
 }

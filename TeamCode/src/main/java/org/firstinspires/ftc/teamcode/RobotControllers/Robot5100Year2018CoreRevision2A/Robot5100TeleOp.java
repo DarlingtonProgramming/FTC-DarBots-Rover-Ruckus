@@ -30,12 +30,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 
-@TeleOp (name = "Robot5100TeleOp",group = "David Cao")
+@TeleOp (name = "Robot5100TeleOp",group = "5100")
 public class Robot5100TeleOp extends LinearOpMode {
     private Robot5100Core m_RobotCore;
 
     public void hardWareInitialize(){
-        this.m_RobotCore = new Robot5100Core(this,100,100,0,0,0,true);
+        this.m_RobotCore = new Robot5100Core(this,100,100,0,Robot5100Settings.rackAndPinionInitialPos,Robot5100Settings.dumperInitialPos,Robot5100Settings.linearReachInitialPos,Robot5100Settings.collectorServoInitialPos,true);
     }
 
     protected void dumperControl(){
@@ -43,6 +43,32 @@ public class Robot5100TeleOp extends LinearOpMode {
             this.m_RobotCore.getDumper().setPosition(this.m_RobotCore.getDumper().getPosition() + 0.1);
         }else if(gamepad1.left_bumper){
             this.m_RobotCore.getDumper().setPosition(this.m_RobotCore.getDumper().getPosition() - 0.1);
+        }
+    }
+
+    protected void linearReachControl(){
+        if(gamepad1.right_trigger >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+            this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() + 0.1);
+        }else if(gamepad1.left_trigger >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+            this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() - 0.1);
+        }
+    }
+
+    protected void collectorServoControl(){
+        if(gamepad1.dpad_right){
+            this.m_RobotCore.getCollectorServo().setPosition(this.m_RobotCore.getCollectorServo().getPosition() + 0.1,Robot5100Settings.collectorServoSpeed);
+        }else if(gamepad1.dpad_left){
+            this.m_RobotCore.getCollectorServo().setPosition(this.m_RobotCore.getCollectorServo().getPosition() - 0.1,Robot5100Settings.collectorServoSpeed);
+        }
+    }
+
+    protected void mineralSuckingControl(){
+        if(gamepad1.a){
+            this.m_RobotCore.startSuckingMinerals();
+        }else if(gamepad1.b){
+            this.m_RobotCore.startVomitingMinerals();
+        }else{
+            this.m_RobotCore.closeMouth();
         }
     }
 
@@ -94,6 +120,10 @@ public class Robot5100TeleOp extends LinearOpMode {
         while(this.opModeIsActive()){
             this.movementControl();
             this.rackAndPinionControl();
+            this.dumperControl();
+            this.linearReachControl();
+            this.collectorServoControl();
+            this.mineralSuckingControl();
             this.m_RobotCore.doLoop();
         }
     }

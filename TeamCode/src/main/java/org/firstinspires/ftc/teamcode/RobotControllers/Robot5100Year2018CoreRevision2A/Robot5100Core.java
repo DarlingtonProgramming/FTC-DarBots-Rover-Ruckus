@@ -28,6 +28,7 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRev
 import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
@@ -35,6 +36,9 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPosi
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.GyroWrapper;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotSetting;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotEncoderMotor;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotEncoderServo;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotNoEncoderMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
 import org.firstinspires.ftc.teamcode.RobotControllers.DarbotsPrivateInfo.PrivateSettings;
@@ -45,20 +49,54 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     private GyroWrapper m_Gyro;
     private Robot5100RackAndPinion m_RackAndPinion;
     private Robot5100Dumper m_Dumper;
+    private Robot5100LinearReach m_LinearReach;
+    private RobotEncoderServo m_CollectorServo;
+    private RobotNoEncoderMotor m_CollectorSweeper;
     private FTC2018GameSpecificFunctions m_2018Specific;
 
-    public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, double dumperPosition, boolean readSetting){
+
+    public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, double dumperPosition, double linearReachPosition, double collectorServoPos, boolean readSetting){
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
         this.m_PositionTracker = new RobotPositionTracker(365.76,365.76,initialX,initialY,initialRotation,Robot5100Settings.leftFrontExtremePos,Robot5100Settings.rightFrontExtremePos,Robot5100Settings.leftBackExtremePos,Robot5100Settings.rightBackExtremePos);
         this.m_MotionSystem = new Robot5100MotionSystem(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.frontMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.leftBackMotorConfigurationName), runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rightBackMotorConfigurationName),this.m_PositionTracker);
         this.m_2018Specific = new FTC2018GameSpecificFunctions(runningOpMode,VuforiaLocalizer.CameraDirection.BACK,Robot5100Settings.phonePos,Robot5100Settings.phoneRotation,PrivateSettings.VUFORIALICENSE);
         this.m_RackAndPinion = new Robot5100RackAndPinion(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.rackAndPinionConfigurationName),rackAndPinionPosition);
         this.m_Dumper = new Robot5100Dumper(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.dumperConfigurationName),dumperPosition);
+        this.m_LinearReach = new Robot5100LinearReach(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.linearReachConfigurationName), linearReachPosition);
+        DcMotor CollectorServoDcMotor = runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.collectorServoConfigurationName);
+        RobotEncoderMotor CollectorServoEncoderMotor = new RobotEncoderMotor(CollectorServoDcMotor,Robot5100Settings.collectorServoCountsPerRev,Robot5100Settings.collectorServoRevPerSec,Robot5100Settings.collectorServoTimeControl,Robot5100Settings.collectorServoTimeControlPercent);
+        this.m_CollectorServo = new RobotEncoderServo(CollectorServoEncoderMotor,Robot5100Settings.collectorServoInitialPos,Robot5100Settings.collectorServoBiggestPos,Robot5100Settings.collectorServoSmallestPos,true);
+        DcMotor CollectorSweeperMotor = runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.collectorSweeperConfigurationName);
+        this.m_CollectorSweeper = new RobotNoEncoderMotor(CollectorSweeperMotor,Robot5100Settings.collectorSweeperCountsPerRev,Robot5100Settings.collectorSweeperRevPerSec);
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
-            this.readSavedPosition(initialX,initialY,initialRotation,rackAndPinionPosition,dumperPosition);
+            this.readSavedPosition(initialX,initialY,initialRotation,rackAndPinionPosition,dumperPosition,linearReachPosition,collectorServoPos);
         }
+    }
+
+    public RobotEncoderServo getCollectorServo(){
+        return this.m_CollectorServo;
+    }
+
+    public RobotNoEncoderMotor getCollectorSweeper(){
+        return this.m_CollectorSweeper;
+    }
+
+    public void startSuckingMinerals(){
+        this.m_CollectorSweeper.moveWithFixedSpeed(Robot5100Settings.collectorSweeperSpeed);
+    }
+
+    public void startVomitingMinerals(){
+        this.m_CollectorSweeper.moveWithFixedSpeed(-Robot5100Settings.collectorSweeperSpeed);
+    }
+
+    public void closeMouth(){
+        this.m_CollectorSweeper.stopRunning_getMovedRev();
+    }
+
+    public Robot5100LinearReach getLinearReach(){
+        return this.m_LinearReach;
     }
 
     public GyroWrapper getGyro() {
@@ -96,19 +134,23 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     public FTC2018GameSpecificFunctions getGameSpecificFunction(){
         return this.m_2018Specific;
     }
-    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos, double defaultDumperPos){
+    public void readSavedPosition(double defaultX, double defaultY, double defaultRotations, double defaultRackAndPinionPos, double defaultDumperPos, double defaultLinearReachPos, double defaultCollectorServoPos){
         RobotSetting.settingFile = Robot5100Settings.posSaveFile;
         double X = RobotSetting.getSetting("RobotX",new Double(defaultX));
         double Y = RobotSetting.getSetting("RobotY",new Double(defaultY));
         double Rotation = RobotSetting.getSetting("Rotation", new Double(defaultRotations));
         double rackAndPinionPos = RobotSetting.getSetting("rackPosition", new Double(defaultRackAndPinionPos));
         double dumperPos = RobotSetting.getSetting("dumperPosition",new Double(defaultDumperPos));
+        double linearReachPos = RobotSetting.getSetting("linearReachPosition", new Double(defaultLinearReachPos));
+        double collectorServoPos = RobotSetting.getSetting("collectorServoPosition", new Double(defaultCollectorServoPos));
         this.m_PositionTracker.setCurrentPosX(X);
         this.m_PositionTracker.setCurrentPosY(Y);
         this.m_PositionTracker.setRobotRotation(Rotation);
         this.m_Gyro.adjustCurrentAngle((float) Rotation);
         this.m_RackAndPinion.adjustPosition(rackAndPinionPos);
         this.m_Dumper.adjustPosition(dumperPos);
+        this.m_LinearReach.adjustPosition(linearReachPos);
+        this.m_CollectorServo.adjustPosition(collectorServoPos);
     }
 
     public void savePosition(){
@@ -118,6 +160,8 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         RobotSetting.saveSetting("Rotation",this.m_PositionTracker.getRobotRotation());
         RobotSetting.saveSetting("rackPosition",this.m_RackAndPinion.getPosition());
         RobotSetting.saveSetting("dumperPosition",this.m_Dumper.getPosition());
+        RobotSetting.saveSetting("linearReachPosition",this.m_LinearReach.getPosition());
+        RobotSetting.saveSetting("collectorServoPosition",this.m_CollectorServo.getPosition());
     }
 
     @Override
@@ -126,8 +170,13 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         this.m_Gyro.doLoop();
         this.m_RackAndPinion.doLoop();
         this.m_Dumper.doLoop();
+        this.m_LinearReach.doLoop();
+        this.m_CollectorServo.doLoop();
 
         RobotDebugger.addDebug("RackAndPinionPos","" + this.m_RackAndPinion.getPosition());
+        RobotDebugger.addDebug("DumperPos","" + this.m_Dumper.getPosition());
+        RobotDebugger.addDebug("CollectorServoPos",""+this.m_CollectorServo.getPosition());
+        RobotDebugger.addDebug("LinearApproachPos",""+this.m_LinearReach.getPosition());
         RobotDebugger.addDebug("GyroMeasuredAngle","" + this.m_Gyro.getCurrentAngle());
         RobotDebugger.addDebug("GyroX", "" + this.m_Gyro.getGyro().getRawX());
         RobotDebugger.addDebug("GyroY","" + this.m_Gyro.getGyro().getRawY());

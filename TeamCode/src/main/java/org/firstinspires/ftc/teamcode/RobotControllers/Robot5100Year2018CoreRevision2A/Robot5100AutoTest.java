@@ -30,12 +30,12 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 
-@TeleOp (name = "Robot5100AutoTest",group = "David Cao")
+@TeleOp (name = "Robot5100AutoTest",group = "5100")
 public class Robot5100AutoTest extends LinearOpMode {
     private Robot5100Core m_RobotCore;
 
     public void hardWareInitialize(){
-        this.m_RobotCore = new Robot5100Core(this,100,100,0,0,0,true);
+        this.m_RobotCore = new Robot5100Core(this,100,100,0,0,0,0,0,true);
     }
 
     protected void movementControl(){

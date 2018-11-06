@@ -7,12 +7,12 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotEncoderMo
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotEncoderServo;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotRackAndPinion;
 
-public class Robot5100Dumper implements RobotRackAndPinion {
+public class Robot5100LinearReach implements RobotRackAndPinion {
     private RobotEncoderServo m_Servo;
-    public Robot5100Dumper(DcMotor DumperMotor, double CurrentPos){
-        DumperMotor.setDirection(DcMotorSimple.Direction.REVERSE);
-        RobotEncoderMotor Motor = new RobotEncoderMotor(DumperMotor,Robot5100Settings.dumperMotorCountsPerRev,Robot5100Settings.dumperRevPerSec,Robot5100Settings.dumperTimeControl,Robot5100Settings.dumperTimeControlPercent);
-        this.m_Servo = new RobotEncoderServo(Motor,CurrentPos, Robot5100Settings.dumperBiggestPos,Robot5100Settings.dumperSmallestPos,false);
+    public Robot5100LinearReach(DcMotor LinearReachMotor, double CurrentPos){
+        LinearReachMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+        RobotEncoderMotor Motor = new RobotEncoderMotor(LinearReachMotor,Robot5100Settings.linearReachCountsPerRev,Robot5100Settings.linearReachRevPerSec,Robot5100Settings.linearReachTimeControl,Robot5100Settings.linearReachTimeControlPercent);
+        this.m_Servo = new RobotEncoderServo(Motor,CurrentPos, Robot5100Settings.linearReachBiggestPos,Robot5100Settings.linearReachSmallestPos,false);
     }
     @Override
     public double getPosition() {
@@ -26,7 +26,7 @@ public class Robot5100Dumper implements RobotRackAndPinion {
 
     @Override
     public void setPosition(double position) {
-        this.m_Servo.setPosition(position,Robot5100Settings.dumperSpeed);
+        this.m_Servo.setPosition(position,Robot5100Settings.linearReachSpeed);
     }
 
     @Override
