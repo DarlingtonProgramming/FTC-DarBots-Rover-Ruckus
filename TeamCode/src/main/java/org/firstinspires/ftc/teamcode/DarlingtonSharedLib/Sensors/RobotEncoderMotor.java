@@ -176,9 +176,9 @@ public class RobotEncoderMotor implements RobotEventLoopable {
             return this.getLastMovedCounts();
         }
         this.m_isWorking = false;
-        this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
         this.m_DCMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         this.m_DCMotor.setPower(0);
+        this.m_DCMotor.setTargetPosition(this.m_DCMotor.getCurrentPosition());
         this.m_MovedCounts = this.m_DCMotor.getCurrentPosition() - this.m_OriginLocation;
         this.m_FineTime = 0;
         return this.getLastMovedCounts();

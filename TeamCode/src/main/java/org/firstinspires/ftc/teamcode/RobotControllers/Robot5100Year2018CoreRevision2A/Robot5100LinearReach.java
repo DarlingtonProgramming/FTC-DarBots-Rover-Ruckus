@@ -10,7 +10,6 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotRackAnd
 public class Robot5100LinearReach implements RobotRackAndPinion {
     private RobotEncoderServo m_Servo;
     public Robot5100LinearReach(DcMotor LinearReachMotor, double CurrentPos){
-        LinearReachMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotEncoderMotor Motor = new RobotEncoderMotor(LinearReachMotor,Robot5100Settings.linearReachCountsPerRev,Robot5100Settings.linearReachRevPerSec,Robot5100Settings.linearReachTimeControl,Robot5100Settings.linearReachTimeControlPercent);
         this.m_Servo = new RobotEncoderServo(Motor,CurrentPos, Robot5100Settings.linearReachBiggestPos,Robot5100Settings.linearReachSmallestPos,false);
     }

@@ -29,6 +29,7 @@ import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
@@ -65,8 +66,9 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         this.m_LinearReach = new Robot5100LinearReach(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.linearReachConfigurationName), linearReachPosition);
         DcMotor CollectorServoDcMotor = runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.collectorServoConfigurationName);
         RobotEncoderMotor CollectorServoEncoderMotor = new RobotEncoderMotor(CollectorServoDcMotor,Robot5100Settings.collectorServoCountsPerRev,Robot5100Settings.collectorServoRevPerSec,Robot5100Settings.collectorServoTimeControl,Robot5100Settings.collectorServoTimeControlPercent);
-        this.m_CollectorServo = new RobotEncoderServo(CollectorServoEncoderMotor,Robot5100Settings.collectorServoInitialPos,Robot5100Settings.collectorServoBiggestPos,Robot5100Settings.collectorServoSmallestPos,true);
+        this.m_CollectorServo = new RobotEncoderServo(CollectorServoEncoderMotor,Robot5100Settings.collectorServoInitialPos,Robot5100Settings.collectorServoBiggestPos,Robot5100Settings.collectorServoSmallestPos,false);
         DcMotor CollectorSweeperMotor = runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.collectorSweeperConfigurationName);
+        CollectorSweeperMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.m_CollectorSweeper = new RobotNoEncoderMotor(CollectorSweeperMotor,Robot5100Settings.collectorSweeperCountsPerRev,Robot5100Settings.collectorSweeperRevPerSec);
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
