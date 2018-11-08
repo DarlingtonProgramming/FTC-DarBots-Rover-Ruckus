@@ -71,18 +71,18 @@ public class Robot5100Settings {
     public static final String rackAndPinionConfigurationName = "rackMotor";
     public static final double rackAndPinionMotorCountsPerRev = 1680;
     public static final double rackAndPinionRevPerSec = 1.75;
-    public static final boolean rackAndPinionTimeControl = false;
+    public static final boolean rackAndPinionTimeControl = true;
     public static final double rackAndPinionTimeControlPercent = 200;
     public static final double rackAndPinionBiggestPos = 8.5;
     public static final double rackAndPinionSmallestPos = 0;
     public static final double rackAndPinionSpeed = 1.0;
-    public static final double rackAndPinionHookPos = 2.0;
+    public static final double rackAndPinionHookPos = 4.855;
     public static final double rackAndPinionInitialPos = 0;
 
     public static final String dumperConfigurationName = "dumperMotor";
     public static final double dumperMotorCountsPerRev = 288;
     public static final double dumperRevPerSec = 2.08;
-    public static final boolean dumperTimeControl = false;
+    public static final boolean dumperTimeControl = true;
     public static final double dumperTimeControlPercent = 200;
     public static final double dumperBiggestPos = 3.68;
     public static final double dumperSmallestPos = 0;
@@ -92,7 +92,7 @@ public class Robot5100Settings {
     public static final String linearReachConfigurationName = "linearReachMotor";
     public static final double linearReachCountsPerRev = 288;
     public static final double linearReachRevPerSec = 2.08;
-    public static final boolean linearReachTimeControl = false;
+    public static final boolean linearReachTimeControl = true;
     public static final double linearReachTimeControlPercent = 200;
     public static final double linearReachBiggestPos = 4.0;
     public static final double linearReachSmallestPos = 0;
@@ -102,8 +102,8 @@ public class Robot5100Settings {
     public static final String collectorServoConfigurationName = "collectorServoMotor";
     public static final double collectorServoCountsPerRev = 288;
     public static final double collectorServoRevPerSec = 2.08;
-    public static final boolean collectorServoTimeControl = false;
-    public static final double collectorServoTimeControlPercent = 200;
+    public static final boolean collectorServoTimeControl = true;
+    public static final double collectorServoTimeControlPercent = 500;
     public static final double collectorServoBiggestPos = 0.5;
     public static final double collectorServoSmallestPos = 0;
     public static final double collectorServoSpeed = 1.0;
@@ -114,4 +114,7 @@ public class Robot5100Settings {
     public static final double collectorSweeperRevPerSec = 2.08;
     public static final double collectorSweeperSpeed = 1.0;
 
+    public static final String declarationServoConfigurationName = "declarationServo";
+    public static final double declarationDeclPos = 1.0;
+    public static final double declarationInitialPos = 0.0;
 }

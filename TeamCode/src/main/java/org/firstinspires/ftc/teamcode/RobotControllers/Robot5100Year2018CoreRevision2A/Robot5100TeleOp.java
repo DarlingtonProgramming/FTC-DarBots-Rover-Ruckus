@@ -38,92 +38,121 @@ public class Robot5100TeleOp extends LinearOpMode {
         this.m_RobotCore = new Robot5100Core(this,100,100,0,Robot5100Settings.rackAndPinionInitialPos,Robot5100Settings.dumperInitialPos,Robot5100Settings.linearReachInitialPos,Robot5100Settings.collectorServoInitialPos,true);
     }
 
-    protected void dumperControl(){
-        if(gamepad1.right_bumper){
-            this.m_RobotCore.getDumper().setPosition(this.m_RobotCore.getDumper().getPosition() + 0.1);
-        }else if(gamepad1.left_bumper){
-            this.m_RobotCore.getDumper().setPosition(this.m_RobotCore.getDumper().getPosition() - 0.1);
-        }
-    }
-
-    protected void linearReachControl(){
+    protected void Gamepad1Control(){
         if(gamepad1.right_trigger >= Robot5100Settings.TeleOP_GamepadTriggerValue){
-            this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() + 0.1);
+            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() + 0.1);
         }else if(gamepad1.left_trigger >= Robot5100Settings.TeleOP_GamepadTriggerValue){
-            this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() - 0.1);
+                this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() - 0.1);
         }
-    }
-
-    protected void collectorServoControl(){
-        if(gamepad1.dpad_right){
-            this.m_RobotCore.getCollectorServo().setPosition(this.m_RobotCore.getCollectorServo().getPosition() + 0.1,Robot5100Settings.collectorServoSpeed);
-        }else if(gamepad1.dpad_left){
-            this.m_RobotCore.getCollectorServo().setPosition(this.m_RobotCore.getCollectorServo().getPosition() - 0.1,Robot5100Settings.collectorServoSpeed);
+        if(gamepad1.right_bumper){
+            this.m_RobotCore.openRackAndPinion();
+        }else if(gamepad1.left_bumper){
+            this.m_RobotCore.closeRackAndPinion();
         }
-    }
-
-    protected void mineralSuckingControl(){
         if(gamepad1.a){
+            this.m_RobotCore.openRackAndPinionToHook();
+        }
+    }
+    protected void Gamepad2Control(){
+        if(gamepad2.right_trigger >= Robot5100Settings.TeleOP_GamepadTriggerValue){
             this.m_RobotCore.startSuckingMinerals();
-        }else if(gamepad1.b){
+        }else if(gamepad2.left_trigger >= Robot5100Settings.TeleOP_GamepadTriggerValue){
             this.m_RobotCore.startVomitingMinerals();
         }else{
             this.m_RobotCore.closeMouth();
         }
+        if(gamepad2.a){
+            this.m_RobotCore.openCollectorServo();
+        }else if(gamepad2.b){
+            this.m_RobotCore.closeCollectorServo();
+        }
+        if(gamepad2.x){
+            this.m_RobotCore.closeLinearReach();
+            this.m_RobotCore.waitUntilFinish();
+            this.m_RobotCore.closeCollectorServo();
+        }
+        if(gamepad2.y){
+            this.m_RobotCore.openCollectorServo();
+            this.m_RobotCore.waitUntilFinish();
+            this.m_RobotCore.openRackAndPinion();
+            this.m_RobotCore.waitUntilFinish();
+            this.m_RobotCore.raiseDumper();
+            this.m_RobotCore.waitUntilFinish();
+            this.m_RobotCore.descendDumper();
+            this.m_RobotCore.waitUntilFinish();
+            this.m_RobotCore.closeRackAndPinion();
+            this.m_RobotCore.waitUntilFinish();
+            this.m_RobotCore.closeCollectorServo();
+        }
+        if(this.m_RobotCore.getLinearReach().getPosition() + 0.1 <= this.m_RobotCore.getLinearReach().getBiggestPos() || this.m_RobotCore.getLinearReach().getPosition() - 0.1 >= this.m_RobotCore.getLinearReach().getSmallestPos()){
+            if(Math.abs(this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+                if((-this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+                    this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() + 0.1);
+                }else{
+                    this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() - 0.1);
+                }
+            }
+        }
     }
-
-    protected void movementControl(){
-        boolean isMoving = false;
-        boolean isRotating = false;
-        boolean isControllingX = false;
-        if(Math.abs(gamepad1.left_stick_x) >= Robot5100Settings.TeleOP_GamepadTriggerValue || Math.abs(gamepad1.left_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
-            isMoving = true;
-            if(Math.abs(gamepad1.left_stick_x) > Math.abs(gamepad1.left_stick_y)){
-                isControllingX = true;
+    protected void potentialConflictControl(){
+        boolean isControlMotion = false;
+        boolean gamepad2ControllingMotion = false;
+        boolean controllingTurning = false;
+        boolean isControllingY = false;
+        double controlValue = 0;
+        if(this.m_RobotCore.getLinearReach().getPosition() + 0.1 > this.m_RobotCore.getLinearReach().getBiggestPos() || this.m_RobotCore.getLinearReach().getPosition() - 0.1 < this.m_RobotCore.getLinearReach().getSmallestPos()){
+            if(Math.abs(this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+                gamepad2ControllingMotion = true;
+                controlValue = -this.gamepad2.right_stick_y;
+                isControllingY = true;
+                isControlMotion = true;
+            }
+        }else if(Math.abs(this.gamepad2.right_stick_x) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+            gamepad2ControllingMotion = true;
+            controlValue = this.gamepad2.right_stick_x;
+            controllingTurning = true;
+            isControlMotion = true;
+        }
+        if(!gamepad2ControllingMotion){
+            double leftStickBiggestNum = Math.max(Math.abs(gamepad1.left_stick_x),Math.abs(gamepad1.left_stick_y));
+            if(leftStickBiggestNum >= Robot5100Settings.TeleOP_GamepadTriggerValue || Math.abs(gamepad1.right_stick_x) >= Robot5100Settings.TeleOP_GamepadTriggerValue) {
+                isControlMotion = true;
+                if (Math.abs(gamepad1.right_stick_x) >= Math.abs(leftStickBiggestNum)) {
+                    controllingTurning = true;
+                    controlValue = gamepad1.right_stick_x;
+                } else {
+                    if(Math.abs(gamepad1.left_stick_y) >= Math.abs(gamepad1.left_stick_x)){
+                        isControllingY = true;
+                        controlValue = -gamepad1.left_stick_y;
+                    }else{
+                        isControllingY = false;
+                        controlValue = gamepad1.left_stick_x;
+                    }
+                }
+            }
+        }
+        if(isControlMotion){
+            if(!controllingTurning) {
+                if (isControllingY) {
+                    this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(controlValue * Robot5100Settings.TeleOP_BiggestSpeed);
+                } else {
+                    this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(controlValue * Robot5100Settings.TeleOP_BiggestSpeed);
+                }
             }else{
-                isControllingX = false;
+                this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(controlValue * Robot5100Settings.TeleOP_BiggestSpeed);
             }
         }else{
-            isMoving = false;
-        }
-        if(Math.abs(gamepad1.right_stick_x) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
-            isRotating = true;
-        }
-        if(!isMoving && !isRotating){
-            if(this.m_RobotCore.getMotionSystem().getCurrentMotionType() != RobotMotionSystem.motionType.stopped){
-                this.m_RobotCore.getMotionSystem().stopMoving();
-            }
-        }
-        if(isMoving && !isRotating){
-            if(isControllingX){
-                this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(gamepad1.left_stick_x * Robot5100Settings.TeleOP_BiggestSpeed);
-            }else{
-                this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(-gamepad1.left_stick_y * Robot5100Settings.TeleOP_BiggestSpeed);
-            }
-        }else if(!isMoving && isRotating){
-            this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x * Robot5100Settings.TeleOP_BiggestSpeed);
+            this.m_RobotCore.getMotionSystem().stopMoving();
         }
     }
-
-    protected void rackAndPinionControl(){
-        if(gamepad1.dpad_up){
-            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() + 0.1);
-        }else if(gamepad1.dpad_down){
-            this.m_RobotCore.getRackAndPinion().setPosition(this.m_RobotCore.getRackAndPinion().getPosition() - 0.1);
-        }
-    }
-
     @Override
     public void runOpMode() {
         this.hardWareInitialize();
         this.waitForStart();
         while(this.opModeIsActive()){
-            this.movementControl();
-            this.rackAndPinionControl();
-            this.dumperControl();
-            this.linearReachControl();
-            this.collectorServoControl();
-            this.mineralSuckingControl();
+            this.Gamepad1Control();
+            this.Gamepad2Control();
+            this.potentialConflictControl();
             this.m_RobotCore.doLoop();
         }
     }

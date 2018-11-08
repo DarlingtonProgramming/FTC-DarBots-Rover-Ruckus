@@ -136,6 +136,7 @@ public class RobotEncoderMotor implements RobotEventLoopable {
         this.m_DCMotor.setTargetPosition(StartPos + RevTotal);
 
         if(!this.m_isWorking || this.m_runningType != workType.ToPosition) {
+            StartPos = this.m_DCMotor.getCurrentPosition();
             this.m_OriginLocation = StartPos;
             this.m_MotorOperationTime.reset();
             this.m_runningType = workType.ToPosition;

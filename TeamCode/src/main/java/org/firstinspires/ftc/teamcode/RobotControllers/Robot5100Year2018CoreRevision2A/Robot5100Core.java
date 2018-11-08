@@ -30,6 +30,7 @@ import android.support.annotation.NonNull;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
@@ -54,7 +55,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     private RobotEncoderServo m_CollectorServo;
     private RobotNoEncoderMotor m_CollectorSweeper;
     private FTC2018GameSpecificFunctions m_2018Specific;
-
+    private Servo m_DeclarationServo;
 
     public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, double dumperPosition, double linearReachPosition, double collectorServoPos, boolean readSetting){
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
@@ -70,6 +71,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         DcMotor CollectorSweeperMotor = runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.collectorSweeperConfigurationName);
         CollectorSweeperMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.m_CollectorSweeper = new RobotNoEncoderMotor(CollectorSweeperMotor,Robot5100Settings.collectorSweeperCountsPerRev,Robot5100Settings.collectorSweeperRevPerSec);
+        this.m_DeclarationServo = runningOpMode.hardwareMap.servo.get(Robot5100Settings.declarationServoConfigurationName);
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
@@ -123,6 +125,33 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         this.m_RackAndPinion.setPosition(this.m_RackAndPinion.getBiggestPos());
     }
 
+    public void openLinearReach(){
+        this.m_LinearReach.setPosition(this.m_LinearReach.getBiggestPos());
+    }
+
+    public void closeLinearReach(){
+        this.m_LinearReach.setPosition(this.m_LinearReach.getSmallestPos());
+    }
+
+    public void openCollectorServo(){
+        this.m_CollectorServo.setPosition(this.m_CollectorServo.getBiggestPos(),Robot5100Settings.collectorServoSpeed);
+    }
+
+    public void closeCollectorServo(){
+        this.m_CollectorServo.setPosition(this.m_CollectorServo.getSmallestPos(),Robot5100Settings.collectorServoSpeed);
+    }
+
+    public void raiseDumper(){
+        this.m_Dumper.setPosition(this.m_Dumper.getBiggestPos());
+    }
+
+    public void descendDumper(){
+        this.m_Dumper.setPosition(this.m_Dumper.getSmallestPos());
+    }
+
+    public Servo getDeclarationServo(){
+        return this.m_DeclarationServo;
+    }
 
 
     public Robot5100MotionSystem getMotionSystem(){
@@ -174,6 +203,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         this.m_Dumper.doLoop();
         this.m_LinearReach.doLoop();
         this.m_CollectorServo.doLoop();
+        this.m_CollectorSweeper.doLoop();
 
         RobotDebugger.addDebug("RackAndPinionPos","" + this.m_RackAndPinion.getPosition());
         RobotDebugger.addDebug("DumperPos","" + this.m_Dumper.getPosition());
@@ -191,7 +221,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
 
     @Override
     public boolean isBusy() {
-        return this.m_MotionSystem.isBusy();
+        return (this.m_MotionSystem.isBusy() || this.m_RackAndPinion.isBusy() || this.m_Dumper.isBusy() || this.m_LinearReach.isBusy() || this.m_CollectorServo.isBusy());
     }
 
     @Override

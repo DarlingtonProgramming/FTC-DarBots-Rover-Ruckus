@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLo
 
 
 public class RobotEncoderServo implements RobotEventLoopable {
-    public static final double ignoreValue = 0.05;
+    public static final double ignoreValue = 0.01;
     private RobotEncoderMotor m_Motor;
     private int m_StartCount = 0;
     private double m_SmallestPos = 0;
@@ -36,6 +36,14 @@ public class RobotEncoderServo implements RobotEventLoopable {
     }
     public void setLockingPosition(boolean Enabled){
         this.m_Lock = Enabled;
+        if(Enabled){
+            this.m_Motor.getDcMotor().setTargetPosition(this.m_Motor.getDcMotor().getCurrentPosition());
+            this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            this.m_Motor.getDcMotor().setPower(1.0);
+        }else{
+            this.m_Motor.getDcMotor().setPower(0);
+            this.m_Motor.getDcMotor().setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        }
     }
     public boolean isBusy(){
         return this.m_Motor.isBusy();
@@ -83,7 +91,7 @@ public class RobotEncoderServo implements RobotEventLoopable {
         }
         int TargetPos = 0;
         TargetPos = this.m_StartCount + (int) Math.round(Pos * this.m_Motor.getCountsPerRev());
-        int DeltaCount = TargetPos - this.m_Motor.getDcMotor().getTargetPosition();
+        int DeltaCount = TargetPos - this.m_Motor.getDcMotor().getCurrentPosition();
         this.m_Motor.moveCounts(DeltaCount,Speed);
         this.m_isWorking = true;
     }
