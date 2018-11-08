@@ -212,13 +212,25 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         this.m_CollectorServo.doLoop();
         this.m_CollectorSweeper.doLoop();
 
+
+        String recognitionResult;
+        FTC2018GameSpecificFunctions.GoldPosType DetectResult = this.m_2018Specific.detectAutonomousGoldMineralPos(this.m_2018Specific.detectAllBlocksInCamera());
+        if(DetectResult == FTC2018GameSpecificFunctions.GoldPosType.Center) {
+            recognitionResult = "Center";
+        }else if(DetectResult == FTC2018GameSpecificFunctions.GoldPosType.Left){
+            recognitionResult = "Left";
+        }else if(DetectResult == FTC2018GameSpecificFunctions.GoldPosType.Right){
+            recognitionResult = "Right";
+        }else{
+            recognitionResult = "Unknown";
+        }
+
+        RobotDebugger.addDebug("RecognitionResult", "" + recognitionResult);
         RobotDebugger.addDebug("RackAndPinionPos","" + this.m_RackAndPinion.getPosition());
         RobotDebugger.addDebug("DumperPos","" + this.m_Dumper.getPosition());
         RobotDebugger.addDebug("CollectorServoPos",""+this.m_CollectorServo.getPosition());
         RobotDebugger.addDebug("LinearApproachPos",""+this.m_LinearReach.getPosition());
         RobotDebugger.addDebug("GyroMeasuredAngle","" + this.m_Gyro.getCurrentAngle());
-        RobotDebugger.addDebug("GyroX", "" + this.m_Gyro.getGyro().getRawX());
-        RobotDebugger.addDebug("GyroY","" + this.m_Gyro.getGyro().getRawY());
         RobotDebugger.addDebug("GyroZ","" + this.m_Gyro.getGyro().getRawZ());
         RobotDebugger.addDebug("X","" + this.getPositionTracker().getCurrentPosX());
         RobotDebugger.addDebug("Y","" + this.getPositionTracker().getCurrentPosY());
