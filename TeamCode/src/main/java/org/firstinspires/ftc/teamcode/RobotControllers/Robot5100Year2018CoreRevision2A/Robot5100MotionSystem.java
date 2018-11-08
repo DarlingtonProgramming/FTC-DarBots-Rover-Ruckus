@@ -25,6 +25,8 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRevision2A;
 
+import android.support.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
@@ -44,7 +46,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     private motionType m_CurrentMotionType;
     private RobotMotionDirection m_CurrentDirection;
 
-    public Robot5100MotionSystem(DcMotor FrontDC, DcMotor LeftBackDC, DcMotor RightBackDC, RobotPositionTracker PositionTracker){
+    public Robot5100MotionSystem(@NonNull DcMotor FrontDC, @NonNull DcMotor LeftBackDC, @NonNull DcMotor RightBackDC, @NonNull RobotPositionTracker PositionTracker){
         FrontDC.setDirection(DcMotorSimple.Direction.REVERSE);
         LeftBackDC.setDirection(DcMotorSimple.Direction.REVERSE);
         RightBackDC.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -96,7 +98,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
     }
 
     @Override
-    public void setPositionTracker(RobotPositionTracker newPositionTracker) {
+    public void setPositionTracker(@NonNull RobotPositionTracker newPositionTracker) {
         this.m_PositionTracker = newPositionTracker;
     }
 
@@ -258,8 +260,7 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
 
     @Override
     public void stopMoving() {
-        if(!this.isBusy()){
-            this.m_CurrentMotionType = motionType.stopped;
+        if(this.m_CurrentMotionType == motionType.stopped){
             return;
         }
         double[] robotOrigin = {0,0};
@@ -270,18 +271,18 @@ public class Robot5100MotionSystem implements RobotMotionSystem, RobotEventLoopa
         switch(this.m_CurrentMotionType){
             case turningFixedAngle:
             case keepingTurningWithSpeed:
-                this.getPositionTracker().moveWithRobotFixedPointAndPowerPoint(robotOrigin,this.getFrontWheel().getPos(),this.getFrontWheel().getSensor().getLastMovedDistance());
+                this.m_PositionTracker.moveWithRobotFixedPointAndPowerPoint(robotOrigin,this.getFrontWheel().getPos(),this.getFrontWheel().getSensor().getLastMovedDistance());
                 break;
             case movingFixedDistance:
             case keepingMovingWithFixedSpeed:
                 switch(this.m_CurrentDirection){
                     case inY:
                         double YMoved = this.getLeftBackWheel().getSensor().getLastMovedDistance() * this.getLeftBackWheel().getSensor().getWheel().getYPerDistance();
-                        this.getPositionTracker().moveThroughRobotAngle(0,YMoved);
+                        this.m_PositionTracker.moveThroughRobotAngle(0,YMoved);
                         break;
                     case inX:
                         double XMoved = this.getFrontWheel().getSensor().getLastMovedDistance() * this.getFrontWheel().getSensor().getWheel().getXPerDistance();
-                        this.getPositionTracker().moveThroughRobotAngle(90,XMoved);
+                        this.m_PositionTracker.moveThroughRobotAngle(90,XMoved);
                         break;
                 }
                 break;

@@ -33,6 +33,7 @@ public class Robot5100Settings {
 
     public static final double TeleOP_GamepadTriggerValue = 0.1;
     public static final double TeleOP_BiggestSpeed = 0.3;
+    public static final double TeleOP_LinearReachDelta = 0.2;
     public static final double Autonomous_BiggestSpeed = 0.2;
 
     public static final boolean motionTimeControl = false;

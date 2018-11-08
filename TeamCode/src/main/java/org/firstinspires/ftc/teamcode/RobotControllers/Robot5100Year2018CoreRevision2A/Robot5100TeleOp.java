@@ -84,12 +84,12 @@ public class Robot5100TeleOp extends LinearOpMode {
             this.m_RobotCore.waitUntilFinish();
             this.m_RobotCore.closeCollectorServo();
         }
-        if(this.m_RobotCore.getLinearReach().getPosition() + 0.1 <= this.m_RobotCore.getLinearReach().getBiggestPos() || this.m_RobotCore.getLinearReach().getPosition() - 0.1 >= this.m_RobotCore.getLinearReach().getSmallestPos()){
+        if(this.m_RobotCore.getLinearReach().getPosition() + Robot5100Settings.TeleOP_LinearReachDelta <= this.m_RobotCore.getLinearReach().getBiggestPos() && this.m_RobotCore.getLinearReach().getPosition() - Robot5100Settings.TeleOP_LinearReachDelta >= this.m_RobotCore.getLinearReach().getSmallestPos()){
             if(Math.abs(this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
                 if((-this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
-                    this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() + 0.1);
+                    this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() + Robot5100Settings.TeleOP_LinearReachDelta);
                 }else{
-                    this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() - 0.1);
+                    this.m_RobotCore.getLinearReach().setPosition(this.m_RobotCore.getLinearReach().getPosition() - Robot5100Settings.TeleOP_LinearReachDelta);
                 }
             }
         }
@@ -100,8 +100,14 @@ public class Robot5100TeleOp extends LinearOpMode {
         boolean controllingTurning = false;
         boolean isControllingY = false;
         double controlValue = 0;
-        if(this.m_RobotCore.getLinearReach().getPosition() + 0.1 > this.m_RobotCore.getLinearReach().getBiggestPos() || this.m_RobotCore.getLinearReach().getPosition() - 0.1 < this.m_RobotCore.getLinearReach().getSmallestPos()){
-            if(Math.abs(this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+
+        if(Math.abs(this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
+            if(m_RobotCore.getLinearReach().getPosition() + Robot5100Settings.TeleOP_LinearReachDelta > this.m_RobotCore.getLinearReach().getBiggestPos() && (-gamepad2.right_stick_y) > 0){
+                gamepad2ControllingMotion = true;
+                controlValue = -this.gamepad2.right_stick_y;
+                isControllingY = true;
+                isControlMotion = true;
+            }else if(m_RobotCore.getLinearReach().getPosition() - Robot5100Settings.TeleOP_LinearReachDelta < this.m_RobotCore.getLinearReach().getSmallestPos() && (-gamepad2.right_stick_y) < 0) {
                 gamepad2ControllingMotion = true;
                 controlValue = -this.gamepad2.right_stick_y;
                 isControllingY = true;

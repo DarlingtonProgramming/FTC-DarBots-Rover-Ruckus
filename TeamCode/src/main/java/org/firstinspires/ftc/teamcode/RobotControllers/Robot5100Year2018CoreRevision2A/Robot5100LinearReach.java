@@ -47,7 +47,7 @@ public class Robot5100LinearReach implements RobotRackAndPinion {
 
     @Override
     public double getSmallestPos() {
-        return this.m_Servo.getBiggestPos();
+        return this.m_Servo.getSmallestPos();
     }
 
     @Override

@@ -153,6 +153,13 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         return this.m_DeclarationServo;
     }
 
+    public void openDeclarationServo(){
+        this.m_DeclarationServo.setPosition(1.0);
+    }
+
+    public void closeDeclarationServo(){
+        this.m_DeclarationServo.setPosition(0.0);
+    }
 
     public Robot5100MotionSystem getMotionSystem(){
         return this.m_MotionSystem;
