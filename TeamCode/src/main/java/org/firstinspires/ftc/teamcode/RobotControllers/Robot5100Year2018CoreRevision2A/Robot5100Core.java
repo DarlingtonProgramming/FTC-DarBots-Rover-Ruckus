@@ -56,6 +56,8 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     private RobotNoEncoderMotor m_CollectorSweeper;
     private FTC2018GameSpecificFunctions m_2018Specific;
     private Servo m_DeclarationServo;
+    private FTC2018GameSpecificFunctions.MineralInformation[] m_OldMineralInformation;
+    private FTC2018GameSpecificFunctions.GoldPosType m_OldGoldPos;
 
     public Robot5100Core(@NonNull OpMode runningOpMode, double initialX, double initialY, double initialRotation, double rackAndPinionPosition, double dumperPosition, double linearReachPosition, double collectorServoPos, boolean readSetting){
         m_Gyro = new GyroWrapper(runningOpMode,Robot5100Settings.gyroConfigurationName,Robot5100Settings.gyroReversed,(float) initialRotation);
@@ -66,12 +68,15 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         this.m_Dumper = new Robot5100Dumper(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.dumperConfigurationName),dumperPosition);
         this.m_LinearReach = new Robot5100LinearReach(runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.linearReachConfigurationName), linearReachPosition);
         DcMotor CollectorServoDcMotor = runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.collectorServoConfigurationName);
+        CollectorServoDcMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotEncoderMotor CollectorServoEncoderMotor = new RobotEncoderMotor(CollectorServoDcMotor,Robot5100Settings.collectorServoCountsPerRev,Robot5100Settings.collectorServoRevPerSec,Robot5100Settings.collectorServoTimeControl,Robot5100Settings.collectorServoTimeControlPercent);
         this.m_CollectorServo = new RobotEncoderServo(CollectorServoEncoderMotor,Robot5100Settings.collectorServoInitialPos,Robot5100Settings.collectorServoBiggestPos,Robot5100Settings.collectorServoSmallestPos,false);
         DcMotor CollectorSweeperMotor = runningOpMode.hardwareMap.dcMotor.get(Robot5100Settings.collectorSweeperConfigurationName);
         CollectorSweeperMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         this.m_CollectorSweeper = new RobotNoEncoderMotor(CollectorSweeperMotor,Robot5100Settings.collectorSweeperCountsPerRev,Robot5100Settings.collectorSweeperRevPerSec);
         this.m_DeclarationServo = runningOpMode.hardwareMap.servo.get(Robot5100Settings.declarationServoConfigurationName);
+        this.m_OldMineralInformation = null;
+        this.m_OldGoldPos = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
         RobotDebugger.setTelemetry(runningOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
@@ -154,7 +159,7 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
     }
 
     public void openDeclarationServo(){
-        this.m_DeclarationServo.setPosition(1.0);
+        this.m_DeclarationServo.setPosition(0.7);
     }
 
     public void closeDeclarationServo(){
@@ -202,6 +207,18 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
         RobotSetting.saveSetting("collectorServoPosition",this.m_CollectorServo.getPosition());
     }
 
+    public void setCollectorServoToRes(){
+        this.m_CollectorServo.setPosition(Robot5100Settings.collectorServoMidPos,Robot5100Settings.collectorServoSpeed);
+    }
+
+    public FTC2018GameSpecificFunctions.GoldPosType getLastGoldPosType(){
+        return this.m_OldGoldPos;
+    }
+
+    public FTC2018GameSpecificFunctions.MineralInformation[] getLastMineralInfo(){
+        return this.m_OldMineralInformation;
+    }
+
     @Override
     public void doLoop() {
         this.m_MotionSystem.doLoop();
@@ -214,18 +231,27 @@ public class Robot5100Core implements RobotNonBlockingDevice, RobotEventLoopable
 
 
         String recognitionResult;
-        FTC2018GameSpecificFunctions.GoldPosType DetectResult = this.m_2018Specific.detectAutonomousGoldMineralPos(this.m_2018Specific.detectAllBlocksInCamera());
-        if(DetectResult == FTC2018GameSpecificFunctions.GoldPosType.Center) {
+        FTC2018GameSpecificFunctions.MineralInformation[] ScanRst = this.m_2018Specific.detectAllBlocksInCamera();
+        if(ScanRst!=null){
+            this.m_OldMineralInformation = ScanRst;
+        }
+        FTC2018GameSpecificFunctions.GoldPosType DetectResult = this.m_2018Specific.detectAutonomousGoldMineralPos(ScanRst);
+        if(DetectResult != FTC2018GameSpecificFunctions.GoldPosType.Unknown){
+            this.m_OldGoldPos = DetectResult;
+        }
+
+        if(m_OldGoldPos == FTC2018GameSpecificFunctions.GoldPosType.Center) {
             recognitionResult = "Center";
-        }else if(DetectResult == FTC2018GameSpecificFunctions.GoldPosType.Left){
+        }else if(m_OldGoldPos == FTC2018GameSpecificFunctions.GoldPosType.Left){
             recognitionResult = "Left";
-        }else if(DetectResult == FTC2018GameSpecificFunctions.GoldPosType.Right){
+        }else if(m_OldGoldPos == FTC2018GameSpecificFunctions.GoldPosType.Right){
             recognitionResult = "Right";
         }else{
             recognitionResult = "Unknown";
         }
 
-        RobotDebugger.addDebug("RecognitionResult", "" + recognitionResult);
+
+        RobotDebugger.addDebug("LastRecognitionResult", "" + recognitionResult);
         RobotDebugger.addDebug("RackAndPinionPos","" + this.m_RackAndPinion.getPosition());
         RobotDebugger.addDebug("DumperPos","" + this.m_Dumper.getPosition());
         RobotDebugger.addDebug("CollectorServoPos",""+this.m_CollectorServo.getPosition());

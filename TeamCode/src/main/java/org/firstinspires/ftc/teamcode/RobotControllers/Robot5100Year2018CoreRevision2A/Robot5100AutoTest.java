@@ -25,12 +25,14 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Year2018CoreRevision2A;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 
 @TeleOp (name = "Robot5100AutoTest",group = "5100")
+@Disabled
 public class Robot5100AutoTest extends LinearOpMode {
     private Robot5100Core m_RobotCore;
 
@@ -81,12 +83,21 @@ public class Robot5100AutoTest extends LinearOpMode {
         }
     }
 
+    protected void declControl(){
+        if(gamepad1.a){
+            this.m_RobotCore.openDeclarationServo();
+        }else{
+            this.m_RobotCore.closeDeclarationServo();
+        }
+    }
+
     @Override
     public void runOpMode() {
         this.hardWareInitialize();
         this.waitForStart();
         while(this.opModeIsActive()){
             this.movementControl();
+            this.declControl();
             this.m_RobotCore.doLoop();
         }
     }
