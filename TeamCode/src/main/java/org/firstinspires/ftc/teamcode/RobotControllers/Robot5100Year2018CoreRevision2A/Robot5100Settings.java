@@ -79,7 +79,7 @@ public class Robot5100Settings {
     public static final double rackAndPinionBiggestPos = 7.8;
     public static final double rackAndPinionSmallestPos = 0;
     public static final double rackAndPinionSpeed = 1.0;
-    public static final double rackAndPinionHookPos = 4.394;
+    public static final double rackAndPinionHookPos = 4.494;
     public static final double rackAndPinionInitialPos = 0;
 
     public static final String dumperConfigurationName = "dumperMotor";

@@ -121,15 +121,15 @@ public class Robot5100TeleOp extends LinearOpMode {
 
         if(Math.abs(this.gamepad2.right_stick_y) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
             if(m_RobotCore.getLinearReach().getPosition() + Robot5100Settings.TeleOP_LinearReachDelta > this.m_RobotCore.getLinearReach().getBiggestPos() && (-gamepad2.right_stick_y) > 0){
-                gamepad2ControllingMotion = true;
+                /* gamepad2ControllingMotion = true;
                 controlValue = -this.gamepad2.right_stick_y;
                 isControllingY = true;
-                isControlMotion = true;
+                isControlMotion = true; */
             }else if(m_RobotCore.getLinearReach().getPosition() - Robot5100Settings.TeleOP_LinearReachDelta < this.m_RobotCore.getLinearReach().getSmallestPos() && (-gamepad2.right_stick_y) < 0) {
-                gamepad2ControllingMotion = true;
+                /* gamepad2ControllingMotion = true;
                 controlValue = -this.gamepad2.right_stick_y;
                 isControllingY = true;
-                isControlMotion = true;
+                isControlMotion = true; */
             }
         }else if(Math.abs(this.gamepad2.right_stick_x) >= Robot5100Settings.TeleOP_GamepadTriggerValue){
             gamepad2ControllingMotion = true;

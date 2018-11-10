@@ -280,12 +280,12 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     protected void initTfod() {
-        //* If you want to activate the object detecting camera contents to display on the ftc RC app, use this following code
+        /* If you want to activate the object detecting camera contents to display on the ftc RC app, use this following code
         int tfodMonitorViewId = m_opMode.hardwareMap.appContext.getResources().getIdentifier(
                 "tfodMonitorViewId", "id", m_opMode.hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        //*/
-        //TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters();
+        */
+        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters();
         this.m_tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, m_vuforia);
         this.m_tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
         this.m_tfod.activate();
