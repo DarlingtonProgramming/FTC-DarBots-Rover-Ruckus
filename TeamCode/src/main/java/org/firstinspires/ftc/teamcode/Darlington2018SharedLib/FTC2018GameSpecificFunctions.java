@@ -60,7 +60,7 @@ public class FTC2018GameSpecificFunctions {
         Right,
         Unknown
     }
-    public class MineralInformation{
+    public static class MineralInformation{
         private MineralType m_MineralType;
         private float m_Left;
         private float m_Top;
@@ -103,7 +103,7 @@ public class FTC2018GameSpecificFunctions {
         BackSpace,
         Unknown
     }
-    public class NavigationResult{
+    public static class NavigationResult{
         private NavigationResultType m_ResultType;
         private float m_X;
         private float m_Y;
@@ -139,7 +139,7 @@ public class FTC2018GameSpecificFunctions {
     private String VUFORIA_KEY = " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
     private VuforiaLocalizer m_vuforia = null;
     private TFObjectDetector m_tfod = null;
-    private OpMode m_opMode = null;
+    private OpMode m_opMode;
     private VuforiaLocalizer.CameraDirection m_CameraDirection;
     public FTC2018GameSpecificFunctions(@NonNull OpMode controllerOp, VuforiaLocalizer.CameraDirection CameraDirection, String VUFORIAKEY){
         this.m_opMode = controllerOp;
@@ -173,6 +173,13 @@ public class FTC2018GameSpecificFunctions {
             m_Results[i] = new MineralInformation(recogType,recog.getLeft(),recog.getTop(),recog.getWidth(),recog.getHeight());
         }
         return m_Results;
+    }
+    public static MineralInformation firstMineralInCamera(MineralInformation[] Blocks){
+        if(Blocks != null){
+            return Blocks[0];
+        }else{
+            return new MineralInformation();
+        }
     }
     /*
     returns -1 if on the left, 0 if in the center, 1 if on the right.
@@ -219,6 +226,7 @@ public class FTC2018GameSpecificFunctions {
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters();
         this.m_tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, m_vuforia);
         this.m_tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
+        this.m_tfod.activate();
     }
     protected void initVoforia(){
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
