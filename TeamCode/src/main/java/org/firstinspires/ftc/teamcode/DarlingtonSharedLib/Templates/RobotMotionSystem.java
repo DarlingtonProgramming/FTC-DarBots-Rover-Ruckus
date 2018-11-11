@@ -27,7 +27,7 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 
-public interface RobotMotionSystem {
+public abstract class RobotMotionSystem implements RobotNonBlockingDevice,RobotEventLoopable {
     enum motionType{
         turningFixedAngle,
         keepingTurningWithSpeed,
@@ -41,23 +41,27 @@ public interface RobotMotionSystem {
         rotating,
         inCustomDirection
     }
-    RobotPositionTracker getPositionTracker();
-    boolean isBusy();
-    void waitUntilMotionFinish();
-    void setPositionTracker(RobotPositionTracker newPositionTracker);
-    void turnToAbsFieldAngle(double AngleInDegree, double Speed);
-    void turnOffsetAroundCenter(double AngleInDegree, double Speed);
-    void keepTurningOffsetAroundCenter(double Speed);
-    void driveTo(double[] fieldPos, double Speed);
-    void driveForward(double Distance, double Speed);
-    void driveBackward(double Distance, double Speed);
-    void driveToLeft(double Distance, double Speed);
-    void driveToRight(double Distance, double Speed);
-    void driveForwardWithSpeed(double Speed);
-    motionType getCurrentMotionType();
-    RobotMotionDirection getMovingDirection();
-    void driveBackwardWithSpeed(double Speed);
-    void driveToLeftWithSpeed(double Speed);
-    void driveToRightWithSpeed(double Speed);
-    void stopMoving();
+    @Override
+    public abstract boolean isBusy();
+    @Override
+    public abstract void waitUntilFinish();
+    @Override
+    public abstract void doLoop();
+    public abstract RobotPositionTracker getPositionTracker();
+    public abstract void setPositionTracker(RobotPositionTracker newPositionTracker);
+    public abstract void turnToAbsFieldAngle(double AngleInDegree, double Speed);
+    public abstract void turnOffsetAroundCenter(double AngleInDegree, double Speed);
+    public abstract void keepTurningOffsetAroundCenter(double Speed);
+    public abstract void driveTo(double[] fieldPos, double Speed);
+    public abstract void driveForward(double Distance, double Speed);
+    public abstract void driveBackward(double Distance, double Speed);
+    public abstract void driveToLeft(double Distance, double Speed);
+    public abstract void driveToRight(double Distance, double Speed);
+    public abstract void driveForwardWithSpeed(double Speed);
+    public abstract motionType getCurrentMotionType();
+    public abstract RobotMotionDirection getMovingDirection();
+    public abstract void driveBackwardWithSpeed(double Speed);
+    public abstract void driveToLeftWithSpeed(double Speed);
+    public abstract void driveToRightWithSpeed(double Speed);
+    public abstract void stopMoving();
 }

@@ -27,49 +27,6 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations;
 
 public class XYPlaneCalculations {
     public static double[] rotatePointAroundFixedPoint(double[] point, double[] fixedPoint, double clockWiseAngleInDeg) {
-		/*
-		double relativeY = point[1] - fixedPoint[1], relativeX = point[0] - fixedPoint[0];
-		double h = Math.sqrt(Math.pow(relativeX,2) + Math.pow(relativeY,2));
-		if(h == 0) {
-        	return point;
-        }
-
-        double angleLowestRange, angleHighestRange;
-        if(point[0] >= 0) {
-        	if(point[1] >= 0) {
-        		angleLowestRange = 0;
-        		angleHighestRange = Math.PI / 2;
-        	}else { //point[1] < 0
-        		angleLowestRange = - Math.PI / 2;
-        		angleHighestRange = 0;
-        	}
-        }else { //point[0] < 0
-        	if(point[1] > 0) {
-        		angleLowestRange = Math.PI / 2;
-        		angleHighestRange = Math.PI;
-        	}else { //point[1] <= 0
-        		angleLowestRange = - Math.PI;
-        		angleHighestRange = - Math.PI/2;
-        	}
-        }
-		double alpha1 = 0;
-		double alpha2 = 0;
-		if(relativeX != 0) {
-			alpha1 = normalizeRad(Math.atan(relativeY / relativeX));
-			alpha2 = normalizeRad(alpha1 + Math.PI);
-		}else {
-			alpha1 = Math.PI / 2;
-			alpha2 = -Math.PI / 2;
-		}
-
-		double[] alphaList = {alpha1, alpha2};
-		double alpha = chooseAngleFromRange(alphaList,angleLowestRange,angleHighestRange);
-        double beta = alpha - Math.toRadians(clockWiseAngleInDeg);
-        double newX = Math.cos(beta) * h + fixedPoint[0];
-        double newY = Math.sin(beta) * h + fixedPoint[1];
-        double[] newPos = {newX,newY};
-        return newPos;
-        */
         double relativeY = point[1] - fixedPoint[1], relativeX = point[0] - fixedPoint[0];
         double deltaAng = Math.toRadians(-clockWiseAngleInDeg);
         double newX = relativeX * Math.cos(deltaAng) - relativeY * Math.sin(deltaAng);

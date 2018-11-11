@@ -23,7 +23,7 @@ SOFTWARE.
 
 */
 
-package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Managers;
+package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 
