@@ -106,6 +106,26 @@ public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
             this.m_CurrentTask.startJob();
         }
     }
+
+    public int getLastTaskMovedCounts(){
+        if(this.m_LastTask != null)
+            return this.m_LastTask.getMovedCounts();
+        else
+            return 0;
+    }
+    public double getLastTaskTimeElapsed(){
+        if(this.m_LastTask != null)
+            return this.m_LastTask.getTimeElapsed();
+        else
+            return 0;
+    }
+    public boolean isLastTaskTimedOut(){
+        if(this.m_LastTask != null)
+            return this.m_LastTask.isTaskTimedOut();
+        else
+            return false;
+    }
+
     protected void organizeTasks(){
         if(this.m_CurrentTask != null){
             if(!this.m_CurrentTask.isBusy()){
