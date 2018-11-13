@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates;
 
 import android.support.annotation.NonNull;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotor;
@@ -18,7 +17,7 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
     private boolean m_Working;
     private RobotMotor.RobotMotorFinishCallback m_CallBack;
 
-    public RobotMotorTask(@NonNull RobotMotor.RobotMotorFinishCallback FinishCallBack){
+    public RobotMotorTask(RobotMotor.RobotMotorFinishCallback FinishCallBack){
         this.m_ElapsedTime = new ElapsedTime();
         this.m_TimeElapsed = 0;
         this.m_TimeOut = false;
@@ -33,6 +32,9 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
     }
     public RobotMotor getRunningMotor(){
         return this.m_RunningMotor;
+    }
+    public RobotMotor.RobotMotorFinishCallback getFinishCallBack(){
+        return this.m_CallBack;
     }
     public void setFinishCallBack(RobotMotor.RobotMotorFinishCallback NewCallBack){
         this.m_CallBack = NewCallBack;
@@ -52,6 +54,9 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
     public abstract void doLoop();
 
     public void startJob(){
+        if(this.isBusy()){
+            return;
+        }
         this.m_StartCount = this.getRunningMotor().getDcMotor().getCurrentPosition();
         this.m_TimeElapsed = 0;
         this.m_TimeOut = false;
@@ -60,12 +65,15 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
         this.executeJob();
     }
     public void stopJob(){
+        if(!this.isBusy()){
+            return;
+        }
         this.finishJob();
         this.m_TimeElapsed = this.m_ElapsedTime.seconds();
         this.m_EndCount = this.getRunningMotor().getDcMotor().getCurrentPosition();
         this.m_Working = false;
         if (this.m_CallBack != null) {
-            this.m_CallBack.finished(this.isTaskTimedOut(),this.getTimeElapsed(),this.getMovedCounts());
+            this.m_CallBack.finished(this.m_RunningMotor,this.isTaskTimedOut(),this.getTimeElapsed(),this.getMovedCounts());
         }
     }
     protected void _jobFinished_TimedOut(){
@@ -73,7 +81,7 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
         this._jobFinished();
     }
     protected void _jobFinished(){
-        if(!this.m_Working){
+        if(!this.isBusy()){
             return;
         }
         this.getRunningMotor().stopCurrentJob();
@@ -84,7 +92,11 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
         return this.m_EndCount - this.m_StartCount;
     }
     public double getTimeElapsed(){
-        return this.m_TimeElapsed;
+        if(!this.isBusy()) {
+            return this.m_TimeElapsed;
+        }else{
+            return this.m_ElapsedTime.seconds();
+        }
     }
     public boolean isTaskTimedOut(){
         return this.m_TimeOut;

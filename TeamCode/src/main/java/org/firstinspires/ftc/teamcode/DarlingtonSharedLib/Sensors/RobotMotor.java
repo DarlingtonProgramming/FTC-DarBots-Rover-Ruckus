@@ -11,8 +11,22 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBloc
 import java.util.ArrayList;
 
 public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
+    public interface RobotMotorFinishCallback{
+        void finished(RobotMotor Motor, boolean timeOut, double timeUsed, int CountsMoved);
+    }
+
+    private DcMotor m_DcMotor;
+    private double m_CountsPerRev;
+    private double m_RevPerSec;
+    private RobotMotorTask m_CurrentTask;
+    private RobotMotorTask m_LastTask;
+    private ArrayList<RobotMotorTask> m_QueueTasks;
+
     @Override
     public void doLoop() {
+        if(!this.m_CurrentTask.isBusy()){
+            this.stopCurrentJob();
+        }
         if(this.m_CurrentTask != null){
             this.m_CurrentTask.doLoop();
         }
@@ -33,16 +47,6 @@ public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
             this.m_CurrentTask.waitUntilFinish();
         }
     }
-
-    public interface RobotMotorFinishCallback{
-        void finished(boolean timeOut, double timeUsed, int CountsMoved);
-    }
-    private DcMotor m_DcMotor;
-    private double m_CountsPerRev;
-    private double m_RevPerSec;
-    RobotMotorTask m_CurrentTask;
-    RobotMotorTask m_LastTask;
-    ArrayList<RobotMotorTask> m_QueueTasks;
 
     public double getCountsPerRev(){
         return this.m_CountsPerRev;

@@ -238,21 +238,21 @@ public class RobotPositionTracker {
         this.setRobotRotation(this.getRobotRotation() + angleInDegree);
         this.fixBouncingBox();
     }
-    public void moveWithRobotFixedPoint(double[] fixedPoint, double powerRadius, double Distance){
+    public void rotateWithRobotFixedPoint(double[] fixedPoint, double powerRadius, double Distance){
         double moveAngleRad = Distance / powerRadius;
         double moveAngleDeg = Math.toDegrees(moveAngleRad);
         this.rotateAroundRobotRelativePoint(fixedPoint,moveAngleDeg);
     }
-    public void moveWithFieldFixedPoint(double[] fixedPoint, double powerRadius, double Distance){
-        this.moveWithRobotFixedPoint(this.robotAxisFromFieldAxis(fixedPoint),powerRadius,Distance);
+    public void rotateWithFieldFixedPoint(double[] fixedPoint, double powerRadius, double Distance){
+        this.rotateWithRobotFixedPoint(this.robotAxisFromFieldAxis(fixedPoint),powerRadius,Distance);
     }
-    public void moveWithRobotFixedPointAndPowerPoint(double[] fixedPoint, double[] powerPoint, double Distance){
+    public void rotateWithRobotFixedPointAndPowerPoint(double[] fixedPoint, double[] powerPoint, double Distance){
         double powerDistance = Math.sqrt(Math.pow((powerPoint[1]-fixedPoint[1]),2) + Math.pow((powerPoint[0]-fixedPoint[0]),2));
-        this.moveWithRobotFixedPoint(fixedPoint,powerDistance,Distance);
+        this.rotateWithRobotFixedPoint(fixedPoint,powerDistance,Distance);
     }
     public void moveWithFieldFixedPointAndPowerPoint(double[] fixedPoint, double[] powerPoint, double Distance){
         double powerDistance = Math.sqrt(Math.pow((powerPoint[1]-fixedPoint[1]),2) + Math.pow((powerPoint[0]-fixedPoint[0]),2));
-        this.moveWithFieldFixedPoint(fixedPoint,powerDistance,Distance);
+        this.rotateWithFieldFixedPoint(fixedPoint,powerDistance,Distance);
     }
     public double calculateAngleDeltaMovingToRobotPoint(double[] robotFixPoint){
         if(robotFixPoint[1] == 0){
