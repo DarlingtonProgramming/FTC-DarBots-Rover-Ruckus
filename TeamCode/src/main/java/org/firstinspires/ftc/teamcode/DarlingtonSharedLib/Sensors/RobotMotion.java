@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
+import android.support.annotation.NonNull;
+
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTasks.FixedCountsTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTasks.FixedSpeedTask;
 
@@ -72,13 +74,16 @@ public class RobotMotion {
     public RobotWheel getWheel(){
         return this.m_Wheel;
     }
-    public void setWheel(RobotWheel Wheel){
+    public void setWheel(@NonNull RobotWheel Wheel){
         this.m_Wheel = Wheel;
     }
     public RobotMotor getMotor(){
         return this.m_Motor;
     }
-    public void setMotor(RobotMotor Motor){
+    public void setMotor(@NonNull RobotMotor Motor){
         this.m_Motor = Motor;
+    }
+    public double getLastTaskMovedDistance(){
+        return ((double) this.m_Motor.getLastTaskMovedCounts()) / this.m_Motor.getCountsPerRev() * this.m_Wheel.getPerimeter();
     }
 }
