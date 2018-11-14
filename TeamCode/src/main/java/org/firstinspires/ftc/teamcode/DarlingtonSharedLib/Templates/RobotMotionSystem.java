@@ -28,14 +28,14 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 
 public abstract class RobotMotionSystem implements RobotNonBlockingDevice,RobotEventLoopable {
-    enum motionType{
+    public enum motionType{
         turningFixedAngle,
         keepingTurningWithSpeed,
         movingFixedDistance,
         keepingMovingWithFixedSpeed,
         stopped
     }
-    enum RobotMotionDirection{
+    public enum RobotMotionDirection{
         inX,
         inY,
         rotating,

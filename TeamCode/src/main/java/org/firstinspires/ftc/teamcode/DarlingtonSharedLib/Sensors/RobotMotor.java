@@ -21,6 +21,8 @@ public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
     private RobotMotorTask m_CurrentTask;
     private RobotMotorTask m_LastTask;
     private ArrayList<RobotMotorTask> m_QueueTasks;
+    private boolean m_TimeControl;
+    private double m_TimeControlPercent;
 
     @Override
     public void doLoop() {
@@ -43,11 +45,22 @@ public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
 
     @Override
     public void waitUntilFinish() {
-        if(this.m_CurrentTask != null){
-            this.m_CurrentTask.waitUntilFinish();
+        while(this.isBusy()){
+            this.doLoop();
         }
     }
-
+    public boolean isTimeControl(){
+        return this.m_TimeControl;
+    }
+    public void setTimeControlEnabled(boolean enabled){
+        this.m_TimeControl = enabled;
+    }
+    public double getTimeControlExcessPct(){
+        return this.m_TimeControlPercent;
+    }
+    public void setTimeControlExcessPct(double ExcessPct){
+        this.m_TimeControlPercent = ExcessPct;
+    }
     public double getCountsPerRev(){
         return this.m_CountsPerRev;
     }
@@ -103,6 +116,11 @@ public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
         if(!this.m_QueueTasks.isEmpty()){
             this.m_CurrentTask = this.m_QueueTasks.remove(0);
             this.m_CurrentTask.setRunningMotor(this);
+            if(this.m_CurrentTask instanceof RobotMotorTask.timeControlledTask){
+                RobotMotorTask.timeControlledTask currentTask = (RobotMotorTask.timeControlledTask) this.m_CurrentTask;
+                currentTask.setTimeControl(this.isTimeControl());
+                currentTask.setTimeControlExcessPct(this.getTimeControlExcessPct());
+            }
             this.m_CurrentTask.startJob();
         }
     }

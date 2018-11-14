@@ -5,19 +5,17 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotorTask;
 
-public class FixedCountsTask extends RobotMotorTask {
+public class FixedCountsTask extends RobotMotorTask implements RobotMotorTask.timeControlledTask {
     private int m_MovingCounts;
     private double m_MovingSpeed;
     private boolean m_timeControl;
     private double m_timeControlExcessPct;
     private int m_startCount;
 
-    public FixedCountsTask(int MovingCounts, double speed, boolean timeControl, double timeControlExcessPercent, RobotMotor.RobotMotorFinishCallback CallBack){
+    public FixedCountsTask(int MovingCounts, double speed, RobotMotor.RobotMotorFinishCallback CallBack){
         super(CallBack);
         this.m_MovingCounts = MovingCounts;
         this.m_MovingSpeed = speed;
-        this.m_timeControl = timeControl;
-        this.m_timeControlExcessPct = timeControlExcessPercent;
     }
     public int getMovingCounts(){
         return this.m_MovingCounts;
@@ -37,15 +35,19 @@ public class FixedCountsTask extends RobotMotorTask {
             this.setupDcMotor();
         }
     }
+    @Override
     public boolean isTimeControl(){
         return this.m_timeControl;
     }
+    @Override
     public void setTimeControl(boolean enabled){
         this.m_timeControl = enabled;
     }
+    @Override
     public double getTimeControlExcessPct(){
         return this.m_timeControlExcessPct;
     }
+    @Override
     public void setTimeControlExcessPct(double Pct){
         this.m_timeControlExcessPct = Pct;
     }

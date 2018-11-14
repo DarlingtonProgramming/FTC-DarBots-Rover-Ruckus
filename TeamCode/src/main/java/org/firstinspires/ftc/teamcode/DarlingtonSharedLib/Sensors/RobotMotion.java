@@ -36,8 +36,8 @@ public class RobotMotion {
         }
     }
     public class FixedDistanceMotionTask extends FixedCountsTask {
-        public FixedDistanceMotionTask(double Distance, double Speed, boolean timeControl, double timeControlPercent, RobotMotionFinishCallBack CallBack){
-            super((int) Math.abs(RobotMotion.this.getWheel().calculateCycleForDistance(Distance)*RobotMotion.this.getMotor().getCountsPerRev()),Speed,timeControl,timeControlPercent,new MotionCallBackConverter(CallBack,RobotMotion.this));
+        public FixedDistanceMotionTask(double Distance, double Speed, RobotMotionFinishCallBack CallBack){
+            super((int) Math.abs(RobotMotion.this.getWheel().calculateCycleForDistance(Distance)*RobotMotion.this.getMotor().getCountsPerRev()),Speed,new MotionCallBackConverter(CallBack,RobotMotion.this));
         }
         public double getDistance(){
             return ((double) super.getMovingCounts()) / RobotMotion.this.getMotor().getCountsPerRev() * RobotMotion.this.getWheel().getPerimeter();

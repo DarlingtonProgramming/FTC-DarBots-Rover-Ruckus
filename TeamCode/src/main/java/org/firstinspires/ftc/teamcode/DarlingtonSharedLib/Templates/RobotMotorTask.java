@@ -8,6 +8,12 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotor;
 
 
 public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEventLoopable {
+    public static interface timeControlledTask{
+        boolean isTimeControl();
+        void setTimeControl(boolean enabled);
+        double getTimeControlExcessPct();
+        void setTimeControlExcessPct(double Pct);
+    }
     private RobotMotor m_RunningMotor;
     private ElapsedTime m_ElapsedTime;
     private double m_TimeElapsed;
