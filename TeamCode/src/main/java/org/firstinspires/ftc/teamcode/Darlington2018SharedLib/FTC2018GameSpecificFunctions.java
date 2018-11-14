@@ -39,6 +39,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefau
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotCamera;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -136,23 +137,23 @@ public class FTC2018GameSpecificFunctions {
     private static final String TFOD_MODEL_ASSET = "RoverRuckus.tflite";
     private static final String LABEL_GOLD_MINERAL = "Gold Mineral";
     private static final String LABEL_SILVER_MINERAL = "Silver Mineral";
-    private String VUFORIA_KEY = " -- YOUR NEW VUFORIA KEY GOES HERE  --- ";
-    private VuforiaLocalizer m_vuforia = null;
+    private RobotCamera m_Camera = null;
     private TFObjectDetector m_tfod = null;
     private OpMode m_opMode;
-    private VuforiaLocalizer.CameraDirection m_CameraDirection;
-    public FTC2018GameSpecificFunctions(@NonNull OpMode controllerOp, VuforiaLocalizer.CameraDirection CameraDirection, String VUFORIAKEY){
+    private boolean m_Preview;
+    public FTC2018GameSpecificFunctions(@NonNull OpMode controllerOp, RobotCamera CameraToUse, boolean CameraPreview){
         this.m_opMode = controllerOp;
-        this.m_CameraDirection = CameraDirection;
-        //Finish converting
-        this.VUFORIA_KEY = VUFORIAKEY;
-        initVoforia();
+        this.m_Preview = CameraPreview;
+        this.m_Camera = CameraToUse;
         if (ClassFactory.getInstance().canCreateTFObjectDetector()) {
             initTfod();
         }
     }
-    public VuforiaLocalizer.CameraDirection getCameraDirection(){
-        return this.m_CameraDirection;
+    public boolean isPreviewingDetectionResult(){
+        return this.m_Preview;
+    }
+    public RobotCamera getCamera(){
+        return this.m_Camera;
     }
     public boolean isMineralDetectionCompatible(){
         return (this.m_tfod != null);
@@ -181,9 +182,6 @@ public class FTC2018GameSpecificFunctions {
             return new MineralInformation();
         }
     }
-    /*
-    returns -1 if on the left, 0 if in the center, 1 if on the right.
-     */
     public static GoldPosType detectAutonomousGoldMineralPos(MineralInformation[] MineralsDetected){
         if(MineralsDetected == null){
             return GoldPosType.Unknown;
@@ -216,25 +214,17 @@ public class FTC2018GameSpecificFunctions {
             return GoldPosType.Unknown;
         }
     }
-
     protected void initTfod() {
-        /* If you want to activate the object detecting camera contents to display on the ftc RC app, use this following code
-        int tfodMonitorViewId = m_opMode.hardwareMap.appContext.getResources().getIdentifier(
-                "tfodMonitorViewId", "id", m_opMode.hardwareMap.appContext.getPackageName());
-        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        */
-        TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters();
-        this.m_tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, m_vuforia);
+        TFObjectDetector.Parameters tfodParameters;
+        if(this.m_Preview) {
+            int tfodMonitorViewId = m_opMode.hardwareMap.appContext.getResources().getIdentifier(
+                    "tfodMonitorViewId", "id", m_opMode.hardwareMap.appContext.getPackageName());
+            tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
+        }else {
+            tfodParameters = new TFObjectDetector.Parameters();
+        }
+        this.m_tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, this.m_Camera.getVuforia());
         this.m_tfod.loadModelFromAsset(TFOD_MODEL_ASSET, LABEL_GOLD_MINERAL, LABEL_SILVER_MINERAL);
         this.m_tfod.activate();
-    }
-    protected void initVoforia(){
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
-
-        parameters.vuforiaLicenseKey = this.VUFORIA_KEY;
-        parameters.cameraDirection = this.m_CameraDirection;
-
-        //  Instantiate the Vuforia engine
-        m_vuforia = ClassFactory.getInstance().createVuforia(parameters);
     }
 }
