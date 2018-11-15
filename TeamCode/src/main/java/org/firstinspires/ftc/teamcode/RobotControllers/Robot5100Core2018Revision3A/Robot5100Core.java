@@ -5,10 +5,12 @@ import android.support.annotation.NonNull;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotor;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotOnPhoneCamera;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotServoUsingMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotWebcamCamera;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
@@ -27,8 +29,8 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         DcMotor LinearActuatorDc = ControllingOpMode.hardwareMap.dcMotor.get(Robot5100Setting.LINEARACTUATOR_CONFIGURATIONNAME);
         RobotMotor LinearActuatorMotor = new RobotMotor(LinearActuatorDc,Robot5100Setting.LINEARACTUATOR_COUNTSPERREV,Robot5100Setting.LINEARACTUATOR_REVPERSEC,Robot5100Setting.LINEARACTUATOR_TIMECONTROL,Robot5100Setting.LINEARACTUATOR_TIMECONTROLEXCESSPCT);
         this.m_LinearActuator = new RobotServoUsingMotor(LinearActuatorMotor,linearActuatorPos,Robot5100Setting.LINEARACTUATOR_BIGGESTPOS,Robot5100Setting.LINEARACTUATOR_SMALLESTPOS);
-        //RobotWebcamCamera WebCam = new RobotWebcamCamera(ControllingOpMode,Robot5100Setting.TFOL_RECOGNITIONCAMERA_CONFIGURATIONNAME,PrivateSettings.VUFORIALICENSE);
-        //this.m_GameSpecificFunction = new FTC2018GameSpecificFunctions(ControllingOpMode,WebCam,Robot5100Setting.TFOL_SHOWPREVIEWONRC);
+        RobotOnPhoneCamera PhoneCamera = new RobotOnPhoneCamera(VuforiaLocalizer.CameraDirection.BACK,PrivateSettings.VUFORIALICENSE);
+        this.m_GameSpecificFunction = new FTC2018GameSpecificFunctions(ControllingOpMode,PhoneCamera,Robot5100Setting.TFOL_SHOWPREVIEWONRC);
         RobotDebugger.setTelemetry(ControllingOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
     }
