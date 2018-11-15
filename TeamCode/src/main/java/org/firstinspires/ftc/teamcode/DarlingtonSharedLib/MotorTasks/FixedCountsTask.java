@@ -26,6 +26,9 @@ public class FixedCountsTask extends RobotMotorTask implements RobotMotorTask.ti
             this.setupDcMotor();
         }
     }
+    public int getTargetCount(){
+        return this.m_startCount + this.m_MovingCounts;
+    }
     public double getMovingSpeed(){
         return this.m_MovingSpeed;
     }
@@ -53,8 +56,8 @@ public class FixedCountsTask extends RobotMotorTask implements RobotMotorTask.ti
     }
 
     protected void setupDcMotor(){
+        super.getRunningMotor().getDcMotor().setTargetPosition(this.m_startCount + this.m_MovingCounts);
         super.getRunningMotor().getDcMotor().setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        super.getRunningMotor().getDcMotor().setTargetPosition(m_startCount + this.m_MovingCounts);
         super.getRunningMotor().getDcMotor().setPower(m_MovingSpeed);
     }
 
@@ -92,6 +95,5 @@ public class FixedCountsTask extends RobotMotorTask implements RobotMotorTask.ti
                 this._jobFinished_TimedOut();
             }
         }
-
     }
 }

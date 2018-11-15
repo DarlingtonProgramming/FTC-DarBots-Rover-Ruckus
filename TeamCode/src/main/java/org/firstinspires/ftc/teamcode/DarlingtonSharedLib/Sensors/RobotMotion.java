@@ -62,13 +62,13 @@ public class RobotMotion {
     }
     public class FixedDistanceMotionTask extends FixedCountsTask {
         public FixedDistanceMotionTask(double Distance, double Speed, RobotMotionFinishCallBack CallBack){
-            super((int) Math.abs(RobotMotion.this.getWheel().calculateCycleForDistance(Distance)*RobotMotion.this.getMotor().getCountsPerRev()),Speed,new MotionCallBackConverter(CallBack,RobotMotion.this));
+            super((int) Math.round(RobotMotion.this.getWheel().calculateCycleForDistance(Distance)*RobotMotion.this.getMotor().getCountsPerRev()),Speed,new MotionCallBackConverter(CallBack,RobotMotion.this));
         }
         public double getDistance(){
             return ((double) super.getMovingCounts()) / RobotMotion.this.getMotor().getCountsPerRev() * RobotMotion.this.getWheel().getPerimeter();
         }
         public void setDistance(double Distance){
-            super.setMovingCounts((int) Math.abs(RobotMotion.this.getWheel().calculateCycleForDistance(Distance)*RobotMotion.this.getMotor().getCountsPerRev()));
+            super.setMovingCounts((int) Math.round(RobotMotion.this.getWheel().calculateCycleForDistance(Distance)*RobotMotion.this.getMotor().getCountsPerRev()));
         }
         public void setMotionFinishCallBack(RobotMotionFinishCallBack CallBack){
             MotionCallBackConverter Converter = (MotionCallBackConverter) super.getFinishCallBack();

@@ -27,6 +27,7 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
 import android.support.annotation.NonNull;
 
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTasks.FixedCountsTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotEventLoopable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
@@ -42,8 +43,14 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
         this.m_BiggestPos = biggestPos;
         this.m_SmallestPos = smallestPos;
     }
+
     public double getCurrentPosition(){
         double absPos = ((double) this.m_Motor.getDcMotor().getCurrentPosition() / this.m_Motor.getCountsPerRev());
+        return this.m_ZeroPos + absPos;
+    }
+    public double getTargetPosition(){
+        FixedCountsTask CountsTask = (FixedCountsTask) this.m_Motor.getCurrentTask();
+        double absPos = ((double) CountsTask.getTargetCount() / this.m_Motor.getCountsPerRev());
         return this.m_ZeroPos + absPos;
     }
     public void setTargetPosition(double Position,double Speed){
@@ -52,10 +59,28 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
         }else if(Position < this.m_SmallestPos){
             Position = this.m_SmallestPos;
         }
+        if(this.isBusy()){
+            this.stopMotion();
+        }
         double deltaPos = Position - this.getCurrentPosition();
         int deltaCount = (int) Math.round(deltaPos * this.m_Motor.getCountsPerRev());
-        this.m_Motor.deleteAllTasks();
         this.m_Motor.addTask(new FixedCountsTask(deltaCount,Speed,null));
+    }
+
+    public double getBiggestPos(){
+        return this.m_BiggestPos;
+    }
+
+    public void setBiggestPos(double biggestPos){
+        this.m_BiggestPos = biggestPos;
+    }
+
+    public double getSmallestPos(){
+        return this.m_SmallestPos;
+    }
+
+    public void setSmallestPos(double smallestPos){
+        this.m_SmallestPos = smallestPos;
     }
 
     public void adjustCurrentPosition(double currentPos){

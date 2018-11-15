@@ -108,6 +108,9 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
         }
     }
     protected void _jobFinished_TimedOut(){
+        if(!this.isBusy()){
+            return;
+        }
         this.m_TimeOut = true;
         this._jobFinished();
     }
@@ -128,6 +131,9 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice,RobotEven
         }else{
             return this.m_ElapsedTime.seconds();
         }
+    }
+    public int getJobStartedCount(){
+        return this.m_StartCount;
     }
     public boolean isTaskTimedOut(){
         return this.m_TimeOut;

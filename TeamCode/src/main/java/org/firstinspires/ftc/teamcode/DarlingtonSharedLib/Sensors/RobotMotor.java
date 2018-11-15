@@ -62,9 +62,7 @@ public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
 
     @Override
     public void doLoop() {
-        if(!this.m_CurrentTask.isBusy()){
-            this.stopCurrentJob();
-        }
+        this.organizeTasks();
         if(this.m_CurrentTask != null){
             this.m_CurrentTask.doLoop();
         }
@@ -158,6 +156,8 @@ public class RobotMotor implements RobotEventLoopable,RobotNonBlockingDevice {
                 currentTask.setTimeControlExcessPct(this.getTimeControlExcessPct());
             }
             this.m_CurrentTask.startJob();
+        }else{
+            this.m_CurrentTask = null;
         }
     }
 
