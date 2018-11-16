@@ -29,28 +29,17 @@ public class Robot5100TeleOp extends LinearOpMode {
         if(isMoving){
             RobotDebugger.addDebug("isMoving","true");
             if(isTurning){
-                this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x);
+                this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x * Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
             }else{
                 if(isControllingX){
-                    this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(gamepad1.left_stick_x);
+                    this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(gamepad1.left_stick_x * Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
                 }else{
-                    this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(-gamepad1.left_stick_y);
+                    this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(-gamepad1.left_stick_y * Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
                 }
             }
         }else{
             RobotDebugger.addDebug("isMoving","false");
-            if(this.m_RobotCore.getMotionSystem().getCurrentMotionType() == RobotMotionSystem.motionType.keepingMovingWithFixedSpeed || this.m_RobotCore.getMotionSystem().getCurrentMotionType() == RobotMotionSystem.motionType.keepingTurningWithSpeed){
-                this.m_RobotCore.getMotionSystem().stopMoving();
-            }
-        }
-        if(gamepad1.dpad_up){
-            this.m_RobotCore.getMotionSystem().driveForward(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-        }else if(gamepad1.dpad_down){
-            this.m_RobotCore.getMotionSystem().driveBackward(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-        }else if(gamepad1.dpad_left){
-            this.m_RobotCore.getMotionSystem().driveToLeft(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-        }else if(gamepad1.dpad_right){
-            this.m_RobotCore.getMotionSystem().driveToRight(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().stopMoving();
         }
     }
     @Override
@@ -60,11 +49,11 @@ public class Robot5100TeleOp extends LinearOpMode {
         while(this.opModeIsActive()){
             if(this.gamepad1.x){
                 if(!this.m_RobotCore.getLinearActuator().isBusy()) {
-                    this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getBiggestPos(), 0.2);
+                    this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getBiggestPos(), Robot5100Setting.TELEOP_LINEARACTUATORSPEED);
                 }
             }else if(this.gamepad1.y) {
                 if (!this.m_RobotCore.getLinearActuator().isBusy()) {
-                    this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getSmallestPos(), 0.2);
+                    this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getSmallestPos(), Robot5100Setting.TELEOP_LINEARACTUATORSPEED);
                 }
             }else{
                 this.m_RobotCore.getLinearActuator().stopMotion();

@@ -27,14 +27,15 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revisio
 
 public class Robot5100Setting {
     public static final boolean TFOL_SHOWPREVIEWONRC = true;
-    public static final String TFOL_RECOGNITIONCAMERA_CONFIGURATIONNAME = "webcam";
 
     public static final double FIELDTOTALX = 365.76;
     public static final double FIELDTOTALY = 365.76;
 
     public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.3;
+    public static final double TELEOP_LINEARACTUATORSPEED = 0.5;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 1.0;
+    public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
 
     public static final boolean MOTIONSYSTEM_TIMECONTROL = false;
     public static final double MOTIONSYSTEM_TIMECONTROLPCT = 30;
@@ -68,6 +69,7 @@ public class Robot5100Setting {
     public static final double LINEARACTUATOR_REVPERSEC = 2.67;
     public static final double LINEARACTUATOR_INITIALPOS = 0;
     public static final double LINEARACTUATOR_BIGGESTPOS = 23.41;
+    public static final double LINEARACTUATOR_HOOKPOS = 20.94;
     public static final double LINEARACTUATOR_SMALLESTPOS = 0;
     public static final boolean LINEARACTUATOR_TIMECONTROL = true;
     public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 200;
