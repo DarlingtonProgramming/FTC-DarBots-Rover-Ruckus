@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionS
 
 @TeleOp(name = "Robot5100TeleOP", group = "5100")
 public class Robot5100TeleOp extends LinearOpMode {
-    private Robot5100Core m_RobotCore;
+    protected Robot5100Core m_RobotCore;
     protected void hardwareInit(){
         this.m_RobotCore = new Robot5100Core(this,100,100,0,0);
     }
@@ -27,7 +27,6 @@ public class Robot5100TeleOp extends LinearOpMode {
             }
         }
         if(isMoving){
-            RobotDebugger.addDebug("isMoving","true");
             if(isTurning){
                 this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x * Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
             }else{
@@ -38,7 +37,6 @@ public class Robot5100TeleOp extends LinearOpMode {
                 }
             }
         }else{
-            RobotDebugger.addDebug("isMoving","false");
             this.m_RobotCore.getMotionSystem().stopMoving();
         }
     }
