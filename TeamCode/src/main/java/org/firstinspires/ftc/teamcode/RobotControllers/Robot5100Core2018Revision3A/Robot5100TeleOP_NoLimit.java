@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revisio
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name ="Robot5100TeleOP_Maintenance", group = "5100")
-public class Robot5100TeleOP_NoLimit extends Robot5100TeleOp{
+public class Robot5100TeleOP_NoLimit extends Robot5100TeleOp_NoMemory{
     @Override
     protected void hardwareInit(){
         super.hardwareInit();

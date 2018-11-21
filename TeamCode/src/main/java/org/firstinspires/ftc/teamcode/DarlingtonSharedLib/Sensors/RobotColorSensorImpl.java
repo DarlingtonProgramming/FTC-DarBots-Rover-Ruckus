@@ -3,23 +3,28 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
-public class RobotColorSensor {
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotColorSensor;
+
+public class RobotColorSensorImpl implements RobotColorSensor {
     private ColorSensor m_ColorSensor;
     private int m_Alpha;
     private int m_Green;
     private int m_Red;
     private int m_Blue;
 
-    public RobotColorSensor(ColorSensor ColorSensor){
+    public RobotColorSensorImpl(ColorSensor ColorSensor){
         this.m_ColorSensor = ColorSensor;
         this.updateData();
     }
+    @Override
     public ColorSensor getColorSensor(){
         return this.m_ColorSensor;
     }
+    @Override
     public void setColorSensor(ColorSensor ColorSensor){
         this.m_ColorSensor = ColorSensor;
     }
+    @Override
     public void updateData(){
         m_Alpha = this.getColorSensor().alpha();
         int MaxRGBVal = Math.max(Math.max(this.getColorSensor().red(),this.getColorSensor().green()),this.getColorSensor().blue());
@@ -30,15 +35,19 @@ public class RobotColorSensor {
         this.m_Green = G;
         this.m_Blue = B;
     }
+    @Override
     public int alpha(){
         return this.m_Alpha;
     }
+    @Override
     public int red(){
         return this.m_Red;
     }
+    @Override
     public int green(){
         return this.m_Green;
     }
+    @Override
     public int blue(){
         return this.m_Blue;
     }

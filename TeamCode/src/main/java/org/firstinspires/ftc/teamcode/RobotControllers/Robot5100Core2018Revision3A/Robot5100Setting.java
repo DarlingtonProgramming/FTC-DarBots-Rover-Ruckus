@@ -26,6 +26,8 @@ SOFTWARE.
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revision3A;
 
 public class Robot5100Setting {
+    public static final String SETTINGFILENAME = "5100saved.json";
+
     public static final boolean TFOL_SHOWPREVIEWONRC = true;
 
     public static final double FIELDTOTALX = 365.76;

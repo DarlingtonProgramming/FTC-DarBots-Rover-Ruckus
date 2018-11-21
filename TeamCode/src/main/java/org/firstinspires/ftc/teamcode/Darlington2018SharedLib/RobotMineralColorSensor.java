@@ -1,41 +1,55 @@
 package org.firstinspires.ftc.teamcode.Darlington2018SharedLib;
 
-import android.graphics.Color;
-
-import com.qualcomm.robotcore.hardware.ColorSensor;
-
-import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotColorSensor;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RevColorSensor;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotColorSensor;
 
 public class RobotMineralColorSensor {
-    private RobotColorSensor m_ColorSensor;
-    public RobotMineralColorSensor(RobotColorSensor ColorSensor){
+    public static enum MineralType{
+        empty,
+        silver,
+        gold
+    }
+    private RevColorSensor m_ColorSensor;
+    public RobotMineralColorSensor(RevColorSensor ColorSensor){
         this.m_ColorSensor = ColorSensor;
     }
-    public RobotColorSensor getColorSensor(){
+    public RevColorSensor getColorSensor(){
         return this.m_ColorSensor;
     }
-    public void setColorSensor(RobotColorSensor ColorSensor){
+    public void setColorSensor(RevColorSensor ColorSensor){
         this.m_ColorSensor = ColorSensor;
     }
-    public boolean isGoldMineral(){
+    public MineralType getMineralType(){
         int R = this.getColorSensor().red();
         int G = this.getColorSensor().green();
         int B = this.getColorSensor().blue();
-        if(R > B && G>B){
+        double CM = 0;
+        try {
+            CM = this.getColorSensor().getDistance(DistanceUnit.CM);
+        }catch(RuntimeException e){
+            CM = -1;
+        }
+        if(CM == -1 || CM >= 25){
+            return MineralType.empty;
+        }
+        if(R > B && G > B){
             if(Math.round((R+G)/2.0f) - B >= 60){
-                return true;
+                return MineralType.gold;
             }
             else if(Math.abs(R-G) < 60){
                 if(B < 190){
-                    return true;
+                    return MineralType.gold;
                 }
             }
         }
-        return false;
+        return MineralType.silver;
+    }
+    public void updateData(){
+        this.m_ColorSensor.updateData();
     }
     protected static double mapValue(double currentValue, double currentSmallest, double currentBiggest, double ProjectedSmallest, double ProjectedBiggest){
         double currentAbs = currentValue - currentSmallest;
         return (currentAbs / (currentBiggest - currentSmallest) * (ProjectedBiggest - ProjectedSmallest)) + ProjectedSmallest;
     }
-
 }

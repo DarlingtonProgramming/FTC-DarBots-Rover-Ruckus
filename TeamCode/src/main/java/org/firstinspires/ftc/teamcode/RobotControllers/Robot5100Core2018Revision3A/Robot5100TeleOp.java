@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionS
 public class Robot5100TeleOp extends LinearOpMode {
     protected Robot5100Core m_RobotCore;
     protected void hardwareInit(){
-        this.m_RobotCore = new Robot5100Core(this,100,100,0,0);
+        this.m_RobotCore = new Robot5100Core(true,this,100,100,0,0);
     }
     protected void movementControl(){
         boolean isMoving = false;
