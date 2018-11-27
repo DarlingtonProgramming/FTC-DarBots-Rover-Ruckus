@@ -45,13 +45,17 @@ public class Robot5100TeleOp extends LinearOpMode {
         this.hardwareInit();
         this.waitForStart();
         while(this.opModeIsActive()){
-            if(this.gamepad1.x){
+            if(this.gamepad1.y){
                 if(!this.m_RobotCore.getLinearActuator().isBusy()) {
                     this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getBiggestPos(), Robot5100Setting.TELEOP_LINEARACTUATORSPEED);
                 }
-            }else if(this.gamepad1.y) {
+            }else if(this.gamepad1.x) {
                 if (!this.m_RobotCore.getLinearActuator().isBusy()) {
                     this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getSmallestPos(), Robot5100Setting.TELEOP_LINEARACTUATORSPEED);
+                }
+            }else if(this.gamepad1.right_bumper){
+                if(!this.m_RobotCore.getLinearActuator().isBusy()){
+                    this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.TELEOP_LINEARACTUATORSPEED);
                 }
             }else{
                 this.m_RobotCore.getLinearActuator().stopMotion();
