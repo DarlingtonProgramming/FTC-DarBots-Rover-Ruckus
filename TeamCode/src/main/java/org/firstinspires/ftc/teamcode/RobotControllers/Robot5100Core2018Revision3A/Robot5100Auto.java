@@ -66,6 +66,8 @@ public class Robot5100Auto extends LinearOpMode {
         if(this.opModeIsActive()){
             this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
             this.m_RobotCore.waitUntilFinish();
+            this.m_RobotCore.getMotionSystem().driveToRight(15,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getSmallestPos(),Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
             this.m_RobotCore.waitUntilFinish();
         }

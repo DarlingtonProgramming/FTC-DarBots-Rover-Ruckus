@@ -77,4 +77,5 @@ public class Robot5100Setting {
     public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 200;
 
     public static final String COLORSENSOR_CONFIGURATIONNAME = "colorSensor";
+    public static final String DECLARATIONSERVO_CONFIGURATIONNAME = "declarationServo";
 }

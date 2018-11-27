@@ -28,8 +28,10 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revisio
 import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
@@ -54,6 +56,7 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     private FTC2018GameSpecificFunctions m_GameSpecificFunction;
     private RobotMineralColorSensor m_ColorSensor;
     private FTC2018GameSpecificFunctions.GoldPosType m_GoldPos = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
+    private Servo m_DeclarationServo;
 
     public Robot5100Core(boolean readSetting, boolean loadGameSpecific, @NonNull OpMode ControllingOpMode, double initialX, double initialY, double initialRotation, double linearActuatorPos){
         this.m_PosTracker = new RobotPositionTracker(Robot5100Setting.FIELDTOTALX,Robot5100Setting.FIELDTOTALY,initialX,initialY,initialRotation,Robot5100Setting.LEFTFRONTWHEEL_POSITION,Robot5100Setting.RIGHTFRONTWHEEL_POSITION,Robot5100Setting.LEFTBACKWHEEL_POSITION,Robot5100Setting.RIGHTBACKWHEEL_POSITION);
@@ -67,7 +70,13 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         }else{
             this.m_GameSpecificFunction = null;
         }
-        this.m_ColorSensor = new RobotMineralColorSensor(new RevColorSensor(ControllingOpMode.hardwareMap.colorSensor.get(Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME),ControllingOpMode.hardwareMap.get(DistanceSensor.class,Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME)));
+        this.m_ColorSensor = new RobotMineralColorSensor(
+                new RevColorSensor(
+                        ControllingOpMode.hardwareMap.get(ColorSensor.class,Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME),
+                        ControllingOpMode.hardwareMap.get(DistanceSensor.class,Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME)
+                )
+        );
+        this.m_DeclarationServo = ControllingOpMode.hardwareMap.servo.get(Robot5100Setting.DECLARATIONSERVO_CONFIGURATIONNAME);
         RobotDebugger.setTelemetry(ControllingOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
@@ -76,6 +85,9 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     }
     public FTC2018GameSpecificFunctions.GoldPosType getLastDetectedGoldPos(){
         return this.m_GoldPos;
+    }
+    public Servo getDeclarationServo(){
+        return this.m_DeclarationServo;
     }
     public void tryDetectGoldPos(){
         if(this.m_GameSpecificFunction != null) {

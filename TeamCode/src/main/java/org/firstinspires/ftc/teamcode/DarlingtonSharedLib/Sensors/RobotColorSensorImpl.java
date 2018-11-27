@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
 
+import android.support.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.ColorSensor;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotColorSensor;
@@ -12,9 +14,8 @@ public class RobotColorSensorImpl implements RobotColorSensor {
     private int m_Red;
     private int m_Blue;
 
-    public RobotColorSensorImpl(ColorSensor ColorSensor){
+    public RobotColorSensorImpl(@NonNull ColorSensor ColorSensor){
         this.m_ColorSensor = ColorSensor;
-        this.updateData();
     }
     @Override
     public ColorSensor getColorSensor(){

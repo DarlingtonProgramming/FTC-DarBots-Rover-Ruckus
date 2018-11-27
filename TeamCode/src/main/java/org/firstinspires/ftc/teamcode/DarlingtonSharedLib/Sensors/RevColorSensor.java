@@ -1,8 +1,11 @@
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
+import android.support.annotation.NonNull;
+
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 
+import org.firstinspires.ftc.robotcontroller.external.samples.SensorREVColorDistance;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotDistanceSensor;
 
@@ -10,7 +13,7 @@ public class RevColorSensor extends RobotColorSensorImpl implements RobotDistanc
     private DistanceSensor m_DistanceSensor;
     private double m_LastCMMeasured = DistanceSensor.distanceOutOfRange;
 
-    public RevColorSensor(ColorSensor colorSensor, DistanceSensor distanceSensor){
+    public RevColorSensor(@NonNull ColorSensor colorSensor, @NonNull DistanceSensor distanceSensor){
         super(colorSensor);
         this.m_DistanceSensor = distanceSensor;
     }
