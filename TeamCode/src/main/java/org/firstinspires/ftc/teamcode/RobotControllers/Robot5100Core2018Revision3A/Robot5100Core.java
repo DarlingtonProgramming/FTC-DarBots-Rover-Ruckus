@@ -1,3 +1,28 @@
+/*
+MIT License
+
+Copyright (c) 2018 DarBots Collaborators
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+*/
+
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revision3A;
 
 import android.support.annotation.NonNull;
@@ -11,6 +36,7 @@ import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecifi
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.RobotMineralColorSensor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.RobotPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotEventLoopManager;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotSetting;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RevColorSensor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotColorSensorImpl;
@@ -27,20 +53,36 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     private RobotServoUsingMotor m_LinearActuator;
     private FTC2018GameSpecificFunctions m_GameSpecificFunction;
     private RobotMineralColorSensor m_ColorSensor;
+    private FTC2018GameSpecificFunctions.GoldPosType m_GoldPos = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
 
-    public Robot5100Core(boolean readSetting,@NonNull OpMode ControllingOpMode, double initialX, double initialY, double initialRotation, double linearActuatorPos){
+    public Robot5100Core(boolean readSetting, boolean loadGameSpecific, @NonNull OpMode ControllingOpMode, double initialX, double initialY, double initialRotation, double linearActuatorPos){
         this.m_PosTracker = new RobotPositionTracker(Robot5100Setting.FIELDTOTALX,Robot5100Setting.FIELDTOTALY,initialX,initialY,initialRotation,Robot5100Setting.LEFTFRONTWHEEL_POSITION,Robot5100Setting.RIGHTFRONTWHEEL_POSITION,Robot5100Setting.LEFTBACKWHEEL_POSITION,Robot5100Setting.RIGHTBACKWHEEL_POSITION);
         this.m_MotionSystem = new Robot5100MotionSystem(ControllingOpMode,this.m_PosTracker);
         DcMotor LinearActuatorDc = ControllingOpMode.hardwareMap.dcMotor.get(Robot5100Setting.LINEARACTUATOR_CONFIGURATIONNAME);
         RobotMotor LinearActuatorMotor = new RobotMotor(LinearActuatorDc,Robot5100Setting.LINEARACTUATOR_COUNTSPERREV,Robot5100Setting.LINEARACTUATOR_REVPERSEC,Robot5100Setting.LINEARACTUATOR_TIMECONTROL,Robot5100Setting.LINEARACTUATOR_TIMECONTROLEXCESSPCT);
         this.m_LinearActuator = new RobotServoUsingMotor(LinearActuatorMotor,linearActuatorPos,Robot5100Setting.LINEARACTUATOR_BIGGESTPOS,Robot5100Setting.LINEARACTUATOR_SMALLESTPOS);
-        RobotOnPhoneCamera PhoneCamera = new RobotOnPhoneCamera(VuforiaLocalizer.CameraDirection.BACK,PrivateSettings.VUFORIALICENSE);
-        this.m_GameSpecificFunction = new FTC2018GameSpecificFunctions(ControllingOpMode,PhoneCamera,Robot5100Setting.TFOL_SHOWPREVIEWONRC);
+        if(loadGameSpecific) {
+            RobotOnPhoneCamera PhoneCamera = new RobotOnPhoneCamera(VuforiaLocalizer.CameraDirection.BACK, PrivateSettings.VUFORIALICENSE);
+            this.m_GameSpecificFunction = new FTC2018GameSpecificFunctions(ControllingOpMode, PhoneCamera, Robot5100Setting.TFOL_SHOWPREVIEWONRC);
+        }else{
+            this.m_GameSpecificFunction = null;
+        }
         this.m_ColorSensor = new RobotMineralColorSensor(new RevColorSensor(ControllingOpMode.hardwareMap.colorSensor.get(Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME),ControllingOpMode.hardwareMap.get(DistanceSensor.class,Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME)));
         RobotDebugger.setTelemetry(ControllingOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
         if(readSetting){
             this.read(initialX,initialY,initialRotation,linearActuatorPos);
+        }
+    }
+    public FTC2018GameSpecificFunctions.GoldPosType getLastDetectedGoldPos(){
+        return this.m_GoldPos;
+    }
+    public void tryDetectGoldPos(){
+        if(this.m_GameSpecificFunction != null) {
+            FTC2018GameSpecificFunctions.GoldPosType tempPos = this.m_GameSpecificFunction.detectAutonomousGoldMineralPos(this.m_GameSpecificFunction.detectAllBlocksInCamera());
+            if (tempPos != FTC2018GameSpecificFunctions.GoldPosType.Unknown) {
+                this.m_GoldPos = tempPos;
+            }
         }
     }
     public Robot5100MotionSystem getMotionSystem(){
@@ -78,6 +120,9 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     public void doLoop() {
         this.m_MotionSystem.doLoop();
         this.m_LinearActuator.doLoop();
+        if(this.m_GoldPos == FTC2018GameSpecificFunctions.GoldPosType.Unknown){
+            this.tryDetectGoldPos();
+        }
         RobotDebugger.addDebug("LinearActuatorPos","" + this.getLinearActuator().getCurrentPosition());
         RobotDebugger.addDebug("X","" + this.getPositionTracker().getCurrentPosX());
         RobotDebugger.addDebug("Y","" + this.getPositionTracker().getCurrentPosY());
