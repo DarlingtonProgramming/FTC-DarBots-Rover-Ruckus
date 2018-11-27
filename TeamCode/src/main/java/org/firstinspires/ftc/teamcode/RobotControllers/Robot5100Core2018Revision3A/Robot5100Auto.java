@@ -43,6 +43,9 @@ public class Robot5100Auto extends LinearOpMode {
                 0
         );
     }
+    protected void hardwareDestroy(){
+        this.m_RobotCore = null;
+    }
     @Override
     public void runOpMode() throws InterruptedException {
         this.hardwareInit();
@@ -65,5 +68,6 @@ public class Robot5100Auto extends LinearOpMode {
             this.m_RobotCore.waitUntilFinish();
         }
         this.m_RobotCore.save();
+        this.hardwareDestroy();
     }
 }

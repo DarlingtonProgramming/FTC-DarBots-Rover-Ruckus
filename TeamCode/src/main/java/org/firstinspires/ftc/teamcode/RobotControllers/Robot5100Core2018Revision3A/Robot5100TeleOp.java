@@ -45,6 +45,9 @@ public class Robot5100TeleOp extends LinearOpMode {
                 0
         );
     }
+    protected void hardwareDestroy(){
+        this.m_RobotCore = null;
+    }
     protected void movementControl(){
         boolean isMoving = false;
         boolean isControllingX = false;
@@ -96,5 +99,6 @@ public class Robot5100TeleOp extends LinearOpMode {
             this.movementControl();
             this.m_RobotCore.doLoop();
         }
+        this.hardwareDestroy();
     }
 }
