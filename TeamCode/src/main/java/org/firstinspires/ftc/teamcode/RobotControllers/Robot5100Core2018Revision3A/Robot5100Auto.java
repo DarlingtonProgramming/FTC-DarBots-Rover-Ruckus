@@ -25,11 +25,13 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revision3A;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 
+@Autonomous(name = "Robot5100Autonomous", group = "5100")
 public class Robot5100Auto extends LinearOpMode {
     protected Robot5100Core m_RobotCore;
     protected void hardwareInit(){
