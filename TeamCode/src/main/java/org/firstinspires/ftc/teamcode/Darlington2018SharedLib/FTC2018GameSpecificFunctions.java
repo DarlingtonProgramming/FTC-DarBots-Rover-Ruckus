@@ -214,6 +214,17 @@ public class FTC2018GameSpecificFunctions {
             return GoldPosType.Unknown;
         }
     }
+    public static GoldPosType detectAutunomousGoldMineralPosHorizontal(MineralInformation[] MineralsDetected){
+        if(MineralsDetected == null){
+            return GoldPosType.Unknown;
+        }
+        MineralInformation[] minerals = new MineralInformation[MineralsDetected.length];
+        for(int i=0;i<MineralsDetected.length;i++){
+            minerals[i] = new MineralInformation(MineralsDetected[i].getMineralType(),MineralsDetected[i].getTop(),MineralsDetected[i].getLeft(),MineralsDetected[i].getWidth(),MineralsDetected[i].getHeight());
+            //Reverse Left and Top
+        }
+        return detectAutonomousGoldMineralPos(minerals);
+    }
     protected void initTfod() {
         TFObjectDetector.Parameters tfodParameters;
         if(this.m_Preview) {

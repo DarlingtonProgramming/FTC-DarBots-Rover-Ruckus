@@ -91,7 +91,7 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     }
     public void tryDetectGoldPos(){
         if(this.m_GameSpecificFunction != null) {
-            FTC2018GameSpecificFunctions.GoldPosType tempPos = this.m_GameSpecificFunction.detectAutonomousGoldMineralPos(this.m_GameSpecificFunction.detectAllBlocksInCamera());
+            FTC2018GameSpecificFunctions.GoldPosType tempPos = this.m_GameSpecificFunction.detectAutunomousGoldMineralPosHorizontal(this.m_GameSpecificFunction.detectAllBlocksInCamera());
             if (tempPos != FTC2018GameSpecificFunctions.GoldPosType.Unknown) {
                 this.m_GoldPos = tempPos;
             }
@@ -139,6 +139,7 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         RobotDebugger.addDebug("X","" + this.getPositionTracker().getCurrentPosX());
         RobotDebugger.addDebug("Y","" + this.getPositionTracker().getCurrentPosY());
         RobotDebugger.addDebug("Rotation","" + this.getPositionTracker().getRobotRotation());
+        RobotDebugger.addDebug("LastGoldPos",this.getLastDetectedGoldPos().name());
         RobotDebugger.doLoop();
     }
 
