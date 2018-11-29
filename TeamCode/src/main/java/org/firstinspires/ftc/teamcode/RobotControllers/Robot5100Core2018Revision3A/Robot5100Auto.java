@@ -80,7 +80,7 @@ public class Robot5100Auto extends LinearOpMode {
                     movingToRight = 0;
                     break;
                 case Center:
-                    movingToRight = 25;
+                    movingToRight = 20;
                     break;
                 case Right:
                     movingToRight = 50;
