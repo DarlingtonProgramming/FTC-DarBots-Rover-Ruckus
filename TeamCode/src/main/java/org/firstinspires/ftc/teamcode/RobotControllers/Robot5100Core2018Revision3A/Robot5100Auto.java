@@ -90,8 +90,9 @@ public class Robot5100Auto extends LinearOpMode {
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getMotionSystem().driveForward(50,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-
         }
+        this.m_RobotCore.getMotionSystem().waitUntilFinish();
+        this.m_RobotCore.waitUntilFinish();
         this.m_RobotCore.save();
         this.hardwareDestroy();
     }
