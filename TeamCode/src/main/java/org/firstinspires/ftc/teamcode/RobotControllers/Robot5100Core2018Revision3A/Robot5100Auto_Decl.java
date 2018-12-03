@@ -66,12 +66,14 @@ public class Robot5100Auto_Decl extends LinearOpMode {
         if(this.opModeIsActive()){
             this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
             this.m_RobotCore.waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveToLeft(15,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().driveToLeft(10,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getSmallestPos(),Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
             this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-15,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveForward(25,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().driveForward(20,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().waitUntilFinish();
+            this.m_RobotCore.getMotionSystem().driveToLeft(5,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             double movingToRight = 0;
             switch(this.m_RobotCore.getLastDetectedGoldPos()){
@@ -80,7 +82,7 @@ public class Robot5100Auto_Decl extends LinearOpMode {
                     movingToRight = 0;
                     break;
                 case Center:
-                    movingToRight = 20;
+                    movingToRight = 23;
                     break;
                 case Right:
                     movingToRight = 45;
@@ -90,12 +92,13 @@ public class Robot5100Auto_Decl extends LinearOpMode {
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getMotionSystem().driveForward(50,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveToLeft(movingToRight,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().driveToRight((45-movingToRight),Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveForward(40,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().driveForward(35,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(45,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
+            this.m_RobotCore.getMotionSystem().driveToRight(10,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getDeclarationServo().setPosition(1.0);
         }
         this.m_RobotCore.getMotionSystem().waitUntilFinish();

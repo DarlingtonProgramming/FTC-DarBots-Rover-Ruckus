@@ -31,8 +31,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 
-@Autonomous(name = "Robot5100Auto-Crater", group = "5100")
-public class Robot5100Auto_Crater extends LinearOpMode {
+@Autonomous(name = "Robot5100Auto-HookOnly", group = "5100")
+public class Robot5100Auto_HookOnly extends LinearOpMode {
     protected Robot5100Core m_RobotCore;
     protected void hardwareInit(){
         this.m_RobotCore = new Robot5100Core(
@@ -69,30 +69,6 @@ public class Robot5100Auto_Crater extends LinearOpMode {
             this.m_RobotCore.getMotionSystem().driveToLeft(10,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getLinearActuator().setTargetPosition(this.m_RobotCore.getLinearActuator().getSmallestPos(),Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
-            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-15,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-            this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveForward(25,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-            this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveToLeft(5,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-            this.m_RobotCore.getMotionSystem().waitUntilFinish();
-
-            double movingToRight = 0;
-            switch(this.m_RobotCore.getLastDetectedGoldPos()){
-                case Left:
-                case Unknown:
-                    movingToRight = 0;
-                    break;
-                case Center:
-                    movingToRight = 23;
-                    break;
-                case Right:
-                    movingToRight = 45;
-                    break;
-            }
-            this.m_RobotCore.getMotionSystem().driveToRight(movingToRight,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-            this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveForward(50,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-            this.m_RobotCore.getMotionSystem().waitUntilFinish();
         }
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
         this.m_RobotCore.waitUntilFinish();

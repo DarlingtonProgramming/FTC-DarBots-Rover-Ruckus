@@ -28,7 +28,7 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revisio
 public class Robot5100Setting {
     public static final String SETTINGFILENAME = "5100saved.json";
 
-    public static final boolean TFOL_SHOWPREVIEWONRC = true;
+    public static final boolean TFOL_SHOWPREVIEWONRC = false;
 
     public static final double FIELDTOTALX = 365.76;
     public static final double FIELDTOTALY = 365.76;
@@ -71,11 +71,10 @@ public class Robot5100Setting {
     public static final double LINEARACTUATOR_REVPERSEC = 2.67;
     public static final double LINEARACTUATOR_INITIALPOS = 0;
     public static final double LINEARACTUATOR_BIGGESTPOS = 23.0;
-    public static final double LINEARACTUATOR_HOOKPOS = 18.943;
+    public static final double LINEARACTUATOR_HOOKPOS = 18.8;
     public static final double LINEARACTUATOR_SMALLESTPOS = 0;
     public static final boolean LINEARACTUATOR_TIMECONTROL = true;
     public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 200;
 
-    public static final String COLORSENSOR_CONFIGURATIONNAME = "colorSensor";
     public static final String DECLARATIONSERVO_CONFIGURATIONNAME = "declarationServo";
 }

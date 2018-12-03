@@ -54,7 +54,6 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     private RobotPositionTracker m_PosTracker;
     private RobotServoUsingMotor m_LinearActuator;
     private FTC2018GameSpecificFunctions m_GameSpecificFunction;
-    private RobotMineralColorSensor m_ColorSensor;
     private FTC2018GameSpecificFunctions.GoldPosType m_GoldPos = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
     private Servo m_DeclarationServo;
 
@@ -67,15 +66,9 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         if(loadGameSpecific) {
             RobotOnPhoneCamera PhoneCamera = new RobotOnPhoneCamera(VuforiaLocalizer.CameraDirection.BACK, PrivateSettings.VUFORIALICENSE);
             this.m_GameSpecificFunction = new FTC2018GameSpecificFunctions(ControllingOpMode, PhoneCamera, Robot5100Setting.TFOL_SHOWPREVIEWONRC);
-        }else{
+        }else {
             this.m_GameSpecificFunction = null;
         }
-        this.m_ColorSensor = new RobotMineralColorSensor(
-                new RevColorSensor(
-                        ControllingOpMode.hardwareMap.get(ColorSensor.class,Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME),
-                        ControllingOpMode.hardwareMap.get(DistanceSensor.class,Robot5100Setting.COLORSENSOR_CONFIGURATIONNAME)
-                )
-        );
         this.m_DeclarationServo = ControllingOpMode.hardwareMap.servo.get(Robot5100Setting.DECLARATIONSERVO_CONFIGURATIONNAME);
         RobotDebugger.setTelemetry(ControllingOpMode.telemetry);
         RobotDebugger.setDebugOn(true);
@@ -125,9 +118,6 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         this.m_LinearActuator.adjustCurrentPosition(LinearActuatorPos);
     }
     public FTC2018GameSpecificFunctions getGameSpecificFunction(){return this.m_GameSpecificFunction;}
-    public RobotMineralColorSensor getColorSensor(){
-        return this.m_ColorSensor;
-    }
     @Override
     public void doLoop() {
         this.m_MotionSystem.doLoop();
