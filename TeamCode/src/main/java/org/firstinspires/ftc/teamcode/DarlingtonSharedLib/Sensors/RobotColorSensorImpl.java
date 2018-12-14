@@ -28,10 +28,13 @@ public class RobotColorSensorImpl implements RobotColorSensor {
     @Override
     public void updateData(){
         m_Alpha = this.getColorSensor().alpha();
-        int MaxRGBVal = Math.max(Math.max(this.getColorSensor().red(),this.getColorSensor().green()),this.getColorSensor().blue());
-        int R = (int) Math.round(mapValue(this.getColorSensor().red(),0,MaxRGBVal,0,255));
-        int G = (int) Math.round(mapValue(this.getColorSensor().green(),0,MaxRGBVal,0,255));
-        int B = (int) Math.round(mapValue(this.getColorSensor().blue(),0,MaxRGBVal,0,255));
+        int redRaw = this.getColorSensor().red();
+        int blueRaw = this.getColorSensor().blue();
+        int greenRaw = this.getColorSensor().green();
+        int MaxRGBVal = Math.max(Math.max(redRaw,greenRaw),blueRaw);
+        int R = (int) Math.round(mapValue(redRaw,0,MaxRGBVal,0,255));
+        int G = (int) Math.round(mapValue(greenRaw,0,MaxRGBVal,0,255));
+        int B = (int) Math.round(mapValue(blueRaw,0,MaxRGBVal,0,255));
         this.m_Red = R;
         this.m_Green = G;
         this.m_Blue = B;
