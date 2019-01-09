@@ -48,10 +48,16 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
         double absPos = ((double) this.m_Motor.getDcMotor().getCurrentPosition() / this.m_Motor.getCountsPerRev());
         return this.m_ZeroPos + absPos;
     }
+    public double getCurrentPercent(){
+        return this.getCurrentPosition() / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
+    }
     public double getTargetPosition(){
         FixedCountsTask CountsTask = (FixedCountsTask) this.m_Motor.getCurrentTask();
         double absPos = ((double) CountsTask.getTargetCount() / this.m_Motor.getCountsPerRev());
         return this.m_ZeroPos + absPos;
+    }
+    public double getTargetPercent(){
+        return this.getTargetPosition() / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
     }
     public void setTargetPosition(double Position,double Speed){
         if(Position > this.m_BiggestPos){
@@ -66,7 +72,9 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
         int deltaCount = (int) Math.round(deltaPos * this.m_Motor.getCountsPerRev());
         this.m_Motor.addTask(new FixedCountsTask(deltaCount,Speed,null));
     }
-
+    public void setTargetPercent(double Percent, double Speed){
+        this.setTargetPosition(Percent / 100.0 * (this.getBiggestPos() - this.getSmallestPos()) + this.getSmallestPos(),Speed);
+    }
     public double getBiggestPos(){
         return this.m_BiggestPos;
     }
