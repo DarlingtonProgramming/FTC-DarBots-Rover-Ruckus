@@ -37,6 +37,12 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
     private double m_ZeroPos;
     private double m_BiggestPos;
     private double m_SmallestPos;
+    protected double convertPercentToPos(double Percent){
+        return Percent / 100.0 * (this.getBiggestPos() - this.getSmallestPos()) + this.getSmallestPos();
+    }
+    protected double convertPosToPercent(double Pos){
+        return Pos / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
+    }
     public RobotServoUsingMotor(@NonNull RobotMotor Motor, double currentPos, double biggestPos, double smallestPos){
         this.m_Motor = Motor;
         this.adjustCurrentPosition(currentPos);
@@ -49,7 +55,7 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
         return this.m_ZeroPos + absPos;
     }
     public double getCurrentPercent(){
-        return this.getCurrentPosition() / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
+        return this.convertPosToPercent(this.getCurrentPosition());
     }
     public double getTargetPosition(){
         FixedCountsTask CountsTask = (FixedCountsTask) this.m_Motor.getCurrentTask();
@@ -57,7 +63,7 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
         return this.m_ZeroPos + absPos;
     }
     public double getTargetPercent(){
-        return this.getTargetPosition() / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
+        return this.convertPosToPercent(this.getTargetPosition());
     }
     public void setTargetPosition(double Position,double Speed){
         if(Position > this.m_BiggestPos){
@@ -73,7 +79,7 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
         this.m_Motor.addTask(new FixedCountsTask(deltaCount,Speed,null));
     }
     public void setTargetPercent(double Percent, double Speed){
-        this.setTargetPosition(Percent / 100.0 * (this.getBiggestPos() - this.getSmallestPos()) + this.getSmallestPos(),Speed);
+        this.setTargetPosition(this.convertPercentToPos(Percent),Speed);
     }
     public double getBiggestPos(){
         return this.m_BiggestPos;
@@ -94,6 +100,9 @@ public class RobotServoUsingMotor implements RobotEventLoopable, RobotNonBlockin
     public void adjustCurrentPosition(double currentPos){
         double absPos = ((double) this.m_Motor.getDcMotor().getCurrentPosition()) / this.m_Motor.getCountsPerRev();
         this.m_ZeroPos = currentPos - absPos;
+    }
+    public void adjustCurrentPercent(double currentPercent){
+        this.adjustCurrentPosition(this.convertPercentToPos(currentPercent));
     }
 
     public void stopMotion(){

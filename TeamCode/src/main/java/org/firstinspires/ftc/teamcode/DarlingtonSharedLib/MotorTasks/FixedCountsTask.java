@@ -91,6 +91,10 @@ public class FixedCountsTask extends RobotMotorTask implements RobotMotorTask.ti
             this._jobFinished();
         }else if(this.m_timeControl) {
             double fineTime = Math.abs(this.m_MovingCounts / (this.m_MovingSpeed * super.getRunningMotor().getRevPerSec() * super.getRunningMotor().getCountsPerRev())) * ((100.0 + this.m_timeControlExcessPct) / 100.0);
+            if(fineTime < 1){
+                fineTime = 1;
+                fineTime *= ((100.0 + this.m_timeControlExcessPct) / 100.0);
+            }
             if (super.getTimeElapsed() > fineTime) {
                 this._jobFinished_TimedOut();
             }

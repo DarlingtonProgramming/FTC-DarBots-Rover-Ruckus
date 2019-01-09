@@ -42,6 +42,8 @@ public class Robot5100TeleOp extends LinearOpMode {
                 100,
                 100,
                 0,
+                0,
+                0,
                 0
         );
     }
@@ -97,6 +99,35 @@ public class Robot5100TeleOp extends LinearOpMode {
                 this.m_RobotCore.getLinearActuator().stopMotion();
             }
             this.movementControl();
+            if(this.gamepad2.dpad_up){
+                if(!this.m_RobotCore.getArmReach().isBusy()){
+                    this.m_RobotCore.getArmReach().setTargetPosition(this.m_RobotCore.getArmReach().getBiggestPos(),Robot5100Setting.TELEOP_ARMREACHSPEED);
+                }
+            }else if(this.gamepad2.dpad_down){
+                if(!this.m_RobotCore.getArmReach().isBusy()){
+                    this.m_RobotCore.getArmReach().setTargetPosition(this.m_RobotCore.getArmReach().getSmallestPos(),Robot5100Setting.TELEOP_ARMREACHSPEED);
+                }
+            }else{
+                this.m_RobotCore.getArmReach().stopMotion();
+            }
+            if(this.gamepad2.dpad_right) {
+                if (!this.m_RobotCore.getArm().isBusy()) {
+                    this.m_RobotCore.getArm().setTargetPosition(this.m_RobotCore.getArm().getBiggestPos(), Robot5100Setting.TELEOP_ARMSPEED);
+                }
+            }else if(this.gamepad2.dpad_left){
+                if(!this.m_RobotCore.getArm().isBusy()){
+                    this.m_RobotCore.getArm().setTargetPosition(this.m_RobotCore.getArm().getSmallestPos(),Robot5100Setting.TELEOP_ARMSPEED);
+                }
+            }else{
+                this.m_RobotCore.getArm().stopMotion();
+            }
+            if(this.gamepad2.left_bumper){
+                this.m_RobotCore.startVomitingMineral();
+            }else if(this.gamepad2.right_bumper){
+                this.m_RobotCore.startSuckingMineral();
+            }else{
+                this.m_RobotCore.stopSuckingMineral();
+            }
             this.m_RobotCore.doLoop();
         }
         this.hardwareDestroy();

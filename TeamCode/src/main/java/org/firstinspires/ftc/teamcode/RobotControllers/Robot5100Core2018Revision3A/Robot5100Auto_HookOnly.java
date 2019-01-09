@@ -42,6 +42,8 @@ public class Robot5100Auto_HookOnly extends LinearOpMode {
                 100,
                 100,
                 0,
+                0,
+                0,
                 0
         );
     }

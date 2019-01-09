@@ -38,6 +38,8 @@ public class Robot5100TeleOp_NoMemory extends Robot5100TeleOp {
                 100,
                 100,
                 0,
+                0,
+                0,
                 0
         );
     }

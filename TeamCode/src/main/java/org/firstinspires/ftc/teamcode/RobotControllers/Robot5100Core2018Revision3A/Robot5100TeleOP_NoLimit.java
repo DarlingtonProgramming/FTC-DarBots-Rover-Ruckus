@@ -34,5 +34,9 @@ public class Robot5100TeleOP_NoLimit extends Robot5100TeleOp_NoMemory{
         super.hardwareInit();
         super.m_RobotCore.getLinearActuator().setBiggestPos(1000);
         super.m_RobotCore.getLinearActuator().setSmallestPos(-1000);
+        super.m_RobotCore.getArm().setBiggestPos(1000);
+        super.m_RobotCore.getArm().setSmallestPos(-1000);
+        super.m_RobotCore.getArmReach().setBiggestPos(1000);
+        super.m_RobotCore.getArmReach().setSmallestPos(-1000);
     }
 }

@@ -36,24 +36,28 @@ public class Robot5100Setting {
     public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
     public static final double TELEOP_LINEARACTUATORSPEED = 0.8;
+    public static final double TELEOP_ARMSPEED = 0.3;
+    public static final double TELEOP_ARMREACHSPEED = 0.5;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.5;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
+    public static final double AUTONOMOUS_ARMSPEED = 0.5;
+    public static final double AUTONOMOUS_ARMREACHSPEED = 0.5;
 
     public static final boolean MOTIONSYSTEM_TIMECONTROL = false;
     public static final double MOTIONSYSTEM_TIMECONTROLPCT = 30;
-    public static final String LEFTFRONTWHEEL_CONFIGURATIONNAME = "motor1";
+    public static final String LEFTFRONTWHEEL_CONFIGURATIONNAME = "motor0";
     public static final double LEFTFRONTWHEEL_COUNTSPERREV = 1120;
     public static final double LEFTFRONTWHEEL_REVPERSEC = 2.5;
     public static final double LEFTFRONTWHEEL_INSTALLEDANGLE = -45;
     public static final double LEFTFRONTWHEEL_RADIUS = 5;
     public static final double[] LEFTFRONTWHEEL_POSITION = {-16.0,16.0};
-    public static final String RIGHTFRONTWHEEL_CONFIGURATIONNAME = "motor3";
+    public static final String RIGHTFRONTWHEEL_CONFIGURATIONNAME = "motor1";
     public static final double RIGHTFRONTWHEEL_COUNTSPERREV = 1120;
     public static final double RIGHTFRONTWHEEL_REVPERSEC = 2.5;
     public static final double RIGHTFRONTWHEEL_INSTALLEDANGLE = 45;
     public static final double RIGHTFRONTWHEEL_RADIUS = 5;
     public static final double[] RIGHTFRONTWHEEL_POSITION = {16.0,16.0};
-    public static final String LEFTBACKWHEEL_CONFIGURATIONNAME = "motor0";
+    public static final String LEFTBACKWHEEL_CONFIGURATIONNAME = "motor3";
     public static final double LEFTBACKWHEEL_COUNTSPERREV = 1120;
     public static final double LEFTBACKWHEEL_REVPERSEC = 2.5;
     public static final double LEFTBACKWHEEL_INSTALLEDANGLE = -135;
@@ -71,10 +75,26 @@ public class Robot5100Setting {
     public static final double LINEARACTUATOR_REVPERSEC = 2.67;
     public static final double LINEARACTUATOR_INITIALPOS = 0;
     public static final double LINEARACTUATOR_BIGGESTPOS = 23.0;
-    public static final double LINEARACTUATOR_HOOKPOS = 18.8;
+    public static final double LINEARACTUATOR_HOOKPCT = 18.8;
     public static final double LINEARACTUATOR_SMALLESTPOS = 0;
     public static final boolean LINEARACTUATOR_TIMECONTROL = true;
     public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 200;
 
-    public static final String DECLARATIONSERVO_CONFIGURATIONNAME = "declarationServo";
+    public static final String ARMMOTOR_CONFIGURATIONNAME = "armMotor";
+    public static final double ARMMOTOR_COUNTSPERREV = 1680;
+    public static final double ARMMOTOR_REVPERSEC = 1.75;
+    public static final double ARMMOTOR_BIGGESTPOS = 1000;
+    public static final double ARMMOTOR_SMALLESTPOS = 0;
+    public static final boolean ARMMOTOR_TIMECONTROL = true;
+    public static final double ARMMOTOR_TIMECONTROLEXCESSPCT = 200;
+
+    public static final String ARMREACHMOTOR_CONFIGURATIONNAME = "armReachMotor";
+    public static final double ARMREACHMOTOR_COUNTSPERREV = 28;
+    public static final double ARMREACHMOTOR_REVPERSEC = 19.167;
+    public static final double ARMREACHMOTOR_BIGGESTPOS = 1000;
+    public static final double ARMREACHMOTOR_SMALLESTPOS = 0;
+    public static final boolean ARMREACHMOTOR_TIMECONTROL = true;
+    public static final double ARMREACHMOTOR_TIMECONTROLEXCESSPCT = 200;
+
+    public static final String INTAKESERVO_CONFIGURATIONNAME = "intakeServo";
 }
