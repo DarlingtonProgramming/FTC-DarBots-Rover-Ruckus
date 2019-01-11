@@ -31,6 +31,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -72,9 +73,11 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         RobotMotor ArmMotor = new RobotMotor(ArmMotorDC,Robot5100Setting.ARMMOTOR_COUNTSPERREV,Robot5100Setting.ARMMOTOR_REVPERSEC,Robot5100Setting.ARMMOTOR_TIMECONTROL,Robot5100Setting.ARMMOTOR_TIMECONTROLEXCESSPCT);
         this.m_Arm = new RobotServoUsingMotor(ArmMotor,armMotorPos,Robot5100Setting.ARMMOTOR_BIGGESTPOS,Robot5100Setting.ARMMOTOR_SMALLESTPOS);
         DcMotor ArmReachMotorDC = ControllingOpMode.hardwareMap.dcMotor.get(Robot5100Setting.ARMREACHMOTOR_CONFIGURATIONNAME);
+        ArmReachMotorDC.setDirection(DcMotorSimple.Direction.REVERSE);
         RobotMotor ArmReachMotor = new RobotMotor(ArmReachMotorDC,Robot5100Setting.ARMREACHMOTOR_COUNTSPERREV,Robot5100Setting.ARMREACHMOTOR_REVPERSEC,Robot5100Setting.ARMREACHMOTOR_TIMECONTROL,Robot5100Setting.ARMREACHMOTOR_TIMECONTROLEXCESSPCT);
         this.m_ArmReach = new RobotServoUsingMotor(ArmReachMotor,armReachPos,Robot5100Setting.ARMREACHMOTOR_BIGGESTPOS,Robot5100Setting.ARMREACHMOTOR_SMALLESTPOS);
         this.m_IntakeServo = ControllingOpMode.hardwareMap.crservo.get(Robot5100Setting.INTAKESERVO_CONFIGURATIONNAME);
+        this.m_IntakeServo.setDirection(DcMotorSimple.Direction.REVERSE);
         if(loadGameSpecific) {
             RobotOnPhoneCamera PhoneCamera = new RobotOnPhoneCamera(VuforiaLocalizer.CameraDirection.BACK, PrivateSettings.VUFORIALICENSE);
             this.m_GameSpecificFunction = new FTC2018GameSpecificFunctions(ControllingOpMode, PhoneCamera, Robot5100Setting.TFOL_SHOWPREVIEWONRC);
@@ -90,9 +93,12 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     public FTC2018GameSpecificFunctions.GoldPosType getLastDetectedGoldPos(){
         return this.m_GoldPos;
     }
+    public void setLastDetectedGoldPos(FTC2018GameSpecificFunctions.GoldPosType lastGoldPos){
+        this.m_GoldPos = lastGoldPos;
+    }
     public void tryDetectGoldPos(){
         if(this.m_GameSpecificFunction != null) {
-            FTC2018GameSpecificFunctions.GoldPosType tempPos = this.m_GameSpecificFunction.detectAutunomousGoldMineralPosHorizontal(this.m_GameSpecificFunction.detectAllBlocksInCamera());
+            FTC2018GameSpecificFunctions.GoldPosType tempPos = this.m_GameSpecificFunction.detectAutonomousGoldMineralPosHorizontal(this.m_GameSpecificFunction.detectAllBlocksInCamera());
             if (tempPos != FTC2018GameSpecificFunctions.GoldPosType.Unknown) {
                 this.m_GoldPos = tempPos;
             }
@@ -128,6 +134,8 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         RobotSetting.saveSetting("Y",new Double(this.m_PosTracker.getCurrentPosY()));
         RobotSetting.saveSetting("Rotation",new Double(this.m_PosTracker.getRobotRotation()));
         RobotSetting.saveSetting("LinearActuatorPos",new Double(this.m_LinearActuator.getCurrentPosition()));
+        RobotSetting.saveSetting("ArmMotorPos",new Double(this.m_Arm.getCurrentPosition()));
+        RobotSetting.saveSetting("ArmReachMotorPos",new Double(this.m_ArmReach.getCurrentPosition()));
     }
     public void read(double defaultX, double defaultY, double defaultRotation, double defaultLinearActuatorPos, double defaultArmMotorPos, double defaultArmReachPos){
         RobotSetting.settingFile = Robot5100Setting.SETTINGFILENAME;
@@ -135,10 +143,14 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         double Y = RobotSetting.getSetting("Y",new Double(defaultY));
         double Rotation = RobotSetting.getSetting("Rotation",new Double(defaultRotation));
         double LinearActuatorPos = RobotSetting.getSetting("LinearActuatorPos",new Double(defaultLinearActuatorPos));
+        double ArmMotorPos = RobotSetting.getSetting("ArmMotorPos",new Double(defaultArmMotorPos));
+        double ArmReachMotorPos = RobotSetting.getSetting("ArmReachMotorPos",new Double(this.m_ArmReach.getCurrentPosition()));
         this.m_PosTracker.setCurrentPosX(X);
         this.m_PosTracker.setCurrentPosY(Y);
         this.m_PosTracker.setRobotRotation(Rotation);
         this.m_LinearActuator.adjustCurrentPosition(LinearActuatorPos);
+        this.m_Arm.adjustCurrentPosition(ArmMotorPos);
+        this.m_ArmReach.adjustCurrentPosition(ArmReachMotorPos);
     }
     public FTC2018GameSpecificFunctions getGameSpecificFunction(){return this.m_GameSpecificFunction;}
     @Override
@@ -150,11 +162,13 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
             this.tryDetectGoldPos();
         }
         */
-        RobotDebugger.addDebug("LinearActuatorPos","" + this.getLinearActuator().getCurrentPosition() + ":" + this.getLinearActuator().getCurrentPercent() + "%");
+        RobotDebugger.addDebug("LinearActuatorPos","" + this.getLinearActuator().getCurrentPosition() + " (" + this.getLinearActuator().getCurrentPercent() + "%)");
         RobotDebugger.addDebug("X","" + this.getPositionTracker().getCurrentPosX());
         RobotDebugger.addDebug("Y","" + this.getPositionTracker().getCurrentPosY());
         RobotDebugger.addDebug("Rotation","" + this.getPositionTracker().getRobotRotation());
         RobotDebugger.addDebug("LastGoldPos",this.getLastDetectedGoldPos().name());
+        RobotDebugger.addDebug("ArmMotorPos","" + this.getArm().getCurrentPosition() + " (" + this.getArm().getCurrentPercent() + "%)");
+        RobotDebugger.addDebug("ArmReachMotorPos","" + this.getArmReach().getCurrentPosition() + " (" + this.getArmReach().getCurrentPercent() + "%)");
         RobotDebugger.doLoop();
     }
 

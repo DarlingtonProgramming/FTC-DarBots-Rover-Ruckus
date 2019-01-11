@@ -73,10 +73,9 @@ public class Robot5100Setting {
     public static final String LINEARACTUATOR_CONFIGURATIONNAME = "linearActuator";
     public static final double LINEARACTUATOR_COUNTSPERREV = 1120;
     public static final double LINEARACTUATOR_REVPERSEC = 2.67;
-    public static final double LINEARACTUATOR_INITIALPOS = 0;
-    public static final double LINEARACTUATOR_BIGGESTPOS = 23.0;
+    public static final double LINEARACTUATOR_BIGGESTPOS = 1000;
     public static final double LINEARACTUATOR_HOOKPCT = 18.8;
-    public static final double LINEARACTUATOR_SMALLESTPOS = 0;
+    public static final double LINEARACTUATOR_SMALLESTPOS = -1000;
     public static final boolean LINEARACTUATOR_TIMECONTROL = true;
     public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 200;
 
@@ -84,7 +83,7 @@ public class Robot5100Setting {
     public static final double ARMMOTOR_COUNTSPERREV = 1680;
     public static final double ARMMOTOR_REVPERSEC = 1.75;
     public static final double ARMMOTOR_BIGGESTPOS = 1000;
-    public static final double ARMMOTOR_SMALLESTPOS = 0;
+    public static final double ARMMOTOR_SMALLESTPOS = -1000;
     public static final boolean ARMMOTOR_TIMECONTROL = true;
     public static final double ARMMOTOR_TIMECONTROLEXCESSPCT = 200;
 
