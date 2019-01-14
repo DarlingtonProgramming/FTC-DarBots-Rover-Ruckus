@@ -73,17 +73,17 @@ public class Robot5100Setting {
     public static final String LINEARACTUATOR_CONFIGURATIONNAME = "linearActuator";
     public static final double LINEARACTUATOR_COUNTSPERREV = 1120;
     public static final double LINEARACTUATOR_REVPERSEC = 2.67;
-    public static final double LINEARACTUATOR_BIGGESTPOS = 1000;
+    public static final double LINEARACTUATOR_BIGGESTPOS = 25.035;
     public static final double LINEARACTUATOR_HOOKPCT = 18.8;
-    public static final double LINEARACTUATOR_SMALLESTPOS = -1000;
+    public static final double LINEARACTUATOR_SMALLESTPOS = 0;
     public static final boolean LINEARACTUATOR_TIMECONTROL = true;
     public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 200;
 
     public static final String ARMMOTOR_CONFIGURATIONNAME = "armMotor";
     public static final double ARMMOTOR_COUNTSPERREV = 1680;
     public static final double ARMMOTOR_REVPERSEC = 1.75;
-    public static final double ARMMOTOR_BIGGESTPOS = 1000;
-    public static final double ARMMOTOR_SMALLESTPOS = -1000;
+    public static final double ARMMOTOR_BIGGESTPOS = 2.645;
+    public static final double ARMMOTOR_SMALLESTPOS = 0;
     public static final boolean ARMMOTOR_TIMECONTROL = true;
     public static final double ARMMOTOR_TIMECONTROLEXCESSPCT = 200;
 
@@ -91,7 +91,7 @@ public class Robot5100Setting {
     public static final double ARMREACHMOTOR_COUNTSPERREV = 28;
     public static final double ARMREACHMOTOR_REVPERSEC = 19.167;
     public static final double ARMREACHMOTOR_BIGGESTPOS = 1000;
-    public static final double ARMREACHMOTOR_SMALLESTPOS = 0;
+    public static final double ARMREACHMOTOR_SMALLESTPOS = -1000;
     public static final boolean ARMREACHMOTOR_TIMECONTROL = true;
     public static final double ARMREACHMOTOR_TIMECONTROLEXCESSPCT = 200;
 
