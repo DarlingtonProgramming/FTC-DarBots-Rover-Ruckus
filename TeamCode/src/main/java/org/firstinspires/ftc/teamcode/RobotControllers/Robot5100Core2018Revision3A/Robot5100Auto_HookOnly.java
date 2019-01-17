@@ -55,22 +55,17 @@ public class Robot5100Auto_HookOnly extends LinearOpMode {
         this.hardwareInit();
         RobotDebugger.addDebug("Status","Initialized");
         RobotDebugger.doLoop();
-        while(!this.isStarted()){
-            this.m_RobotCore.tryDetectGoldPos();
-            if(this.m_RobotCore.getLastDetectedGoldPos() != FTC2018GameSpecificFunctions.GoldPosType.Unknown){
-                RobotDebugger.addDebug("Status","Initialized & Gold Detected");
-                RobotDebugger.addDebug("GoldPos",this.m_RobotCore.getLastDetectedGoldPos().name());
-                RobotDebugger.doLoop();
-                break;
-            }
-        }
         this.waitForStart();
         if(this.opModeIsActive()){
             this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
+            while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Unknown){
+                this.m_RobotCore.tryDetectGoldPos();
+            }
             this.m_RobotCore.waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveToLeft(8,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().driveToLeft(10,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
         }
+        //Ending The Autonomous Program
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
         this.m_RobotCore.waitUntilFinish();
         this.m_RobotCore.save();

@@ -157,6 +157,8 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     public void doLoop() {
         this.m_MotionSystem.doLoop();
         this.m_LinearActuator.doLoop();
+        this.m_Arm.doLoop();
+        this.m_ArmReach.doLoop();
         RobotDebugger.addDebug("LinearActuatorPos","" + this.getLinearActuator().getCurrentPosition() + " (" + this.getLinearActuator().getCurrentPercent() + "%)");
         RobotDebugger.addDebug("ArmMotorPos","" + this.getArm().getCurrentPosition() + " (" + this.getArm().getCurrentPercent() + "%)");
         RobotDebugger.addDebug("ArmReachMotorPos","" + this.getArmReach().getCurrentPosition() + " (" + this.getArmReach().getCurrentPercent() + "%)");
@@ -173,7 +175,7 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
 
     @Override
     public boolean isBusy() {
-        return this.m_LinearActuator.isBusy();
+        return this.m_LinearActuator.isBusy() || this.m_Arm.isBusy() || this.m_ArmReach.isBusy();
     }
 
     @Override
