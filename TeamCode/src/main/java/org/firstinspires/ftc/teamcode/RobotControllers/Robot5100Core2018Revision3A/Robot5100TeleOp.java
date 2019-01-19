@@ -50,28 +50,62 @@ public class Robot5100TeleOp extends LinearOpMode {
     protected void hardwareDestroy(){
         this.m_RobotCore = null;
     }
-    protected void movementControl(){
+    protected void movementControl() {
         boolean isMoving = false;
         boolean isControllingX = false;
         boolean isTurning = false;
-        if(Math.abs(gamepad1.left_stick_x) >= Robot5100Setting.TELEOP_GAMEPADTRIGGERVALUE || Math.abs(gamepad1.left_stick_y) >= Robot5100Setting.TELEOP_GAMEPADTRIGGERVALUE || Math.abs(gamepad1.right_stick_x) >= Robot5100Setting.TELEOP_GAMEPADTRIGGERVALUE){
-            isMoving = true;
-            if(Math.abs(gamepad1.right_stick_x) >= Math.max(Math.abs(gamepad1.left_stick_x),Math.abs(gamepad1.left_stick_y))){
+        double controlValue = 0;
+        double gamepad1MaxCtl = Math.max(Math.abs(gamepad1.left_stick_x), Math.max(Math.abs(gamepad1.left_stick_y), Math.abs(gamepad1.right_stick_x)));
+        double gamepad2MaxCtl = Math.max(Math.abs(gamepad2.left_stick_x), Math.max(Math.abs(gamepad2.left_stick_y), Math.abs(gamepad2.right_stick_x)));
+        if (gamepad2MaxCtl >= Robot5100Setting.TELEOP_GAMEPADTRIGGERVALUE) {
+            if (Math.abs(gamepad2.right_stick_x) >= gamepad2MaxCtl) {
+                isMoving = true;
                 isTurning = true;
-            }else{
-                if(Math.abs(gamepad1.left_stick_x) >= Math.abs(gamepad1.left_stick_y)){
+                controlValue = gamepad2.right_stick_x;
+            } else {
+                //Controlling left stick
+                if (Math.abs(gamepad2.left_stick_x) >= Math.abs(gamepad2.left_stick_y)) {
+                    //Controlling Left&Right motion, with respect to the robot arm. So we are actually controlling in the Y axis.
+                    isMoving = true;
                     isControllingX = true;
+                    controlValue = gamepad2.left_stick_x;
+                } else {
+                    //Controlling Front & Back motion, with respect to the robot arm, So we are actually controlling in the -X axis.
+                    isMoving = true;
+                    isControllingX = false;
+                    controlValue = -(-gamepad2.left_stick_y); //Since the gamepad Y is negative when pushed up, we need to reverse the sign of y value to get a positive Y for pushing up the stick, But the robot is moving in the -X axis, so we need to reverse the sign again.
+                }
+            }
+        } else {
+            //Controlling Gamepad1
+            if (Math.abs(gamepad1.right_stick_x) >= gamepad1MaxCtl) {
+                isMoving = true;
+                isTurning = true;
+                controlValue = gamepad1.right_stick_x;
+            } else {
+                //Controlling left stick(X&Y Axis)
+                if (Math.abs(gamepad1.left_stick_x) >= Math.abs(gamepad1.left_stick_y)) {
+                    //Controlling Left&Right Motion in RobotAxis
+                    isMoving = true;
+                    isControllingX = true;
+                    controlValue = gamepad1.left_stick_x;
+                } else {
+                    //Controlling Front & Back Motion in RobotAxis
+                    isMoving = true;
+                    isControllingX = false;
+                    controlValue = -gamepad1.left_stick_y; //Since the gamepad Y is negative when pushed up, we need to reverse the sign of y value to get a positive Y for pushing up the stick
                 }
             }
         }
-        if(isMoving){
-            if(isTurning){
-                this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(gamepad1.right_stick_x * Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-            }else{
-                if(isControllingX){
-                    this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(gamepad1.left_stick_x * Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-                }else{
-                    this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(-gamepad1.left_stick_y * Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+        if (isMoving) {
+            controlValue *= Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED;
+            if (isTurning) {
+                this.m_RobotCore.getMotionSystem().keepTurningOffsetAroundCenter(controlValue);
+            } else {
+                if (isControllingX) {
+                    this.m_RobotCore.getMotionSystem().driveToRightWithSpeed(controlValue);
+                } else {
+                    this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(controlValue);
                 }
             }
         }else{
