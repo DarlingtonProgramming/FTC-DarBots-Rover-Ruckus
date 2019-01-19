@@ -157,18 +157,15 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     public void doLoop() {
         this.m_MotionSystem.doLoop();
         this.m_LinearActuator.doLoop();
-        /*
-        if(this.m_GoldPos == FTC2018GameSpecificFunctions.GoldPosType.Unknown){
-            this.tryDetectGoldPos();
-        }
-        */
+        this.m_Arm.doLoop();
+        this.m_ArmReach.doLoop();
         RobotDebugger.addDebug("LinearActuatorPos","" + this.getLinearActuator().getCurrentPosition() + " (" + this.getLinearActuator().getCurrentPercent() + "%)");
+        RobotDebugger.addDebug("ArmMotorPos","" + this.getArm().getCurrentPosition() + " (" + this.getArm().getCurrentPercent() + "%)");
+        RobotDebugger.addDebug("ArmReachMotorPos","" + this.getArmReach().getCurrentPosition() + " (" + this.getArmReach().getCurrentPercent() + "%)");
         RobotDebugger.addDebug("X","" + this.getPositionTracker().getCurrentPosX());
         RobotDebugger.addDebug("Y","" + this.getPositionTracker().getCurrentPosY());
         RobotDebugger.addDebug("Rotation","" + this.getPositionTracker().getRobotRotation());
         RobotDebugger.addDebug("LastGoldPos",this.getLastDetectedGoldPos().name());
-        RobotDebugger.addDebug("ArmMotorPos","" + this.getArm().getCurrentPosition() + " (" + this.getArm().getCurrentPercent() + "%)");
-        RobotDebugger.addDebug("ArmReachMotorPos","" + this.getArmReach().getCurrentPosition() + " (" + this.getArmReach().getCurrentPercent() + "%)");
         RobotDebugger.doLoop();
     }
 
@@ -178,7 +175,7 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
 
     @Override
     public boolean isBusy() {
-        return this.m_LinearActuator.isBusy();
+        return this.m_LinearActuator.isBusy() || this.m_Arm.isBusy() || this.m_ArmReach.isBusy();
     }
 
     @Override
