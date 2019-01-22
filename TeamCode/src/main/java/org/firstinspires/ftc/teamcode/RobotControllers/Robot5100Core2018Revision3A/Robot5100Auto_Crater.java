@@ -58,9 +58,11 @@ public class Robot5100Auto_Crater extends LinearOpMode {
         this.waitForStart();
         if(this.opModeIsActive()){
             this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
+            /*
             while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Unknown){
                 this.m_RobotCore.tryDetectGoldPos();
             }
+            */
             this.m_RobotCore.waitUntilFinish();
             this.m_RobotCore.getMotionSystem().driveToLeft(10,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
@@ -96,9 +98,9 @@ public class Robot5100Auto_Crater extends LinearOpMode {
         if(this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Left){
             targetPos = 0;
         }else if(this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Center){
-            targetPos = 38.1;
+            targetPos = 30;
         }else if(this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Right){
-            targetPos = 38.1*2;
+            targetPos = 30;
         }
         this.m_RobotCore.getMotionSystem().driveToRight(targetPos - currentPos,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
         this.m_RobotCore.getMotionSystem().waitUntilFinish();

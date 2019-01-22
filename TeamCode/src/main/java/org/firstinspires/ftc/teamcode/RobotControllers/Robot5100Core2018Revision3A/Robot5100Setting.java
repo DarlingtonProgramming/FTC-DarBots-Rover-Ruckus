@@ -33,7 +33,7 @@ public class Robot5100Setting {
     public static final double FIELDTOTALX = 365.76;
     public static final double FIELDTOTALY = 365.76;
 
-    public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
+    public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.15;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
     public static final double TELEOP_LINEARACTUATORSPEED = 0.8;
     public static final double TELEOP_ARMSPEED = 0.3;

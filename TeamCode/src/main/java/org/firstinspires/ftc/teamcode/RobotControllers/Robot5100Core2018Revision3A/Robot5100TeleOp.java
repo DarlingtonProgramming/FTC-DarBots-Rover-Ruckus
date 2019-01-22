@@ -27,6 +27,7 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revisio
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.Gamepad;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
@@ -57,7 +58,7 @@ public class Robot5100TeleOp extends LinearOpMode {
         double controlValue = 0;
         double gamepad1MaxCtl = Math.max(Math.abs(gamepad1.left_stick_x), Math.max(Math.abs(gamepad1.left_stick_y), Math.abs(gamepad1.right_stick_x)));
         double gamepad2MaxCtl = Math.max(Math.abs(gamepad2.left_stick_x), Math.max(Math.abs(gamepad2.left_stick_y), Math.abs(gamepad2.right_stick_x)));
-        if (gamepad2MaxCtl >= Robot5100Setting.TELEOP_GAMEPADTRIGGERVALUE) {
+        if (gamepad2MaxCtl > Robot5100Setting.TELEOP_GAMEPADTRIGGERVALUE) {
             if (Math.abs(gamepad2.right_stick_x) >= gamepad2MaxCtl) {
                 isMoving = true;
                 isTurning = true;
@@ -67,16 +68,16 @@ public class Robot5100TeleOp extends LinearOpMode {
                 if (Math.abs(gamepad2.left_stick_x) >= Math.abs(gamepad2.left_stick_y)) {
                     //Controlling Left&Right motion, with respect to the robot arm. So we are actually controlling in the Y axis.
                     isMoving = true;
-                    isControllingX = true;
+                    isControllingX = false;
                     controlValue = gamepad2.left_stick_x;
                 } else {
                     //Controlling Front & Back motion, with respect to the robot arm, So we are actually controlling in the -X axis.
                     isMoving = true;
-                    isControllingX = false;
+                    isControllingX = true;
                     controlValue = -(-gamepad2.left_stick_y); //Since the gamepad Y is negative when pushed up, we need to reverse the sign of y value to get a positive Y for pushing up the stick, But the robot is moving in the -X axis, so we need to reverse the sign again.
                 }
             }
-        } else {
+        } else if(gamepad1MaxCtl > Robot5100Setting.TELEOP_GAMEPADTRIGGERVALUE) {
             //Controlling Gamepad1
             if (Math.abs(gamepad1.right_stick_x) >= gamepad1MaxCtl) {
                 isMoving = true;
