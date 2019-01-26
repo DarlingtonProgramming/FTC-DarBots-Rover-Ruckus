@@ -83,28 +83,28 @@ public class Robot5100ChassisTester extends LinearOpMode {
             controlValue *= Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED;
             if (isTurning) {
                 if(controlValue > 0){
-                    this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-                    this.m_Path += "turn(10);";
+                    this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(20,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+                    this.m_Path += "turn(20);";
                 }else{
-                    this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-                    this.m_Path += "turn(-10);";
+                    this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-20,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+                    this.m_Path += "turn(-20);";
                 }
             } else {
                 if (isControllingX) {
                     if(controlValue > 0){
-                        this.m_RobotCore.getMotionSystem().driveToRight(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+                        this.m_RobotCore.getMotionSystem().driveToRight(20,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
                         this.m_Path += "driveToRight(10);";
                     }else{
-                        this.m_RobotCore.getMotionSystem().driveToLeft(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+                        this.m_RobotCore.getMotionSystem().driveToLeft(20,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
                         this.m_Path += "driveToRight(-10);";
                     }
                 } else {
                     if(controlValue > 0){
-                        this.m_RobotCore.getMotionSystem().driveForward(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-                        this.m_Path += "driveForward(10);";
+                        this.m_RobotCore.getMotionSystem().driveForward(20,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+                        this.m_Path += "driveForward(20);";
                     }else{
-                        this.m_RobotCore.getMotionSystem().driveBackward(10,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
-                        this.m_Path += "driveForward(-10);";
+                        this.m_RobotCore.getMotionSystem().driveBackward(20,Robot5100Setting.TELEOP_BIGGESTDRIVINGSPEED);
+                        this.m_Path += "driveForward(-20);";
                     }
                 }
             }

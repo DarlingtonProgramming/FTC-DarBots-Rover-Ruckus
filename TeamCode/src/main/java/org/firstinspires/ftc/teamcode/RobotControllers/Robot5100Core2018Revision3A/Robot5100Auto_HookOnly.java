@@ -27,8 +27,10 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot5100Core2018Revisio
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.XYPlaneCalculations;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 
 @Autonomous(name = "Robot5100Auto-HookOnly", group = "5100")
@@ -37,7 +39,7 @@ public class Robot5100Auto_HookOnly extends LinearOpMode {
     protected void hardwareInit(){
         this.m_RobotCore = new Robot5100Core(
                 false,
-                true,
+                false,
                 this,
                 100,
                 100,
@@ -58,11 +60,19 @@ public class Robot5100Auto_HookOnly extends LinearOpMode {
         this.waitForStart();
         if(this.opModeIsActive()){
             this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
-            while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Unknown){
-                this.m_RobotCore.tryDetectGoldPos();
+            while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < 99){
+
             }
-            this.m_RobotCore.waitUntilFinish();
-            this.m_RobotCore.getMotionSystem().driveToLeft(10,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(30,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().waitUntilFinish();
+            ElapsedTime m_Time = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+            m_Time.reset();
+            this.m_RobotCore.getMotionSystem().driveForwardWithSpeed(0.2);
+            while(m_Time.seconds() < 0.6){
+
+            }
+            this.m_RobotCore.getMotionSystem().stopMoving();
+            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-35,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
         }
         //Ending The Autonomous Program

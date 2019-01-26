@@ -195,8 +195,11 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     public static MineralInformation leftMineralInCameraX(MineralInformation[] Blocks){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             MineralInformation lowestXMineral = Blocks[0];
+            if(Blocks.length <= 1){
+                return Blocks[0];
+            }
             for(int i = 1; i < Blocks.length; i++){
                 if(Blocks[i].getLeft() < lowestXMineral.getLeft()){
                     lowestXMineral = Blocks[i];
@@ -208,8 +211,11 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     public static MineralInformation rightMineralInCameraX(MineralInformation[] Blocks){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             MineralInformation highestXMineral = Blocks[0];
+            if(Blocks.length <= 1){
+                return Blocks[0];
+            }
             for(int i = 1; i < Blocks.length; i++){
                 if(Blocks[i].getLeft() > highestXMineral.getLeft()){
                     highestXMineral = Blocks[i];
@@ -221,11 +227,14 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     public static MineralInformation MineralClosestToX(MineralInformation[] Blocks, float X){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             MineralInformation closestXMineral = Blocks[0];
             float closestXMineralMidX = Blocks[0].getLeft() + Blocks[0].getWidth() / 2.0f;
             float closestXMineralDiff = Math.abs(closestXMineralMidX - X);
             float currentMidX = 0.0f;
+            if(Blocks.length <= 1){
+                return Blocks[0];
+            }
             for(int i = 1; i < Blocks.length; i++){
                 currentMidX = Blocks[i].getLeft() + Blocks[i].getWidth() / 2.0f;
                 if(Math.abs(currentMidX - X) < closestXMineralDiff){
@@ -240,15 +249,18 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     public static MineralInformation MineralInCenterX(MineralInformation[] Blocks){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             return MineralClosestToX(Blocks,Blocks[0].getImageWidth() / 2.0f);
         }else{
             return new MineralInformation();
         }
     }
     public static MineralInformation leftMineralInCameraY(MineralInformation[] Blocks){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             MineralInformation lowestYMineral = Blocks[0];
+            if(Blocks.length <= 1){
+                return Blocks[0];
+            }
             for(int i = 1; i < Blocks.length; i++){
                 if(Blocks[i].getTop() < lowestYMineral.getTop()){
                     lowestYMineral = Blocks[i];
@@ -260,8 +272,11 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     public static MineralInformation rightMineralInCameraY(MineralInformation[] Blocks){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             MineralInformation highestYMineral = Blocks[0];
+            if(Blocks.length <= 1){
+                return Blocks[0];
+            }
             for(int i = 1; i < Blocks.length; i++){
                 if(Blocks[i].getTop() > highestYMineral.getTop()){
                     highestYMineral = Blocks[i];
@@ -273,12 +288,15 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     public static MineralInformation MineralClosestToY(MineralInformation[] Blocks, float Y){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             MineralInformation closestYMineral = Blocks[0];
             float closestYMineralMidY = Blocks[0].getTop() + Blocks[0].getHeight() / 2.0f;
             float closestYMineralDiff = Math.abs(closestYMineralMidY - Y);
             float currentMidY = 0.0f;
             float currentMidYDiff = 0.0f;
+            if(Blocks.length <= 1){
+                return Blocks[0];
+            }
             for(int i = 1; i < Blocks.length; i++){
                 currentMidY = Blocks[i].getTop() + Blocks[i].getHeight() / 2.0f;
                 currentMidYDiff = Math.abs(currentMidY - Y);
@@ -294,7 +312,7 @@ public class FTC2018GameSpecificFunctions {
         }
     }
     public static MineralInformation MineralInCenterY(MineralInformation[] Blocks){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             return MineralClosestToY(Blocks,Blocks[0].getImageHeight() / 2.0f);
         }else{
             return new MineralInformation();

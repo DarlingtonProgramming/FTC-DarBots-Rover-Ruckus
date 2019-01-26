@@ -35,13 +35,15 @@ public class Robot5100Setting {
 
     public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.15;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
-    public static final double TELEOP_LINEARACTUATORSPEED = 0.8;
+    public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
     public static final double TELEOP_ARMSPEED = 0.3;
     public static final double TELEOP_ARMREACHSPEED = 0.5;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.5;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_ARMSPEED = 0.5;
     public static final double AUTONOMOUS_ARMREACHSPEED = 0.5;
+
+    public static final String IMUCONFIGURATIONNAME = "imu";
 
     public static final boolean MOTIONSYSTEM_TIMECONTROL = false;
     public static final double MOTIONSYSTEM_TIMECONTROLPCT = 30;
@@ -77,7 +79,7 @@ public class Robot5100Setting {
     public static final double LINEARACTUATOR_HOOKPCT = 100;
     public static final double LINEARACTUATOR_SMALLESTPOS = 0;
     public static final boolean LINEARACTUATOR_TIMECONTROL = true;
-    public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 200;
+    public static final double LINEARACTUATOR_TIMECONTROLEXCESSPCT = 40;
 
     public static final String ARMMOTOR_CONFIGURATIONNAME = "armMotor";
     public static final double ARMMOTOR_COUNTSPERREV = 1680;

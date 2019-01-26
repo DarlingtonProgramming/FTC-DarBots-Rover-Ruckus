@@ -300,7 +300,7 @@ public class Robot5100MotionSystem extends RobotMotionSystem {
 
     @Override
     public void driveToLeftWithSpeed(double Speed) {
-        this.driveToRightWithSpeed(Speed);
+        this.driveToRightWithSpeed(-Speed);
     }
 
     @Override

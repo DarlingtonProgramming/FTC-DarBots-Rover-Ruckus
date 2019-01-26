@@ -145,11 +145,11 @@ public class Robot5100TeleOp extends LinearOpMode {
             }else{
                 this.m_RobotCore.getArmReach().stopMotion();
             }
-            if(this.gamepad2.dpad_right) {
+            if(this.gamepad2.dpad_up) {
                 if (!this.m_RobotCore.getArm().isBusy()) {
                     this.m_RobotCore.getArm().setTargetPosition(this.m_RobotCore.getArm().getBiggestPos(), Robot5100Setting.TELEOP_ARMSPEED);
                 }
-            }else if(this.gamepad2.dpad_left){
+            }else if(this.gamepad2.dpad_down){
                 if(!this.m_RobotCore.getArm().isBusy()){
                     this.m_RobotCore.getArm().setTargetPosition(this.m_RobotCore.getArm().getSmallestPos(),Robot5100Setting.TELEOP_ARMSPEED);
                 }
