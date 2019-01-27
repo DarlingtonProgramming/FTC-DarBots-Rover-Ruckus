@@ -60,10 +60,11 @@ public class Robot5100Auto_HookOnly extends LinearOpMode {
         this.waitForStart();
         if(this.opModeIsActive()){
             this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
-            while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < 99){
+            while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < 99  && this.opModeIsActive()){
 
             }
-            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(30,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getLinearActuator().stopMotion();
+            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(35,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             ElapsedTime m_Time = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
             m_Time.reset();
@@ -72,7 +73,7 @@ public class Robot5100Auto_HookOnly extends LinearOpMode {
 
             }
             this.m_RobotCore.getMotionSystem().stopMoving();
-            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-35,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(-40,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
         }
         //Ending The Autonomous Program

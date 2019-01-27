@@ -63,7 +63,6 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     private RobotServoUsingMotor m_Arm;
     private RobotServoUsingMotor m_ArmReach;
     private CRServo m_IntakeServo;
-    private BNO055IMUGyro m_Gyro;
 
     public Robot5100Core(boolean readSetting, boolean loadGameSpecific, @NonNull OpMode ControllingOpMode, double initialX, double initialY, double initialRotation, double linearActuatorPos, double armMotorPos, double armReachPos){
         this.m_PosTracker = new RobotPositionTracker(Robot5100Setting.FIELDTOTALX,Robot5100Setting.FIELDTOTALY,initialX,initialY,initialRotation,Robot5100Setting.LEFTFRONTWHEEL_POSITION,Robot5100Setting.RIGHTFRONTWHEEL_POSITION,Robot5100Setting.LEFTBACKWHEEL_POSITION,Robot5100Setting.RIGHTBACKWHEEL_POSITION);
@@ -80,7 +79,6 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
         this.m_ArmReach = new RobotServoUsingMotor(ArmReachMotor,armReachPos,Robot5100Setting.ARMREACHMOTOR_BIGGESTPOS,Robot5100Setting.ARMREACHMOTOR_SMALLESTPOS);
         this.m_IntakeServo = ControllingOpMode.hardwareMap.crservo.get(Robot5100Setting.INTAKESERVO_CONFIGURATIONNAME);
         this.m_IntakeServo.setDirection(DcMotorSimple.Direction.REVERSE);
-        this.m_Gyro = new BNO055IMUGyro(ControllingOpMode.hardwareMap,Robot5100Setting.IMUCONFIGURATIONNAME);
         if(loadGameSpecific) {
             RobotOnPhoneCamera PhoneCamera = new RobotOnPhoneCamera(VuforiaLocalizer.CameraDirection.BACK, PrivateSettings.VUFORIALICENSE);
             this.m_GameSpecificFunction = new FTC2018GameSpecificFunctions(ControllingOpMode, PhoneCamera, Robot5100Setting.TFOL_SHOWPREVIEWONRC);
@@ -122,7 +120,6 @@ public class Robot5100Core implements RobotNonBlockingDevice,RobotEventLoopable 
     public RobotServoUsingMotor getArmReach(){
         return this.m_ArmReach;
     }
-    public BNO055IMUGyro getGyro(){return this.m_Gyro;}
     public void startSuckingMineral(){
         this.m_IntakeServo.setPower(1.0);
     }

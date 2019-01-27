@@ -43,8 +43,6 @@ public class Robot5100Setting {
     public static final double AUTONOMOUS_ARMSPEED = 0.5;
     public static final double AUTONOMOUS_ARMREACHSPEED = 0.5;
 
-    public static final String IMUCONFIGURATIONNAME = "imu";
-
     public static final boolean MOTIONSYSTEM_TIMECONTROL = false;
     public static final double MOTIONSYSTEM_TIMECONTROLPCT = 30;
     public static final String LEFTFRONTWHEEL_CONFIGURATIONNAME = "motor0";

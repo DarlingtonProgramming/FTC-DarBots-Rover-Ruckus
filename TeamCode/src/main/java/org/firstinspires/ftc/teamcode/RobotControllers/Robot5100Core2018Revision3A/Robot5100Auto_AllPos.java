@@ -31,9 +31,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotDistanceSensor;
 
-@Autonomous(name = "Robot5100Auto-Crater", group = "5100")
-public class Robot5100Auto_Crater extends LinearOpMode {
+@Autonomous(name = "Robot5100Auto-AllPos", group = "5100")
+public class Robot5100Auto_AllPos extends LinearOpMode {
     protected Robot5100Core m_RobotCore;
     protected void hardwareInit(){
         this.m_RobotCore = new Robot5100Core(
@@ -59,32 +60,12 @@ public class Robot5100Auto_Crater extends LinearOpMode {
         this.waitForStart();
         if(this.opModeIsActive()){
             this.m_RobotCore.setLinearActuatorToHook(Robot5100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
-            while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < 99){
+            while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < 99  && this.opModeIsActive()){
 
             }
+            this.m_RobotCore.getLinearActuator().stopMotion();
             this.m_RobotCore.getMotionSystem().turnOffsetAroundCenter(30,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            //Look at 2 minerals at the same time.
-            FTC2018GameSpecificFunctions.MineralInformation[] mineralInformations = this.m_RobotCore.getGameSpecificFunction().detectAllBlocksInCamera();
-            FTC2018GameSpecificFunctions.MineralInformation rightMineral = FTC2018GameSpecificFunctions.rightMineralInCameraY(mineralInformations);
-            FTC2018GameSpecificFunctions.MineralInformation leftMineral = FTC2018GameSpecificFunctions.leftMineralInCameraY(mineralInformations);
-            if(mineralInformations.length != 2){
-
-            }else if(rightMineral.getLeft() == leftMineral.getLeft() && rightMineral.getTop() == leftMineral.getTop() && rightMineral.getMineralType() == FTC2018GameSpecificFunctions.MineralType.Gold){
-                if(rightMineral.getTop() < (rightMineral.getHeight() / 2.0)){
-                    this.m_RobotCore.setLastDetectedGoldPos(FTC2018GameSpecificFunctions.GoldPosType.Center);
-                }else{
-                    this.m_RobotCore.setLastDetectedGoldPos(FTC2018GameSpecificFunctions.GoldPosType.Right);
-                }
-            }
-            else if(rightMineral.getMineralType() == FTC2018GameSpecificFunctions.MineralType.Gold){
-                this.m_RobotCore.setLastDetectedGoldPos(FTC2018GameSpecificFunctions.GoldPosType.Right);
-            }else if(leftMineral.getMineralType() == FTC2018GameSpecificFunctions.MineralType.Gold){
-                this.m_RobotCore.setLastDetectedGoldPos(FTC2018GameSpecificFunctions.GoldPosType.Center);
-            }else{
-                this.m_RobotCore.setLastDetectedGoldPos(FTC2018GameSpecificFunctions.GoldPosType.Left);
-            }
-
             //Go forward
             ElapsedTime m_Time = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
             m_Time.reset();
@@ -97,17 +78,17 @@ public class Robot5100Auto_Crater extends LinearOpMode {
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getMotionSystem().driveForward(18,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            if(this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Right){
-                this.m_RobotCore.getMotionSystem().driveToRight(20,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-                this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            }else if(this.m_RobotCore.getLastDetectedGoldPos() == FTC2018GameSpecificFunctions.GoldPosType.Center){
-                this.m_RobotCore.getMotionSystem().driveToLeft(0,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-                this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            }else{
-                this.m_RobotCore.getMotionSystem().driveToLeft(20,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
-                this.m_RobotCore.getMotionSystem().waitUntilFinish();
+            this.m_RobotCore.getMotionSystem().driveToRight(25,Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().waitUntilFinish();
+            this.m_RobotCore.getMotionSystem().driveToLeftWithSpeed(0.1);
+            ElapsedTime mTime = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+            while(m_Time.seconds() < 10){
+                FTC2018GameSpecificFunctions.MineralInformation[] tempInfo = this.m_RobotCore.getGameSpecificFunction().detectAllBlocksInCamera();
+                if(FTC2018GameSpecificFunctions.MineralInCenterY(tempInfo).getMineralType() == FTC2018GameSpecificFunctions.MineralType.Gold){
+                    break;
+                }
             }
-            this.m_RobotCore.getMotionSystem().driveForward(24, Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
+            this.m_RobotCore.getMotionSystem().driveForward(30, Robot5100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED);
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
         }
         //Ending The Autonomous Program
