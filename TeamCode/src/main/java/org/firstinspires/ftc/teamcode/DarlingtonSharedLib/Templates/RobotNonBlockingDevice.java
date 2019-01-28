@@ -27,5 +27,6 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates;
 
 public interface RobotNonBlockingDevice {
     boolean isBusy();
+    void updateStatus();
     void waitUntilFinish();
 }

@@ -34,41 +34,71 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ExtLibs.json.parser.Pa
 
 import java.io.File;
 
-public class RobotSetting {
-    public static String settingFile = "DarBots.json";
-    public static void saveSettings(JSONObject Settings) {
-        String filename = settingFile;
-        File file = AppUtil.getInstance().getSettingsFile(filename);
-        ReadWriteFile.writeFile(file, Settings.toJSONString());
+public class RobotDataStorage {
+    protected String settingFile = "DarBots.json";
+    private JSONObject m_Settings = null;
+
+    public RobotDataStorage(String settingFileName){
+        this.settingFile = settingFileName;
+        this.readSettings();
     }
-    public static JSONObject getSettings(){
+
+    public String getSettingFileName(){
+        return this.settingFile;
+    }
+
+    public void setSettingFileName(String Filename){
+        this.settingFile = Filename;
+        if(m_Settings != null || m_Settings.size() > 0){
+            this.saveSettingsToFile();
+        }else {
+            this.readSettings();
+        }
+    }
+
+    protected void readSettings(){
         JSONParser m_Parser = new JSONParser();
-        String filename = settingFile;
+        String filename = this.settingFile;
         File settingFile = AppUtil.getInstance().getSettingsFile(filename);
         String FileContent = ReadWriteFile.readFile(settingFile);
         if(FileContent.isEmpty()){
-            return new JSONObject();
+            m_Settings = new JSONObject();
         }
         try{
             JSONObject m_Object = (JSONObject) m_Parser.parse(FileContent);
-            return m_Object;
+            m_Settings = m_Object;
         }catch(ParseException e){
-            return new JSONObject();
+            m_Settings = new JSONObject();
         }catch(Exception e){
-            return new JSONObject();
+            m_Settings = new JSONObject();
         }
     }
-    public static <T> T getSetting(String Key, T defaultValue){
-        JSONObject m_Settings = getSettings();
-        if(m_Settings.containsKey(Key)){
-            return (T) m_Settings.get(Key);
+    public void saveSettingsToFile(){
+        String fileName = this.settingFile;
+        File file = AppUtil.getInstance().getSettingsFile(fileName);
+        ReadWriteFile.writeFile(file, m_Settings.toJSONString());
+    }
+
+    public JSONObject getSettings(){
+        return this.m_Settings;
+    }
+
+    public void setSettings(JSONObject settings){
+        this.m_Settings = settings;
+    }
+
+
+    public <T> T getSetting(String Key, T defaultValue){
+        JSONObject tempSettings = this.getSettings();
+        if(tempSettings.containsKey(Key)){
+            return (T) tempSettings.get(Key);
         }else{
             return defaultValue;
         }
     }
-    public static <T> void saveSetting(String Key, T Data){
-        JSONObject m_Settings = getSettings();
-        m_Settings.put(Key,Data);
-        saveSettings(m_Settings);
+    public <T> void saveSetting(String Key, T Data){
+        JSONObject tempSettings = this.getSettings();
+        tempSettings.put(Key,Data);
+        this.setSettings(tempSettings);
     }
 }

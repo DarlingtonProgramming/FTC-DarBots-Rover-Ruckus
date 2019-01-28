@@ -26,9 +26,9 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations;
 
 
 public class XYPlaneCalculations {
-    public static double[] rotatePointAroundFixedPoint(double[] point, double[] fixedPoint, double clockWiseAngleInDeg) {
+    public static double[] rotatePointAroundFixedPoint(double[] point, double[] fixedPoint, double counterClockwiseAng) {
         double relativeY = point[1] - fixedPoint[1], relativeX = point[0] - fixedPoint[0];
-        double deltaAng = Math.toRadians(-clockWiseAngleInDeg);
+        double deltaAng = Math.toRadians(counterClockwiseAng);
         double newX = relativeX * Math.cos(deltaAng) - relativeY * Math.sin(deltaAng);
         double newY = relativeX * Math.sin(deltaAng) + relativeY * Math.cos(deltaAng);
         double[] result = {newX + fixedPoint[0], newY + fixedPoint[1]};
