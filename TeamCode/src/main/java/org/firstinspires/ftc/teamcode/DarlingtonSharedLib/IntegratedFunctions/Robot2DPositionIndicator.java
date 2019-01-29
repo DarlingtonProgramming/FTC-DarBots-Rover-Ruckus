@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions;
 
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.XYPlaneCalculations;
+
 public class Robot2DPositionIndicator {
     protected double m_X;
     protected double m_Z;
@@ -7,7 +9,7 @@ public class Robot2DPositionIndicator {
     public Robot2DPositionIndicator(double X, double Z, double YRotation){
         this.m_X = X;
         this.m_Z = Z;
-        this.m_RotationY = YRotation;
+        this.m_RotationY = XYPlaneCalculations.normalizeDeg(YRotation);
     }
     public Robot2DPositionIndicator(Robot2DPositionIndicator Pos2D){
         this.m_X = Pos2D.m_X;
@@ -33,6 +35,6 @@ public class Robot2DPositionIndicator {
         return this.m_RotationY;
     }
     public void setRotationY(double RotationY){
-        this.m_RotationY = RotationY;
+        this.m_RotationY = XYPlaneCalculations.normalizeDeg(RotationY);
     }
 }

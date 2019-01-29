@@ -7,24 +7,6 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorController;
 
 public abstract class RobotMotorTask implements RobotNonBlockingDevice {
-    public class MotorTaskFinishInfo{
-        public boolean timedOut;
-        public int countsMoved;
-        public double timeUsedInSec;
-        public RobotMotorController robotController;
-        public MotorTaskFinishInfo(boolean TimedOut, int CountsMoved, double TimeUsedInSec, RobotMotorController RobotController){
-            this.timedOut = TimedOut;
-            this.countsMoved = CountsMoved;
-            this.timeUsedInSec = TimeUsedInSec;
-            this.robotController = RobotController;
-        }
-        public MotorTaskFinishInfo(MotorTaskFinishInfo Info){
-            this.timedOut = Info.timedOut;
-            this.countsMoved = Info.countsMoved;
-            this.timeUsedInSec = Info.timeUsedInSec;
-            this.robotController = Info.robotController;
-        }
-    }
     private RobotMotorController m_Controller;
     private RobotMotorTaskCallBack m_TaskCallBack = null;
     private int m_StartCount = 0;
@@ -37,6 +19,15 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice {
         this.m_TaskCallBack = TaskCallBack;
         this.m_Time = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
         m_IsWorking = false;
+    }
+    public RobotMotorTask(@NonNull RobotMotorTask MotorTask){
+        this.m_Controller = MotorTask.m_Controller;
+        this.m_TaskCallBack = MotorTask.m_TaskCallBack;
+        this.m_StartCount = 0;
+        this.m_Time = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+        this.m_IsWorking = false;
+        this.m_TimeOutFactor = MotorTask.m_TimeOutFactor;
+        this.m_TimeoutControl = MotorTask.m_TimeoutControl;
     }
     public boolean isTimeControlEnabled(){
         return this.m_TimeoutControl;

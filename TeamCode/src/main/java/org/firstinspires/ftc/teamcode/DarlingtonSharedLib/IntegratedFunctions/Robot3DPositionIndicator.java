@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions;
 
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.XYPlaneCalculations;
+
 public class Robot3DPositionIndicator {
     protected double m_X;
     protected double m_Y;
@@ -11,17 +13,17 @@ public class Robot3DPositionIndicator {
         this.m_X = X;
         this.m_Y = Y;
         this.m_Z = Z;
-        this.m_RotationX = RotationX;
-        this.m_RotationY = RotationY;
-        this.m_RotationZ = RotationZ;
+        this.m_RotationX = XYPlaneCalculations.normalizeDeg(RotationX);
+        this.m_RotationY = XYPlaneCalculations.normalizeDeg(RotationY);
+        this.m_RotationZ = XYPlaneCalculations.normalizeDeg(RotationZ);
     }
     public Robot3DPositionIndicator(Robot2DPositionIndicator Pos2D, double Y, double RotationX, double RotationZ){
         this.m_X = Pos2D.m_X;
         this.m_Y = Y;
         this.m_Z = Pos2D.m_Z;
-        this.m_RotationX = RotationX;
-        this.m_RotationZ = RotationZ;
-        this.m_RotationY = Pos2D.m_RotationY;
+        this.m_RotationX = XYPlaneCalculations.normalizeDeg(RotationX);
+        this.m_RotationZ = XYPlaneCalculations.normalizeDeg(RotationZ);
+        this.m_RotationY = XYPlaneCalculations.normalizeDeg(Pos2D.m_RotationY);
     }
     public Robot3DPositionIndicator(Robot3DPositionIndicator Pos3D){
         this.m_X = Pos3D.m_X;
@@ -59,18 +61,18 @@ public class Robot3DPositionIndicator {
         return this.m_RotationX;
     }
     public void setRotationX(double RotationX){
-        this.m_RotationX = RotationX;
+        this.m_RotationX = XYPlaneCalculations.normalizeDeg(RotationX);
     }
     public double getRotationY(){
         return this.m_RotationY;
     }
     public void setRotationY(double RotationY){
-        this.m_RotationY = RotationY;
+        this.m_RotationY = XYPlaneCalculations.normalizeDeg(RotationY);
     }
     public double getRotationZ(){
         return this.m_RotationZ;
     }
     public void setRotationZ(double RotationZ){
-        this.m_RotationZ = RotationZ;
+        this.m_RotationZ = XYPlaneCalculations.normalizeDeg(RotationZ);
     }
 }

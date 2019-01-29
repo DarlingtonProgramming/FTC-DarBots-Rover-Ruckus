@@ -9,6 +9,10 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
         super(0,Speed,TaskCallBack);
         this.setCounts(Count);
     }
+    public RobotFixCountSpeedCtlTask(RobotFixCountSpeedCtlTask FixCountSpeedCtlTask){
+        super(FixCountSpeedCtlTask);
+        this.m_Count = FixCountSpeedCtlTask.m_Count;
+    }
 
     public int getCounts(){
         return this.m_Count;

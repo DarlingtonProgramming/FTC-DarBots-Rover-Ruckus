@@ -6,9 +6,13 @@ To use this code, download / clone the entire project to your local computer.
 
 |Team Number|Current Achievement|Is playing|
 |-|-|-|
-|5100|Northern Georgia Finalist Alliance|TBD|
+|5100|Northern Georgia Finalist Alliance|No|
 |4100|Advanced to State Tournament|Yes|
 
+## Library Status
+The Darlington Shared Library is maintained by David Cao, a member of the previous `5100` team.   
+He has now turned his back and started working for the `4100` team since `5100` did not advance and their coach does not want to do 2 teams in the state tournament.   
+This library is currently undergoing a reconstruction, and the new one will be the 4th iteration of this library   
 
 ## This Repository
 

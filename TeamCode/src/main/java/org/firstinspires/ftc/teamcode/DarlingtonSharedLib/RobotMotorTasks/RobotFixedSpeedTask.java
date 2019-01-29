@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks;
 
+import android.support.annotation.NonNull;
+
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotorTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotorTaskCallBack;
@@ -11,6 +13,11 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
         super(TaskCallBack);
         this.m_TimeInSeconds = timeInSeconds;
         this.m_Speed = Speed;
+    }
+    public RobotFixedSpeedTask(@NonNull RobotFixedSpeedTask SpeedTask){
+        super(SpeedTask);
+        this.m_TimeInSeconds = SpeedTask.m_TimeInSeconds;
+        this.m_Speed = SpeedTask.m_Speed;
     }
 
     public double getSpeed(){

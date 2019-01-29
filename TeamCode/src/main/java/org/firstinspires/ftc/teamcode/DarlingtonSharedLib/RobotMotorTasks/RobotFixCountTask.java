@@ -15,6 +15,12 @@ public class RobotFixCountTask extends RobotMotorTask {
     public RobotFixCountTask(int Count, double Speed, RobotMotorTaskCallBack TaskCallBack) {
         super(TaskCallBack);
     }
+    public RobotFixCountTask(@NonNull RobotFixCountTask CountTask){
+        super(CountTask);
+        this.m_Count = CountTask.m_Count;
+        this.m_Speed = CountTask.m_Speed;
+        this.m_FineTime = CountTask.m_FineTime;
+    }
 
     public double getSpeed(){
         return this.m_Speed;

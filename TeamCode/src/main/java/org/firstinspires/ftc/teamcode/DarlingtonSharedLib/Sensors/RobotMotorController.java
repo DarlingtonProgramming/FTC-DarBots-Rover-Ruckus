@@ -83,6 +83,10 @@ public class RobotMotorController implements RobotNonBlockingDevice {
         }
     }
 
+    public ArrayDeque<RobotMotorTask> getTaskLists(){
+        return this.m_TaskLists;
+    }
+
     protected void scheduleTasks(){
         if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.getFirst().isBusy()) {
             this.m_TaskLists.getFirst().setMotorController(this);
@@ -102,6 +106,10 @@ public class RobotMotorController implements RobotNonBlockingDevice {
             this.m_TaskLists.clear();
         }
         this.stopMotor();
+    }
+
+    public RobotMotorTask getCurrentTask(){
+        return this.m_TaskLists.isEmpty() ? null : this.m_TaskLists.getFirst();
     }
 
     protected void stopMotor(){
