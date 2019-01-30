@@ -225,7 +225,6 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
 
     public OmniWheel4SideDiamondShaped(OmniWheel4SideDiamondShaped MotionSystem) {
         super(MotionSystem);
-
     }
 
     public RobotMotion getLeftFrontMotor(){
