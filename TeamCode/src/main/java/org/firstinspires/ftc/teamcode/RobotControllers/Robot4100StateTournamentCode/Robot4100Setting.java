@@ -23,10 +23,18 @@ public class Robot4100Setting {
     public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
     public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
-    public static final double TELEOP_DUMPSPEED = 1.0;
+    public static final double TELEOP_DUMPSPEED = 0.6;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.5;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPSPEED = 0.5;
+
+    public static final double EXTREMEPOINTS_DISTANCEFROMCENTER = 22.86;
+    public static final Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator[] EXTREMEPOINTS = {
+            new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(-EXTREMEPOINTS_DISTANCEFROMCENTER,EXTREMEPOINTS_DISTANCEFROMCENTER,0),
+            new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(EXTREMEPOINTS_DISTANCEFROMCENTER,EXTREMEPOINTS_DISTANCEFROMCENTER,0),
+            new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(-EXTREMEPOINTS_DISTANCEFROMCENTER,-EXTREMEPOINTS_DISTANCEFROMCENTER,0),
+            new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(EXTREMEPOINTS_DISTANCEFROMCENTER,-EXTREMEPOINTS_DISTANCEFROMCENTER,0)
+    };
 
     public static final boolean MOTIONSYSTEM_TIMECONTROLENABLED = false;
     public static final double MOTIONSYSTEM_TIMECONTROLFACTOR = 1.3;
@@ -52,12 +60,21 @@ public class Robot4100Setting {
 
     public static final String LINEARACTUATOR_CONFIGURATIONNAME = "linearActuatorMotor";
     public static final RobotMotorType LINEARACTUATOR_MOTORTYPE = new AndyMark2964();
+    public static final double LINEARACTUATOR_MAX = 1000, LINEARACTUATOR_MIN = -1000;
+    public static final boolean LINEARACTUATOR_TIMEOUTCONTROL = true;
+    public static final double LINEARACTUATOR_TIMEOUTFACTOR = 1.2;
 
     public static final String DRAWERSLIDEAPPROACH_CONFIGURATIONNAME = "drawerSlideMotor";
     public static final RobotMotorType DRAWERSLIDEAPPROACH_MOTORTYPE = new AndyMark2964();
+    public static final double DRAWERSLIDEAPPROACH_MAX = 1000, DRAWERSLIDEAPPROACH_MIN = -1000;
+    public static final boolean DRAWERSLIDE_TIMEOUTCONTROL = true;
+    public static final double DRAWERSLIDE_TIMEOUTFACTOR = 1.2;
 
     public static final String DUMP_CONFIGURATIONNAME = "dumperMotor";
     public static final RobotMotorType DUMP_MOTORTYPE = new GoBlida5202Series30RPMMotor();
+    public static final double DUMP_MAX = 1000, DUMP_MIN = -1000;
+    public static final boolean DUMP_TIMEOUTCONTROL = true;
+    public static final double DUMP_TIMEOUTFACTOR = 1.2;
 
     public static final String COLLECTOR_CONFIGURATIONNAME = "collectorMotor";
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();

@@ -25,6 +25,8 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions;
 
+import android.provider.ContactsContract;
+
 import com.qualcomm.robotcore.util.ReadWriteFile;
 
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
@@ -41,6 +43,11 @@ public class RobotDataStorage {
     public RobotDataStorage(String settingFileName){
         this.settingFile = settingFileName;
         this.readSettings();
+    }
+
+    public RobotDataStorage(RobotDataStorage DataStorage){
+        this.settingFile = DataStorage.settingFile;
+        this.m_Settings = DataStorage.m_Settings;
     }
 
     public String getSettingFileName(){

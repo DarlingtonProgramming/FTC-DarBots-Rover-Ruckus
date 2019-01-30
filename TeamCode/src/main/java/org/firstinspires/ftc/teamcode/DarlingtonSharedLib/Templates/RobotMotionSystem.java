@@ -132,4 +132,9 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
             this.updateStatus();
         }
     }
+
+    public abstract RobotMotionSystemFixedXDistanceTask getFixedXDistanceTask(double XDistance, double Speed);
+    public abstract RobotMotionSystemFixedZDistanceTask getFixedZDistanceTask(double ZDistance, double Speed);
+    public abstract RobotMotionSystemFixedTurnTask getFixedTurnTask(double Deg, double Speed);
+    public abstract RobotMotionSystemTeleOpControlTask getTeleOpTask();
 }
