@@ -25,10 +25,10 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
     }
 
     public void setSpeed(double Speed){
-        if(this.isBusy()){
-            throw new RuntimeException("You cannot change the speed of a task when the task has started");
-        }
         this.m_Speed = Speed;
+        if(this.isBusy()){
+            this.getMotorController().getMotor().setPower(this.m_Speed);
+        }
     }
 
     public double getTimeInSeconds(){
@@ -36,9 +36,6 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
     }
 
     public void setTimeInSeconds(double TimeInSeconds){
-        if(this.isBusy()){
-            throw new RuntimeException("You cannot change the duration of a task when the task has started");
-        }
         this.m_TimeInSeconds = TimeInSeconds;
     }
 

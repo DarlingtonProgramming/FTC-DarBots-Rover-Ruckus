@@ -35,7 +35,9 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
         }
         this.m_TaskLists.getFirst().stopTask();
         this.m_TaskLists.removeFirst();
-        this.scheduleTasks();
+        if(!this.m_TaskLists.isEmpty()) {
+            this.scheduleTasks();
+        }
     }
 
     public ArrayDeque<RobotMotionSystemTask> getTaskLists(){
@@ -62,6 +64,8 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
             this.deleteCurrentTask();
         }
     }
+
+    protected abstract void __stopMotion();
 
     protected void scheduleTasks(){
         if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.getFirst().isBusy()) {

@@ -33,6 +33,7 @@ public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
             return;
         }
         this.m_IsWorking = false;
+        this.m_MotionSystem.__stopMotion();
         this.m_MotionSystem.deleteCurrentTask();
     }
     @Override

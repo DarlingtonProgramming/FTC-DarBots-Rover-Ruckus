@@ -2,10 +2,14 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ChassisControllers;
 
 import android.support.annotation.NonNull;
 
+import com.qualcomm.robotcore.util.Range;
+
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPositionTracker;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotFixedSpeedTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotion;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTask;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTeleOpControlTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionTaskCallBack;
 
 public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
@@ -121,11 +125,102 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             }
         }
     }
-    
+    public class OmniWheel4SideFixedTurnTask extends RobotMotionSystemTask{
+        protected double m_TurnDeg;
+        protected double m_Speed;
+
+        public OmniWheel4SideFixedTurnTask(double TurnDeg, double Speed){
+            this.m_TurnDeg = TurnDeg;
+            this.m_Speed = Speed;
+        }
+        public OmniWheel4SideFixedTurnTask(OmniWheel4SideFixedTurnTask Task){
+            super(Task);
+            this.m_TurnDeg = Task.m_TurnDeg;
+            this.m_Speed = Task.m_Speed;
+        }
+        public double getSpeed(){
+            return this.m_Speed;
+        }
+        public void setSpeed(double Speed){
+            this.m_Speed = Speed;
+        }
+        public double getTurnDeg(){
+            return this.m_TurnDeg;
+        }
+        public void setTurnDeg(double TurnDeg){
+            this.m_TurnDeg = TurnDeg;
+        }
+
+        @Override
+        protected void __startTask() {
+            double FLDistance = Math.toRadians(this.m_TurnDeg) * OmniWheel4SideDiamondShaped.this.getLeftBackMotor().getRobotWheel().getCircumference(); //turning clockwise, the installed angle must be 45 deg
+            double FRDistance = FLDistance;
+            double BLDistance = FLDistance;
+            double BRDistance = FLDistance;
+            RobotMotionTaskCallBack FLCallBack = new RobotMotionTaskCallBack() {
+                @Override
+                public void finishRunning(RobotMotion Motion, boolean timeOut, double timeUsedInSec, int CountsMoved, double DistanceMoved) {
+                    OmniWheel4SideDiamondShaped.this.getPositionTracker().drive_RotateAroundRobotPointWithRadiusAndPowerPoint(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(0,0,0),OmniWheel4SideDiamondShaped.this.getLeftFrontMotor().getRobotWheel().getOnRobotPosition().getDistanceToOrigin(),DistanceMoved);
+                }
+            };
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().addTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.m_Speed,FLCallBack));
+            OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().addTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.m_Speed,null));
+            OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().addTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.m_Speed,null));
+            OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().addTask(OmniWheel4SideDiamondShaped.this.m_RightBackMotor.new FixedDistanceSpeedCtlTask(BRDistance,this.m_Speed,null));
+        }
+
+        @Override
+        public void updateStatus() {
+            if((!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
+                    ){
+                this.stopTask();
+            }
+        }
+    }
+    public class OmniWheel4SideTeleOpTask extends RobotMotionSystemTeleOpControlTask{
+        protected RobotFixedSpeedTask m_FLTask;
+        protected RobotFixedSpeedTask m_FRTask;
+        protected RobotFixedSpeedTask m_BLTask;
+        protected RobotFixedSpeedTask m_BRTask;
+        @Override
+        protected void __updateDriveSpeedAndPositionTracker() {
+            double FLPower = -super.getDriveXSpeed() - super.getDriveZSpeed() + super.getDriveRotationSpeed();
+            double FRPower = -super.getDriveXSpeed() + super.getDriveZSpeed() + super.getDriveRotationSpeed();
+            double BLPower = super.getDriveXSpeed() - super.getDriveZSpeed() + super.getDriveRotationSpeed();
+            double BRPower = super.getDriveXSpeed() + super.getDriveZSpeed() + super.getDriveRotationSpeed();
+            FLPower = Range.clip(FLPower,-1.0,1.0);
+            FRPower = Range.clip(FRPower,-1.0,1.0);
+            BLPower = Range.clip(BLPower,-1.0,1.0);
+            BRPower = Range.clip(BRPower,-1.0,1.0);
+            this.m_FLTask.setSpeed(FLPower);
+            this.m_FRTask.setSpeed(FRPower);
+            this.m_BLTask.setSpeed(BLPower);
+            this.m_BRTask.setSpeed(BRPower);
+        }
+
+        @Override
+        protected void __startDrive() {
+            this.m_FLTask = new RobotFixedSpeedTask(0,0,null);
+            this.m_FRTask = new RobotFixedSpeedTask(0,0,null);
+            this.m_BLTask = new RobotFixedSpeedTask(0,0,null);
+            this.m_BRTask = new RobotFixedSpeedTask(0,0,null);
+        }
+    }
 
     protected RobotMotion m_LeftFrontMotor, m_RightFrontMotor, m_LeftBackMotor, m_RightBackMotor;
     public OmniWheel4SideDiamondShaped(Robot2DPositionTracker PositionTracker) {
         super(PositionTracker);
+    }
+
+    @Override
+    protected void __stopMotion() {
+        this.m_LeftFrontMotor.getMotorController().deleteAllTasks();
+        this.m_LeftBackMotor.getMotorController().deleteAllTasks();
+        this.m_RightFrontMotor.getMotorController().deleteAllTasks();
+        this.m_RightBackMotor.getMotorController().deleteAllTasks();
     }
 
     public OmniWheel4SideDiamondShaped(OmniWheel4SideDiamondShaped MotionSystem) {
