@@ -35,10 +35,10 @@ import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 public class RobotMotorController implements RobotNonBlockingDevice {
-    protected RobotMotor m_Motor;
+    private RobotMotor m_Motor;
     protected ArrayList<RobotMotorTask> m_TaskLists;
-    protected double m_TimeOutFactor = 0;
-    protected boolean m_TimeoutControl = false;
+    private double m_TimeOutFactor = 0;
+    private boolean m_TimeoutControl = false;
 
     public RobotMotorController(@NonNull RobotMotor Motor, boolean timeOutControlEnabled, double timeOutFactor){
         this.m_Motor = Motor;
@@ -109,12 +109,14 @@ public class RobotMotorController implements RobotNonBlockingDevice {
     }
 
     public void deleteCurrentTask(){
-        if(!this.m_TaskLists.isEmpty()){
-            if(this.m_TaskLists.get(0).isBusy()){
+        if(!this.m_TaskLists.isEmpty()) {
+            if (this.m_TaskLists.get(0).isBusy()) {
                 this.m_TaskLists.get(0).endTask(true);
             }
             this.m_TaskLists.remove(0);
             scheduleTasks();
+        }else{
+            this.stopMotor();
         }
     }
 
@@ -123,11 +125,13 @@ public class RobotMotorController implements RobotNonBlockingDevice {
     }
 
     protected void scheduleTasks(){
-        if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.get(0).isBusy()) {
-            this.m_TaskLists.get(0).setMotorController(this);
-            this.m_TaskLists.get(0).setTimeControlEnabled(this.isTimeControlEnabled());
-            this.m_TaskLists.get(0).setTimeOutFactor(this.getTimeOutFactor());
-            this.m_TaskLists.get(0).startTask();
+        if(!this.m_TaskLists.isEmpty()) {
+            if(!this.m_TaskLists.get(0).isBusy()) {
+                this.m_TaskLists.get(0).setMotorController(this);
+                this.m_TaskLists.get(0).setTimeControlEnabled(this.isTimeControlEnabled());
+                this.m_TaskLists.get(0).setTimeOutFactor(this.getTimeOutFactor());
+                this.m_TaskLists.get(0).startTask();
+            }
         }else if(this.m_TaskLists.isEmpty()){
             stopMotor();
         }

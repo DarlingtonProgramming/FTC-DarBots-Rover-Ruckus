@@ -35,10 +35,10 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             RobotMotionTaskCallBack FLCallBack = new RobotMotionTaskCallBack() {
                 @Override
                 public void finishRunning(RobotMotion Motion, boolean timeOut, double timeUsedInSec, int CountsMoved, double DistanceMoved) {
-                    if(OmniWheel4SideDiamondShaped.this.getPositionTracker() == null){
+                    if(OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker() == null){
                         return;
                     }
-                    OmniWheel4SideDiamondShaped.this.getPositionTracker().drive_MoveThroughRobotAngle(0,-DistanceMoved / (Math.sqrt(2)));
+                    OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(0,-DistanceMoved / (Math.sqrt(2)));
                 }
             };
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
@@ -77,10 +77,10 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             RobotMotionTaskCallBack FLCallBack = new RobotMotionTaskCallBack() {
                 @Override
                 public void finishRunning(RobotMotion Motion, boolean timeOut, double timeUsedInSec, int CountsMoved, double DistanceMoved) {
-                    if(OmniWheel4SideDiamondShaped.this.getPositionTracker() == null){
+                    if(OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker() == null){
                         return;
                     }
-                    OmniWheel4SideDiamondShaped.this.getPositionTracker().drive_MoveThroughRobotAngle(90,-DistanceMoved / (Math.sqrt(2)));
+                    OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(90,-DistanceMoved / (Math.sqrt(2)));
                 }
             };
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
@@ -119,10 +119,10 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             RobotMotionTaskCallBack FLCallBack = new RobotMotionTaskCallBack() {
                 @Override
                 public void finishRunning(RobotMotion Motion, boolean timeOut, double timeUsedInSec, int CountsMoved, double DistanceMoved) {
-                    if(OmniWheel4SideDiamondShaped.this.getPositionTracker() == null){
+                    if(OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker() == null){
                         return;
                     }
-                    OmniWheel4SideDiamondShaped.this.getPositionTracker().drive_RotateAroundRobotPointWithRadiusAndPowerPoint(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(0,0,0),OmniWheel4SideDiamondShaped.this.getLeftFrontMotor().getRobotWheel().getOnRobotPosition().getDistanceToOrigin(),DistanceMoved);
+                    OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker().drive_RotateAroundRobotPointWithRadiusAndPowerPoint(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(0,0,0),OmniWheel4SideDiamondShaped.this.getLeftFrontMotor().getRobotWheel().getOnRobotPosition().getDistanceToOrigin(),DistanceMoved);
                 }
             };
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
@@ -176,7 +176,7 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         }
     }
 
-    protected RobotMotion m_LeftFrontMotor, m_RightFrontMotor, m_LeftBackMotor, m_RightBackMotor;
+    private RobotMotion m_LeftFrontMotor, m_RightFrontMotor, m_LeftBackMotor, m_RightBackMotor;
     public OmniWheel4SideDiamondShaped(@NonNull RobotMotion LeftFrontMotor, @NonNull RobotMotion RightFrontMotor, @NonNull RobotMotion LeftBackMotor, @NonNull RobotMotion RightBackMotor, Robot2DPositionTracker PositionTracker) {
         super(PositionTracker);
         this.m_LeftFrontMotor = LeftFrontMotor;

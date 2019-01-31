@@ -30,8 +30,8 @@ import android.support.annotation.NonNull;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotion;
 
 public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
-    protected RobotMotionSystem m_MotionSystem;
-    protected boolean m_IsWorking;
+    private RobotMotionSystem m_MotionSystem;
+    private boolean m_IsWorking;
     public RobotMotionSystemTask(){
         this.m_IsWorking = false;
     }
@@ -58,7 +58,7 @@ public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
             return;
         }
         this.m_IsWorking = false;
-        this.m_MotionSystem.deleteCurrentTask();
+        this.m_MotionSystem.checkTasks();
     }
     @Override
     public boolean isBusy(){

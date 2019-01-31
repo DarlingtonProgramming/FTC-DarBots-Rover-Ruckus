@@ -93,7 +93,7 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
         this.__stopMotion();
     }
 
-    protected void checkTasks(){
+    public void checkTasks(){
         if(this.m_TaskLists.isEmpty()){
             return;
         }
