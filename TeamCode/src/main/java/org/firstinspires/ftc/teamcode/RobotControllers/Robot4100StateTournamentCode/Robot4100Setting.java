@@ -41,20 +41,20 @@ public class Robot4100Setting {
     public static final double MOTIONSYSTEM_WHEELINSTALLEDDISTANCE = 16.0;
     public static final double MOTIONSYSTEM_WHEELRADIUS = 5;
 
-    public static final String LEFTFRONTWHEEL_CONFIGURATIONNAME = "motor0";
+    public static final String LEFTFRONTWHEEL_CONFIGURATIONNAME = "leftFrontMotor";
     public static final RobotMotorType LEFTFRONTWHEEL_MOTORTYPE = new RevHDHex40Motor();
     public static final RobotWheel LEFTFRONTWHEEL_MOTORWHEEL = new RobotWheel(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(-MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,45),MOTIONSYSTEM_WHEELRADIUS);
 
-    public static final String RIGHTFRONTWHEEL_CONFIGURATIONNAME = "motor1";
+    public static final String RIGHTFRONTWHEEL_CONFIGURATIONNAME = "rightFrontMotor";
     public static final RobotMotorType RIGHTFRONTWHEEL_MOTORTYPE = new RevHDHex40Motor();
     public static final RobotWheel RIGHTFRONTWHEEL_MOTORWHEEL = new RobotWheel(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,-45),MOTIONSYSTEM_WHEELRADIUS);
 
-    public static final String LEFTBACKWHEEL_CONFIGURATIONNAME = "motor3";
+    public static final String LEFTBACKWHEEL_CONFIGURATIONNAME = "leftBackMotor";
     public static final RobotMotorType LEFTBACKWHEEL_MOTORTYPE = new RevHDHex40Motor();
     public static final RobotWheel LEFTBACKWHEEL_MOTORWHEEL = new RobotWheel(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(-MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,-MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,135),MOTIONSYSTEM_WHEELRADIUS);
 
 
-    public static final String RIGHTBACKWHEEL_CONFIGURATIONNAME = "motor2";
+    public static final String RIGHTBACKWHEEL_CONFIGURATIONNAME = "rightBackMotor";
     public static final RobotMotorType RIGHTBACKWHEEL_MOTORTYPE = new RevHDHex40Motor();
     public static final RobotWheel RIGHTBACKWHEEL_MOTORWHEEL = new RobotWheel(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,-MOTIONSYSTEM_WHEELINSTALLEDDISTANCE,-135),MOTIONSYSTEM_WHEELRADIUS);
 

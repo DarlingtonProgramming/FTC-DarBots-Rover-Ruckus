@@ -42,7 +42,7 @@ public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
     public RobotMotionSystem getMotionSystem(){
         return this.m_MotionSystem;
     }
-    public void setMotionSystem(RobotMotionSystem MotionSystem){
+    public void setMotionSystem(@NonNull RobotMotionSystem MotionSystem){
         this.m_MotionSystem = MotionSystem;
     }
     public void startTask(){

@@ -17,7 +17,6 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotServoUsin
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotCore;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 
-import java.util.ResourceBundle;
 
 public class Robot4100Core extends RobotCore {
     private OmniWheel4SideDiamondShaped m_MotionSystem;
@@ -61,9 +60,13 @@ public class Robot4100Core extends RobotCore {
 
         this.m_DeclarationServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.TEAMMARKER_CONFIGURATIONNAME);
 
+
         this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("PositionTracker",new Object(){
             @Override
             public String toString(){
+                if(Robot4100Core.this.m_MotionSystem.getPositionTracker() == null)
+                    return "Null";
+
                 Robot2DPositionIndicator Position = Robot4100Core.this.m_MotionSystem.getPositionTracker().getPosition();
                 return "(X: " + Position.getX() + ", Z: " + Position.getZ() + ") - Rotation: " + Position.getRotationY() + " deg";
             }
@@ -86,10 +89,14 @@ public class Robot4100Core extends RobotCore {
                 return "" + Robot4100Core.this.m_Dumper.getCurrentPosition() + "(" + Robot4100Core.this.m_Dumper.getCurrentPercent() + "%)";
             }
         }));
+
+        if(readSavedValues){
+            this.readSetting();
+        }
     }
 
     public void readSetting(){
-        Robot2DPositionIndicator RobotPosition = this.m_MotionSystem.getPositionTracker().getPosition();
+        Robot2DPositionIndicator RobotPosition = this.m_MotionSystem.getPositionTracker() == null ? null : this.m_MotionSystem.getPositionTracker().getPosition();
         Double LinearActuatorPos = this.m_LinearActuator.getCurrentPosition();
         Double DrawerSlidePos = this.m_DrawerSlide.getCurrentPosition();
         Double DumperPos = this.m_Dumper.getCurrentPosition();
@@ -97,9 +104,15 @@ public class Robot4100Core extends RobotCore {
         LinearActuatorPos = this.getDataStorage().getSetting("LinearActuatorPos",LinearActuatorPos);
         DrawerSlidePos = this.getDataStorage().getSetting("DrawerSlidePos",DrawerSlidePos);
         DumperPos = this.getDataStorage().getSetting("DumperPos",DumperPos);
+        if(RobotPosition != null){
+            this.m_MotionSystem.getPositionTracker().setPosition(RobotPosition);
+        }
+        this.m_LinearActuator.adjustCurrentPosition(LinearActuatorPos);
+        this.m_DrawerSlide.adjustCurrentPosition(DrawerSlidePos);
+        this.m_Dumper.adjustCurrentPosition(DumperPos);
     }
     public void save(){
-        Robot2DPositionIndicator RobotPosition = this.m_MotionSystem.getPositionTracker().getPosition();
+        Robot2DPositionIndicator RobotPosition = this.m_MotionSystem.getPositionTracker() == null ? null : this.m_MotionSystem.getPositionTracker().getPosition();
         Double LinearActuatorPos = this.m_LinearActuator.getCurrentPosition();
         Double DrawerSlidePos = this.m_DrawerSlide.getCurrentPosition();
         Double DumperPos = this.m_Dumper.getCurrentPosition();

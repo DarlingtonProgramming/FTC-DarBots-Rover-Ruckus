@@ -32,16 +32,17 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotorTa
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 public class RobotMotorController implements RobotNonBlockingDevice {
     protected RobotMotor m_Motor;
-    protected ArrayDeque<RobotMotorTask> m_TaskLists;
+    protected ArrayList<RobotMotorTask> m_TaskLists;
     protected double m_TimeOutFactor = 0;
     protected boolean m_TimeoutControl = false;
 
     public RobotMotorController(@NonNull RobotMotor Motor, boolean timeOutControlEnabled, double timeOutFactor){
         this.m_Motor = Motor;
-        m_TaskLists = new ArrayDeque<RobotMotorTask>();
+        m_TaskLists = new ArrayList<RobotMotorTask>();
         this.m_TimeoutControl = timeOutControlEnabled;
         this.m_TimeOutFactor = timeOutFactor;
     }
@@ -71,9 +72,9 @@ public class RobotMotorController implements RobotNonBlockingDevice {
 
     @Override
     public void updateStatus() {
-        this.checkTasks();
         if(!this.m_TaskLists.isEmpty()){
-            this.m_TaskLists.getFirst().updateStatus();
+            if(this.m_TaskLists.get(0).isBusy())
+                this.m_TaskLists.get(0).updateStatus();
         }
     }
 
@@ -88,45 +89,45 @@ public class RobotMotorController implements RobotNonBlockingDevice {
         if(this.m_TaskLists.isEmpty()){
             return;
         }
-        if(!this.m_TaskLists.getFirst().isBusy()){
+        if(!this.m_TaskLists.get(0).isBusy()){
             this.deleteCurrentTask();
         }
     }
 
     public void addTask(@NonNull RobotMotorTask MotorTask){
-        this.m_TaskLists.addLast(MotorTask);
+        this.m_TaskLists.add(MotorTask);
         this.scheduleTasks();
     }
 
     public void replaceTask(@NonNull RobotMotorTask MotorTask){
-        if(!this.m_TaskLists.isEmpty() && this.m_TaskLists.getFirst().isBusy()){
-            this.m_TaskLists.getFirst().endTask(true);
+        if(!this.m_TaskLists.isEmpty() && this.m_TaskLists.get(0).isBusy()){
+            this.m_TaskLists.get(0).endTask(true);
         }
         this.m_TaskLists.clear();
-        this.m_TaskLists.addLast(MotorTask);
+        this.m_TaskLists.add(MotorTask);
         this.scheduleTasks();
     }
 
     public void deleteCurrentTask(){
         if(!this.m_TaskLists.isEmpty()){
-            if(this.m_TaskLists.getFirst().isBusy()){
-                this.m_TaskLists.getFirst().endTask(true);
+            if(this.m_TaskLists.get(0).isBusy()){
+                this.m_TaskLists.get(0).endTask(true);
             }
-            this.m_TaskLists.removeFirst();
+            this.m_TaskLists.remove(0);
             scheduleTasks();
         }
     }
 
-    public ArrayDeque<RobotMotorTask> getTaskLists(){
+    public ArrayList<RobotMotorTask> getTaskLists(){
         return this.m_TaskLists;
     }
 
     protected void scheduleTasks(){
-        if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.getFirst().isBusy()) {
-            this.m_TaskLists.getFirst().setMotorController(this);
-            this.m_TaskLists.getFirst().setTimeControlEnabled(this.isTimeControlEnabled());
-            this.m_TaskLists.getFirst().setTimeOutFactor(this.getTimeOutFactor());
-            this.m_TaskLists.getFirst().startTask();
+        if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.get(0).isBusy()) {
+            this.m_TaskLists.get(0).setMotorController(this);
+            this.m_TaskLists.get(0).setTimeControlEnabled(this.isTimeControlEnabled());
+            this.m_TaskLists.get(0).setTimeOutFactor(this.getTimeOutFactor());
+            this.m_TaskLists.get(0).startTask();
         }else if(this.m_TaskLists.isEmpty()){
             stopMotor();
         }
@@ -134,8 +135,8 @@ public class RobotMotorController implements RobotNonBlockingDevice {
 
     public void deleteAllTasks(){
         if(!this.m_TaskLists.isEmpty()){
-            if(this.m_TaskLists.getFirst().isBusy()){
-                this.m_TaskLists.getFirst().endTask(true);
+            if(this.m_TaskLists.get(0).isBusy()){
+                this.m_TaskLists.get(0).endTask(true);
             }
             this.m_TaskLists.clear();
         }
@@ -143,7 +144,7 @@ public class RobotMotorController implements RobotNonBlockingDevice {
     }
 
     public RobotMotorTask getCurrentTask(){
-        return this.m_TaskLists.isEmpty() ? null : this.m_TaskLists.getFirst();
+        return this.m_TaskLists.isEmpty() ? null : this.m_TaskLists.get(0);
     }
 
     protected void stopMotor(){

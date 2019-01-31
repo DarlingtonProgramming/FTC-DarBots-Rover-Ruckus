@@ -143,10 +143,10 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         }
     }
     public class OmniWheel4SideTeleOpTask extends RobotMotionSystemTeleOpControlTask{
-        protected RobotFixedSpeedTask m_FLTask;
-        protected RobotFixedSpeedTask m_FRTask;
-        protected RobotFixedSpeedTask m_BLTask;
-        protected RobotFixedSpeedTask m_BRTask;
+        protected RobotFixedSpeedTask m_FLTask = null;
+        protected RobotFixedSpeedTask m_FRTask = null;
+        protected RobotFixedSpeedTask m_BLTask = null;
+        protected RobotFixedSpeedTask m_BRTask = null;
         @Override
         protected void __updateDriveSpeedAndPositionTracker() {
             double FLPower = -super.getDriveXSpeed() - super.getDriveZSpeed() + super.getDriveRotationSpeed();
@@ -246,5 +246,14 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
     }
     public void setRightBackMotor(@NonNull RobotMotion RightBackMotor){
         this.m_RightBackMotor = RightBackMotor;
+    }
+
+    @Override
+    public void updateStatus(){
+        super.updateStatus();
+        this.m_LeftFrontMotor.getMotorController().updateStatus();
+        this.m_RightFrontMotor.getMotorController().updateStatus();
+        this.m_LeftBackMotor.getMotorController().updateStatus();
+        this.m_RightBackMotor.getMotorController().updateStatus();
     }
 }

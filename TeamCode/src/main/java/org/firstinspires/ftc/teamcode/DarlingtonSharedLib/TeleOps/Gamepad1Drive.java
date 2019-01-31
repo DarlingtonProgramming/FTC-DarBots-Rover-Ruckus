@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotCore;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTeleOpControlTask;
 
@@ -27,7 +28,7 @@ public abstract class Gamepad1Drive extends LinearOpMode {
 
     protected void driveControl(){
         if(this.m_RobotCore == null){
-            return;
+            throw new RuntimeException("Robot Core Not Set Up");
         }
         double XValue = Math.abs(gamepad1.left_stick_x) >= GamepadTriggerValue ? gamepad1.left_stick_x : 0;
         double ZValue = Math.abs(gamepad1.left_stick_y) >= GamepadTriggerValue ? -gamepad1.left_stick_y : 0;
@@ -39,5 +40,7 @@ public abstract class Gamepad1Drive extends LinearOpMode {
         Task.setDriveXSpeed(XValue);
         Task.setDriveZSpeed(ZValue);
         Task.setDriveRotationSpeed(TurnValue);
+        Task.updateStatus();
+        this.getRobotCore().getDebugger().addDebug(new RobotDebugger.RobotDebuggerInformation("GamepadVal","X:" + gamepad1.left_stick_x + ", Y:" + gamepad1.left_stick_y + ", R:" + gamepad1.right_stick_x));
     }
 }

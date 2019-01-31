@@ -31,17 +31,17 @@ import com.sun.tools.javac.util.Position;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPositionTracker;
 
-import java.util.ArrayDeque;
+import java.util.ArrayList;
 
 public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
-    protected ArrayDeque<RobotMotionSystemTask> m_TaskLists;
+    protected ArrayList<RobotMotionSystemTask> m_TaskLists;
     protected Robot2DPositionTracker m_PosTracker;
     public RobotMotionSystem(Robot2DPositionTracker PositionTracker){
-        this.m_TaskLists = new ArrayDeque<RobotMotionSystemTask>();
+        this.m_TaskLists = new ArrayList<>();
         this.m_PosTracker = PositionTracker;
     }
     public RobotMotionSystem(RobotMotionSystem MotionSystem){
-        this.m_TaskLists = new ArrayDeque<RobotMotionSystemTask>();
+        this.m_TaskLists = new ArrayList<>();
         this.m_PosTracker = MotionSystem.m_PosTracker;
     }
     public Robot2DPositionTracker getPositionTracker(){
@@ -51,17 +51,17 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
         this.m_PosTracker = PositionTracker;
     }
     public void addTask(@NonNull RobotMotionSystemTask Task){
-        this.m_TaskLists.addLast(Task);
+        this.m_TaskLists.add(Task);
         this.scheduleTasks();
     }
 
     public void replaceTask(@NonNull RobotMotionSystemTask Task){
         if(!this.m_TaskLists.isEmpty()){
-             if(this.m_TaskLists.getFirst().isBusy())
-                 this.m_TaskLists.getFirst().stopTask();
+             if(this.m_TaskLists.get(0).isBusy())
+                 this.m_TaskLists.get(0).stopTask();
         }
         this.m_TaskLists.clear();
-        this.m_TaskLists.addLast(Task);
+        this.m_TaskLists.add(Task);
         this.scheduleTasks();
     }
 
@@ -69,26 +69,26 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
         if(this.m_TaskLists.isEmpty()){
             return;
         }
-        this.m_TaskLists.getFirst().stopTask();
-        this.m_TaskLists.removeFirst();
+        this.m_TaskLists.get(0).stopTask();
+        this.m_TaskLists.remove(0);
         if(!this.m_TaskLists.isEmpty()) {
             this.scheduleTasks();
         }
     }
 
-    public ArrayDeque<RobotMotionSystemTask> getTaskLists(){
+    public ArrayList<RobotMotionSystemTask> getTaskLists(){
         return this.m_TaskLists;
     }
 
     public RobotMotionSystemTask getCurrentTask(){
-        return this.m_TaskLists.isEmpty() ? null : this.m_TaskLists.getFirst();
+        return this.m_TaskLists.isEmpty() ? null : this.m_TaskLists.get(0);
     }
 
     public void deleteAllTasks(){
         if(this.m_TaskLists.isEmpty()){
             return;
         }
-        this.m_TaskLists.getFirst().stopTask();
+        this.m_TaskLists.get(0).stopTask();
         this.m_TaskLists.clear();
         this.__stopMotion();
     }
@@ -97,7 +97,7 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
         if(this.m_TaskLists.isEmpty()){
             return;
         }
-        if(!this.m_TaskLists.getFirst().isBusy()){
+        if(!this.m_TaskLists.get(0).isBusy()){
             this.deleteCurrentTask();
         }else{
             this.__stopMotion();
@@ -107,9 +107,9 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
     protected abstract void __stopMotion();
 
     protected void scheduleTasks(){
-        if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.getFirst().isBusy()) {
-            this.m_TaskLists.getFirst().setMotionSystem(this);
-            this.m_TaskLists.getFirst().startTask();
+        if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.get(0).isBusy()) {
+            this.m_TaskLists.get(0).setMotionSystem(this);
+            this.m_TaskLists.get(0).startTask();
         }
     }
 
@@ -120,9 +120,9 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
 
     @Override
     public void updateStatus(){
-        this.checkTasks();
-        if(!this.m_TaskLists.isEmpty() && this.m_TaskLists.getFirst().isBusy()){
-            this.m_TaskLists.getFirst().updateStatus();
+        if((!this.m_TaskLists.isEmpty())){
+            if(this.m_TaskLists.get(0).isBusy())
+                this.m_TaskLists.get(0).updateStatus();
         }
     }
 
