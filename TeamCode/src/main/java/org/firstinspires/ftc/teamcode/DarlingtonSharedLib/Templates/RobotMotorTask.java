@@ -34,7 +34,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorCont
 public abstract class RobotMotorTask implements RobotNonBlockingDevice {
     private RobotMotorController m_Controller;
     private RobotMotorTaskCallBack m_TaskCallBack = null;
-    private int m_StartCount = 0;
+    protected int m_StartCount = 0;
     private ElapsedTime m_Time;
     private boolean m_IsWorking = false;
     private double m_TimeOutFactor = 0;

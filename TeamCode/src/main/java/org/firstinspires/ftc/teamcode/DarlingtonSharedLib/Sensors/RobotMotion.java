@@ -42,10 +42,12 @@ public class RobotMotion {
         double m_Distance;
         public FixedDistanceTask(double Distance, double Speed, RobotMotionTaskCallBack TaskCallBack) {
             super(0, Speed, TaskCallBack == null ? null : new MotionTaskCallBackToMotorTaskCallBack(RobotMotion.this,TaskCallBack));
+            super.setMotorController(RobotMotion.this.getMotorController());
             this.setDistance(Distance);
         }
         public FixedDistanceTask(FixedDistanceTask Task){
             super(Task);
+            super.setMotorController(RobotMotion.this.getMotorController());
             this.m_Distance = Task.m_Distance;
         }
         public double getDistance(){
@@ -84,10 +86,12 @@ public class RobotMotion {
         double m_Distance;
         public FixedDistanceSpeedCtlTask(double Distance, double Speed, RobotMotionTaskCallBack TaskCallBack) {
             super(0, Speed, TaskCallBack == null ? null : new MotionTaskCallBackToMotorTaskCallBack(RobotMotion.this,TaskCallBack));
+            super.setMotorController(RobotMotion.this.getMotorController());
             this.setDistance(Distance);
         }
         public FixedDistanceSpeedCtlTask(FixedDistanceSpeedCtlTask Task){
             super(Task);
+            super.setMotorController(RobotMotion.this.getMotorController());
             this.m_Distance = Task.m_Distance;
         }
         public double getDistance(){

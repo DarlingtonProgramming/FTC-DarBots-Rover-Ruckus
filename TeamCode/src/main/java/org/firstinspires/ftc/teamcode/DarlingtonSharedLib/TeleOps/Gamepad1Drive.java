@@ -32,7 +32,7 @@ public abstract class Gamepad1Drive extends LinearOpMode {
         }
         double XValue = Math.abs(gamepad1.left_stick_x) >= GamepadTriggerValue ? gamepad1.left_stick_x : 0;
         double ZValue = Math.abs(gamepad1.left_stick_y) >= GamepadTriggerValue ? -gamepad1.left_stick_y : 0;
-        double TurnValue = Math.abs(gamepad1.right_stick_x) >= GamepadTriggerValue ? gamepad1.right_stick_x : 0;
+        double TurnValue = Math.abs(gamepad1.right_stick_x) >= GamepadTriggerValue ? -gamepad1.right_stick_x : 0;
         XValue *= Math.abs(TeleOpBiggestDrivingSpeed);
         ZValue *= Math.abs(TeleOpBiggestDrivingSpeed);
         TurnValue *= Math.abs(TeleOpBiggestDrivingSpeed);

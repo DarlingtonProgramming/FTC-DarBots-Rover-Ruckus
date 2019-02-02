@@ -63,8 +63,8 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
 
     @Override
     protected void __startTask() {
-        this.getMotorController().getMotor().setCurrentMovingType(RobotMotor.MovingType.withSpeed);
-        this.getMotorController().getMotor().setPower(this.m_Speed);
+        super.getMotorController().getMotor().setCurrentMovingType(RobotMotor.MovingType.withSpeed);
+        super.getMotorController().getMotor().setPower(this.m_Speed);
     }
 
     @Override

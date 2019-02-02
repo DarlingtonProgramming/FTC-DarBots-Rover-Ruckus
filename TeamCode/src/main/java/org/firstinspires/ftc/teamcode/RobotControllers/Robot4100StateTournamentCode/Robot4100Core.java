@@ -31,6 +31,7 @@ public class Robot4100Core extends RobotCore {
         super(ControllingOpMode,Robot4100Setting.SettingFileName);
 
         Robot2DPositionTracker PosTracker;
+
         if(currentPosition == null){
             PosTracker = null;
         }else {
@@ -68,7 +69,11 @@ public class Robot4100Core extends RobotCore {
                     return "Null";
 
                 Robot2DPositionIndicator Position = Robot4100Core.this.m_MotionSystem.getPositionTracker().getPosition();
-                return "(X: " + Position.getX() + ", Z: " + Position.getZ() + ") - Rotation: " + Position.getRotationY() + " deg";
+
+                if (Position != null)
+                    return "(X: " + Position.getX() + ", Z: " + Position.getZ() + ") - Rotation: " + Position.getRotationY() + " deg";
+                else
+                    return "Null";
             }
         }));
         this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("LinearActuator",new Object(){

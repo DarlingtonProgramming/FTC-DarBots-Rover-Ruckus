@@ -41,11 +41,11 @@ public class Robot2DPositionTracker {
             super(X, Z, YRotation);
         }
 
-        public Robot2DPositionFieldAxisIndicator(Robot2DPositionFieldAxisIndicator indicator) {
+        public Robot2DPositionFieldAxisIndicator(@NonNull Robot2DPositionFieldAxisIndicator indicator) {
             super(indicator);
         }
 
-        public Robot2DPositionFieldAxisIndicator(Robot2DPositionRobotAxisIndicator robotAxisIndicator) {
+        public Robot2DPositionFieldAxisIndicator(@NonNull Robot2DPositionRobotAxisIndicator robotAxisIndicator) {
             super(0, 0, 0);
             double[] robotAxisPoint = {robotAxisIndicator.getX(), robotAxisIndicator.getZ()};
             double[] pointOfRotation = {0, 0};
@@ -73,7 +73,7 @@ public class Robot2DPositionTracker {
             super(X, Z, YRotation);
         }
 
-        public Robot2DPositionFieldAxisIndicator toFieldAxis(Robot2DPositionTracker positionTracker) {
+        public Robot2DPositionFieldAxisIndicator toFieldAxis(@NonNull Robot2DPositionTracker positionTracker) {
             return positionTracker.new Robot2DPositionFieldAxisIndicator(this);
         }
     }
@@ -85,10 +85,18 @@ public class Robot2DPositionTracker {
 
     public Robot2DPositionTracker(@NonNull Robot2DPositionIndicator initialPosition, @NonNull Robot2DPositionRobotAxisIndicator[] robotExtremePoints, @NonNull Robot2DPositionIndicator fieldMin, @NonNull Robot2DPositionIndicator fieldMax) {
         this.m_2DPos = initialPosition;
-        this.setExtremePoints(robotExtremePoints);
         this.m_FieldMinPoint = fieldMin;
         this.m_FieldMaxPoint = fieldMax;
         this.m_NeedPositionFix = false;
+        this.setExtremePoints(robotExtremePoints);
+    }
+
+    public Robot2DPositionTracker(Robot2DPositionTracker Tracker){
+        this.m_2DPos = new Robot2DPositionIndicator(Tracker.m_2DPos);
+        this.m_FieldMinPoint = Tracker.m_FieldMinPoint;
+        this.m_FieldMaxPoint = Tracker.m_FieldMaxPoint;
+        this.m_NeedPositionFix = Tracker.m_NeedPositionFix;
+        this.setExtremePoints(Tracker.m_ExtremePoints);
     }
 
     protected void fixBouncingBox() {
@@ -141,7 +149,7 @@ public class Robot2DPositionTracker {
         return this.m_FieldMinPoint;
     }
 
-    public void setFieldMinPoint(Robot2DPositionIndicator minPoint) {
+    public void setFieldMinPoint(@NonNull Robot2DPositionIndicator minPoint) {
         this.m_FieldMinPoint = minPoint;
         this.fixBouncingBox();
     }
@@ -167,7 +175,7 @@ public class Robot2DPositionTracker {
         return result;
     }
 
-    public void setExtremePoints(Robot2DPositionRobotAxisIndicator[] extremes) {
+    public void setExtremePoints(@NonNull Robot2DPositionRobotAxisIndicator[] extremes) {
         if (extremes.length != 4) {
             throw new RuntimeException("Length of RobotExtremePoints is not 4");
         }
@@ -179,12 +187,12 @@ public class Robot2DPositionTracker {
         return this.m_2DPos;
     }
 
-    public void setPosition(Robot2DPositionIndicator newPosition) {
+    public void setPosition(@NonNull Robot2DPositionIndicator newPosition) {
         this.m_2DPos = newPosition;
         this.fixBouncingBox();
     }
 
-    public void offsetPosition(Robot2DPositionIndicator offsetPosition) {
+    public void offsetPosition(@NonNull Robot2DPositionIndicator offsetPosition) {
         this.m_2DPos.setX(this.m_2DPos.getX() + offsetPosition.getX());
         this.m_2DPos.setZ(this.m_2DPos.getZ() + offsetPosition.getZ());
         this.m_2DPos.setRotationY(this.m_2DPos.getRotationY() + offsetPosition.getRotationY());
@@ -203,11 +211,11 @@ public class Robot2DPositionTracker {
         this.drive_MoveThroughFieldAngle(tempFieldIndicator.getRotationY(), distance);
     }
 
-    public void drive_MoveThroughRobotAxisOffset(Robot2DPositionRobotAxisIndicator robotAxisValues) {
+    public void drive_MoveThroughRobotAxisOffset(@NonNull Robot2DPositionRobotAxisIndicator robotAxisValues) {
         this.offsetPosition(robotAxisValues.toFieldAxis(this));
     }
 
-    public void drive_RotateAroundFieldPoint(Robot2DPositionFieldAxisIndicator fieldPointAndRotation) {
+    public void drive_RotateAroundFieldPoint(@NonNull Robot2DPositionFieldAxisIndicator fieldPointAndRotation) {
         if (fieldPointAndRotation.getX() == this.getPosition().getX() && fieldPointAndRotation.getZ() == this.getPosition().getZ()) {
             this.offsetPosition(new Robot2DPositionIndicator(0, 0, fieldPointAndRotation.getRotationY()));
             return;
@@ -219,18 +227,18 @@ public class Robot2DPositionTracker {
         }
     }
 
-    public void drive_RotateAroundRobotAxisPoint(Robot2DPositionRobotAxisIndicator robotPointAndRotation) {
+    public void drive_RotateAroundRobotAxisPoint(@NonNull Robot2DPositionRobotAxisIndicator robotPointAndRotation) {
         Robot2DPositionFieldAxisIndicator tempFieldPointAndRotation = robotPointAndRotation.toFieldAxis(this);
         tempFieldPointAndRotation.setRotationY(robotPointAndRotation.getRotationY());
         this.drive_RotateAroundFieldPoint(tempFieldPointAndRotation);
     }
 
-    public void drive_RotateAroundFieldPointWithRadiusAndPowerPoint(Robot2DPositionIndicator fieldPoint, double Radius, double DistanceCounterClockwise) {
+    public void drive_RotateAroundFieldPointWithRadiusAndPowerPoint(@NonNull Robot2DPositionIndicator fieldPoint, double Radius, double DistanceCounterClockwise) {
         double moveAngleRad = DistanceCounterClockwise / Radius;
         double moveAngleDeg = Math.toDegrees(moveAngleRad);
         this.drive_RotateAroundFieldPoint(new Robot2DPositionFieldAxisIndicator(fieldPoint.getX(), fieldPoint.getZ(), moveAngleDeg));
     }
-    public void drive_RotateAroundRobotPointWithRadiusAndPowerPoint(Robot2DPositionIndicator robotAxisPoint, double Radius, double DistanceCounterClockwise){
+    public void drive_RotateAroundRobotPointWithRadiusAndPowerPoint(@NonNull Robot2DPositionIndicator robotAxisPoint, double Radius, double DistanceCounterClockwise){
         double moveAngleRad = DistanceCounterClockwise / Radius;
         double moveAngleDeg = Math.toDegrees(moveAngleRad);
         this.drive_RotateAroundRobotAxisPoint(new Robot2DPositionRobotAxisIndicator(robotAxisPoint.getX(), robotAxisPoint.getZ(), moveAngleDeg));

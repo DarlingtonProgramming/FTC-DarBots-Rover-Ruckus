@@ -24,7 +24,7 @@ public class Robot4100Setting {
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
     public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
     public static final double TELEOP_DUMPSPEED = 0.6;
-    public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.5;
+    public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.3;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPSPEED = 0.5;
 
@@ -38,7 +38,7 @@ public class Robot4100Setting {
 
     public static final boolean MOTIONSYSTEM_TIMECONTROLENABLED = false;
     public static final double MOTIONSYSTEM_TIMECONTROLFACTOR = 1.3;
-    public static final double MOTIONSYSTEM_WHEELINSTALLEDDISTANCE = 16.0;
+    public static final double MOTIONSYSTEM_WHEELINSTALLEDDISTANCE = 14.8;
     public static final double MOTIONSYSTEM_WHEELRADIUS = 5;
 
     public static final String LEFTFRONTWHEEL_CONFIGURATIONNAME = "leftFrontMotor";

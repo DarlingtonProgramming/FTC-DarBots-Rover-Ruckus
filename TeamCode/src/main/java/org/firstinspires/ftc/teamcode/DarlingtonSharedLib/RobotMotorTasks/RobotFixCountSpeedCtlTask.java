@@ -32,7 +32,7 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     protected int m_Count;
     public RobotFixCountSpeedCtlTask(int Count, double Speed, RobotMotorTaskCallBack TaskCallBack) {
         super(0,Speed,TaskCallBack);
-        this.setCounts(Count);
+        this.m_Count = Count;
     }
     public RobotFixCountSpeedCtlTask(RobotFixCountSpeedCtlTask FixCountSpeedCtlTask){
         super(FixCountSpeedCtlTask);
@@ -48,12 +48,34 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
             throw new RuntimeException("You cannot change the count of a task when the task has started");
         }
         this.m_Count = Count;
-        double timeInSeconds = Count / this.getMotorController().getMotor().getMotorType().getCountsPerRev() / this.getMotorController().getMotor().getMotorType().getRevPerSec();
-        if(Count < 0){
+    }
+
+    protected void fixCounts(){
+        if(m_Count < 0){
             this.setSpeed(-Math.abs(this.getSpeed()));
         }else{
             this.setSpeed(Math.abs(this.getSpeed()));
         }
-        this.setTimeInSeconds(Math.abs(timeInSeconds));
+        this.setTimeInSeconds(0);
+    }
+
+    @Override
+    protected void __startTask() {
+        this.fixCounts();
+        super.__startTask();
+    }
+
+    @Override
+    public void updateStatus(){
+        super.updateStatus();
+        if(m_Count > 0){
+            if(this.getMotorController().getMotor().getCurrentCount() >= super.m_StartCount + this.m_Count){
+                this.endTask(true);
+            }
+        }else{ //m_Count >= 0;
+            if(this.getMotorController().getMotor().getCurrentCount() <= super.m_StartCount + this.m_Count){
+                this.endTask(true);
+            }
+        }
     }
 }
