@@ -42,12 +42,10 @@ public class RobotMotorWithEncoder implements RobotMotor {
         this.m_MotorType = MotorType;
     }
 
-    @Override
     public DcMotor getDcMotor() {
         return this.m_Motor;
     }
 
-    @Override
     public void setDcMotor(@NonNull DcMotor Motor) {
         this.m_Motor = Motor;
     }

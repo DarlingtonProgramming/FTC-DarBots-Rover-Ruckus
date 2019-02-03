@@ -1,4 +1,8 @@
 ## Darbots
+
+![4100Logo](https://github.com/DarlingtonProgramming/DarBots-Shared-Doc/blob/master/static/teamImage/4100Logo.png)
+![5100Logo](https://github.com/DarlingtonProgramming/DarBots-Shared-Doc/blob/master/static/teamImage/5100Logo.png)
+
 This Github repository is the robot controller code developed by Darbots, and is forked from [FTC_APP](https://github.com/ftctechnh/ftc_app/).   
 To use this code, download / clone the entire project to your local computer.   
 

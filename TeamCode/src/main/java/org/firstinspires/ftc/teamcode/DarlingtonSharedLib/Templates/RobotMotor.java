@@ -35,8 +35,6 @@ public interface RobotMotor extends RobotNonBlockingDevice {
         withSpeed,
         reset
     }
-    DcMotor getDcMotor();
-    void setDcMotor(@NonNull DcMotor Motor);
     RobotMotorType getMotorType();
     void setMotorType(@NonNull RobotMotorType MotorType);
     int getCurrentCount();

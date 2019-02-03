@@ -51,12 +51,10 @@ public class RobotMotorWithoutEncoder implements RobotMotor {
         this.m_MovingType = MovingType.withSpeed;
     }
 
-    @Override
     public DcMotor getDcMotor() {
         return this.m_Motor;
     }
 
-    @Override
     public void setDcMotor(@NonNull DcMotor Motor) {
         this.m_Motor = Motor;
         this.m_Motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
