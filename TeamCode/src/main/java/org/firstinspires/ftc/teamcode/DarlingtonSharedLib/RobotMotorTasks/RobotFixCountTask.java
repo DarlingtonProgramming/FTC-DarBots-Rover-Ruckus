@@ -81,6 +81,8 @@ public class RobotFixCountTask extends RobotMotorTask {
         double FineTime = Math.abs(DistanceTravelled / speed);
         if(this.isTimeControlEnabled()){
             FineTime *= this.getTimeOutFactor();
+        }else{
+            FineTime = 0;
         }
         this.m_FineTime = FineTime;
     }
@@ -90,7 +92,7 @@ public class RobotFixCountTask extends RobotMotorTask {
         if(this.isBusy()){
             if(!this.getMotorController().getMotor().isBusy()){
                 this.endTask(false);
-            }else if(this.getSecondsSinceStart() > this.m_FineTime){
+            }else if(this.getSecondsSinceStart() > this.m_FineTime && this.m_FineTime > 0){
                 this.endTask(true);
             }
         }

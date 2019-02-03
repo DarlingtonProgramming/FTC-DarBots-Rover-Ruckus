@@ -31,6 +31,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotF
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
 
 public class RobotServoUsingMotor implements RobotNonBlockingDevice {
+    private static final double HOWMANYREVMARGIN = 0.03;
     private RobotMotorController m_MotorCtl;
     private double m_ZeroPos;
     private double m_BiggestPos;
@@ -46,6 +47,10 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
         this.adjustCurrentPosition(currentPos);
         this.m_BiggestPos = biggestPos;
         this.m_SmallestPos = smallestPos;
+    }
+
+    public RobotMotorController getMotorController(){
+        return this.m_MotorCtl;
     }
 
     public double getCurrentPosition(){
@@ -67,10 +72,20 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
         return this.convertPosToPercent(this.getTargetPosition());
     }
     public void setTargetPosition(double Position,double Speed){
-        if(Position > this.m_BiggestPos){
-            Position = this.m_BiggestPos;
-        }else if(Position < this.m_SmallestPos){
-            Position = this.m_SmallestPos;
+        if(Position >= this.m_BiggestPos){
+            if(Math.abs(this.getCurrentPosition() - this.getBiggestPos()) <= this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev() * this.HOWMANYREVMARGIN) {
+                this.getMotorController().deleteAllTasks();
+                return;
+            }else{
+                Position = this.m_BiggestPos;
+            }
+        }else if(Position <= this.m_SmallestPos){
+            if(Math.abs(this.getCurrentPosition() - this.getSmallestPos()) <= this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev() * this.HOWMANYREVMARGIN){
+                this.getMotorController().deleteAllTasks();
+                return;
+            }else {
+                Position = this.m_SmallestPos;
+            }
         }
         if(this.isBusy()){
             this.stopMotion();

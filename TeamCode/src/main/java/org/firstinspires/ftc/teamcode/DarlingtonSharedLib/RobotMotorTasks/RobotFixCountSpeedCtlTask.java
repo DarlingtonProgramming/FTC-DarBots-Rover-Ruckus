@@ -30,6 +30,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotorTa
 
 public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     protected int m_Count;
+    protected double m_FineTime;
     public RobotFixCountSpeedCtlTask(int Count, double Speed, RobotMotorTaskCallBack TaskCallBack) {
         super(0,Speed,TaskCallBack);
         this.m_Count = Count;
@@ -51,12 +52,16 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     }
 
     protected void fixCounts(){
+        double rev = this.getCounts() / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
+        double speed = this.getSpeed() * super.getMotorController().getMotor().getMotorType().getRevPerSec();
+        double FineTime = super.isTimeControlEnabled() ? (rev / speed * super.getTimeOutFactor()) : 0;
         if(m_Count < 0){
             this.setSpeed(-Math.abs(this.getSpeed()));
         }else{
             this.setSpeed(Math.abs(this.getSpeed()));
         }
         this.setTimeInSeconds(0);
+        this.m_FineTime = FineTime;
     }
 
     @Override
@@ -70,12 +75,15 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
         super.updateStatus();
         if(m_Count > 0){
             if(this.getMotorController().getMotor().getCurrentCount() >= super.m_StartCount + this.m_Count){
-                this.endTask(true);
+                this.endTask(false);
             }
         }else{ //m_Count >= 0;
             if(this.getMotorController().getMotor().getCurrentCount() <= super.m_StartCount + this.m_Count){
-                this.endTask(true);
+                this.endTask(false);
             }
+        }
+        if(super.getSecondsSinceStart() > this.m_FineTime && this.m_FineTime > 0){
+            this.endTask(true);
         }
     }
 }
