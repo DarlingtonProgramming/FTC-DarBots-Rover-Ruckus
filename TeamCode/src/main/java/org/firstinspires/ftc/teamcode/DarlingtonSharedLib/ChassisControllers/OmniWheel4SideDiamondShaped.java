@@ -28,17 +28,17 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         @Override
         protected void __startTask() {
             double sqrt2 = Math.sqrt(2);
-            double FLDistance = -this.getXDistance() / sqrt2; //turning clockwise, the installed angle must be 45 deg
-            double FRDistance = -this.getXDistance() / sqrt2;
-            double BLDistance = this.getXDistance() / sqrt2;
-            double BRDistance = this.getXDistance() / sqrt2;
+            double FLDistance = -this.getXDistance() * sqrt2 / 4.0; //turning clockwise, the installed angle must be 45 deg
+            double FRDistance = -this.getXDistance() * sqrt2 / 4.0;
+            double BLDistance = this.getXDistance() * sqrt2 / 4.0;
+            double BRDistance = this.getXDistance() * sqrt2 / 4.0;
             RobotMotionTaskCallBack FLCallBack = new RobotMotionTaskCallBack() {
                 @Override
                 public void finishRunning(RobotMotion Motion, boolean timeOut, double timeUsedInSec, int CountsMoved, double DistanceMoved) {
                     if(OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker() == null){
                         return;
                     }
-                    OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(0,-DistanceMoved * (Math.sqrt(2)));
+                    OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(0,-DistanceMoved / (Math.sqrt(2)) * 4.0);
                 }
             };
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
@@ -70,17 +70,17 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         @Override
         protected void __startTask() {
             double sqrt2 = Math.sqrt(2);
-            double FLDistance = -this.getZDistance() / sqrt2; //turning clockwise, the installed angle must be 45 deg
-            double FRDistance = this.getZDistance() / sqrt2;
-            double BLDistance = -this.getZDistance() / sqrt2;
-            double BRDistance = this.getZDistance() / sqrt2;
+            double FLDistance = -this.getZDistance() * sqrt2 / 4.0; //turning clockwise, the installed angle must be 45 deg
+            double FRDistance = this.getZDistance() * sqrt2 / 4.0;
+            double BLDistance = -this.getZDistance() * sqrt2 / 4.0;
+            double BRDistance = this.getZDistance() * sqrt2 / 4.0;
             RobotMotionTaskCallBack FLCallBack = new RobotMotionTaskCallBack() {
                 @Override
                 public void finishRunning(RobotMotion Motion, boolean timeOut, double timeUsedInSec, int CountsMoved, double DistanceMoved) {
                     if(OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker() == null){
                         return;
                     }
-                    OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(90,-DistanceMoved * (Math.sqrt(2)));
+                    OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(90,-DistanceMoved / (Math.sqrt(2)) * 4.0);
                 }
             };
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
