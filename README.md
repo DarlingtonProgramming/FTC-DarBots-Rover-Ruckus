@@ -14,9 +14,14 @@ To use this code, download / clone the entire project to your local computer.
 |4100|Advanced to State Tournament|Yes|
 
 ## Library Status
+
 The Darlington Shared Library is maintained by David Cao, a member of the previous `5100` team.   
 He has now turned his back and started working for the `4100` team since `5100` did not advance and their coach does not want to do 2 teams in the state tournament.   
-This library is currently undergoing a reconstruction, and the new one will be the 4th iteration of this library   
+This library is currently the 4th iteration, and the documentations can be found in [DarBots-Shared-Doc](https://github.com/DarlingtonProgramming/DarBots-Shared-Doc) Repository of this organization    
+
+## Questions
+
+Please submit an issue.   
 
 ## This Repository
 
@@ -27,6 +32,7 @@ This GitHub repository contains the source code that is used to build an Android
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;https://github.com/ftctechnh/ftc_app/wiki
 
 ### Javadoc Reference Material
+
 The Javadoc reference documentation for the FTC SDK is now available online.  Visit the following URL to view the FTC SDK documentation as a live website:
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;http://ftctechnh.github.io/ftc_app/doc/javadoc/index.html    
