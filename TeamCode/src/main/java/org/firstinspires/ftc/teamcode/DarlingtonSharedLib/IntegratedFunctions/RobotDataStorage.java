@@ -67,6 +67,9 @@ public class RobotDataStorage {
         JSONParser m_Parser = new JSONParser();
         String filename = this.settingFile;
         File settingFile = AppUtil.getInstance().getSettingsFile(filename);
+        if(!settingFile.exists()){
+            m_Settings = new JSONObject();
+        }
         String FileContent = ReadWriteFile.readFile(settingFile);
         if(FileContent.isEmpty()){
             m_Settings = new JSONObject();
