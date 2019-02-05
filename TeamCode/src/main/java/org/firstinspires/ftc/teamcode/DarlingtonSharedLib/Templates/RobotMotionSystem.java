@@ -36,14 +36,37 @@ import java.util.ArrayList;
 public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
     protected ArrayList<RobotMotionSystemTask> m_TaskLists;
     protected Robot2DPositionTracker m_PosTracker;
+    protected double m_LinearMotionFrictionFactor;
+    protected double m_RotationalMotionFrictionFactor;
     public RobotMotionSystem(Robot2DPositionTracker PositionTracker){
         this.m_TaskLists = new ArrayList<>();
         this.m_PosTracker = PositionTracker;
+        this.m_LinearMotionFrictionFactor = 1;
+        this.m_RotationalMotionFrictionFactor = 1;
     }
     public RobotMotionSystem(RobotMotionSystem MotionSystem){
         this.m_TaskLists = new ArrayList<>();
         this.m_PosTracker = MotionSystem.m_PosTracker;
+        this.m_LinearMotionFrictionFactor = MotionSystem.m_LinearMotionFrictionFactor;
+        this.m_RotationalMotionFrictionFactor = MotionSystem.m_RotationalMotionFrictionFactor;
     }
+
+    public double getLinearMotionFrictionFactor(){
+        return this.m_LinearMotionFrictionFactor;
+    }
+
+    public void setLinearMotionFrictionFactor(double Factor){
+        this.m_LinearMotionFrictionFactor = Factor;
+    }
+
+    public double getRotationalMotionFrictionFactor(){
+        return this.m_RotationalMotionFrictionFactor;
+    }
+
+    public void setRotationalMotionFrictionFactor(double Factor){
+        this.m_RotationalMotionFrictionFactor = Factor;
+    }
+
     public Robot2DPositionTracker getPositionTracker(){
         return this.m_PosTracker;
     }
