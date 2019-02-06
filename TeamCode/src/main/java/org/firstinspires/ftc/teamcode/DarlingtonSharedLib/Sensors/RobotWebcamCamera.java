@@ -41,6 +41,7 @@ public class RobotWebcamCamera implements RobotCamera {
     private String m_VuforiaKey;
     private OpMode m_ControllerOp;
     private String m_WebcamConfigurationName;
+    private WebcamName m_WebcamName;
     public RobotWebcamCamera(@NonNull OpMode controllerOp, String WebCamConfigName, String VuforiaKey){
         this.m_ControllerOp = controllerOp;
         this.m_WebcamConfigurationName = WebCamConfigName;
@@ -55,9 +56,13 @@ public class RobotWebcamCamera implements RobotCamera {
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
         parameters.vuforiaLicenseKey = PrivateSettings.VUFORIALICENSE;
-        parameters.cameraName = this.m_ControllerOp.hardwareMap.get(WebcamName.class, this.m_WebcamConfigurationName);
+        m_WebcamName = this.m_ControllerOp.hardwareMap.get(WebcamName.class, this.m_WebcamConfigurationName);
+        parameters.cameraName = m_WebcamName;
 
         //  Instantiate the Vuforia engine
         this.m_Vuforia = ClassFactory.getInstance().createVuforia(parameters);
+    }
+    public WebcamName getWebcam(){
+        return m_WebcamName;
     }
 }

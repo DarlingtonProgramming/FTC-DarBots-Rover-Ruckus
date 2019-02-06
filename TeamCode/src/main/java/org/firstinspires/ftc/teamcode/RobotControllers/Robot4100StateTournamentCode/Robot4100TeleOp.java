@@ -19,7 +19,7 @@ public class Robot4100TeleOp extends Gamepad1Drive {
     @Override
     public void runOpMode() {
         this.hardwareInit();
-        this.getRobotCore().getAudioPlayer().startPlayingWavAsset("RobotInitialized");
+        this.getRobotCore().getAudioPlayer().startPlayingWavAsset("robot_initialized");
         waitForStart();
         while(this.opModeIsActive()){
             super.driveControl();

@@ -71,8 +71,8 @@ public class RobotFixCountTask extends RobotMotorTask {
 
     @Override
     protected void __startTask() {
-        this.getMotorController().getMotor().getDcMotor().setTargetPosition(this.m_Count);
-        this.getMotorController().getMotor().getDcMotor().setPower(this.m_Speed);
+        this.getMotorController().getMotor().setTargetCount(this.m_Count);
+        this.getMotorController().getMotor().setPower(this.m_Speed);
         this.getMotorController().getMotor().setCurrentMovingType(RobotMotor.MovingType.toCount);
 
         //Calculate Fine time

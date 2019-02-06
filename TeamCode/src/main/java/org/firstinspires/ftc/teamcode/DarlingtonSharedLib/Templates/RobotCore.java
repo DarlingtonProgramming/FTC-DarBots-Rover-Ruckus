@@ -36,4 +36,8 @@ public abstract class RobotCore implements RobotNonBlockingDevice {
     }
 
     public abstract RobotMotionSystem getMotionSystem();
+
+    public OpMode getControllingOpMode(){
+        return this.m_ControllingOpMode;
+    }
 }

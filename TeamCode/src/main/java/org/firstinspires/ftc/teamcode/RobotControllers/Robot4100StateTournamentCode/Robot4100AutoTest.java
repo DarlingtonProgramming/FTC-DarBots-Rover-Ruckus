@@ -15,7 +15,7 @@ public class Robot4100AutoTest extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         this.hardwareInit();
-        this.m_RobotCore.getAudioPlayer().startPlayingWavAsset("RobotInitialized");
+        this.m_RobotCore.getAudioPlayer().startPlayingWavAsset("robot_initialized");
         this.waitForStart();
         while(this.opModeIsActive()) {
             this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(20, Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
