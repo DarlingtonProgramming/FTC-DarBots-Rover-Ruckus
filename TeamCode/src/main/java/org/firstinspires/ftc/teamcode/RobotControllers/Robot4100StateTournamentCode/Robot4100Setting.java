@@ -31,6 +31,8 @@ public class Robot4100Setting {
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.3;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPSPEED = 0.5;
+    public static final double AUTONOMOUS_OFFHOOKTURNDEG = -35;
+    public static final double AUTONOMOUS_OFFHOOKFORWARDDISTANCE = 10;
 
     public static final double EXTREMEPOINTS_DISTANCEFROMCENTER = 22.86;
     public static final Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator[] EXTREMEPOINTS = {
@@ -67,6 +69,7 @@ public class Robot4100Setting {
     public static final double LINEARACTUATOR_MAX = 1000, LINEARACTUATOR_MIN = -1000;
     public static final boolean LINEARACTUATOR_TIMEOUTCONTROL = true;
     public static final double LINEARACTUATOR_TIMEOUTFACTOR = 1.2;
+    public static final double LINEARACTUATOR_HOOKPCT = 90;
 
     public static final String DRAWERSLIDEAPPROACH_CONFIGURATIONNAME = "drawerSlideMotor";
     public static final RobotMotorType DRAWERSLIDEAPPROACH_MOTORTYPE = new AndyMark2964();
