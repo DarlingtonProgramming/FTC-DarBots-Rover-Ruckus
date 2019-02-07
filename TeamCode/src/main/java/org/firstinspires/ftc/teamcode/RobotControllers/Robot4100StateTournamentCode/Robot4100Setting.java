@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot4100StateTournamentCode;
 
+import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameVuforiaNavigation;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Robot2DPositionIndicator;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTypes.AndyMark2964;
@@ -19,6 +20,9 @@ public class Robot4100Setting {
 
     public static final Robot2DPositionIndicator Field_MinPoint = new Robot2DPositionIndicator(-182.88,-182.88,0);
     public static final Robot2DPositionIndicator Field_MaxPoint = new Robot2DPositionIndicator(182.88,182.88,0);
+
+    public static final FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator VUFORIANAV_PHONEPOSITION = new FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator(-19,-6,20.5,180,90,0);
+    public static final boolean VUFORIANAV_ShowPreviewScreen = true;
 
     public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;

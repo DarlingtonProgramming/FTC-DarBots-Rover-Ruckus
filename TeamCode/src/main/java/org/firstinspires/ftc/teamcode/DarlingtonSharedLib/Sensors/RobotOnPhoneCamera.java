@@ -25,6 +25,9 @@ SOFTWARE.
 
 package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
+import android.support.annotation.NonNull;
+
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.vuforia.Vuforia;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
@@ -36,9 +39,13 @@ public class RobotOnPhoneCamera implements RobotCamera {
     private VuforiaLocalizer.CameraDirection m_CameraDirection;
     private VuforiaLocalizer m_Vuforia;
     private String m_VuforiaKey;
-    public RobotOnPhoneCamera(VuforiaLocalizer.CameraDirection CameraDirection,String VuforiaKey){
+    private boolean m_Preview;
+    private OpMode m_ControllingOpMode;
+    public RobotOnPhoneCamera(@NonNull OpMode controllerOpMode, boolean preview, VuforiaLocalizer.CameraDirection CameraDirection, String VuforiaKey){
         this.m_CameraDirection = CameraDirection;
+        this.m_ControllingOpMode = controllerOpMode;
         this.m_VuforiaKey = VuforiaKey;
+        this.m_Preview = preview;
         this.createVuforia();
     }
     public VuforiaLocalizer.CameraDirection getCameraDirection(){
@@ -48,8 +55,21 @@ public class RobotOnPhoneCamera implements RobotCamera {
     public VuforiaLocalizer getVuforia() {
         return this.m_Vuforia;
     }
+
+    @Override
+    public boolean isPreview() {
+        return this.m_Preview;
+    }
+
     protected void createVuforia(){
-        VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
+
+        VuforiaLocalizer.Parameters parameters = null;
+        if(this.m_Preview){
+            int cameraMonitorViewId = m_ControllingOpMode.hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", m_ControllingOpMode.hardwareMap.appContext.getPackageName());
+            parameters = new VuforiaLocalizer.Parameters(cameraMonitorViewId);
+        }else {
+            parameters = new VuforiaLocalizer.Parameters();
+        }
 
         parameters.vuforiaLicenseKey = this.m_VuforiaKey;
         parameters.cameraDirection = this.m_CameraDirection;

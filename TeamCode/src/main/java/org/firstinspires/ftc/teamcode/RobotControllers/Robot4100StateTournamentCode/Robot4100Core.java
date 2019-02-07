@@ -5,6 +5,9 @@ import android.support.annotation.NonNull;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
+import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
+import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameVuforiaNavigation;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ChassisControllers.OmniWheel4SideDiamondShaped;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Robot2DPositionIndicator;
@@ -13,9 +16,14 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotion;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorController;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorWithEncoder;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorWithoutEncoder;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotOnPhoneCamera;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotServoUsingMotor;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotWebcamCamera;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotCore;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
+import org.firstinspires.ftc.teamcode.RobotControllers.DarbotsPrivateInfo.PrivateSettings;
+
+import java.util.ResourceBundle;
 
 
 public class Robot4100Core extends RobotCore {
@@ -26,8 +34,10 @@ public class Robot4100Core extends RobotCore {
     private RobotMotorWithoutEncoder m_CollectorSweep;
     private Servo m_CollectorSetOut;
     private Servo m_DeclarationServo;
+    private FTC2018GameVuforiaNavigation m_VuforiaNav;
+    private FTC2018GameSpecificFunctions m_MineralDetection;
 
-    public Robot4100Core(@NonNull OpMode ControllingOpMode, Robot2DPositionIndicator currentPosition, boolean readSavedValues){
+    public Robot4100Core(@NonNull OpMode ControllingOpMode, Robot2DPositionIndicator currentPosition, boolean readSavedValues, boolean initVuforiaNav, boolean initTFOD){
         super(ControllingOpMode,Robot4100Setting.SettingFileName);
 
         Robot2DPositionTracker PosTracker;
@@ -61,6 +71,17 @@ public class Robot4100Core extends RobotCore {
 
         this.m_DeclarationServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.TEAMMARKER_CONFIGURATIONNAME);
 
+        if(initVuforiaNav) {
+            RobotOnPhoneCamera phoneCamera = new RobotOnPhoneCamera(ControllingOpMode, Robot4100Setting.VUFORIANAV_ShowPreviewScreen, VuforiaLocalizer.CameraDirection.FRONT, PrivateSettings.VUFORIALICENSE);
+            this.m_VuforiaNav = new FTC2018GameVuforiaNavigation(phoneCamera, Robot4100Setting.VUFORIANAV_PHONEPOSITION);
+        }else{
+            this.m_VuforiaNav = null;
+        }
+
+        if(initTFOD){
+            RobotWebcamCamera webcamCamera = new RobotWebcamCamera(ControllingOpMode,Robot4100Setting.TFOL_CAMERACONFIGURTIONNAME,PrivateSettings.VUFORIALICENSE,false);
+            this.m_MineralDetection = new FTC2018GameSpecificFunctions(ControllingOpMode,webcamCamera,Robot4100Setting.TFOL_ShowPreviewScreen);
+        }
 
         this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("PositionTracker",new Object(){
             @Override
@@ -152,6 +173,15 @@ public class Robot4100Core extends RobotCore {
         this.m_LinearActuator.updateStatus();
         this.m_CollectorSweep.updateStatus();
         this.m_DrawerSlide.updateStatus();
+        this.calibratePosition();
+    }
+
+    public void calibratePosition(){
+        if(this.m_VuforiaNav != null && this.m_MotionSystem.getPositionTracker() != null){
+            FTC2018GameVuforiaNavigation.Vuforia3DFieldAxisIndicator Robot3DVuforiaPos = this.m_VuforiaNav.getRobotPosition();
+            Robot2DPositionTracker.Robot2DPositionFieldAxisIndicator Robot2DFieldPos = Robot3DVuforiaPos.getVuforia2DFieldAxisIndicator().toFieldAxis(this.m_MotionSystem.getPositionTracker());
+            this.m_MotionSystem.getPositionTracker().setPosition(Robot2DFieldPos);
+        }
     }
 
     @Override
@@ -161,6 +191,10 @@ public class Robot4100Core extends RobotCore {
 
     public RobotServoUsingMotor getLinearActuator(){
         return this.m_LinearActuator;
+    }
+
+    public FTC2018GameSpecificFunctions get2018MineralDetection(){
+        return this.m_MineralDetection;
     }
 
     public RobotServoUsingMotor getDrawerSlide(){

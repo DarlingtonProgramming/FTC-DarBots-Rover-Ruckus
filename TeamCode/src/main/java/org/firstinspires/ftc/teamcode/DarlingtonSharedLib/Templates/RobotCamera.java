@@ -31,4 +31,5 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 
 public interface RobotCamera {
     VuforiaLocalizer getVuforia();
+    boolean isPreview();
 }

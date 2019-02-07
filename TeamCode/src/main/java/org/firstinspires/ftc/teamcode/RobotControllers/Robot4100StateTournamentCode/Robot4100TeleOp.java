@@ -13,7 +13,7 @@ public class Robot4100TeleOp extends Gamepad1Drive {
     }
 
     protected void hardwareInit(){
-        super.robotCoreInit(new Robot4100Core(this,null,true));
+        super.robotCoreInit(new Robot4100Core(this,null,true,false));
     }
 
     @Override

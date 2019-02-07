@@ -124,11 +124,11 @@ public class FTC2018GameVuforiaNavigation {
         }
 
         public Vuforia2DFieldAxisIndicator(Robot2DPositionTracker.Robot2DPositionFieldAxisIndicator Pos2D){
-            super(Pos2D.getX(),Pos2D.getZ(),Pos2D.getRotationY());
+            super(Pos2D.getX(),Pos2D.getZ(),XYPlaneCalculations.normalizeDeg(Pos2D.getRotationY() + 90));
         }
 
         public Robot2DPositionTracker.Robot2DPositionFieldAxisIndicator toFieldAxis(Robot2DPositionTracker PosTracker){
-            return PosTracker.new Robot2DPositionFieldAxisIndicator(this.getX(),this.getY(),this.getRotationZ());
+            return PosTracker.new Robot2DPositionFieldAxisIndicator(this.getX(),this.getY(),XYPlaneCalculations.normalizeDeg(this.getRotationZ() - 90));
         }
     }
     public static class Vuforia3DRobotAxisIndicator extends Vuforia3DPosIndicator {

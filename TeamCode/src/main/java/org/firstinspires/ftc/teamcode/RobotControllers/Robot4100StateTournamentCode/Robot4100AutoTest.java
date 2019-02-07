@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Ro
 public class Robot4100AutoTest extends LinearOpMode {
     Robot4100Core m_RobotCore;
     protected void hardwareInit(){
-        this.m_RobotCore = new Robot4100Core(this,new Robot2DPositionIndicator(0,0,0),false);
+        this.m_RobotCore = new Robot4100Core(this,new Robot2DPositionIndicator(0,0,0),false,false);
     }
     @Override
     public void runOpMode() throws InterruptedException {
