@@ -36,12 +36,13 @@ import static android.os.SystemClock.sleep;
 public class BN055IMUGyro implements RobotNonBlockingDevice {
     private BNO055IMU m_Gyro;
     private Orientation angles;
+    private float m_XOffset = 0.0f, m_YOffset = 0.0f, m_ZOffset = 0.0f;
     public BN055IMUGyro(@NonNull HardwareMap hardwareMap, String GyroName){
         m_Gyro = hardwareMap.get(BNO055IMU.class,GyroName);
-        resetGyro();
+        initGyro();
     }
 
-    public void resetGyro(){
+    protected void initGyro(){
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.mode                = BNO055IMU.SensorMode.IMU;
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
@@ -51,6 +52,27 @@ public class BN055IMUGyro implements RobotNonBlockingDevice {
         while(!this.m_Gyro.isGyroCalibrated()){
             sleep(50);
         }
+        this.m_XOffset = 0.0f;
+        this.m_YOffset = 0.0f;
+        this.m_ZOffset = 0.0f;
+    }
+
+    public void resetGyro(){
+        this.m_XOffset = this.getRawX();
+        this.m_YOffset = this.getRawY();
+        this.m_ZOffset = this.getRawZ();
+    }
+
+    public float getX(){
+        return this.getRawX() - this.m_XOffset;
+    }
+
+    public float getY(){
+        return this.getRawY() - this.m_YOffset;
+    }
+
+    public float getZ(){
+        return this.getRawZ() - this.m_ZOffset;
     }
 
     public void updateData(){
@@ -58,7 +80,7 @@ public class BN055IMUGyro implements RobotNonBlockingDevice {
     }
 
     public float getHeading() {
-        return this.getRawZ();
+        return this.getZ();
     }
 
     public float getRawX(){

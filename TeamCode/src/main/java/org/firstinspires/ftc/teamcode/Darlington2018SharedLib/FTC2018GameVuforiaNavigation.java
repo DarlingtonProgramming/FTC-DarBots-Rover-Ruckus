@@ -210,7 +210,7 @@ public class FTC2018GameVuforiaNavigation {
         return this.m_Camera;
     }
     private void initializeTrackables(){
-        VuforiaTrackables targetsRoverRuckus = this.m_Camera.getVuforia().loadTrackablesFromAsset("RoverRuckus");
+        targetsRoverRuckus = this.m_Camera.getVuforia().loadTrackablesFromAsset("RoverRuckus");
         VuforiaTrackable blueRover = targetsRoverRuckus.get(0);
         blueRover.setName("Blue-Rover");
         VuforiaTrackable redFootprint = targetsRoverRuckus.get(1);
