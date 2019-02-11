@@ -188,10 +188,10 @@ public class FTC2018GameSpecificFunctions {
         return m_Results;
     }
     public static MineralInformation firstMineralInCamera(MineralInformation[] Blocks){
-        if(Blocks != null){
+        if(Blocks != null && Blocks.length > 0){
             return Blocks[0];
         }else{
-            return new MineralInformation();
+            return null;
         }
     }
     public static MineralInformation leftMineralInCameraX(MineralInformation[] Blocks){
