@@ -43,7 +43,7 @@ public class RobotWebcamCamera implements RobotCamera {
     private String m_WebcamConfigurationName;
     private WebcamName m_WebcamName;
     private boolean m_Preview;
-    public RobotWebcamCamera(@NonNull OpMode controllerOp, String WebCamConfigName, String VuforiaKey, boolean preview){
+    public RobotWebcamCamera(@NonNull OpMode controllerOp, boolean preview, String WebCamConfigName, String VuforiaKey){
         this.m_ControllerOp = controllerOp;
         this.m_WebcamConfigurationName = WebCamConfigName;
         this.m_VuforiaKey = VuforiaKey;

@@ -79,7 +79,7 @@ public class Robot4100Core extends RobotCore {
         }
 
         if(initTFOD){
-            RobotWebcamCamera webcamCamera = new RobotWebcamCamera(ControllingOpMode,Robot4100Setting.TFOL_CAMERACONFIGURTIONNAME,PrivateSettings.VUFORIALICENSE,false);
+            RobotWebcamCamera webcamCamera = new RobotWebcamCamera(ControllingOpMode, false, Robot4100Setting.TFOL_CAMERACONFIGURTIONNAME,PrivateSettings.VUFORIALICENSE);
             this.m_MineralDetection = new FTC2018GameSpecificFunctions(ControllingOpMode,webcamCamera,Robot4100Setting.TFOL_ShowPreviewScreen);
         }
 
@@ -181,6 +181,7 @@ public class Robot4100Core extends RobotCore {
             FTC2018GameVuforiaNavigation.Vuforia3DFieldAxisIndicator Robot3DVuforiaPos = this.m_VuforiaNav.getRobotPosition();
             Robot2DPositionTracker.Robot2DPositionFieldAxisIndicator Robot2DFieldPos = Robot3DVuforiaPos.getVuforia2DFieldAxisIndicator().toFieldAxis(this.m_MotionSystem.getPositionTracker());
             this.m_MotionSystem.getPositionTracker().setPosition(Robot2DFieldPos);
+            this.m_MotionSystem.getPositionTracker().finishPositionFix();
         }
     }
 
