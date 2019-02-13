@@ -27,14 +27,18 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 
 import android.support.annotation.NonNull;
 
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotFixCountTask;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DebuggerAttachable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
+import org.firstinspires.ftc.teamcode.RobotControllers.Robot4100StateTournamentCode.Robot4100Core;
 
-public class RobotServoUsingMotor implements RobotNonBlockingDevice {
+public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAttachable {
+
     public interface RobotMotorUsingServoCallBackBeforeAssigning{
         boolean setPositionPreCheck(RobotServoUsingMotor servo, double Position, double Speed);
     }
-    private static final double HOWMANYREVMARGIN = 0.02;
+    private static final double HOWMANYREVMARGIN = 0.03;
     private RobotMotorController m_MotorCtl;
     private double m_ZeroPos;
     private double m_BiggestPos;
@@ -51,6 +55,16 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
         this.adjustCurrentPosition(currentPos);
         this.m_BiggestPos = biggestPos;
         this.m_SmallestPos = smallestPos;
+    }
+
+    @Override
+    public RobotDebugger.RobotDebuggerCallable getDebuggerCallable(String partName) {
+        return new RobotDebugger.ObjectDebuggerWrapper<>(partName,new Object(){
+            @Override
+            public String toString(){
+                return "" + RobotServoUsingMotor.this.getCurrentPosition() + "(" + RobotServoUsingMotor.this.getCurrentPercent() + "%)";
+            }
+        });
     }
 
     public RobotMotorUsingServoCallBackBeforeAssigning getPreCheckCallBack() {
@@ -85,34 +99,28 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
     }
     public void setTargetPosition(double Position,double Speed){
         if(Position >= this.getBiggestPos()){
-            /*
             if(Math.abs(this.getCurrentPosition() - this.getBiggestPos()) <= this.HOWMANYREVMARGIN) {
                 this.getMotorController().deleteAllTasks();
                 return;
             }else{
                 Position = this.getBiggestPos();
             }
-            */
             Position = this.getBiggestPos();
         }else if(Position <= this.getSmallestPos()){
-            /*
             if(Math.abs(this.getCurrentPosition() - this.getSmallestPos()) <= this.HOWMANYREVMARGIN){
                 this.getMotorController().deleteAllTasks();
                 return;
             }else {
                 Position = this.getSmallestPos();
             }
-            */
             Position = this.getSmallestPos();
         }
-        /*
         if(this.m_PreCheckCallBack != null){
             if(!this.m_PreCheckCallBack.setPositionPreCheck(this,Position,Speed)){
                 this.stopMotion();
                 return;
             }
         }
-        */
         if(this.isBusy()){
             this.stopMotion();
         }

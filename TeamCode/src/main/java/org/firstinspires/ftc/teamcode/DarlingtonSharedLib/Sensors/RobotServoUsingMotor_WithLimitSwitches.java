@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
+
 public class RobotServoUsingMotor_WithLimitSwitches extends RobotServoUsingMotor {
     protected TouchSensor m_MinTouch;
     protected TouchSensor m_MaxTouch;
@@ -12,6 +14,19 @@ public class RobotServoUsingMotor_WithLimitSwitches extends RobotServoUsingMotor
         this.m_MaxTouch = maxValTouchSensor;
         this.m_MinTouch = minValTouchSensor;
     }
+
+    @Override
+    public RobotDebugger.RobotDebuggerCallable getDebuggerCallable(String partName) {
+        return new RobotDebugger.ObjectDebuggerWrapper<>(partName,new Object(){
+            @Override
+            public String toString(){
+                String limitSwitchMinState = "MinSwitch: " + (RobotServoUsingMotor_WithLimitSwitches.this.getMinValTouch() == null ? "null" : (RobotServoUsingMotor_WithLimitSwitches.this.getMinValTouch().isPressed() ? "pressed" : "unPressed"));
+                String limitSwitchMaxState = "MaxSwitch: " + (RobotServoUsingMotor_WithLimitSwitches.this.getMaxValTouch() == null ? "null" : (RobotServoUsingMotor_WithLimitSwitches.this.getMaxValTouch().isPressed() ? "pressed" : "unPressed"));
+                return "" + RobotServoUsingMotor_WithLimitSwitches.this.getCurrentPosition() + "(" + RobotServoUsingMotor_WithLimitSwitches.this.getCurrentPercent() + "%) " + limitSwitchMinState + " ; " + limitSwitchMaxState;
+            }
+        });
+    }
+
     public TouchSensor getMinValTouch(){
         return this.m_MinTouch;
     }

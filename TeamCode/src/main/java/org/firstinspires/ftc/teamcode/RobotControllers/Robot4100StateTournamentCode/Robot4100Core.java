@@ -88,38 +88,10 @@ public class Robot4100Core extends RobotCore {
             this.m_MineralDetection = new FTC2018GameSpecificFunctions(ControllingOpMode,webcamCamera,Robot4100Setting.TFOL_ShowPreviewScreen);
         }
 
-        this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("PositionTracker",new Object(){
-            @Override
-            public String toString(){
-                if(Robot4100Core.this.m_MotionSystem.getPositionTracker() == null)
-                    return "Null";
-
-                Robot2DPositionIndicator Position = Robot4100Core.this.m_MotionSystem.getPositionTracker().getPosition();
-
-                if (Position != null)
-                    return "(X: " + Position.getX() + ", Z: " + Position.getZ() + ") - Rotation: " + Position.getRotationY() + " deg";
-                else
-                    return "Null";
-            }
-        }));
-        this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("LinearActuator",new Object(){
-            @Override
-            public String toString(){
-                return "" + Robot4100Core.this.m_LinearActuator.getCurrentPosition() + "(" + Robot4100Core.this.m_LinearActuator.getCurrentPercent() + "%)";
-            }
-        }));
-        this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("DrawerSlide",new Object(){
-            @Override
-            public String toString(){
-                return "" + Robot4100Core.this.m_DrawerSlide.getCurrentPosition() + "(" + Robot4100Core.this.m_DrawerSlide.getCurrentPercent() + "%)";
-            }
-        }));
-        this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("DumperSlide",new Object(){
-            @Override
-            public String toString(){
-                return "" + Robot4100Core.this.m_DumperSlide.getCurrentPosition() + "(" + Robot4100Core.this.m_DumperSlide.getCurrentPercent() + "%)";
-            }
-        }));
+        this.getDebugger().addDebuggerCallable(this.m_MotionSystem.getDebuggerCallable("motionSystem"));
+        this.getDebugger().addDebuggerCallable(this.m_LinearActuator.getDebuggerCallable("linearActuator"));
+        this.getDebugger().addDebuggerCallable(this.m_DrawerSlide.getDebuggerCallable("drawerSlide"));
+        this.getDebugger().addDebuggerCallable(this.m_DumperSlide.getDebuggerCallable("dumperSlide"));
 
         if(readSavedValues){
             this.readSetting();

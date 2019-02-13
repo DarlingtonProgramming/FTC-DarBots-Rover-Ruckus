@@ -33,7 +33,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPo
 
 import java.util.ArrayList;
 
-public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
+public abstract class RobotMotionSystem implements RobotNonBlockingDevice, DebuggerAttachable {
     protected ArrayList<RobotMotionSystemTask> m_TaskLists;
     protected Robot2DPositionTracker m_PosTracker;
     protected double m_LinearMotionFrictionFactor;

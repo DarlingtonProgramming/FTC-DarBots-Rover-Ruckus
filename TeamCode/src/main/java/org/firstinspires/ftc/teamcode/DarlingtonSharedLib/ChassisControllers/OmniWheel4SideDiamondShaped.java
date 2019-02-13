@@ -5,6 +5,8 @@ import android.support.annotation.NonNull;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPositionTracker;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Robot2DPositionIndicator;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotFixedSpeedTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotion;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
@@ -14,6 +16,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionS
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTeleOpControlTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionTaskCallBack;
+import org.firstinspires.ftc.teamcode.RobotControllers.Robot4100StateTournamentCode.Robot4100Core;
 
 public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
     public class OmniWheel4SideFixedXTask extends RobotMotionSystemFixedXDistanceTask {
@@ -24,7 +27,6 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         public OmniWheel4SideFixedXTask(OmniWheel4SideFixedXTask Task){
             super(Task);
         }
-
         @Override
         protected void __startTask() {
             double sqrt2 = Math.sqrt(2);
@@ -177,6 +179,7 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         }
     }
 
+
     private RobotMotion m_LeftFrontMotor, m_RightFrontMotor, m_LeftBackMotor, m_RightBackMotor;
     public OmniWheel4SideDiamondShaped(@NonNull RobotMotion LeftFrontMotor, @NonNull RobotMotion RightFrontMotor, @NonNull RobotMotion LeftBackMotor, @NonNull RobotMotion RightBackMotor, Robot2DPositionTracker PositionTracker) {
         super(PositionTracker);
@@ -194,6 +197,24 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         this.m_RightBackMotor = OmniWheelDrive.m_RightBackMotor;
     }
 
+
+    @Override
+    public RobotDebugger.RobotDebuggerCallable getDebuggerCallable(String partName) {
+        return new RobotDebugger.ObjectDebuggerWrapper<>(partName, new Object() {
+            @Override
+            public String toString() {
+                if (OmniWheel4SideDiamondShaped.this.getPositionTracker() == null)
+                    return "Null";
+
+                Robot2DPositionIndicator Position = OmniWheel4SideDiamondShaped.this.getPositionTracker().getPosition();
+
+                if (Position != null)
+                    return "(X: " + Position.getX() + ", Z: " + Position.getZ() + ") - Rotation: " + Position.getRotationY() + " deg";
+                else
+                    return "Null";
+            }
+        });
+    }
 
     @Override
     protected void __stopMotion() {
