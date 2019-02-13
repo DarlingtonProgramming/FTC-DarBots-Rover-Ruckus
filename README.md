@@ -3,6 +3,7 @@
 ![4100Logo](https://github.com/DarlingtonProgramming/DarBots-Shared-Doc/blob/master/static/teamImage/4100Logo.png)
 ![5100Logo](https://github.com/DarlingtonProgramming/DarBots-Shared-Doc/blob/master/static/teamImage/5100Logo.png)
 
+Darbots aims to build safer and more efficient robots by using software fallback mechanisms and hardware advancements.   
 This Github repository is the robot controller code developed by Darbots, and is forked from [FTC_APP](https://github.com/ftctechnh/ftc_app/).   
 To use this code, download / clone the entire project to your local computer.   
 
@@ -15,6 +16,7 @@ To use this code, download / clone the entire project to your local computer.
 
 ## Library Status
 
+Current version: 4.0.1 Dev   
 The Darlington Shared Library is maintained by David Cao, a member of the previous `5100` team.   
 He has now turned his back and started working for the `4100` team since `5100` did not advance and their coach does not want to do 2 teams in the state tournament.   
 This library is currently the 4th iteration, and the documentations can be found in [DarBots-Shared-Doc](https://github.com/DarlingtonProgramming/DarBots-Shared-Doc) Repository of this organization    

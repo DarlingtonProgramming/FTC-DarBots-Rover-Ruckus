@@ -31,15 +31,19 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotF
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
 
 public class RobotServoUsingMotor implements RobotNonBlockingDevice {
-    private static final double HOWMANYREVMARGIN = 0.03;
+    public interface RobotMotorUsingServoCallBackBeforeAssigning{
+        boolean setPositionPreCheck(RobotServoUsingMotor servo, double Position, double Speed);
+    }
+    private static final double HOWMANYREVMARGIN = 0.02;
     private RobotMotorController m_MotorCtl;
     private double m_ZeroPos;
     private double m_BiggestPos;
     private double m_SmallestPos;
-    protected double convertPercentToPos(double Percent){
+    private RobotMotorUsingServoCallBackBeforeAssigning m_PreCheckCallBack;
+    public double convertPercentToPos(double Percent){
         return Percent / 100.0 * (this.getBiggestPos() - this.getSmallestPos()) + this.getSmallestPos();
     }
-    protected double convertPosToPercent(double Pos){
+    public double convertPosToPercent(double Pos){
         return Pos / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
     }
     public RobotServoUsingMotor(@NonNull RobotMotorController MotorController, double currentPos, double biggestPos, double smallestPos){
@@ -47,6 +51,15 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
         this.adjustCurrentPosition(currentPos);
         this.m_BiggestPos = biggestPos;
         this.m_SmallestPos = smallestPos;
+        this.m_PreCheckCallBack = null;
+    }
+
+    public RobotMotorUsingServoCallBackBeforeAssigning getPreCheckCallBack() {
+        return m_PreCheckCallBack;
+    }
+
+    public void setPreCheckCallBack(RobotMotorUsingServoCallBackBeforeAssigning callBack){
+        this.m_PreCheckCallBack = callBack;
     }
 
     public RobotMotorController getMotorController(){
@@ -87,12 +100,21 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
                 Position = this.m_SmallestPos;
             }
         }
+        if(this.m_PreCheckCallBack != null){
+            if(!this.m_PreCheckCallBack.setPositionPreCheck(this,Position,Speed)){
+                this.getMotorController().deleteAllTasks();
+                return;
+            }
+        }
         if(this.isBusy()){
             this.stopMotion();
         }
         double deltaPos = Position - this.getCurrentPosition();
         int deltaCount = (int) Math.round(deltaPos * this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev());
-        this.m_MotorCtl.addTask(new RobotFixCountTask(deltaCount,Speed,null));
+        if(deltaCount == 0){
+            this.stopMotion();
+        }
+        this.m_MotorCtl.replaceTask(new RobotFixCountTask(deltaCount,Speed,null));
     }
     public void setTargetPercent(double Percent, double Speed){
         this.setTargetPosition(this.convertPercentToPos(Percent),Speed);
