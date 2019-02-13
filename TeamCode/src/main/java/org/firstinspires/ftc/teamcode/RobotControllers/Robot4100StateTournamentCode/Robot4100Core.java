@@ -62,10 +62,11 @@ public class Robot4100Core extends RobotCore {
         this.m_DrawerSlide = new RobotServoUsingMotor(new RobotMotorController(DrawerSlideMotor,Robot4100Setting.DRAWERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DRAWERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DRAWERSLIDEAPPROACH_MAX,Robot4100Setting.DRAWERSLIDEAPPROACH_MIN);
 
         RobotMotorWithEncoder DumperMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.DUMPERSLIDE_CONFIGURATIONNAME),Robot4100Setting.DUMPERSLIDE_MOTORTYPE);
+        DumperMotor.setDirectionReversed(true);
         this.m_DumperSlide = new RobotServoUsingMotor(new RobotMotorController(DumperMotor,Robot4100Setting.DUMPERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DUMPERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DUMPERSLIDE_MAX,Robot4100Setting.DUMPERSLIDE_MIN);
 
         this.m_CollectorSweep = new RobotMotorWithoutEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.COLLECTOR_CONFIGURATIONNAME),Robot4100Setting.COLLECTOR_MOTORTYPE);
-        //this.m_CollectorSweep.setDirectionReversed(true);
+        this.m_CollectorSweep.setDirectionReversed(true);
 
         this.m_CollectorSetOut = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.COLLECTOROUTSERVO_CONFIGURATIONNAME);
 
@@ -129,7 +130,7 @@ public class Robot4100Core extends RobotCore {
         RobotPosition = this.getDataStorage().getSetting("RobotPosition",RobotPosition);
         LinearActuatorPos = this.getDataStorage().getSetting("LinearActuatorPos",LinearActuatorPos);
         DrawerSlidePos = this.getDataStorage().getSetting("DrawerSlidePos",DrawerSlidePos);
-        DumperSlidePos = this.getDataStorage().getSetting("DumperPos",DumperSlidePos);
+        DumperSlidePos = this.getDataStorage().getSetting("DumperSlidePos",DumperSlidePos);
         if(RobotPosition != null){
             this.m_MotionSystem.getPositionTracker().setPosition(RobotPosition);
         }
@@ -145,7 +146,7 @@ public class Robot4100Core extends RobotCore {
         this.getDataStorage().saveSetting("RobotPosition",RobotPosition);
         this.getDataStorage().saveSetting("LinearActuatorPos",LinearActuatorPos);
         this.getDataStorage().saveSetting("DrawerSlidePos",DrawerSlidePos);
-        this.getDataStorage().saveSetting("DumperPos",DumperPos);
+        this.getDataStorage().saveSetting("DumperSlidePos",DumperPos);
         this.getDataStorage().saveSettingsToFile();
     }
 
