@@ -30,10 +30,10 @@ public class Robot4100Core extends RobotCore {
     private OmniWheel4SideDiamondShaped m_MotionSystem;
     private RobotServoUsingMotor m_LinearActuator;
     private RobotServoUsingMotor m_DrawerSlide;
-    private RobotServoUsingMotor m_Dumper;
+    private RobotServoUsingMotor m_DumperSlide;
     private RobotMotorWithoutEncoder m_CollectorSweep;
     private Servo m_CollectorSetOut;
-    private Servo m_DeclarationServo;
+    private Servo m_DumperServo;
     private FTC2018GameVuforiaNavigation m_VuforiaNav;
     private FTC2018GameSpecificFunctions m_MineralDetection;
 
@@ -61,15 +61,15 @@ public class Robot4100Core extends RobotCore {
         DrawerSlideMotor.setDirectionReversed(true);
         this.m_DrawerSlide = new RobotServoUsingMotor(new RobotMotorController(DrawerSlideMotor,Robot4100Setting.DRAWERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DRAWERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DRAWERSLIDEAPPROACH_MAX,Robot4100Setting.DRAWERSLIDEAPPROACH_MIN);
 
-        RobotMotorWithEncoder DumperMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.DUMP_CONFIGURATIONNAME),Robot4100Setting.DUMP_MOTORTYPE);
-        this.m_Dumper = new RobotServoUsingMotor(new RobotMotorController(DumperMotor,Robot4100Setting.DUMP_TIMEOUTCONTROL,Robot4100Setting.DUMP_TIMEOUTFACTOR),0,Robot4100Setting.DUMP_MAX,Robot4100Setting.DUMP_MIN);
+        RobotMotorWithEncoder DumperMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.DUMPERSLIDE_CONFIGURATIONNAME),Robot4100Setting.DUMPERSLIDE_MOTORTYPE);
+        this.m_DumperSlide = new RobotServoUsingMotor(new RobotMotorController(DumperMotor,Robot4100Setting.DUMPERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DUMPERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DUMPERSLIDE_MAX,Robot4100Setting.DUMPERSLIDE_MIN);
 
         this.m_CollectorSweep = new RobotMotorWithoutEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.COLLECTOR_CONFIGURATIONNAME),Robot4100Setting.COLLECTOR_MOTORTYPE);
         //this.m_CollectorSweep.setDirectionReversed(true);
 
         this.m_CollectorSetOut = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.COLLECTOROUTSERVO_CONFIGURATIONNAME);
 
-        this.m_DeclarationServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.TEAMMARKER_CONFIGURATIONNAME);
+        this.m_DumperServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.DUMPERSERVO_CONFIGURATIONNAME);
 
         if(initVuforiaNav) {
             RobotOnPhoneCamera phoneCamera = new RobotOnPhoneCamera(ControllingOpMode, Robot4100Setting.VUFORIANAV_ShowPreviewScreen, VuforiaLocalizer.CameraDirection.FRONT, PrivateSettings.VUFORIALICENSE);
@@ -109,10 +109,10 @@ public class Robot4100Core extends RobotCore {
                 return "" + Robot4100Core.this.m_DrawerSlide.getCurrentPosition() + "(" + Robot4100Core.this.m_DrawerSlide.getCurrentPercent() + "%)";
             }
         }));
-        this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("Dumper",new Object(){
+        this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("DumperSlide",new Object(){
             @Override
             public String toString(){
-                return "" + Robot4100Core.this.m_Dumper.getCurrentPosition() + "(" + Robot4100Core.this.m_Dumper.getCurrentPercent() + "%)";
+                return "" + Robot4100Core.this.m_DumperSlide.getCurrentPosition() + "(" + Robot4100Core.this.m_DumperSlide.getCurrentPercent() + "%)";
             }
         }));
 
@@ -125,23 +125,23 @@ public class Robot4100Core extends RobotCore {
         Robot2DPositionIndicator RobotPosition = this.m_MotionSystem.getPositionTracker() == null ? null : this.m_MotionSystem.getPositionTracker().getPosition();
         Double LinearActuatorPos = this.m_LinearActuator.getCurrentPosition();
         Double DrawerSlidePos = this.m_DrawerSlide.getCurrentPosition();
-        Double DumperPos = this.m_Dumper.getCurrentPosition();
+        Double DumperSlidePos = this.m_DumperSlide.getCurrentPosition();
         RobotPosition = this.getDataStorage().getSetting("RobotPosition",RobotPosition);
         LinearActuatorPos = this.getDataStorage().getSetting("LinearActuatorPos",LinearActuatorPos);
         DrawerSlidePos = this.getDataStorage().getSetting("DrawerSlidePos",DrawerSlidePos);
-        DumperPos = this.getDataStorage().getSetting("DumperPos",DumperPos);
+        DumperSlidePos = this.getDataStorage().getSetting("DumperPos",DumperSlidePos);
         if(RobotPosition != null){
             this.m_MotionSystem.getPositionTracker().setPosition(RobotPosition);
         }
         this.m_LinearActuator.adjustCurrentPosition(LinearActuatorPos);
         this.m_DrawerSlide.adjustCurrentPosition(DrawerSlidePos);
-        this.m_Dumper.adjustCurrentPosition(DumperPos);
+        this.m_DumperSlide.adjustCurrentPosition(DumperSlidePos);
     }
     public void save(){
         Robot2DPositionIndicator RobotPosition = this.m_MotionSystem.getPositionTracker() == null ? null : this.m_MotionSystem.getPositionTracker().getPosition();
         Double LinearActuatorPos = this.m_LinearActuator.getCurrentPosition();
         Double DrawerSlidePos = this.m_DrawerSlide.getCurrentPosition();
-        Double DumperPos = this.m_Dumper.getCurrentPosition();
+        Double DumperPos = this.m_DumperSlide.getCurrentPosition();
         this.getDataStorage().saveSetting("RobotPosition",RobotPosition);
         this.getDataStorage().saveSetting("LinearActuatorPos",LinearActuatorPos);
         this.getDataStorage().saveSetting("DrawerSlidePos",DrawerSlidePos);
@@ -154,7 +154,7 @@ public class Robot4100Core extends RobotCore {
         return (
                 this.m_LinearActuator.isBusy()
                 || this.m_DrawerSlide.isBusy()
-                || this.m_Dumper.isBusy()
+                || this.m_DumperSlide.isBusy()
                 );
     }
 
@@ -169,7 +169,7 @@ public class Robot4100Core extends RobotCore {
     public void updateStatus(){
         super.updateStatus();
         this.m_MotionSystem.updateStatus();
-        this.m_Dumper.updateStatus();
+        this.m_DumperSlide.updateStatus();
         this.m_LinearActuator.updateStatus();
         this.m_CollectorSweep.updateStatus();
         this.m_DrawerSlide.updateStatus();
@@ -202,16 +202,16 @@ public class Robot4100Core extends RobotCore {
         return this.m_DrawerSlide;
     }
 
-    public RobotServoUsingMotor getDumper(){
-        return this.m_Dumper;
+    public RobotServoUsingMotor getDumperSlide(){
+        return this.m_DumperSlide;
     }
 
     public Servo getCollectorSetOutServo(){
         return this.m_CollectorSetOut;
     }
 
-    public Servo getTeamMarkerServo(){
-        return this.m_DeclarationServo;
+    public Servo getDumperServo(){
+        return this.m_DumperServo;
     }
 
     public RobotMotorWithoutEncoder getCollectorSweeper(){

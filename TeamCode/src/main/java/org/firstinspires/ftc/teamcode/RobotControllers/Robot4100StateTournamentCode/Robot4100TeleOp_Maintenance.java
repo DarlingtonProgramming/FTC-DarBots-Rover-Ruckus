@@ -12,8 +12,8 @@ public class Robot4100TeleOp_Maintenance extends Robot4100TeleOp_NoMemory {
         myRobotCore.getDrawerSlide().setBiggestPos(1000);
         myRobotCore.getDrawerSlide().setSmallestPos(-1000);
 
-        myRobotCore.getDumper().setBiggestPos(1000);
-        myRobotCore.getDrawerSlide().setSmallestPos(-1000);
+        myRobotCore.getDumperSlide().setBiggestPos(1000);
+        myRobotCore.getDumperSlide().setSmallestPos(-1000);
 
         myRobotCore.getLinearActuator().setBiggestPos(1000);
         myRobotCore.getLinearActuator().setSmallestPos(-1000);

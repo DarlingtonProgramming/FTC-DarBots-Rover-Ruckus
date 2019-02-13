@@ -77,16 +77,16 @@ public class Robot4100Setting {
     public static final boolean DRAWERSLIDE_TIMEOUTCONTROL = true;
     public static final double DRAWERSLIDE_TIMEOUTFACTOR = 1.2;
 
-    public static final String DUMP_CONFIGURATIONNAME = "dumperMotor";
-    public static final RobotMotorType DUMP_MOTORTYPE = new GoBlida5202Series30RPMMotor();
-    public static final double DUMP_MAX = 1000, DUMP_MIN = -1000;
-    public static final boolean DUMP_TIMEOUTCONTROL = true;
-    public static final double DUMP_TIMEOUTFACTOR = 1.2;
+    public static final String DUMPERSLIDE_CONFIGURATIONNAME = "dumperSlideMotor";
+    public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark2964();
+    public static final double DUMPERSLIDE_MAX = 1000, DUMPERSLIDE_MIN = -1000;
+    public static final boolean DUMPERSLIDE_TIMEOUTCONTROL = true;
+    public static final double DUMPERSLIDE_TIMEOUTFACTOR = 1.2;
 
     public static final String COLLECTOR_CONFIGURATIONNAME = "collectorMotor";
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();
 
-    public static final String TEAMMARKER_CONFIGURATIONNAME = "teamMarkerServo";
+    public static final String DUMPERSERVO_CONFIGURATIONNAME = "dumperServo";
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
 
