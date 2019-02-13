@@ -18,19 +18,21 @@ public class Robot4100Setting {
     public static final boolean TFOL_ShowPreviewScreen = true;
     public static final String TFOL_CAMERACONFIGURTIONNAME = "webCam";
 
-    public static final Robot2DPositionIndicator Field_MinPoint = new Robot2DPositionIndicator(-182.88,-182.88,0);
-    public static final Robot2DPositionIndicator Field_MaxPoint = new Robot2DPositionIndicator(182.88,182.88,0);
-
     public static final FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator VUFORIANAV_PHONEPOSITION = new FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator(-19,-6,20.5,180,90,0);
     public static final boolean VUFORIANAV_ShowPreviewScreen = true;
+
+    public static final Robot2DPositionIndicator Field_MinPoint = new Robot2DPositionIndicator(-182.88,-182.88,0);
+    public static final Robot2DPositionIndicator Field_MaxPoint = new Robot2DPositionIndicator(182.88,182.88,0);
 
     public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
     public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
-    public static final double TELEOP_DUMPSPEED = 0.6;
+    public static final double TELEOP_DUMPERSLIDESPEED = 0.6;
+    public static final double TELEOP_DRAWERSLIDESPEED = 0.5;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.3;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
-    public static final double AUTONOMOUS_DUMPSPEED = 0.5;
+    public static final double AUTONOMOUS_DUMPERSLIDESPEED = 0.5;
+    public static final double AUTONOMOUS_DRAWERSLIDESPEED = 0.5;
     public static final double AUTONOMOUS_OFFHOOKTURNDEG = -35;
     public static final double AUTONOMOUS_OFFHOOKFORWARDDISTANCE = 10;
 
@@ -66,22 +68,24 @@ public class Robot4100Setting {
 
     public static final String LINEARACTUATOR_CONFIGURATIONNAME = "linearActuatorMotor";
     public static final RobotMotorType LINEARACTUATOR_MOTORTYPE = new AndyMark2964();
-    public static final double LINEARACTUATOR_MAX = 1000, LINEARACTUATOR_MIN = -1000;
+    public static final double LINEARACTUATOR_MAX = 22.412, LINEARACTUATOR_MIN = 0;
     public static final boolean LINEARACTUATOR_TIMEOUTCONTROL = true;
     public static final double LINEARACTUATOR_TIMEOUTFACTOR = 1.2;
     public static final double LINEARACTUATOR_HOOKPCT = 90;
 
     public static final String DRAWERSLIDEAPPROACH_CONFIGURATIONNAME = "drawerSlideMotor";
     public static final RobotMotorType DRAWERSLIDEAPPROACH_MOTORTYPE = new AndyMark2964();
-    public static final double DRAWERSLIDEAPPROACH_MAX = 1000, DRAWERSLIDEAPPROACH_MIN = -1000;
+    public static final double DRAWERSLIDEAPPROACH_MAX = 4.175, DRAWERSLIDEAPPROACH_MIN = 0;
     public static final boolean DRAWERSLIDE_TIMEOUTCONTROL = true;
     public static final double DRAWERSLIDE_TIMEOUTFACTOR = 1.2;
+    public static final String DRAWERSLIDE_MINTOUCHSENSOR_CONFIGURATIONNAME = "drawerSlideMinTouch", DRAWESLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "drawerSlideMaxTouch";
 
     public static final String DUMPERSLIDE_CONFIGURATIONNAME = "dumperSlideMotor";
     public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark2964();
-    public static final double DUMPERSLIDE_MAX = 1000, DUMPERSLIDE_MIN = -1000;
+    public static final double DUMPERSLIDE_MAX = 7.6884, DUMPERSLIDE_MIN = 0;
     public static final boolean DUMPERSLIDE_TIMEOUTCONTROL = true;
     public static final double DUMPERSLIDE_TIMEOUTFACTOR = 1.2;
+    public static final String DUMPERSLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "dumperSlideMaxTouch";
 
     public static final String COLLECTOR_CONFIGURATIONNAME = "collectorMotor";
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();

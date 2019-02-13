@@ -11,8 +11,8 @@ import java.util.ArrayList;
 
 @Autonomous(name = "Robot4100AutoTest",group = "4100")
 public class Robot4100AutoTest extends LinearOpMode {
-    Robot4100Core m_RobotCore;
-    FTC2018GameSpecificFunctions.GoldPosType m_GoldPosition;
+    protected Robot4100Core m_RobotCore;
+    protected FTC2018GameSpecificFunctions.GoldPosType m_GoldPosition;
     protected void hardwareInit(){
         this.m_RobotCore = new Robot4100Core(this,new Robot2DPositionIndicator(0,0,0),false,true,true);
         this.m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
@@ -25,7 +25,6 @@ public class Robot4100AutoTest extends LinearOpMode {
         if(this.opModeIsActive()) {
             this.offHookAndDetectSample();
         }
-
     }
 
     protected void offHookAndDetectSample(){

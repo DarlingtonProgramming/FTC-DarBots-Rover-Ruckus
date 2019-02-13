@@ -39,19 +39,18 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
     private double m_ZeroPos;
     private double m_BiggestPos;
     private double m_SmallestPos;
-    private RobotMotorUsingServoCallBackBeforeAssigning m_PreCheckCallBack;
+    private RobotMotorUsingServoCallBackBeforeAssigning m_PreCheckCallBack = null;
     public double convertPercentToPos(double Percent){
-        return Percent / 100.0 * (this.getBiggestPos() - this.getSmallestPos()) + this.getSmallestPos();
+        return (Percent / 100.0 * (this.getBiggestPos() - this.getSmallestPos()) + this.getSmallestPos());
     }
     public double convertPosToPercent(double Pos){
-        return Pos / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
+        return (Pos - this.getSmallestPos()) / (this.getBiggestPos() - this.getSmallestPos()) * 100.0;
     }
     public RobotServoUsingMotor(@NonNull RobotMotorController MotorController, double currentPos, double biggestPos, double smallestPos){
         this.m_MotorCtl = MotorController;
         this.adjustCurrentPosition(currentPos);
         this.m_BiggestPos = biggestPos;
         this.m_SmallestPos = smallestPos;
-        this.m_PreCheckCallBack = null;
     }
 
     public RobotMotorUsingServoCallBackBeforeAssigning getPreCheckCallBack() {
@@ -85,27 +84,35 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
         return this.convertPosToPercent(this.getTargetPosition());
     }
     public void setTargetPosition(double Position,double Speed){
-        if(Position >= this.m_BiggestPos){
-            if(Math.abs(this.getCurrentPosition() - this.getBiggestPos()) <= this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev() * this.HOWMANYREVMARGIN) {
+        if(Position >= this.getBiggestPos()){
+            /*
+            if(Math.abs(this.getCurrentPosition() - this.getBiggestPos()) <= this.HOWMANYREVMARGIN) {
                 this.getMotorController().deleteAllTasks();
                 return;
             }else{
-                Position = this.m_BiggestPos;
+                Position = this.getBiggestPos();
             }
-        }else if(Position <= this.m_SmallestPos){
-            if(Math.abs(this.getCurrentPosition() - this.getSmallestPos()) <= this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev() * this.HOWMANYREVMARGIN){
+            */
+            Position = this.getBiggestPos();
+        }else if(Position <= this.getSmallestPos()){
+            /*
+            if(Math.abs(this.getCurrentPosition() - this.getSmallestPos()) <= this.HOWMANYREVMARGIN){
                 this.getMotorController().deleteAllTasks();
                 return;
             }else {
-                Position = this.m_SmallestPos;
+                Position = this.getSmallestPos();
             }
+            */
+            Position = this.getSmallestPos();
         }
+        /*
         if(this.m_PreCheckCallBack != null){
             if(!this.m_PreCheckCallBack.setPositionPreCheck(this,Position,Speed)){
-                this.getMotorController().deleteAllTasks();
+                this.stopMotion();
                 return;
             }
         }
+        */
         if(this.isBusy()){
             this.stopMotion();
         }

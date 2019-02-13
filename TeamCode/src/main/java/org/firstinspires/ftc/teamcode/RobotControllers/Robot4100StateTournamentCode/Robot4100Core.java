@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
@@ -18,12 +19,11 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorWith
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorWithoutEncoder;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotOnPhoneCamera;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotServoUsingMotor;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotServoUsingMotor_WithLimitSwitches;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotWebcamCamera;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotCore;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
 import org.firstinspires.ftc.teamcode.RobotControllers.DarbotsPrivateInfo.PrivateSettings;
-
-import java.util.ResourceBundle;
 
 
 public class Robot4100Core extends RobotCore {
@@ -59,11 +59,15 @@ public class Robot4100Core extends RobotCore {
 
         RobotMotorWithEncoder DrawerSlideMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.DRAWERSLIDEAPPROACH_CONFIGURATIONNAME),Robot4100Setting.DRAWERSLIDEAPPROACH_MOTORTYPE);
         DrawerSlideMotor.setDirectionReversed(true);
-        this.m_DrawerSlide = new RobotServoUsingMotor(new RobotMotorController(DrawerSlideMotor,Robot4100Setting.DRAWERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DRAWERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DRAWERSLIDEAPPROACH_MAX,Robot4100Setting.DRAWERSLIDEAPPROACH_MIN);
+        TouchSensor drawerSlideMin = ControllingOpMode.hardwareMap.touchSensor.get(Robot4100Setting.DRAWERSLIDE_MINTOUCHSENSOR_CONFIGURATIONNAME);
+        TouchSensor drawerSlideMax = ControllingOpMode.hardwareMap.touchSensor.get(Robot4100Setting.DRAWESLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME);
+        this.m_DrawerSlide = new RobotServoUsingMotor_WithLimitSwitches(new RobotMotorController(DrawerSlideMotor,Robot4100Setting.DRAWERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DRAWERSLIDE_TIMEOUTFACTOR),drawerSlideMin,drawerSlideMax,0,Robot4100Setting.DRAWERSLIDEAPPROACH_MAX,Robot4100Setting.DRAWERSLIDEAPPROACH_MIN);
+        //this.m_DrawerSlide = new RobotServoUsingMotor(new RobotMotorController(DrawerSlideMotor,Robot4100Setting.DRAWERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DRAWERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DRAWERSLIDEAPPROACH_MAX,Robot4100Setting.DRAWERSLIDEAPPROACH_MIN);
 
         RobotMotorWithEncoder DumperMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.DUMPERSLIDE_CONFIGURATIONNAME),Robot4100Setting.DUMPERSLIDE_MOTORTYPE);
-        DumperMotor.setDirectionReversed(true);
-        this.m_DumperSlide = new RobotServoUsingMotor(new RobotMotorController(DumperMotor,Robot4100Setting.DUMPERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DUMPERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DUMPERSLIDE_MAX,Robot4100Setting.DUMPERSLIDE_MIN);
+        TouchSensor dumperSlideMax = ControllingOpMode.hardwareMap.touchSensor.get(Robot4100Setting.DUMPERSLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME);
+        this.m_DumperSlide = new RobotServoUsingMotor_WithLimitSwitches(new RobotMotorController(DumperMotor,Robot4100Setting.DUMPERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DUMPERSLIDE_TIMEOUTFACTOR),null,dumperSlideMax,0,Robot4100Setting.DUMPERSLIDE_MAX,Robot4100Setting.DUMPERSLIDE_MIN);
+        //this.m_DumperSlide = new RobotServoUsingMotor(new RobotMotorController(DumperMotor,Robot4100Setting.DUMPERSLIDE_TIMEOUTCONTROL,Robot4100Setting.DUMPERSLIDE_TIMEOUTFACTOR),0,Robot4100Setting.DUMPERSLIDE_MAX,Robot4100Setting.DUMPERSLIDE_MIN);
 
         this.m_CollectorSweep = new RobotMotorWithoutEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.COLLECTOR_CONFIGURATIONNAME),Robot4100Setting.COLLECTOR_MOTORTYPE);
         this.m_CollectorSweep.setDirectionReversed(true);

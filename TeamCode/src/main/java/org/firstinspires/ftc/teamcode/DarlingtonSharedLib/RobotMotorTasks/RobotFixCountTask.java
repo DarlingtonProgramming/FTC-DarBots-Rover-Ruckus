@@ -39,6 +39,8 @@ public class RobotFixCountTask extends RobotMotorTask {
 
     public RobotFixCountTask(int Count, double Speed, RobotMotorTaskCallBack TaskCallBack) {
         super(TaskCallBack);
+        this.m_Count = Count;
+        this.m_Speed = Speed;
     }
     public RobotFixCountTask(@NonNull RobotFixCountTask CountTask){
         super(CountTask);
@@ -71,7 +73,7 @@ public class RobotFixCountTask extends RobotMotorTask {
 
     @Override
     protected void __startTask() {
-        this.getMotorController().getMotor().setTargetCount(this.m_Count);
+        this.getMotorController().getMotor().setTargetCount(super.getMotorController().getMotor().getCurrentCount() + this.m_Count);
         this.getMotorController().getMotor().setPower(this.m_Speed);
         this.getMotorController().getMotor().setCurrentMovingType(RobotMotor.MovingType.toCount);
 

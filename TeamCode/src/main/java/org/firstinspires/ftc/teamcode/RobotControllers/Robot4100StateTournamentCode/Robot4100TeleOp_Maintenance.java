@@ -7,7 +7,7 @@ public class Robot4100TeleOp_Maintenance extends Robot4100TeleOp_NoMemory {
     @Override
     public void hardwareInit(){
         super.hardwareInit();
-        Robot4100Core myRobotCore = (Robot4100Core) super.getRobotCore();
+        Robot4100Core myRobotCore = super.get4100Core();
 
         myRobotCore.getDrawerSlide().setBiggestPos(1000);
         myRobotCore.getDrawerSlide().setSmallestPos(-1000);

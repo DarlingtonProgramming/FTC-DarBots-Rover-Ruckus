@@ -4,10 +4,10 @@ import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
-public class RobotServoUsingMotor_WIthLimitSwitches extends RobotServoUsingMotor {
+public class RobotServoUsingMotor_WithLimitSwitches extends RobotServoUsingMotor {
     protected TouchSensor m_MinTouch;
     protected TouchSensor m_MaxTouch;
-    public RobotServoUsingMotor_WIthLimitSwitches(@NonNull RobotMotorController MotorController, TouchSensor minValTouchSensor, TouchSensor maxValTouchSensor, double currentPos, double biggestPos, double smallestPos) {
+    public RobotServoUsingMotor_WithLimitSwitches(@NonNull RobotMotorController MotorController, TouchSensor minValTouchSensor, TouchSensor maxValTouchSensor, double currentPos, double biggestPos, double smallestPos) {
         super(MotorController, currentPos, biggestPos, smallestPos);
         this.m_MaxTouch = maxValTouchSensor;
         this.m_MinTouch = minValTouchSensor;
