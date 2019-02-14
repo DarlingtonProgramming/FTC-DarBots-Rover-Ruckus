@@ -76,6 +76,30 @@ public class Robot4100Core extends RobotCore {
 
         this.m_DumperServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.DUMPERSERVO_CONFIGURATIONNAME);
 
+        //Collaboration between parts
+        this.m_DumperSlide.setPreCheckCallBack(new RobotServoUsingMotor.RobotServoUsingMotorCallBackBeforeAssigning() {
+            @Override
+            public boolean setPositionPreCheck(RobotServoUsingMotor servo, double Position, double Speed) {
+                double targetPct = servo.convertPosToPercent(Position);
+                boolean needSafetyProtection = false;
+                if(targetPct > Robot4100Setting.DUMPERSLIDE_SAFEPCT && servo.getCurrentPercent() <= Robot4100Setting.DUMPERSLIDE_SAFEPCT){
+                    needSafetyProtection = true;
+                }else if(targetPct < Robot4100Setting.DUMPERSLIDE_SAFEPCT && servo.getCurrentPercent() >= Robot4100Setting.DUMPERSLIDE_SAFEPCT){
+                    needSafetyProtection = true;
+                }
+                if(!needSafetyProtection){
+                    return true;
+                }else{
+                    if(Robot4100Core.this.m_DrawerSlide.getCurrentPercent() >= Robot4100Setting.DUMPERSLIDE_SAFEPCT){
+                        return true;
+                    }else{
+                        Robot4100Core.this.setCollectorServoToCollect(true);
+                        return true;
+                    }
+                }
+            }
+        });
+
         if(initVuforiaNav) {
             RobotOnPhoneCamera phoneCamera = new RobotOnPhoneCamera(ControllingOpMode, Robot4100Setting.VUFORIANAV_ShowPreviewScreen, VuforiaLocalizer.CameraDirection.FRONT, PrivateSettings.VUFORIALICENSE);
             this.m_VuforiaNav = new FTC2018GameVuforiaNavigation(phoneCamera, Robot4100Setting.VUFORIANAV_PHONEPOSITION);
@@ -189,6 +213,22 @@ public class Robot4100Core extends RobotCore {
 
     public Servo getDumperServo(){
         return this.m_DumperServo;
+    }
+
+    public void setDumperServoToDump(boolean toDump){
+        if(toDump){
+            this.getDumperServo().setPosition(Robot4100Setting.DUMPERSERVO_DUMPPOS);
+        }else{
+            this.getDumperServo().setPosition(Robot4100Setting.DUMPERSERVO_NORMALPOS);
+        }
+    }
+
+    public void setCollectorServoToCollect(boolean toCollect){
+        if(toCollect){
+            this.getCollectorSetOutServo().setPosition(Robot4100Setting.COLLECTOROUTSERVO_COLLECTPOS);
+        }else{
+            this.getCollectorSetOutServo().setPosition(Robot4100Setting.COLLECTOROUTSERVO_NORMALPOS);
+        }
     }
 
     public RobotMotorWithoutEncoder getCollectorSweeper(){

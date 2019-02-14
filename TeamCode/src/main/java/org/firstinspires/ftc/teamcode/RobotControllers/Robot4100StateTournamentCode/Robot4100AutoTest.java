@@ -33,10 +33,11 @@ public class Robot4100AutoTest extends LinearOpMode {
         if(this.opModeIsActive()) {
             this.offHookAndDetectSample();
         }
+        this.m_RobotCore.save();
     }
 
     protected void offHookAndDetectSample(){
-        this.m_RobotCore.getLinearActuator().setTargetPercent(Robot4100Setting.LINEARACTUATOR_HOOKPCT,Robot4100Setting.AUTONOMOUS_LINEARACTUATORSPEED);
+        this.m_RobotCore.getLinearActuator().setTargetPercent(Robot4100Setting.LINEARACTUATOR_HOOKPCT,Robot4100Setting.AUTONOMOUS_LINEARACTUATORSPEED,null);
         while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < (Robot4100Setting.LINEARACTUATOR_HOOKPCT - 0.05)){
             this.m_RobotCore.updateStatus();
             FTC2018GameSpecificFunctions.MineralInformation[] infos = this.m_RobotCore.get2018MineralDetection().detectAllBlocksInCamera();

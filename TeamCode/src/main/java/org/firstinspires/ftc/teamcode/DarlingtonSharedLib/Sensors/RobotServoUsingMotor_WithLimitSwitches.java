@@ -40,7 +40,7 @@ public class RobotServoUsingMotor_WithLimitSwitches extends RobotServoUsingMotor
         this.m_MaxTouch = maxValTouch;
     }
     @Override
-    public void setTargetPosition(double Position,double Speed){
+    public void setTargetPosition(double Position,double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
         if(this.m_MaxTouch != null) {
             if (Position > this.getCurrentPosition() && this.m_MaxTouch.isPressed()) {
                 this.adjustCurrentPercent(100);
@@ -53,7 +53,7 @@ public class RobotServoUsingMotor_WithLimitSwitches extends RobotServoUsingMotor
                 return;
             }
         }
-        super.setTargetPosition(Position,Speed);
+        super.setTargetPosition(Position,Speed, TaskCallBack);
     }
     @Override
     public void updateStatus(){

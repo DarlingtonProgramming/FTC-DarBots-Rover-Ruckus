@@ -31,19 +31,22 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Ro
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotFixCountTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DebuggerAttachable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
-import org.firstinspires.ftc.teamcode.RobotControllers.Robot4100StateTournamentCode.Robot4100Core;
 
 public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAttachable {
 
-    public interface RobotMotorUsingServoCallBackBeforeAssigning{
+    public interface RobotServoUsingMotorCallBackBeforeAssigning {
         boolean setPositionPreCheck(RobotServoUsingMotor servo, double Position, double Speed);
+    }
+    public interface RobotServoUsingMotorPositionCallBack{
+        void finish(RobotServoUsingMotor Servo);
     }
     private static final double HOWMANYREVMARGIN = 0.03;
     private RobotMotorController m_MotorCtl;
     private double m_ZeroPos;
     private double m_BiggestPos;
     private double m_SmallestPos;
-    private RobotMotorUsingServoCallBackBeforeAssigning m_PreCheckCallBack = null;
+    private RobotServoUsingMotorPositionCallBack m_PositionCB = null;
+    private RobotServoUsingMotorCallBackBeforeAssigning m_PreCheckCallBack = null;
     public double convertPercentToPos(double Percent){
         return (Percent / 100.0 * (this.getBiggestPos() - this.getSmallestPos()) + this.getSmallestPos());
     }
@@ -67,11 +70,11 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         });
     }
 
-    public RobotMotorUsingServoCallBackBeforeAssigning getPreCheckCallBack() {
+    public RobotServoUsingMotorCallBackBeforeAssigning getPreCheckCallBack() {
         return m_PreCheckCallBack;
     }
 
-    public void setPreCheckCallBack(RobotMotorUsingServoCallBackBeforeAssigning callBack){
+    public void setPreCheckCallBack(RobotServoUsingMotorCallBackBeforeAssigning callBack){
         this.m_PreCheckCallBack = callBack;
     }
 
@@ -97,10 +100,11 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
     public double getTargetPercent(){
         return this.convertPosToPercent(this.getTargetPosition());
     }
-    public void setTargetPosition(double Position,double Speed){
+    public void setTargetPosition(double Position,double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
         if(Position >= this.getBiggestPos()){
             if(Math.abs(this.getCurrentPosition() - this.getBiggestPos()) <= this.HOWMANYREVMARGIN) {
                 this.getMotorController().deleteAllTasks();
+                TaskCallBack.finish(this);
                 return;
             }else{
                 Position = this.getBiggestPos();
@@ -109,6 +113,7 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         }else if(Position <= this.getSmallestPos()){
             if(Math.abs(this.getCurrentPosition() - this.getSmallestPos()) <= this.HOWMANYREVMARGIN){
                 this.getMotorController().deleteAllTasks();
+                TaskCallBack.finish(this);
                 return;
             }else {
                 Position = this.getSmallestPos();
@@ -118,6 +123,7 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         if(this.m_PreCheckCallBack != null){
             if(!this.m_PreCheckCallBack.setPositionPreCheck(this,Position,Speed)){
                 this.stopMotion();
+                TaskCallBack.finish(this);
                 return;
             }
         }
@@ -127,12 +133,14 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         double deltaPos = Position - this.getCurrentPosition();
         int deltaCount = (int) Math.round(deltaPos * this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev());
         if(deltaCount == 0){
-            this.stopMotion();
+            TaskCallBack.finish(this);
+            return;
         }
+        this.m_PositionCB = TaskCallBack;
         this.m_MotorCtl.replaceTask(new RobotFixCountTask(deltaCount,Speed,null));
     }
-    public void setTargetPercent(double Percent, double Speed){
-        this.setTargetPosition(this.convertPercentToPos(Percent),Speed);
+    public void setTargetPercent(double Percent, double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
+        this.setTargetPosition(this.convertPercentToPos(Percent),Speed, TaskCallBack);
     }
     public double getBiggestPos(){
         return this.m_BiggestPos;
@@ -159,12 +167,21 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
     }
 
     public void stopMotion(){
+        if(this.m_PositionCB != null){
+            this.m_PositionCB.finish(this);
+            this.m_PositionCB = null;
+        }
         this.m_MotorCtl.deleteAllTasks();
     }
 
     @Override
     public void updateStatus() {
-        this.m_MotorCtl.updateStatus();
+        if(this.isBusy()) {
+            this.m_MotorCtl.updateStatus();
+            if(!this.isBusy()){
+                this.stopMotion();
+            }
+        }
     }
 
     @Override
