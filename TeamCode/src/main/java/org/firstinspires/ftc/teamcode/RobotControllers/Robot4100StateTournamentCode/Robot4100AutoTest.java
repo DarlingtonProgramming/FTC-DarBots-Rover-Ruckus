@@ -6,21 +6,29 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Robot2DPositionIndicator;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 
 import java.util.ArrayList;
 
 @Autonomous(name = "Robot4100AutoTest",group = "4100")
 public class Robot4100AutoTest extends LinearOpMode {
     protected Robot4100Core m_RobotCore;
-    protected FTC2018GameSpecificFunctions.GoldPosType m_GoldPosition;
+    protected FTC2018GameSpecificFunctions.GoldPosType m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
     protected void hardwareInit(){
         this.m_RobotCore = new Robot4100Core(this,new Robot2DPositionIndicator(0,0,0),false,true,true);
         this.m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
-        this.m_RobotCore.getAudioPlayer().startPlayingWavAsset("robot_initialized");
+        this.m_RobotCore.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("GoldPos",new Object(){
+            @Override
+            public String toString(){
+                return Robot4100AutoTest.this.m_GoldPosition.name();
+            }
+        }));
     }
     @Override
     public void runOpMode() throws InterruptedException {
         this.hardwareInit();
+        this.m_RobotCore.getDebugger().addDebug(new RobotDebugger.RobotDebuggerInformation("Status","Initialized"));
+        this.m_RobotCore.updateStatus();
         this.waitForStart();
         if(this.opModeIsActive()) {
             this.offHookAndDetectSample();
