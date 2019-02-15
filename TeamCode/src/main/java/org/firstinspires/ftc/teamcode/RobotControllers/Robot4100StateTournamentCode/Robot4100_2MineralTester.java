@@ -54,11 +54,17 @@ public class Robot4100_2MineralTester extends LinearOpMode {
                 }
                 if (GoldInfo == null) {
                     m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Right;
-                } else { //if(SilverInfos.size() == 1){
+                } else if(SilverInfos.size() >= 1) { //if(SilverInfos.size() == 1){
                     if (GoldInfo.getLeft() > SilverInfos.get(0).getLeft()) {
                         m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Center;
                     } else {
                         m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Left;
+                    }
+                }else{
+                    if(GoldInfo.getLeft() < (GoldInfo.getWidth() / 2.0f)){
+                        m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Left;
+                    }else{
+                        m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Center;
                     }
                 }
             }
