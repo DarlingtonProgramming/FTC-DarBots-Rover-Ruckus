@@ -94,7 +94,7 @@ public class Robot4100Setting {
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();
 
     public static final String DUMPERSERVO_CONFIGURATIONNAME = "dumperServo";
-    public static final double DUMPERSERVO_DUMPPOS = 0.2, DUMPERSERVO_NORMALPOS = 0.8;
+    public static final double DUMPERSERVO_DUMPPOS = 0.2, DUMPERSERVO_NORMALPOS = 0.7;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
     public static final double COLLECTOROUTSERVO_NORMALPOS = 0.8, COLLECTOROUTSERVO_COLLECTPOS = 0;

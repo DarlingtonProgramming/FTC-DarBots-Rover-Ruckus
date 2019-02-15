@@ -104,7 +104,8 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         if(Position >= this.getBiggestPos()){
             if(Math.abs(this.getCurrentPosition() - this.getBiggestPos()) <= this.HOWMANYREVMARGIN) {
                 this.getMotorController().deleteAllTasks();
-                TaskCallBack.finish(this);
+                if(TaskCallBack != null)
+                    TaskCallBack.finish(this);
                 return;
             }else{
                 Position = this.getBiggestPos();
@@ -113,7 +114,8 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         }else if(Position <= this.getSmallestPos()){
             if(Math.abs(this.getCurrentPosition() - this.getSmallestPos()) <= this.HOWMANYREVMARGIN){
                 this.getMotorController().deleteAllTasks();
-                TaskCallBack.finish(this);
+                if(TaskCallBack != null)
+                    TaskCallBack.finish(this);
                 return;
             }else {
                 Position = this.getSmallestPos();
@@ -123,7 +125,8 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         if(this.m_PreCheckCallBack != null){
             if(!this.m_PreCheckCallBack.setPositionPreCheck(this,Position,Speed)){
                 this.stopMotion();
-                TaskCallBack.finish(this);
+                if(TaskCallBack != null)
+                    TaskCallBack.finish(this);
                 return;
             }
         }
@@ -133,6 +136,7 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         double deltaPos = Position - this.getCurrentPosition();
         int deltaCount = (int) Math.round(deltaPos * this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev());
         if(deltaCount == 0){
+            if(TaskCallBack != null)
             TaskCallBack.finish(this);
             return;
         }

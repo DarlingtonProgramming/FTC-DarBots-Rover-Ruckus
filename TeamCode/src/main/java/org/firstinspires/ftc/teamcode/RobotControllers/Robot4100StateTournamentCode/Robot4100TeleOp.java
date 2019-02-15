@@ -125,6 +125,7 @@ public class Robot4100TeleOp extends Gamepad1Drive {
                                     if(!isCombo) {
                                         Robot4100TeleOp.this.get4100Core().setDumperServoToDump(false);
                                         Robot4100TeleOp.this.get4100Core().getDumperSlide().setTargetPercent(0, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, null);
+                                        isCombo = false;
                                     }
                                 }
                             },Robot4100Setting.TELEOP_COMBO_DUMPERWAITSEC);
