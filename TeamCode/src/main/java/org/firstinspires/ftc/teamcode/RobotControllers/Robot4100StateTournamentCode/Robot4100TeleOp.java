@@ -44,13 +44,14 @@ public class Robot4100TeleOp extends Gamepad1Drive {
             if((-gamepad2.left_stick_y) > Robot4100Setting.TELEOP_GAMEPADTRIGGERVALUE){
                 isCombo = false;
                 if(!this.get4100Core().getDumperSlide().isBusy())
-                    this.get4100Core().getDumperSlide().setTargetPercent(100,Robot4100Setting.TELEOP_DUMPERSLIDESPEED * Math.abs(gamepad2.left_stick_y),null);
+                    this.get4100Core().getDumperSlide().setTargetPercent(100,Robot4100Setting.TELEOP_DUMPERSLIDESPEED ,null);
             }else if((-gamepad2.left_stick_y) < -Robot4100Setting.TELEOP_GAMEPADTRIGGERVALUE){
                 isCombo = false;
                 if(!this.get4100Core().getDumperSlide().isBusy())
-                    this.get4100Core().getDumperSlide().setTargetPercent(0,Robot4100Setting.TELEOP_DUMPERSLIDESPEED * Math.abs(gamepad2.left_stick_y),null);
+                    this.get4100Core().getDumperSlide().setTargetPercent(0,Robot4100Setting.TELEOP_DUMPERSLIDESPEED,null);
             }else{
-                this.get4100Core().getDumperSlide().stopMotion();
+                if(!isCombo)
+                    this.get4100Core().getDumperSlide().stopMotion();
             }
             if(gamepad2.dpad_up){
                 if(!this.get4100Core().getLinearActuator().isBusy())
@@ -70,7 +71,8 @@ public class Robot4100TeleOp extends Gamepad1Drive {
                 if(!this.get4100Core().getDrawerSlide().isBusy())
                     this.get4100Core().getDrawerSlide().setTargetPercent(100,Robot4100Setting.TELEOP_DRAWERSLIDESPEED, null);
             }else{
-                this.get4100Core().getDrawerSlide().stopMotion();
+                if(!isCombo)
+                    this.get4100Core().getDrawerSlide().stopMotion();
             }
             if(gamepad2.left_trigger > Robot4100Setting.TELEOP_GAMEPADTRIGGERVALUE){
                 isCombo = false;
@@ -79,7 +81,8 @@ public class Robot4100TeleOp extends Gamepad1Drive {
                 isCombo = false;
                 this.get4100Core().getCollectorSweeper().setPower(gamepad2.right_trigger);
             }else{
-                this.get4100Core().getCollectorSweeper().setPower(0);
+                if(!isCombo)
+                    this.get4100Core().getCollectorSweeper().setPower(0);
             }
             if((-gamepad2.right_stick_y) > Robot4100Setting.TELEOP_GAMEPADTRIGGERVALUE){
                 isCombo = false;
@@ -92,43 +95,72 @@ public class Robot4100TeleOp extends Gamepad1Drive {
                 isCombo = false;
                 this.get4100Core().setDumperServoToDump(true);
             }else{
-                this.get4100Core().setDumperServoToDump(false);
+                if(!isCombo)
+                    this.get4100Core().setDumperServoToDump(false);
             }
             if(gamepad2.x){
                 if(!isCombo) {
                     isCombo = true;
+                    //Get dumperslide down, dumperservo down and get drawerslide all the way back
                     this.get4100Core().getDumperSlide().setTargetPercent(0, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, null);
                     this.get4100Core().setDumperServoToDump(false);
                     this.get4100Core().getDrawerSlide().setTargetPercent(0, Robot4100Setting.TELEOP_DRAWERSLIDESPEED, new RobotServoUsingMotor.RobotServoUsingMotorPositionCallBack() {
                         @Override
                         public void finish(RobotServoUsingMotor Servo) {
-                            if (isCombo) {
-                                Robot4100TeleOp.this.get4100Core().setCollectorServoToCollect(false);
-                                isCombo = false;
+                            if (!isCombo) {
+                                return;
                             }
+                            //since drawerslide is all the way in, put collectorservo in as well.
+                            Robot4100TeleOp.this.get4100Core().setCollectorServoToCollect(false);
+                            //wait for the servo to finish its moving job
+                            Robot4100TeleOp.this.get4100Core().getTimer().addTask(new NonBlockingTimer.timerTask() {
+                                @Override
+                                public void run() {
+                                    if(!isCombo){
+                                        return;
+                                    }
+                                    //cubes will automatically fall in to the dumper, now we have to rotate the sweeper motor for the spheres to go in.
+                                    Robot4100TeleOp.this.get4100Core().getCollectorSweeper().setPower(0.5);
+                                    Robot4100TeleOp.this.get4100Core().getTimer().addTask(new NonBlockingTimer.timerTask() {
+                                        @Override
+                                        public void run() {
+                                            if(!isCombo){
+                                                return;
+                                            }
+                                            //stop the motor, combo key action finished
+                                            Robot4100TeleOp.this.get4100Core().getCollectorSweeper().setPower(0);
+                                            isCombo = false;
+                                        }
+                                    },1.5);
+                                }
+                            },1.0);
                         }
                     });
                 }
             }else if(gamepad2.y){
                 if(!isCombo) {
                     isCombo = true;
-                    this.get4100Core().getDumperSlide().setTargetPercent(100, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, new RobotServoUsingMotor.RobotServoUsingMotorPositionCallBack() {
+                    //first move dumperslide all the way up, since dumper slide have a protection mechanism implemented in 4100 core, we dont need to move the collectorsetout servo
+                    this.get4100Core().getDumperSlide().setTargetPercent(Robot4100Setting.DUMPERSLIDE_DUMPPCT, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, new RobotServoUsingMotor.RobotServoUsingMotorPositionCallBack() {
                         @Override
                         public void finish(RobotServoUsingMotor Servo) {
                             if(!isCombo){
                                 return;
                             }
+                            //dumperslide all the way up, now lets just dump
                             Robot4100TeleOp.this.get4100Core().setDumperServoToDump(true);
                             Robot4100TeleOp.this.get4100Core().getTimer().addTask(new NonBlockingTimer.timerTask() {
                                 @Override
                                 public void run() {
                                     if(!isCombo) {
-                                        Robot4100TeleOp.this.get4100Core().setDumperServoToDump(false);
-                                        Robot4100TeleOp.this.get4100Core().getDumperSlide().setTargetPercent(0, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, null);
-                                        isCombo = false;
+                                        return;
                                     }
+                                    //After the dumper is set to dump for 3 seconds, which lets the minerals to go into the lander, put dumperservo back and bring dumperslide down
+                                    Robot4100TeleOp.this.get4100Core().setDumperServoToDump(false);
+                                    Robot4100TeleOp.this.get4100Core().getDumperSlide().setTargetPercent(0, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, null);
+                                    isCombo = false;
                                 }
-                            },Robot4100Setting.TELEOP_COMBO_DUMPERWAITSEC);
+                            },3.0);
                         }
                     });
                 }

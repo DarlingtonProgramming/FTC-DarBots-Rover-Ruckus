@@ -32,7 +32,7 @@ public class NonBlockingTimer implements RobotNonBlockingDevice {
 
     public NonBlockingTimer(){
         m_Tasks = new ArrayList<>();
-        m_Time = new ElapsedTime();
+        m_Time = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
     }
 
     public void cancel(){
@@ -59,7 +59,7 @@ public class NonBlockingTimer implements RobotNonBlockingDevice {
         this.m_Time.reset();
     }
 
-    public void addTask(timerTask task, double timeInSec){
+    public void addTask(@NonNull timerTask task, double timeInSec){
         this.updateStatus();
         this.m_Tasks.add(new timerTaskInfo(timeInSec,task));
     }

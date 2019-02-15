@@ -29,7 +29,6 @@ public class Robot4100Setting {
     public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
     public static final double TELEOP_DUMPERSLIDESPEED = 0.6;
     public static final double TELEOP_DRAWERSLIDESPEED = 0.5;
-    public static final double TELEOP_COMBO_DUMPERWAITSEC = 3;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.3;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPERSLIDESPEED = 0.5;
@@ -88,13 +87,13 @@ public class Robot4100Setting {
     public static final boolean DUMPERSLIDE_TIMEOUTCONTROL = true;
     public static final double DUMPERSLIDE_TIMEOUTFACTOR = 1.2;
     public static final String DUMPERSLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "dumperSlideMaxTouch";
-    public static final double DUMPERSLIDE_SAFEPCT = 30;
+    public static final double DUMPERSLIDE_SAFEPCT = 30, DUMPERSLIDE_DUMPPCT = 90;
 
     public static final String COLLECTOR_CONFIGURATIONNAME = "collectorMotor";
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();
 
     public static final String DUMPERSERVO_CONFIGURATIONNAME = "dumperServo";
-    public static final double DUMPERSERVO_DUMPPOS = 0.2, DUMPERSERVO_NORMALPOS = 0.7;
+    public static final double DUMPERSERVO_DUMPPOS = 0.3, DUMPERSERVO_NORMALPOS = 0.7;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
     public static final double COLLECTOROUTSERVO_NORMALPOS = 0.8, COLLECTOROUTSERVO_COLLECTPOS = 0;

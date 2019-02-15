@@ -90,7 +90,7 @@ public class Robot4100Core extends RobotCore {
                 if(!needSafetyProtection){
                     return true;
                 }else{
-                    if(Robot4100Core.this.m_DrawerSlide.getCurrentPercent() >= Robot4100Setting.DUMPERSLIDE_SAFEPCT){
+                    if(Robot4100Core.this.m_DrawerSlide.getCurrentPercent() >= Robot4100Setting.DRAWESLIDE_SAFEPCT){
                         return true;
                     }else{
                         Robot4100Core.this.setCollectorServoToCollect(true);

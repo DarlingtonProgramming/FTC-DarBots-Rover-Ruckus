@@ -180,11 +180,9 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
 
     @Override
     public void updateStatus() {
-        if(this.isBusy()) {
-            this.m_MotorCtl.updateStatus();
-            if(!this.isBusy()){
-                this.stopMotion();
-            }
+        this.m_MotorCtl.updateStatus();
+        if((!this.isBusy()) && this.m_PositionCB != null){
+            this.stopMotion();
         }
     }
 
