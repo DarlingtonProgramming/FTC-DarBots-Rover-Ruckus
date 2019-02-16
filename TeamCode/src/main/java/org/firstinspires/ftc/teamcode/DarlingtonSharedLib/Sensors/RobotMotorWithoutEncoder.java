@@ -198,7 +198,7 @@ public class RobotMotorWithoutEncoder implements RobotMotor {
     }
 
     protected void updateCount(){
-        this.m_CurrentCount += this.m_Motor.getPower() * this.getMotorType().getCountsPerRev() * this.getMotorType().getRevPerSec() * this.m_ElapsedTime.seconds();
+        this.m_CurrentCount += this.getPower() * this.getMotorType().getCountsPerRev() * this.getMotorType().getRevPerSec() * this.m_ElapsedTime.seconds();
         this.m_ElapsedTime.reset();
     }
 

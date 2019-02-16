@@ -171,11 +171,11 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
     }
 
     public void stopMotion(){
+        this.m_MotorCtl.deleteAllTasks();
         if(this.m_PositionCB != null){
             this.m_PositionCB.finish(this);
             this.m_PositionCB = null;
         }
-        this.m_MotorCtl.deleteAllTasks();
     }
 
     @Override

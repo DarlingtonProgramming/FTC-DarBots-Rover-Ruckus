@@ -51,8 +51,9 @@ public class NonBlockingTimer implements RobotNonBlockingDevice {
             for (timerTaskInfo i : this.m_Tasks) {
                 i.SecondsLeft -= secondsPassed;
                 if (i.SecondsLeft <= 0) {
-                    i.Task.run();
+                    timerTask mTask = i.Task;
                     this.m_Tasks.remove(i);
+                    mTask.run();
                 }
             }
         }

@@ -168,5 +168,6 @@ public class Robot4100TeleOp extends Gamepad1Drive {
 
             super.getRobotCore().updateStatus();
         }
+        isCombo = false;
     }
 }

@@ -33,8 +33,6 @@ public class Robot4100Setting {
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPERSLIDESPEED = 0.5;
     public static final double AUTONOMOUS_DRAWERSLIDESPEED = 0.5;
-    public static final double AUTONOMOUS_OFFHOOKTURNDEG = -35;
-    public static final double AUTONOMOUS_OFFHOOKFORWARDDISTANCE = 10;
 
     public static final double EXTREMEPOINTS_DISTANCEFROMCENTER = 22.86;
     public static final Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator[] EXTREMEPOINTS = {
@@ -71,7 +69,7 @@ public class Robot4100Setting {
     public static final double LINEARACTUATOR_MAX = 22.412, LINEARACTUATOR_MIN = 0;
     public static final boolean LINEARACTUATOR_TIMEOUTCONTROL = true;
     public static final double LINEARACTUATOR_TIMEOUTFACTOR = 1.2;
-    public static final double LINEARACTUATOR_HOOKPCT = 90;
+    public static final double LINEARACTUATOR_HOOKPCT = 83.772;
 
     public static final String DRAWERSLIDEAPPROACH_CONFIGURATIONNAME = "drawerSlideMotor";
     public static final RobotMotorType DRAWERSLIDEAPPROACH_MOTORTYPE = new AndyMark2964();
@@ -79,7 +77,7 @@ public class Robot4100Setting {
     public static final boolean DRAWERSLIDE_TIMEOUTCONTROL = true;
     public static final double DRAWERSLIDE_TIMEOUTFACTOR = 1.2;
     public static final String DRAWERSLIDE_MINTOUCHSENSOR_CONFIGURATIONNAME = "drawerSlideMinTouch", DRAWESLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "drawerSlideMaxTouch";
-    public static final double DRAWESLIDE_SAFEPCT = 30;
+    public static final double DRAWESLIDE_SAFEPCT = 42.43;
 
     public static final String DUMPERSLIDE_CONFIGURATIONNAME = "dumperSlideMotor";
     public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark2964();
@@ -87,14 +85,14 @@ public class Robot4100Setting {
     public static final boolean DUMPERSLIDE_TIMEOUTCONTROL = true;
     public static final double DUMPERSLIDE_TIMEOUTFACTOR = 1.2;
     public static final String DUMPERSLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "dumperSlideMaxTouch";
-    public static final double DUMPERSLIDE_SAFEPCT = 30, DUMPERSLIDE_DUMPPCT = 90;
+    public static final double DUMPERSLIDE_SAFEPCT = 50.85, DUMPERSLIDE_DUMPPCT = 92.16;
 
     public static final String COLLECTOR_CONFIGURATIONNAME = "collectorMotor";
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();
 
     public static final String DUMPERSERVO_CONFIGURATIONNAME = "dumperServo";
-    public static final double DUMPERSERVO_DUMPPOS = 0.35, DUMPERSERVO_NORMALPOS = 0.60;
+    public static final double DUMPERSERVO_DUMPPOS = 0.25, DUMPERSERVO_NORMALPOS = 0.57;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
-    public static final double COLLECTOROUTSERVO_NORMALPOS = 0.8, COLLECTOROUTSERVO_COLLECTPOS = 0;
+    public static final double COLLECTOROUTSERVO_NORMALPOS = 0.75, COLLECTOROUTSERVO_COLLECTPOS = 0.05;
 }
