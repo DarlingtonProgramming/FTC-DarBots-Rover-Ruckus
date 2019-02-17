@@ -49,22 +49,29 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
             throw new RuntimeException("You cannot change the count of a task when the task has started");
         }
         this.m_Count = Count;
-        if(this.isBusy()) {
-            fixCounts();
-        }
     }
 
     protected void fixCounts(){
         double rev = ((double) this.getCounts()) / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
         double speed = this.getSpeed() * super.getMotorController().getMotor().getMotorType().getRevPerSec();
         double FineTime = super.isTimeControlEnabled() ? (rev / speed * super.getTimeOutFactor()) : 0;
-        if(m_Count < 0){
-            this.setSpeed(-Math.abs(this.getSpeed()));
-        }else{
-            this.setSpeed(Math.abs(this.getSpeed()));
-        }
         this.setTimeInSeconds(0);
+        super.setSpeed(fixSpeed(super.getSpeed()));
         this.m_FineTime = FineTime;
+    }
+
+    @Override
+    public void setSpeed(double Speed){
+        super.setSpeed(fixSpeed(Speed));
+
+    }
+
+    protected double fixSpeed(double speed){
+        if(m_Count < 0){
+            return -Math.abs(speed);
+        }else{
+            return Math.abs(this.getSpeed());
+        }
     }
 
     @Override
@@ -88,5 +95,11 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
         if(super.getSecondsSinceStart() > this.m_FineTime && this.m_FineTime > 0){
             this.endTask(true);
         }
+    }
+
+    @Override
+    public double getProgressRatio(){
+        double countMoved = this.getMotorController().getMotor().getCurrentCount() - super.m_StartCount;
+        return Math.abs(countMoved / this.m_Count);
     }
 }

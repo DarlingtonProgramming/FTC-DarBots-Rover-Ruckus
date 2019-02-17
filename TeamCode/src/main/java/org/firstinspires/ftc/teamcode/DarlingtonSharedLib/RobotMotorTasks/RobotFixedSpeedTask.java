@@ -51,6 +51,9 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
 
     public void setSpeed(double Speed){
         this.m_Speed = Speed;
+        if(this.isBusy()){
+            this.getMotorController().getMotor().setPower(Speed);
+        }
     }
 
     public double getTimeInSeconds(){
@@ -68,10 +71,16 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
     }
 
     @Override
-    public void updateStatus() {
-        if(this.isBusy()) {
-            this.getMotorController().getMotor().setPower(this.m_Speed);
+    public double getProgressRatio() {
+        if(this.m_TimeInSeconds > 0){
+            return super.getSecondsSinceStart() / m_TimeInSeconds;
+        }else{
+            return 0;
         }
+    }
+
+    @Override
+    public void updateStatus() {
         if(this.getSecondsSinceStart() >= this.m_TimeInSeconds && this.m_TimeInSeconds > 0){
             this.endTask(true);
         }

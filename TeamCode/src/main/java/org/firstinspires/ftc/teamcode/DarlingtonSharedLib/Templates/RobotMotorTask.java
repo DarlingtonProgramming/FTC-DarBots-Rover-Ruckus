@@ -106,6 +106,8 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice {
         this.m_Controller.checkTasks();
     }
 
+    public abstract double getProgressRatio();
+
     @Override
     public boolean isBusy(){
         return this.m_IsWorking;
