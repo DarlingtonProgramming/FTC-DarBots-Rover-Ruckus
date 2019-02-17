@@ -132,7 +132,7 @@ public class RobotMotorController implements RobotNonBlockingDevice {
                 this.m_TaskLists.get(0).setTimeOutFactor(this.getTimeOutFactor());
                 this.m_TaskLists.get(0).startTask();
             }
-        }else if(this.m_TaskLists.isEmpty()){
+        }else{ //if(this.m_TaskLists.isEmpty()){
             stopMotor();
         }
     }

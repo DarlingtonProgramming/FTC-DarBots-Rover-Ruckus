@@ -43,6 +43,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(0,-DistanceMoved / (Math.sqrt(2)) * 4.0 * OmniWheel4SideDiamondShaped.this.getLinearMotionFrictionFactor());
                 }
             };
+            if(OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker() == null){
+                FLCallBack = null;
+            }
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed(),null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed(),null));
@@ -56,6 +59,7 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
                     || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
+                OmniWheel4SideDiamondShaped.this.__stopMotion();
                 this.stopTask();
             }
         }
@@ -85,6 +89,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(90,-DistanceMoved / (Math.sqrt(2)) * 4.0 * OmniWheel4SideDiamondShaped.this.getLinearMotionFrictionFactor());
                 }
             };
+            if(OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker() == null){
+                FLCallBack = null;
+            }
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed(),null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed(),null));
@@ -98,6 +105,7 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
                     || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
+                OmniWheel4SideDiamondShaped.this.__stopMotion();
                 this.stopTask();
             }
         }
@@ -128,6 +136,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker().drive_RotateAroundRobotPointWithRadiusAndPowerPoint(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(0,0,0),OmniWheel4SideDiamondShaped.this.getLeftFrontMotor().getRobotWheel().getOnRobotPosition().getDistanceToOrigin(),DistanceMoved * OmniWheel4SideDiamondShaped.this.getRotationalMotionFrictionFactor());
                 }
             };
+            if(OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker() == null){
+                FLCallBack = null;
+            }
             OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed(),null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed(),null));
@@ -141,6 +152,7 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
                     || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
+                OmniWheel4SideDiamondShaped.this.__stopMotion();
                 this.stopTask();
             }
         }

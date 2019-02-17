@@ -38,9 +38,6 @@ public abstract class ChassisFrictionCalibration extends LinearOpMode {
         debugMsg = "The robot will now start moving to the right, linearFriction = actual distance in CM / 100";
         getRobotCore().updateStatus();
         waitForKey();
-        Robot2DPositionTracker.Robot2DPositionFieldAxisIndicator xTestOriginalPos = getRobotCore().getMotionSystem().getPositionTracker().new Robot2DPositionFieldAxisIndicator(
-                getRobotCore().getMotionSystem().getPositionTracker().getPosition()
-        );
         getRobotCore().getMotionSystem().replaceTask(getRobotCore().getMotionSystem().getFixedXDistanceTask(100,0.1));
         getRobotCore().getMotionSystem().waitUntilFinish();
         debugMsg = "linear friction test finished, press X to continue";
@@ -60,7 +57,7 @@ public abstract class ChassisFrictionCalibration extends LinearOpMode {
     }
 
     private void waitForKey(){
-        while(!this.gamepad1.x && this.opModeIsActive()){
+        while((!this.gamepad1.x) && this.opModeIsActive()){
             idle();
         }
     }

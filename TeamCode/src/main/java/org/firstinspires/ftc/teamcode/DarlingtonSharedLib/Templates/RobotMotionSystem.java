@@ -90,6 +90,7 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice, Debug
 
     public void deleteCurrentTask(){
         if(this.m_TaskLists.isEmpty()){
+            this.__stopMotion();
             return;
         }
         this.m_TaskLists.get(0).stopTask();
@@ -118,12 +119,11 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice, Debug
 
     public void checkTasks(){
         if(this.m_TaskLists.isEmpty()){
+            this.__stopMotion();
             return;
         }
         if(!this.m_TaskLists.get(0).isBusy()){
             this.deleteCurrentTask();
-        }else{
-            this.__stopMotion();
         }
     }
 

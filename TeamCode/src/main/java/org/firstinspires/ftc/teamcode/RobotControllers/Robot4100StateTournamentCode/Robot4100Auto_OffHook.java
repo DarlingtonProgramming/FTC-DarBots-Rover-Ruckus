@@ -33,6 +33,7 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
         if(this.opModeIsActive()) {
             this.offHookAndDetectSample();
         }
+        this.m_RobotCore.waitUntilFinish();
         this.m_RobotCore.save();
     }
 
@@ -74,7 +75,9 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
                 }
             }
         }
-        this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-5,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+        this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(5,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,0.3));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
         double deltaAng = XYPlaneCalculations.normalizeDeg(this.m_RobotCore.getGyro().getHeading() - startAng);
