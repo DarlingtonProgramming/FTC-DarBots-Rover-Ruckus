@@ -90,6 +90,12 @@ public class RobotFixCountTask extends RobotMotorTask {
     }
 
     @Override
+    public double getProgressRatio() {
+        double countTravelled = this.getMotorController().getMotor().getCurrentCount() - super.m_StartCount;
+        return Math.abs(countTravelled / this.m_Count);
+    }
+
+    @Override
     public void updateStatus() {
         if(this.isBusy()){
             if(!this.getMotorController().getMotor().isBusy()){
