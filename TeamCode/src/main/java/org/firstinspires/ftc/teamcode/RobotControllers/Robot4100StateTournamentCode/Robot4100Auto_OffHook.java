@@ -38,7 +38,6 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
     }
 
     protected void offHookAndDetectSample(){
-        double startAng = this.m_RobotCore.getGyro().getHeading();
         this.m_RobotCore.getLinearActuator().setTargetPercent(Robot4100Setting.LINEARACTUATOR_HOOKPCT,Robot4100Setting.AUTONOMOUS_LINEARACTUATORSPEED,null);
         while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < (Robot4100Setting.LINEARACTUATOR_HOOKPCT - 0.05)){
 
@@ -76,11 +75,10 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
             }
         }
         this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,0.3));
-        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(5,0.3));
-        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(10,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(10,0.3));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
-        double deltaAng = XYPlaneCalculations.normalizeDeg(this.m_RobotCore.getGyro().getHeading() - startAng);
         /*
         this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(-deltaAng,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();

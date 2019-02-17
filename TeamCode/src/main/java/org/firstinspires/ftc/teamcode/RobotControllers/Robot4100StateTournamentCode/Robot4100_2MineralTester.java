@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Ro
 
 import java.util.ArrayList;
 
-@Disabled
+//@Disabled
 @TeleOp(name = "2MineralTester",group = "4100")
 public class Robot4100_2MineralTester extends LinearOpMode {
     protected Robot4100Core m_RobotCore;

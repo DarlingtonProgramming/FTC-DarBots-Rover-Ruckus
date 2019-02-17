@@ -26,25 +26,67 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
             }else{
                 sampleXDistance = 0;
             }
-            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(50,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(45,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(sampleXDistance,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.setCollectorServoToCollect(true);
-            this.m_RobotCore.getCollectorSweeper().setPower(1.0);
-            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(sampleXDistance,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(50,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(-15,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.setCollectorServoToCollect(false);
-            sleep(500);
-            m_RobotCore.getCollectorSweeper().setPower(0);
-            double veryLeftLength = sampleXDistance - (-75) + 110;
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(60,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(-60,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedTurnTask(90,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(20,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            double veryLeftLength = sampleXDistance - (-75) + 130;
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(80,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(-35,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            while(this.m_RobotCore.getMotionSystem().isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.getMotionSystem().updateStatus();
+            }
+            this.m_RobotCore.getMotionSystem().replaceTask(m_RobotCore.getMotionSystem().getFixedTurnTask(85,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(veryLeftLength,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            while(this.m_RobotCore.getMotionSystem().isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.getMotionSystem().updateStatus();
+            }
+            this.m_RobotCore.getMotionSystem().replaceTask(m_RobotCore.getMotionSystem().getFixedTurnTask(42,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(40,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(40,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-15,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(280,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            while(this.m_RobotCore.getMotionSystem().isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.getMotionSystem().updateStatus();
+            }
 
-            this.m_RobotCore.getMotionSystem().waitUntilFinish();
+            /*
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedTurnTask(45,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(30,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(40,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(300,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedTurnTask(180,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            while(this.m_RobotCore.isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.updateStatus();
+                idle();
+            }
+
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-40,0.7));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(10,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(300,0.7));
+            while(this.m_RobotCore.isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.updateStatus();
+                idle();
+            }
+            */
+
         }
         this.m_RobotCore.getLinearActuator().waitUntilFinish();
         this.m_RobotCore.save();

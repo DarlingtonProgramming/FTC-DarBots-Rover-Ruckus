@@ -92,6 +92,7 @@ import java.util.List;
  * is explained below.
  */
 
+@Disabled
 @TeleOp(name="Concept: Vuforia Rover Nav - Back Cam", group ="Concept")
 public class ConceptVuforiaNavRoverRuckus extends LinearOpMode {
 

@@ -8,6 +8,6 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Ro
 public class Robot4100TeleOp_NoMemory extends Robot4100TeleOp {
     @Override
     public void hardwareInit(){
-        super.robotCoreInit(new Robot4100Core(this,null,false,true,false));
+        super.robotCoreInit(new Robot4100Core(this,null,false,false,false));
     }
 }

@@ -29,7 +29,7 @@ public class Robot4100Setting {
     public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
     public static final double TELEOP_DUMPERSLIDESPEED = 0.6;
     public static final double TELEOP_DRAWERSLIDESPEED = 0.5;
-    public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.6;
+    public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.4;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPERSLIDESPEED = 0.5;
     public static final double AUTONOMOUS_DRAWERSLIDESPEED = 0.5;
@@ -95,7 +95,7 @@ public class Robot4100Setting {
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();
 
     public static final String DUMPERSERVO_CONFIGURATIONNAME = "dumperServo";
-    public static final double DUMPERSERVO_DUMPPOS = 0.25, DUMPERSERVO_NORMALPOS = 0.57;
+    public static final double DUMPERSERVO_DUMPPOS = 0.20, DUMPERSERVO_NORMALPOS = 0.57;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
     public static final double COLLECTOROUTSERVO_NORMALPOS = 0.67, COLLECTOROUTSERVO_COLLECTPOS = 0.05;

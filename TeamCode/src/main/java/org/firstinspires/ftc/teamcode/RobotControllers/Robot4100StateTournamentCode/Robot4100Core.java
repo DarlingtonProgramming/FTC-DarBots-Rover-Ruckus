@@ -37,7 +37,6 @@ public class Robot4100Core extends RobotCore {
     private Servo m_DumperServo;
     private FTC2018GameVuforiaNavigation m_VuforiaNav;
     private FTC2018GameSpecificFunctions m_MineralDetection;
-    private BN055IMUGyro m_Gyro;
 
     public Robot4100Core(@NonNull OpMode ControllingOpMode, Robot2DPositionIndicator currentPosition, boolean readSavedValues, boolean initVuforiaNav, boolean initTFOD){
         super(ControllingOpMode,Robot4100Setting.SettingFileName);
@@ -81,7 +80,6 @@ public class Robot4100Core extends RobotCore {
 
         this.m_DumperServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.DUMPERSERVO_CONFIGURATIONNAME);
 
-        this.m_Gyro = new BN055IMUGyro(ControllingOpMode.hardwareMap,Robot4100Setting.IMU_CONFIGURATIONNAME);
 
         //Collaboration between parts
         this.m_DumperSlide.setPreCheckCallBack(new RobotServoUsingMotor.RobotServoUsingMotorCallBackBeforeAssigning() {
@@ -108,7 +106,8 @@ public class Robot4100Core extends RobotCore {
         });
 
         if(initTFOD || initVuforiaNav){
-            RobotWebcamCamera webcamCamera = new RobotWebcamCamera(ControllingOpMode, Robot4100Setting.VUFORIANAV_ShowPreviewScreen, Robot4100Setting.TFOL_CAMERACONFIGURTIONNAME,PrivateSettings.VUFORIALICENSE);
+            boolean vuforiaPreview = Robot4100Setting.VUFORIANAV_ShowPreviewScreen; // && initVuforiaNav;
+            RobotWebcamCamera webcamCamera = new RobotWebcamCamera(ControllingOpMode, vuforiaPreview, Robot4100Setting.TFOL_CAMERACONFIGURTIONNAME,PrivateSettings.VUFORIALICENSE);
             if(initTFOD) {
                 this.m_MineralDetection = new FTC2018GameSpecificFunctions(ControllingOpMode, webcamCamera, Robot4100Setting.TFOL_ShowPreviewScreen);
             }else{
@@ -183,13 +182,9 @@ public class Robot4100Core extends RobotCore {
         this.m_LinearActuator.updateStatus();
         this.m_CollectorSweep.updateStatus();
         this.m_DrawerSlide.updateStatus();
-        this.m_Gyro.updateStatus();
         this.calibratePosition();
     }
 
-    public BN055IMUGyro getGyro(){
-        return this.m_Gyro;
-    }
 
     public void calibratePosition(){
         if(this.m_VuforiaNav != null && this.m_MotionSystem.getPositionTracker() != null){
