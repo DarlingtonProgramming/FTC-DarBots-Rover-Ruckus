@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
-//@Disabled
+@Disabled
 @TeleOp(name = "S8teleop", group = "4100")
 
 public class S8_teleop extends OpMode {

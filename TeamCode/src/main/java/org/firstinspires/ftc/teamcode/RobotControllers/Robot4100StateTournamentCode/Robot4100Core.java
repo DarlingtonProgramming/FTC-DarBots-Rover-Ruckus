@@ -13,6 +13,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPo
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ChassisControllers.OmniWheel4SideDiamondShaped;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Robot2DPositionIndicator;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.BN055IMUGyro;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotion;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorController;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotMotorWithEncoder;
@@ -36,6 +37,7 @@ public class Robot4100Core extends RobotCore {
     private Servo m_DumperServo;
     private FTC2018GameVuforiaNavigation m_VuforiaNav;
     private FTC2018GameSpecificFunctions m_MineralDetection;
+    private BN055IMUGyro m_Gyro;
 
     public Robot4100Core(@NonNull OpMode ControllingOpMode, Robot2DPositionIndicator currentPosition, boolean readSavedValues, boolean initVuforiaNav, boolean initTFOD){
         super(ControllingOpMode,Robot4100Setting.SettingFileName);
@@ -53,6 +55,8 @@ public class Robot4100Core extends RobotCore {
         RobotMotion BLMotion = new RobotMotion(new RobotMotorController(new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.LEFTBACKWHEEL_CONFIGURATIONNAME),Robot4100Setting.LEFTBACKWHEEL_MOTORTYPE),Robot4100Setting.MOTIONSYSTEM_TIMECONTROLENABLED,Robot4100Setting.MOTIONSYSTEM_TIMECONTROLFACTOR),Robot4100Setting.LEFTBACKWHEEL_MOTORWHEEL);
         RobotMotion BRMotion = new RobotMotion(new RobotMotorController(new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.RIGHTBACKWHEEL_CONFIGURATIONNAME),Robot4100Setting.RIGHTBACKWHEEL_MOTORTYPE),Robot4100Setting.MOTIONSYSTEM_TIMECONTROLENABLED,Robot4100Setting.MOTIONSYSTEM_TIMECONTROLFACTOR),Robot4100Setting.RIGHTBACKWHEEL_MOTORWHEEL);
         this.m_MotionSystem = new OmniWheel4SideDiamondShaped(FLMotion,FRMotion,BLMotion,BRMotion,PosTracker);
+        this.m_MotionSystem.setLinearMotionFrictionFactor(Robot4100Setting.MOTIONSYSTEM_MVOEMENTFRICTION);
+        this.m_MotionSystem.setLinearMotionFrictionFactor(Robot4100Setting.MOTIONSYSTEM_ROTATIONALFRICTION);
 
         RobotMotorWithEncoder LinearActuatorMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.LINEARACTUATOR_CONFIGURATIONNAME),Robot4100Setting.LINEARACTUATOR_MOTORTYPE);
         this.m_LinearActuator = new RobotServoUsingMotor(new RobotMotorController(LinearActuatorMotor,Robot4100Setting.LINEARACTUATOR_TIMEOUTCONTROL,Robot4100Setting.LINEARACTUATOR_TIMEOUTFACTOR),0,Robot4100Setting.LINEARACTUATOR_MAX,Robot4100Setting.LINEARACTUATOR_MIN);
@@ -76,6 +80,8 @@ public class Robot4100Core extends RobotCore {
         this.m_CollectorSetOut = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.COLLECTOROUTSERVO_CONFIGURATIONNAME);
 
         this.m_DumperServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.DUMPERSERVO_CONFIGURATIONNAME);
+
+        this.m_Gyro = new BN055IMUGyro(ControllingOpMode.hardwareMap,Robot4100Setting.IMU_CONFIGURATIONNAME);
 
         //Collaboration between parts
         this.m_DumperSlide.setPreCheckCallBack(new RobotServoUsingMotor.RobotServoUsingMotorCallBackBeforeAssigning() {
@@ -101,16 +107,18 @@ public class Robot4100Core extends RobotCore {
             }
         });
 
-        if(initVuforiaNav) {
-            RobotOnPhoneCamera phoneCamera = new RobotOnPhoneCamera(ControllingOpMode, Robot4100Setting.VUFORIANAV_ShowPreviewScreen, VuforiaLocalizer.CameraDirection.FRONT, PrivateSettings.VUFORIALICENSE);
-            this.m_VuforiaNav = new FTC2018GameVuforiaNavigation(phoneCamera, Robot4100Setting.VUFORIANAV_PHONEPOSITION);
-        }else{
-            this.m_VuforiaNav = null;
-        }
-
-        if(initTFOD){
-            RobotWebcamCamera webcamCamera = new RobotWebcamCamera(ControllingOpMode, false, Robot4100Setting.TFOL_CAMERACONFIGURTIONNAME,PrivateSettings.VUFORIALICENSE);
-            this.m_MineralDetection = new FTC2018GameSpecificFunctions(ControllingOpMode,webcamCamera,Robot4100Setting.TFOL_ShowPreviewScreen);
+        if(initTFOD || initVuforiaNav){
+            RobotWebcamCamera webcamCamera = new RobotWebcamCamera(ControllingOpMode, Robot4100Setting.VUFORIANAV_ShowPreviewScreen, Robot4100Setting.TFOL_CAMERACONFIGURTIONNAME,PrivateSettings.VUFORIALICENSE);
+            if(initTFOD) {
+                this.m_MineralDetection = new FTC2018GameSpecificFunctions(ControllingOpMode, webcamCamera, Robot4100Setting.TFOL_ShowPreviewScreen);
+            }else{
+                this.m_MineralDetection = null;
+            }
+            if(initVuforiaNav){
+                this.m_VuforiaNav = new FTC2018GameVuforiaNavigation(webcamCamera,Robot4100Setting.VUFORIANAV_WEBCAMPOSITION);
+            }else{
+                this.m_VuforiaNav = null;
+            }
         }
 
         this.getDebugger().addDebuggerCallable(this.m_MotionSystem.getDebuggerCallable("motionSystem"));
@@ -175,7 +183,12 @@ public class Robot4100Core extends RobotCore {
         this.m_LinearActuator.updateStatus();
         this.m_CollectorSweep.updateStatus();
         this.m_DrawerSlide.updateStatus();
+        this.m_Gyro.updateStatus();
         this.calibratePosition();
+    }
+
+    public BN055IMUGyro getGyro(){
+        return this.m_Gyro;
     }
 
     public void calibratePosition(){

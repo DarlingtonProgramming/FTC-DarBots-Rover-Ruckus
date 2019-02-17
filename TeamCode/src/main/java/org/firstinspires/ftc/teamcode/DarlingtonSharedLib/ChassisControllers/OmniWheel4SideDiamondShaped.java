@@ -52,9 +52,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         @Override
         public void updateStatus() {
             if((!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
                 this.stopTask();
             }
@@ -94,9 +94,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         @Override
         public void updateStatus() {
             if((!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
                 this.stopTask();
             }
@@ -137,9 +137,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
         @Override
         public void updateStatus() {
             if((!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
-                    && (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
+                    || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
                 this.stopTask();
             }

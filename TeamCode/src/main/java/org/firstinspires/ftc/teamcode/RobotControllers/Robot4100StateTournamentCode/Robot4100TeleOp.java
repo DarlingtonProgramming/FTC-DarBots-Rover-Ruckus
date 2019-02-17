@@ -131,9 +131,9 @@ public class Robot4100TeleOp extends Gamepad1Drive {
                                             Robot4100TeleOp.this.get4100Core().getCollectorSweeper().setPower(0);
                                             isCombo = false;
                                         }
-                                    },1.5);
+                                    },0.5);
                                 }
-                            },1.0);
+                            },0.8);
                         }
                     });
                 }
@@ -157,8 +157,15 @@ public class Robot4100TeleOp extends Gamepad1Drive {
                                     }
                                     //After the dumper is set to dump for 3 seconds, which lets the minerals to go into the lander, put dumperservo back and bring dumperslide down
                                     Robot4100TeleOp.this.get4100Core().setDumperServoToDump(false);
-                                    Robot4100TeleOp.this.get4100Core().getDumperSlide().setTargetPercent(0, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, null);
-                                    isCombo = false;
+                                    Robot4100TeleOp.this.get4100Core().getDumperSlide().setTargetPercent(0, Robot4100Setting.TELEOP_DUMPERSLIDESPEED, new RobotServoUsingMotor.RobotServoUsingMotorPositionCallBack() {
+                                        @Override
+                                        public void finish(RobotServoUsingMotor Servo) {
+                                            if(isCombo){
+                                                isCombo = false;
+                                            }
+                                        }
+                                    });
+
                                 }
                             },3.0);
                         }

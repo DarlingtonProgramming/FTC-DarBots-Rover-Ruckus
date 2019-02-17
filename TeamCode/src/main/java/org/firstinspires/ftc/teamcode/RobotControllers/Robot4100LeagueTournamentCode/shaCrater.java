@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @Autonomous (name = "CraterBase", group = "4100")
-//@Disabled
+@Disabled
 
 public class shaCrater extends LinearOpMode {
 

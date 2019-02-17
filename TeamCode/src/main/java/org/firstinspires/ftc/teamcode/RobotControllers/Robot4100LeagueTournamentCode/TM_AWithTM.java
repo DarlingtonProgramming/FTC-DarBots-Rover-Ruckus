@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @Autonomous (name = "TM_AWithTM", group = "4100")
-//@Disabled
+@Disabled
 
 public class TM_AWithTM extends LinearOpMode {
 

@@ -1,6 +1,6 @@
 package org.firstinspires.ftc.teamcode.RobotControllers.Robot4100StateTournamentCode;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Ro
 
 import java.util.ArrayList;
 
+@Disabled
 @TeleOp(name = "2MineralTester",group = "4100")
 public class Robot4100_2MineralTester extends LinearOpMode {
     protected Robot4100Core m_RobotCore;

@@ -55,6 +55,7 @@ public class BN055IMUGyro implements RobotNonBlockingDevice {
         this.m_XOffset = 0.0f;
         this.m_YOffset = 0.0f;
         this.m_ZOffset = 0.0f;
+        this.updateData();
     }
 
     public void resetGyro(){

@@ -49,10 +49,13 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
             throw new RuntimeException("You cannot change the count of a task when the task has started");
         }
         this.m_Count = Count;
+        if(this.isBusy()) {
+            fixCounts();
+        }
     }
 
     protected void fixCounts(){
-        double rev = this.getCounts() / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
+        double rev = ((double) this.getCounts()) / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
         double speed = this.getSpeed() * super.getMotorController().getMotor().getMotorType().getRevPerSec();
         double FineTime = super.isTimeControlEnabled() ? (rev / speed * super.getTimeOutFactor()) : 0;
         if(m_Count < 0){

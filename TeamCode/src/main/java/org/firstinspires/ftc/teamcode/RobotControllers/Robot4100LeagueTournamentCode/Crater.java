@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 @Autonomous (name = "Crater", group = "4100")
-//@Disabled
+@Disabled
 
 public class Crater extends LinearOpMode {
 

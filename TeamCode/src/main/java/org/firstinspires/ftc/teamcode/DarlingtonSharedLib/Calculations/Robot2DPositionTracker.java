@@ -45,6 +45,10 @@ public class Robot2DPositionTracker {
             super(indicator);
         }
 
+        public Robot2DPositionFieldAxisIndicator(@NonNull Robot2DPositionIndicator indicator){
+            super(indicator);
+        }
+
         public Robot2DPositionFieldAxisIndicator(@NonNull Robot2DPositionRobotAxisIndicator robotAxisIndicator) {
             super(0, 0, 0);
             double[] robotAxisPoint = {robotAxisIndicator.getX(), robotAxisIndicator.getZ()};
@@ -71,6 +75,18 @@ public class Robot2DPositionTracker {
     public static class Robot2DPositionRobotAxisIndicator extends Robot2DPositionIndicator {
         public Robot2DPositionRobotAxisIndicator(double X, double Z, double YRotation) {
             super(X, Z, YRotation);
+        }
+
+        public Robot2DPositionRobotAxisIndicator(@NonNull Robot2DPositionRobotAxisIndicator indicator){
+            super(indicator);
+        }
+
+        public Robot2DPositionRobotAxisIndicator(@NonNull Robot2DPositionIndicator indicator){
+            super(indicator);
+        }
+
+        public Robot2DPositionRobotAxisIndicator(@NonNull Robot2DPositionFieldAxisIndicator indicator){
+            super(indicator.toRobotAxis());
         }
 
         public Robot2DPositionFieldAxisIndicator toFieldAxis(@NonNull Robot2DPositionTracker positionTracker) {

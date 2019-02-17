@@ -18,7 +18,7 @@ public class Robot4100Setting {
     public static final boolean TFOL_ShowPreviewScreen = true;
     public static final String TFOL_CAMERACONFIGURTIONNAME = "webCam";
 
-    public static final FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator VUFORIANAV_PHONEPOSITION = new FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator(-19,-6,20.5,180,90,0);
+    public static final FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator VUFORIANAV_WEBCAMPOSITION = new FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator(7.3,12.7,35,90,-20,90);
     public static final boolean VUFORIANAV_ShowPreviewScreen = true;
 
     public static final Robot2DPositionIndicator Field_MinPoint = new Robot2DPositionIndicator(-182.88,-182.88,0);
@@ -42,10 +42,14 @@ public class Robot4100Setting {
             new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(EXTREMEPOINTS_DISTANCEFROMCENTER,-EXTREMEPOINTS_DISTANCEFROMCENTER,0)
     };
 
+    public static final String IMU_CONFIGURATIONNAME = "imu";
+
     public static final boolean MOTIONSYSTEM_TIMECONTROLENABLED = false;
     public static final double MOTIONSYSTEM_TIMECONTROLFACTOR = 1.3;
     public static final double MOTIONSYSTEM_WHEELINSTALLEDDISTANCE = 14.8;
     public static final double MOTIONSYSTEM_WHEELRADIUS = 5;
+    public static final double MOTIONSYSTEM_MVOEMENTFRICTION = 0.5;
+    public static final double MOTIONSYSTEM_ROTATIONALFRICTION = 1.0;
 
     public static final String LEFTFRONTWHEEL_CONFIGURATIONNAME = "leftFrontMotor";
     public static final RobotMotorType LEFTFRONTWHEEL_MOTORTYPE = new RevHDHex40Motor();
@@ -94,5 +98,5 @@ public class Robot4100Setting {
     public static final double DUMPERSERVO_DUMPPOS = 0.25, DUMPERSERVO_NORMALPOS = 0.57;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
-    public static final double COLLECTOROUTSERVO_NORMALPOS = 0.75, COLLECTOROUTSERVO_COLLECTPOS = 0.05;
+    public static final double COLLECTOROUTSERVO_NORMALPOS = 0.67, COLLECTOROUTSERVO_COLLECTPOS = 0.05;
 }
