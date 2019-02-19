@@ -34,8 +34,9 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPo
 import java.util.ArrayList;
 
 public abstract class RobotMotionSystem implements RobotNonBlockingDevice, DebuggerAttachable {
-    public static final double SlowDownFactor = 1.0/3.0;
-    public static final double SlowDownTime = 0.2;
+    public static final double SlowDownFactor = 1.0;
+    public static final double SlowDownTime = 0.1;
+    public static final double SlowDownSmallest = 10;
     protected ArrayList<RobotMotionSystemTask> m_TaskLists;
     protected Robot2DPositionTracker m_PosTracker;
     protected double m_LinearMotionFrictionFactor;

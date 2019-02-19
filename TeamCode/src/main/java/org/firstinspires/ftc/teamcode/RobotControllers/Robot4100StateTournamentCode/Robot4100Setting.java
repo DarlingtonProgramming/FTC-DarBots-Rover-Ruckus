@@ -98,5 +98,5 @@ public class Robot4100Setting {
     public static final double DUMPERSERVO_DUMPPOS = 0.20, DUMPERSERVO_NORMALPOS = 0.57;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
-    public static final double COLLECTOROUTSERVO_NORMALPOS = 0.67, COLLECTOROUTSERVO_COLLECTPOS = 0.05;
+    public static final double COLLECTOROUTSERVO_NORMALPOS = 0.67, COLLECTOROUTSERVO_COLLECTPOS = 0.0;
 }

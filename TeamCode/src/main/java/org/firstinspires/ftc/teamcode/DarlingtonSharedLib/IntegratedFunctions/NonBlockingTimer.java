@@ -48,11 +48,12 @@ public class NonBlockingTimer implements RobotNonBlockingDevice {
     public void updateStatus() {
         if(this.isBusy()) {
             double secondsPassed = this.m_Time.seconds();
-            for (timerTaskInfo i : this.m_Tasks) {
-                i.SecondsLeft -= secondsPassed;
-                if (i.SecondsLeft <= 0) {
-                    timerTask mTask = i.Task;
+            for (int i =0; i<this.m_Tasks.size();i++) {
+                this.m_Tasks.get(i).SecondsLeft -= secondsPassed;
+                if (this.m_Tasks.get(i).SecondsLeft <= 0) {
+                    timerTask mTask = this.m_Tasks.get(i).Task;
                     this.m_Tasks.remove(i);
+                    i--;
                     mTask.run();
                 }
             }
@@ -61,8 +62,7 @@ public class NonBlockingTimer implements RobotNonBlockingDevice {
     }
 
     public void addTask(@NonNull timerTask task, double timeInSec){
-        this.updateStatus();
-        this.m_Tasks.add(new timerTaskInfo(timeInSec,task));
+        this.m_Tasks.add(new timerTaskInfo(timeInSec + this.m_Time.seconds(),task));
     }
 
     @Override
