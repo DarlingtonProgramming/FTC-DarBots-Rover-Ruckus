@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.NonBlockingTimer;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotAudioPlayer;
@@ -18,6 +19,8 @@ public abstract class RobotCore implements RobotNonBlockingDevice {
     private OpMode m_ControllingOpMode;
     private RobotAudioPlayer m_AudioPlayer;
     private NonBlockingTimer m_Timer;
+    private ElapsedTime m_GlobalElapsedTimer;
+
     public RobotCore(@NonNull OpMode ControllingOpMode, @NonNull String SettingFileName){
         this.m_ControllingOpMode = ControllingOpMode;
         this.m_Debugger = new RobotDebugger(ControllingOpMode.telemetry);

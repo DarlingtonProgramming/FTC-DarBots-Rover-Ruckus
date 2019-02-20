@@ -98,9 +98,7 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice, Debug
         }
         this.m_TaskLists.get(0).stopTask();
         this.m_TaskLists.remove(0);
-        if(!this.m_TaskLists.isEmpty()) {
-            this.scheduleTasks();
-        }
+        this.scheduleTasks();
     }
 
     public ArrayList<RobotMotionSystemTask> getTaskLists(){
@@ -112,20 +110,20 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice, Debug
     }
 
     public void deleteAllTasks(){
+        this.__stopMotion();
         if(this.m_TaskLists.isEmpty()){
             return;
         }
+        RobotMotionSystemTask currentTask = this.m_TaskLists.get(0);
         this.m_TaskLists.get(0).stopTask();
         this.m_TaskLists.clear();
-        this.__stopMotion();
     }
 
     public void checkTasks(){
         if(this.m_TaskLists.isEmpty()){
             this.__stopMotion();
             return;
-        }
-        if(!this.m_TaskLists.get(0).isBusy()){
+        }else if(!this.m_TaskLists.get(0).isBusy()){
             this.deleteCurrentTask();
         }
     }
@@ -133,9 +131,13 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice, Debug
     protected abstract void __stopMotion();
 
     protected void scheduleTasks(){
-        if(!this.m_TaskLists.isEmpty() && !this.m_TaskLists.get(0).isBusy()) {
-            this.m_TaskLists.get(0).setMotionSystem(this);
-            this.m_TaskLists.get(0).startTask();
+        if(!this.m_TaskLists.isEmpty()){
+            if(!this.m_TaskLists.get(0).isBusy()) {
+                this.m_TaskLists.get(0).setMotionSystem(this);
+                this.m_TaskLists.get(0).startTask();
+            }
+        }else if(this.m_TaskLists.isEmpty()){
+            this.__stopMotion();
         }
     }
 

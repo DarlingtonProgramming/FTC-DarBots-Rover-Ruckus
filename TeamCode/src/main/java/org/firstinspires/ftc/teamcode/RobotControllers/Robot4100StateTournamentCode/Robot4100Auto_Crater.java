@@ -10,7 +10,7 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
     @Override
     public void runOpMode() throws InterruptedException {
         this.hardwareInit();
-        this.m_RobotCore.getDebugger().addDebug(new RobotDebugger.RobotDebuggerInformation("Status","Initialized"));
+        AutonomousState = "Initialized";
         this.m_RobotCore.updateStatus();
         this.waitForStart();
         if(this.opModeIsActive()) {
@@ -20,9 +20,9 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
         if(this.opModeIsActive()){
             double sampleXDistance = 0;
             if(super.m_GoldPosition == FTC2018GameSpecificFunctions.GoldPosType.Left){
-                sampleXDistance = -75;
+                sampleXDistance = -48;
             }else if(super.m_GoldPosition == FTC2018GameSpecificFunctions.GoldPosType.Right){
-                sampleXDistance = 75;
+                sampleXDistance = 48;
             }else{
                 sampleXDistance = 0;
             }

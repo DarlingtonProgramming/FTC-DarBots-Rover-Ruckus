@@ -65,10 +65,10 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     protected void fixCounts(){
         double rev = ((double) this.getCounts()) / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
         double speed = this.getSpeed() * super.getMotorController().getMotor().getMotorType().getRevPerSec();
-        double FineTime = rev / speed;
+        double FineTime = Math.abs(rev / speed);
         if(this.m_CountCtl){
             if(super.isTimeControlEnabled()) {
-                FineTime *= super.getTimeOutFactor();
+                FineTime *= Math.abs(super.getTimeOutFactor());
             }else{
                 FineTime = 0;
             }
@@ -80,7 +80,6 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     @Override
     public void setSpeed(double Speed){
         super.setSpeed(fixSpeed(Speed));
-
     }
 
     protected double fixSpeed(double speed){
@@ -95,6 +94,9 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     protected void __startTask() {
         this.fixCounts();
         super.__startTask();
+        if(this.m_Count == 0){
+            this.endTask(true);
+        }
     }
 
     @Override
