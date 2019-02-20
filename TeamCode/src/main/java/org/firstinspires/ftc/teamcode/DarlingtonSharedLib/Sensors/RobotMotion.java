@@ -84,8 +84,8 @@ public class RobotMotion {
     }
     public class FixedDistanceSpeedCtlTask extends RobotFixCountSpeedCtlTask implements RobotMotionTask{
         double m_Distance;
-        public FixedDistanceSpeedCtlTask(double Distance, double Speed, RobotMotionTaskCallBack TaskCallBack) {
-            super(0, Speed, TaskCallBack == null ? null : new MotionTaskCallBackToMotorTaskCallBack(RobotMotion.this,TaskCallBack));
+        public FixedDistanceSpeedCtlTask(double Distance, double Speed, RobotMotionTaskCallBack TaskCallBack, boolean isCountCtl) {
+            super(0, Speed, TaskCallBack == null ? null : new MotionTaskCallBackToMotorTaskCallBack(RobotMotion.this,TaskCallBack),isCountCtl);
             super.setMotorController(RobotMotion.this.getMotorController());
             this.setDistance(Distance);
         }

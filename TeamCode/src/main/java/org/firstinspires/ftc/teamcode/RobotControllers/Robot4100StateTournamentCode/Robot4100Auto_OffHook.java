@@ -74,9 +74,9 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
                 }
             }
         }
-        this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,0.3));
-        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(10,0.3));
-        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(10,0.3));
+        this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-15,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(15,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(15,0.3));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
         /*

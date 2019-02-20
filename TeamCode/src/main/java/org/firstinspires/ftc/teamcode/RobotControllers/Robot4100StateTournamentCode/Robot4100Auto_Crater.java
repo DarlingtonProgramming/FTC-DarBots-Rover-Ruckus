@@ -32,7 +32,7 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
             }
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             double veryLeftLength = sampleXDistance - (-75) + 130;
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(80,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(65,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(-35,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
                 if(!this.opModeIsActive()){
@@ -41,7 +41,7 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
             this.m_RobotCore.getMotionSystem().replaceTask(m_RobotCore.getMotionSystem().getFixedTurnTask(80,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-25,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-32,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(veryLeftLength,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
                 if(!this.opModeIsActive()){
@@ -50,8 +50,6 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
             this.m_RobotCore.getMotionSystem().replaceTask(m_RobotCore.getMotionSystem().getFixedTurnTask(45,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(40,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(60,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
                 if(!this.opModeIsActive()){
                     return;
@@ -59,14 +57,13 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
 
-            while(!gamepad1.x){
-                if(!this.opModeIsActive()){
-                    return;
-                }
-                idle();
-            }
 
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-15,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            //this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(40,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.goRightToWall(0.1,0.2);
+
+
+
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-20,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
 
             this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(170,0.7));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
@@ -75,25 +72,28 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
                 }
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
-            this.m_RobotCore.setCollectorServoToCollect(true);
+            this.m_RobotCore.setCollectorServoToCollect(2);
             this.m_RobotCore.getCollectorSweeper().setPower(-1.0);
             sleep(1000);
             this.m_RobotCore.getCollectorSweeper().setPower(0);
-            this.m_RobotCore.setCollectorServoToCollect(false);
-            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(180,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-60,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-            while(this.m_RobotCore.getMotionSystem().isBusy()){
-                if(!this.opModeIsActive()){
-                    return;
-                }
-                this.m_RobotCore.getMotionSystem().updateStatus();
-            }
+            this.m_RobotCore.setCollectorServoToCollect(0);
+            this.m_RobotCore.goRightToWall(0.1,0.2);
             while(!gamepad1.x){
                 if(!this.opModeIsActive()){
                     return;
                 }
                 idle();
             }
+            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(175,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+
+            while(this.m_RobotCore.getMotionSystem().isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.getMotionSystem().updateStatus();
+            }
+
             this.m_RobotCore.getDrawerSlide().setTargetPercent(100,Robot4100Setting.AUTONOMOUS_DRAWERSLIDESPEED,null);
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(15,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(200,0.7));
@@ -134,6 +134,7 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
             */
 
         }
+        this.m_RobotCore.stop();
         this.m_RobotCore.getLinearActuator().waitUntilFinish();
         this.m_RobotCore.save();
     }

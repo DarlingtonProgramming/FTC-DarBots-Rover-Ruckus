@@ -48,4 +48,6 @@ public abstract class RobotCore implements RobotNonBlockingDevice {
     public OpMode getControllingOpMode(){
         return this.m_ControllingOpMode;
     }
+
+    public abstract void stop();
 }

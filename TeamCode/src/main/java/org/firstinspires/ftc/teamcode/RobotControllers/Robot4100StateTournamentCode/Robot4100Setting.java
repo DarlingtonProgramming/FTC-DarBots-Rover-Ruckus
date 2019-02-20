@@ -27,8 +27,8 @@ public class Robot4100Setting {
     public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
     public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
-    public static final double TELEOP_DUMPERSLIDESPEED = 0.6;
-    public static final double TELEOP_DRAWERSLIDESPEED = 0.5;
+    public static final double TELEOP_DUMPERSLIDESPEED = 0.8;
+    public static final double TELEOP_DRAWERSLIDESPEED = 0.8;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.4;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPERSLIDESPEED = 0.5;
@@ -42,7 +42,7 @@ public class Robot4100Setting {
             new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(EXTREMEPOINTS_DISTANCEFROMCENTER,-EXTREMEPOINTS_DISTANCEFROMCENTER,0)
     };
 
-    public static final String IMU_CONFIGURATIONNAME = "imu";
+    public static final String RIGHTDISTANCESENSOR_CONFIGURATIONNAME = "rightSideDistanceSensor";
 
     public static final boolean MOTIONSYSTEM_TIMECONTROLENABLED = false;
     public static final double MOTIONSYSTEM_TIMECONTROLFACTOR = 1.3;
@@ -85,7 +85,7 @@ public class Robot4100Setting {
 
     public static final String DUMPERSLIDE_CONFIGURATIONNAME = "dumperSlideMotor";
     public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark2964();
-    public static final double DUMPERSLIDE_MAX = 7.6884, DUMPERSLIDE_MIN = 0;
+    public static final double DUMPERSLIDE_MAX = 7.5884, DUMPERSLIDE_MIN = 0;
     public static final boolean DUMPERSLIDE_TIMEOUTCONTROL = true;
     public static final double DUMPERSLIDE_TIMEOUTFACTOR = 1.2;
     public static final String DUMPERSLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "dumperSlideMaxTouch";
@@ -95,8 +95,8 @@ public class Robot4100Setting {
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();
 
     public static final String DUMPERSERVO_CONFIGURATIONNAME = "dumperServo";
-    public static final double DUMPERSERVO_DUMPPOS = 0.20, DUMPERSERVO_NORMALPOS = 0.57;
+    public static final double DUMPERSERVO_DUMPPOS = 0.20, DUMPERSERVO_NORMALPOS = 0.65;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
-    public static final double COLLECTOROUTSERVO_NORMALPOS = 0.67, COLLECTOROUTSERVO_COLLECTPOS = 0.0;
+    public static final double COLLECTOROUTSERVO_TODUMPPOS = 1.0, COLLECTOROUTSERVO_COLLECTPOS = 0.10, COLLECTOROUTSERVO_NORMALPOS=0.7;
 }

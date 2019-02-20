@@ -3,9 +3,11 @@ package org.firstinspires.ftc.teamcode.RobotControllers.Robot4100StateTournament
 import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameSpecificFunctions;
 import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameVuforiaNavigation;
@@ -24,6 +26,8 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotServoUsin
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotWebcamCamera;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotCore;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystem;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemFixedXDistanceTask;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTeleOpControlTask;
 import org.firstinspires.ftc.teamcode.RobotControllers.DarbotsPrivateInfo.PrivateSettings;
 
 
@@ -37,6 +41,8 @@ public class Robot4100Core extends RobotCore {
     private Servo m_DumperServo;
     private FTC2018GameVuforiaNavigation m_VuforiaNav;
     private FTC2018GameSpecificFunctions m_MineralDetection;
+    private int m_CollectorStage = 0;
+    private DistanceSensor m_RightSideDistance;
 
     public Robot4100Core(@NonNull OpMode ControllingOpMode, Robot2DPositionIndicator currentPosition, boolean readSavedValues, boolean initVuforiaNav, boolean initTFOD){
         super(ControllingOpMode,Robot4100Setting.SettingFileName);
@@ -77,9 +83,12 @@ public class Robot4100Core extends RobotCore {
         this.m_CollectorSweep.setDirectionReversed(true);
 
         this.m_CollectorSetOut = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.COLLECTOROUTSERVO_CONFIGURATIONNAME);
+        this.setCollectorServoToCollect(0);
+
 
         this.m_DumperServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.DUMPERSERVO_CONFIGURATIONNAME);
 
+        this.m_RightSideDistance = ControllingOpMode.hardwareMap.get(DistanceSensor.class,Robot4100Setting.RIGHTDISTANCESENSOR_CONFIGURATIONNAME);
 
         //Collaboration between parts
         this.m_DumperSlide.setPreCheckCallBack(new RobotServoUsingMotor.RobotServoUsingMotorCallBackBeforeAssigning() {
@@ -98,7 +107,7 @@ public class Robot4100Core extends RobotCore {
                     if(Robot4100Core.this.m_DrawerSlide.getCurrentPercent() >= Robot4100Setting.DRAWESLIDE_SAFEPCT){
                         return true;
                     }else{
-                        Robot4100Core.this.setCollectorServoToCollect(true);
+                        Robot4100Core.this.setCollectorServoToCollect(1);
                         return true;
                     }
                 }
@@ -124,6 +133,13 @@ public class Robot4100Core extends RobotCore {
         this.getDebugger().addDebuggerCallable(this.m_LinearActuator.getDebuggerCallable("linearActuator"));
         this.getDebugger().addDebuggerCallable(this.m_DrawerSlide.getDebuggerCallable("drawerSlide"));
         this.getDebugger().addDebuggerCallable(this.m_DumperSlide.getDebuggerCallable("dumperSlide"));
+        this.getDebugger().addDebuggerCallable(new RobotDebugger.ObjectDebuggerWrapper<>("RightRange", new Object() {
+            @Override
+            public String toString() {
+                return "" + m_RightSideDistance.getDistance(DistanceUnit.CM) + " cm";
+            }
+
+        }));
 
         if(readSavedValues){
             this.readSetting();
@@ -232,12 +248,46 @@ public class Robot4100Core extends RobotCore {
         }
     }
 
-    public void setCollectorServoToCollect(boolean toCollect){
-        if(toCollect){
+    public void setCollectorServoToCollect(int Stage){
+        if(Stage == 2){
             this.getCollectorSetOutServo().setPosition(Robot4100Setting.COLLECTOROUTSERVO_COLLECTPOS);
-        }else{
+        }else if(Stage == 1){
             this.getCollectorSetOutServo().setPosition(Robot4100Setting.COLLECTOROUTSERVO_NORMALPOS);
+        }else{ //if Stage == 0
+            this.getCollectorSetOutServo().setPosition(Robot4100Setting.COLLECTOROUTSERVO_TODUMPPOS);
+            Stage = 0;
         }
+        this.m_CollectorStage = Stage;
+    }
+
+    public int getCollectorServoStage(){
+        return this.m_CollectorStage;
+    }
+
+    public DistanceSensor getRIghtSideDistanceSensor(){
+        return this.m_RightSideDistance;
+    }
+
+    public void goRightToWall(double ApproachSpeed, double RunSpeed){
+        RobotMotionSystemTeleOpControlTask m_FixedSpeedTask = this.getMotionSystem().getTeleOpTask();
+        this.getMotionSystem().replaceTask(m_FixedSpeedTask);
+        m_FixedSpeedTask.setDriveXSpeed(RunSpeed);
+        while(this.m_RightSideDistance.getDistance(DistanceUnit.CM) > 40){
+            this.getMotionSystem().updateStatus();
+        }
+
+        RobotMotionSystemFixedXDistanceTask m_FixedXTask = this.getMotionSystem().getFixedXDistanceTask(50,ApproachSpeed);
+        this.getMotionSystem().replaceTask(m_FixedXTask);
+        this.getMotionSystem().waitUntilFinish();
+    }
+
+    @Override
+    public void stop(){
+        this.m_MotionSystem.deleteAllTasks();
+        this.m_LinearActuator.stopMotion();
+        this.m_DrawerSlide.stopMotion();
+        this.m_DumperSlide.stopMotion();
+        this.m_CollectorSweep.setPower(0);
     }
 
     public RobotMotorWithoutEncoder getCollectorSweeper(){

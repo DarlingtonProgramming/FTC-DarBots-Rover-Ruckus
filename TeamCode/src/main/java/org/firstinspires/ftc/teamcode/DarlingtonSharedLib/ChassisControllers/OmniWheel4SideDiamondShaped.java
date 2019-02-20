@@ -46,47 +46,21 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             if(OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker() == null){
                 FLCallBack = null;
             }
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,FLCallBack));
-            OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
-            OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
-            OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightBackMotor.new FixedDistanceSpeedCtlTask(BRDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack,false));
+            OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed() ,null,false));
+            OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed() ,null,false));
+            OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightBackMotor.new FixedDistanceSpeedCtlTask(BRDistance,this.getSpeed() ,null,false));
         }
 
         @Override
         public void updateStatus() {
             if((!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
                 OmniWheel4SideDiamondShaped.this.__stopMotion();
                 this.stopTask();
-            }else if(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    ){
-                RobotMotion.FixedDistanceSpeedCtlTask LFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask LBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftBackMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightBackMotor.getMotorController().getCurrentTask();
-                LFTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                RFTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                LBTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                RBTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-            }else if(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    ){
-                RobotMotion.FixedDistanceSpeedCtlTask LFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask LBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftBackMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightBackMotor.getMotorController().getCurrentTask();
-                LFTask.setSpeed(this.getSpeed());
-                RFTask.setSpeed(this.getSpeed());
-                LBTask.setSpeed(this.getSpeed());
-                RBTask.setSpeed(this.getSpeed());
             }
         }
     }
@@ -118,47 +92,21 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             if(OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker() == null){
                 FLCallBack = null;
             }
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,FLCallBack));
-            OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
-            OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
-            OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightBackMotor.new FixedDistanceSpeedCtlTask(BRDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,false));
+            OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed() ,null,false));
+            OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed() ,null,false));
+            OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightBackMotor.new FixedDistanceSpeedCtlTask(BRDistance,this.getSpeed() ,null,false));
         }
 
         @Override
         public void updateStatus() {
             if((!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
                 OmniWheel4SideDiamondShaped.this.__stopMotion();
                 this.stopTask();
-            }else if(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    ){
-                RobotMotion.FixedDistanceSpeedCtlTask LFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask LBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftBackMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightBackMotor.getMotorController().getCurrentTask();
-                LFTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                RFTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                LBTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                RBTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-            }else if(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    ){
-                RobotMotion.FixedDistanceSpeedCtlTask LFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask LBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftBackMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightBackMotor.getMotorController().getCurrentTask();
-                LFTask.setSpeed(this.getSpeed());
-                RFTask.setSpeed(this.getSpeed());
-                LBTask.setSpeed(this.getSpeed());
-                RBTask.setSpeed(this.getSpeed());
             }
         }
     }
@@ -191,47 +139,20 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             if(OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker() == null){
                 FLCallBack = null;
             }
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,FLCallBack));
-            OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
-            OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
-            OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightBackMotor.new FixedDistanceSpeedCtlTask(BRDistance,this.getSpeed() * RobotMotionSystem.SlowDownFactor,null));
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,false));
+            OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.new FixedDistanceSpeedCtlTask(FRDistance,this.getSpeed() ,null,false));
+            OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.new FixedDistanceSpeedCtlTask(BLDistance,this.getSpeed() ,null,false));
+            OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_RightBackMotor.new FixedDistanceSpeedCtlTask(BRDistance,this.getSpeed() ,null,false));
         }
 
         @Override
         public void updateStatus() {
             if((!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
-                    || (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
+                    &&(!OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().isBusy())
+                    && (!OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().isBusy())
                     ){
-                OmniWheel4SideDiamondShaped.this.__stopMotion();
                 this.stopTask();
-            }else if(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    || OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= (1.0 - RobotMotionSystem.SlowDownTime)
-                    ){
-                RobotMotion.FixedDistanceSpeedCtlTask LFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask LBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftBackMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightBackMotor.getMotorController().getCurrentTask();
-                LFTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                RFTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                LBTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-                RBTask.setSpeed(this.getSpeed() * RobotMotionSystem.SlowDownFactor);
-            }else if(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    || OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().getCurrentTask().getProgressRatio() >= RobotMotionSystem.SlowDownTime
-                    ){
-                RobotMotion.FixedDistanceSpeedCtlTask LFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RFTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightFrontMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask LBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_LeftBackMotor.getMotorController().getCurrentTask();
-                RobotMotion.FixedDistanceSpeedCtlTask RBTask = (RobotMotion.FixedDistanceSpeedCtlTask) m_RightBackMotor.getMotorController().getCurrentTask();
-                LFTask.setSpeed(this.getSpeed());
-                RFTask.setSpeed(this.getSpeed());
-                LBTask.setSpeed(this.getSpeed());
-                RBTask.setSpeed(this.getSpeed());
             }
         }
     }

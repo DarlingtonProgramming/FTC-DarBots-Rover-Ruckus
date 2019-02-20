@@ -30,14 +30,25 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotorTa
 
 public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     protected int m_Count;
-    protected double m_FineTime;
-    public RobotFixCountSpeedCtlTask(int Count, double Speed, RobotMotorTaskCallBack TaskCallBack) {
+    protected boolean m_CountCtl = false;
+
+    public RobotFixCountSpeedCtlTask(int Count, double Speed, RobotMotorTaskCallBack TaskCallBack, boolean CountCtl) {
         super(0,Speed,TaskCallBack);
         this.m_Count = Count;
+        this.m_CountCtl = CountCtl;
     }
     public RobotFixCountSpeedCtlTask(RobotFixCountSpeedCtlTask FixCountSpeedCtlTask){
         super(FixCountSpeedCtlTask);
         this.m_Count = FixCountSpeedCtlTask.m_Count;
+        this.m_CountCtl = FixCountSpeedCtlTask.m_CountCtl;
+    }
+
+    public boolean isCountCtl(){
+        return this.m_CountCtl;
+    }
+
+    public void setCountCtl(boolean CountCtl){
+        this.m_CountCtl = CountCtl;
     }
 
     public int getCounts(){
@@ -54,10 +65,16 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     protected void fixCounts(){
         double rev = ((double) this.getCounts()) / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
         double speed = this.getSpeed() * super.getMotorController().getMotor().getMotorType().getRevPerSec();
-        double FineTime = super.isTimeControlEnabled() ? (rev / speed * super.getTimeOutFactor()) : 0;
-        this.setTimeInSeconds(0);
+        double FineTime = rev / speed;
+        if(this.m_CountCtl){
+            if(super.isTimeControlEnabled()) {
+                FineTime *= super.getTimeOutFactor();
+            }else{
+                FineTime = 0;
+            }
+        }
+        this.setTimeInSeconds(FineTime);
         super.setSpeed(fixSpeed(super.getSpeed()));
-        this.m_FineTime = FineTime;
     }
 
     @Override
@@ -82,19 +99,18 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
 
     @Override
     public void updateStatus(){
+        if(this.m_CountCtl) {
+            if (m_Count > 0) {
+                if (this.getMotorController().getMotor().getCurrentCount() >= super.m_StartCount + this.m_Count) {
+                    this.endTask(false);
+                }
+            } else { //m_Count >= 0;
+                if (this.getMotorController().getMotor().getCurrentCount() <= super.m_StartCount + this.m_Count) {
+                    this.endTask(false);
+                }
+            }
+        }
         super.updateStatus();
-        if(m_Count > 0){
-            if(this.getMotorController().getMotor().getCurrentCount() >= super.m_StartCount + this.m_Count){
-                this.endTask(false);
-            }
-        }else{ //m_Count >= 0;
-            if(this.getMotorController().getMotor().getCurrentCount() <= super.m_StartCount + this.m_Count){
-                this.endTask(false);
-            }
-        }
-        if(super.getSecondsSinceStart() > this.m_FineTime && this.m_FineTime > 0){
-            this.endTask(true);
-        }
     }
 
     @Override

@@ -30,13 +30,13 @@ public class Robot4100Auto_BasicCrater extends Robot4100Auto_OffHook {
             this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(45,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(sampleXDistance,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.setCollectorServoToCollect(true);
+            this.m_RobotCore.setCollectorServoToCollect(2);
             this.m_RobotCore.getCollectorSweeper().setPower(1.0);
             sleep(700);
             this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(30,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(-15,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-            this.m_RobotCore.setCollectorServoToCollect(false);
+            this.m_RobotCore.setCollectorServoToCollect(1);
             sleep(500);
             m_RobotCore.getCollectorSweeper().setPower(0);
             double veryLeftLength = sampleXDistance - (-75) + 110;
@@ -48,6 +48,7 @@ public class Robot4100Auto_BasicCrater extends Robot4100Auto_OffHook {
             this.m_RobotCore.updateStatus();
             idle();
         }
+        this.m_RobotCore.stop();
         this.m_RobotCore.save();
     }
 }
