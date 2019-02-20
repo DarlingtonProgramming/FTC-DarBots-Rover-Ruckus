@@ -48,7 +48,7 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             if(OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker() == null){
                 FLCallBack = null;
             }
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack,true));
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack,false));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,-PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
@@ -91,7 +91,7 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
             if(OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker() == null){
                 FLCallBack = null;
             }
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,true));
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,false));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,-PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
