@@ -43,10 +43,12 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     if(OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker() != null){
                         OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(0,-DistanceMoved / (Math.sqrt(2)) * 4.0 * OmniWheel4SideDiamondShaped.this.getLinearMotionFrictionFactor());
                     }
-                    OmniWheel4SideFixedXTask.this.stopTask();
                 }
             };
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack,false));
+            if(OmniWheel4SideFixedXTask.this.getMotionSystem().getPositionTracker() == null){
+                FLCallBack = null;
+            }
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed(),FLCallBack,true));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,-PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
@@ -54,7 +56,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
 
         @Override
         public void updateStatus() {
-            return;
+            if(!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy()){
+                this.stopTask();
+            }
         }
     }
     public class OmniWheel4SideFixedZTask extends RobotMotionSystemFixedZDistanceTask {
@@ -82,10 +86,12 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     if(OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker() != null){
                         OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker().drive_MoveThroughRobotAngle(90,-DistanceMoved / (Math.sqrt(2)) * 4.0 * OmniWheel4SideDiamondShaped.this.getLinearMotionFrictionFactor());
                     }
-                    OmniWheel4SideFixedZTask.this.stopTask();
                 }
             };
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,false));
+            if(OmniWheel4SideFixedZTask.this.getMotionSystem().getPositionTracker() == null){
+                FLCallBack = null;
+            }
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,true));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,-PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
@@ -93,7 +99,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
 
         @Override
         public void updateStatus() {
-            return;
+            if(!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy()){
+                this.stopTask();
+            }
         }
     }
     public class OmniWheel4SideFixedTurnTask extends RobotMotionSystemFixedTurnTask {
@@ -120,10 +128,12 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
                     if(OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker() == null){
                         OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker().drive_RotateAroundRobotPointWithRadiusAndPowerPoint(new Robot2DPositionTracker.Robot2DPositionRobotAxisIndicator(0,0,0),OmniWheel4SideDiamondShaped.this.getLeftFrontMotor().getRobotWheel().getOnRobotPosition().getDistanceToOrigin(),DistanceMoved * OmniWheel4SideDiamondShaped.this.getRotationalMotionFrictionFactor());
                     }
-                    OmniWheel4SideFixedTurnTask.this.stopTask();
                 }
             };
-            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,false));
+            if(OmniWheel4SideFixedTurnTask.this.getMotionSystem().getPositionTracker() == null){
+                FLCallBack = null;
+            }
+            OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().replaceTask(OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.new FixedDistanceSpeedCtlTask(FLDistance,this.getSpeed() ,FLCallBack,true));
             OmniWheel4SideDiamondShaped.this.m_RightFrontMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_LeftBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
             OmniWheel4SideDiamondShaped.this.m_RightBackMotor.getMotorController().replaceTask(new RobotFixedSpeedTask(0,PositiveSpeed,null));
@@ -131,7 +141,9 @@ public class OmniWheel4SideDiamondShaped extends RobotMotionSystem {
 
         @Override
         public void updateStatus() {
-            return;
+            if(!OmniWheel4SideDiamondShaped.this.m_LeftFrontMotor.getMotorController().isBusy()){
+                this.stopTask();
+            }
         }
     }
     public class OmniWheel4SideTeleOpTask extends RobotMotionSystemTeleOpControlTask{
