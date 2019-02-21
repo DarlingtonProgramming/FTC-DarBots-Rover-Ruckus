@@ -21,6 +21,8 @@ public class Robot4100Setting {
     public static final FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator VUFORIANAV_WEBCAMPOSITION = new FTC2018GameVuforiaNavigation.Vuforia3DRobotAxisIndicator(7.3,12.7,35,90,-20,90);
     public static final boolean VUFORIANAV_ShowPreviewScreen = true;
 
+    public static final String GYRO_CONFIGURATIONNAME = "imu";
+
     public static final Robot2DPositionIndicator Field_MinPoint = new Robot2DPositionIndicator(-182.88,-182.88,0);
     public static final Robot2DPositionIndicator Field_MaxPoint = new Robot2DPositionIndicator(182.88,182.88,0);
 

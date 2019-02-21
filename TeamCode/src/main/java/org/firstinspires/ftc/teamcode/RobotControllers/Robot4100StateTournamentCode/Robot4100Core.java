@@ -43,6 +43,7 @@ public class Robot4100Core extends RobotCore {
     private FTC2018GameSpecificFunctions m_MineralDetection;
     private int m_CollectorStage = 0;
     private DistanceSensor m_RightSideDistance;
+    private BN055IMUGyro m_Gyro;
 
     public Robot4100Core(@NonNull OpMode ControllingOpMode, Robot2DPositionIndicator currentPosition, boolean readSavedValues, boolean initVuforiaNav, boolean initTFOD){
         super(ControllingOpMode,Robot4100Setting.SettingFileName);
@@ -89,6 +90,8 @@ public class Robot4100Core extends RobotCore {
         this.m_DumperServo = ControllingOpMode.hardwareMap.servo.get(Robot4100Setting.DUMPERSERVO_CONFIGURATIONNAME);
 
         this.m_RightSideDistance = ControllingOpMode.hardwareMap.get(DistanceSensor.class,Robot4100Setting.RIGHTDISTANCESENSOR_CONFIGURATIONNAME);
+
+        this.m_Gyro = new BN055IMUGyro(ControllingOpMode.hardwareMap,Robot4100Setting.GYRO_CONFIGURATIONNAME);
 
         //Collaboration between parts
         this.m_DumperSlide.setPreCheckCallBack(new RobotServoUsingMotor.RobotServoUsingMotorCallBackBeforeAssigning() {
@@ -222,6 +225,10 @@ public class Robot4100Core extends RobotCore {
 
     public FTC2018GameSpecificFunctions get2018MineralDetection(){
         return this.m_MineralDetection;
+    }
+
+    public BN055IMUGyro getGyro(){
+        return this.m_Gyro;
     }
 
     public RobotServoUsingMotor getDrawerSlide(){

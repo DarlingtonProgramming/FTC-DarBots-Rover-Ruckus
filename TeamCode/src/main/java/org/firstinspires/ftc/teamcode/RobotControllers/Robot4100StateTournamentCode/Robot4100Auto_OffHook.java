@@ -108,11 +108,20 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
                 }
             }
         }
+
+        m_RobotCore.getGyro().updateData();
+        double startAng = m_RobotCore.getGyro().getHeading();
+
         this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-15,0.1));
         this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(15,0.1));
-        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(15,0.1));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(18,0.1));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
+        m_RobotCore.getGyro().updateData();
+        double deltaAng = m_RobotCore.getGyro().getHeading() - startAng;
+
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(-deltaAng,0.1));
+        this.m_RobotCore.getMotionSystem().waitUntilFinish();
         /*
         this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(-deltaAng,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
