@@ -39,6 +39,12 @@ public class RobotServoUsingMotor_WithLimitSwitches extends RobotServoUsingMotor
     public void setMaxValTouch(TouchSensor maxValTouch){
         this.m_MaxTouch = maxValTouch;
     }
+    public boolean isMaxTouchPressed(){
+        return getMaxValTouch().isPressed();
+    }
+    public boolean isMinTouhPressed(){
+        return getMinValTouch().isPressed();
+    }
     @Override
     public void setTargetPosition(double Position,double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
         if(this.m_MaxTouch != null) {

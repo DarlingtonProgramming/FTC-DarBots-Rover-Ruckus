@@ -4,6 +4,7 @@ import org.firstinspires.ftc.teamcode.Darlington2018SharedLib.FTC2018GameVuforia
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.Robot2DPositionTracker;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.Robot2DPositionIndicator;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTypes.AndyMark2964;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTypes.AndyMark3103;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTypes.GoBlida5202Series30RPMMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTypes.RevCoreHexMotor;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.MotorTypes.RevHDHex40Motor;
@@ -26,11 +27,11 @@ public class Robot4100Setting {
     public static final Robot2DPositionIndicator Field_MinPoint = new Robot2DPositionIndicator(-182.88,-182.88,0);
     public static final Robot2DPositionIndicator Field_MaxPoint = new Robot2DPositionIndicator(182.88,182.88,0);
 
-    public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.1;
+    public static final double TELEOP_GAMEPADTRIGGERVALUE = 0.15;
     public static final double TELEOP_BIGGESTDRIVINGSPEED = 0.5;
     public static final double TELEOP_LINEARACTUATORSPEED = 1.0;
-    public static final double TELEOP_DUMPERSLIDESPEED = 0.8;
-    public static final double TELEOP_DRAWERSLIDESPEED = 0.8;
+    public static final double TELEOP_DUMPERSLIDESPEED = 1.0;
+    public static final double TELEOP_DRAWERSLIDESPEED = 1.0;
     public static final double AUTONOMOUS_BIGGESTDRIVINGSPEED = 0.4;
     public static final double AUTONOMOUS_LINEARACTUATORSPEED = 1.0;
     public static final double AUTONOMOUS_DUMPERSLIDESPEED = 0.5;
@@ -79,15 +80,15 @@ public class Robot4100Setting {
 
     public static final String DRAWERSLIDEAPPROACH_CONFIGURATIONNAME = "drawerSlideMotor";
     public static final RobotMotorType DRAWERSLIDEAPPROACH_MOTORTYPE = new AndyMark2964();
-    public static final double DRAWERSLIDEAPPROACH_MAX = 4.175, DRAWERSLIDEAPPROACH_MIN = 0;
+    public static final double DRAWERSLIDEAPPROACH_MAX = 4.375, DRAWERSLIDEAPPROACH_MIN = 0;
     public static final boolean DRAWERSLIDE_TIMEOUTCONTROL = true;
     public static final double DRAWERSLIDE_TIMEOUTFACTOR = 1.2;
     public static final String DRAWERSLIDE_MINTOUCHSENSOR_CONFIGURATIONNAME = "drawerSlideMinTouch", DRAWESLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "drawerSlideMaxTouch";
     public static final double DRAWESLIDE_SAFEPCT = 42.43;
 
     public static final String DUMPERSLIDE_CONFIGURATIONNAME = "dumperSlideMotor";
-    public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark2964();
-    public static final double DUMPERSLIDE_MAX = 7.5884, DUMPERSLIDE_MIN = 0;
+    public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark3103();
+    public static final double DUMPERSLIDE_MAX = 5.060, DUMPERSLIDE_MIN = 0;
     public static final boolean DUMPERSLIDE_TIMEOUTCONTROL = true;
     public static final double DUMPERSLIDE_TIMEOUTFACTOR = 1.2;
     public static final String DUMPERSLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "dumperSlideMaxTouch";
@@ -97,8 +98,9 @@ public class Robot4100Setting {
     public static final RobotMotorType COLLECTOR_MOTORTYPE = new RevCoreHexMotor();
 
     public static final String DUMPERSERVO_CONFIGURATIONNAME = "dumperServo";
-    public static final double DUMPERSERVO_DUMPPOS = 0.20, DUMPERSERVO_NORMALPOS = 0.65;
+    public static final double DUMPERSERVO_OFFSET = 0.05;
+    public static final double DUMPERSERVO_DUMPPOS = 0.0 + DUMPERSERVO_OFFSET, DUMPERSERVO_NORMALPOS = 0.40 + DUMPERSERVO_OFFSET;
 
     public static final String COLLECTOROUTSERVO_CONFIGURATIONNAME = "collectorSetOutServo";
-    public static final double COLLECTOROUTSERVO_TODUMPPOS = 1.0, COLLECTOROUTSERVO_COLLECTPOS = 0.10, COLLECTOROUTSERVO_NORMALPOS=0.7;
+    public static final double COLLECTOROUTSERVO_TODUMPPOS = 0.90, COLLECTOROUTSERVO_COLLECTPOS = 0.10, COLLECTOROUTSERVO_NORMALPOS=0.45;
 }
