@@ -62,6 +62,22 @@ public class RobotServoUsingMotor_WithLimitSwitches extends RobotServoUsingMotor
         super.setTargetPosition(Position,Speed, TaskCallBack);
     }
     @Override
+    public void setTargetPosition_FixedSpeed(double Position,double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
+        if(this.m_MaxTouch != null) {
+            if (Position > this.getCurrentPosition() && this.m_MaxTouch.isPressed()) {
+                this.adjustCurrentPercent(100);
+                return;
+            }
+        }
+        if(this.m_MinTouch != null) {
+            if (Position < this.getCurrentPosition() && this.m_MinTouch.isPressed()) {
+                this.adjustCurrentPercent(0);
+                return;
+            }
+        }
+        super.setTargetPosition_FixedSpeed(Position,Speed,TaskCallBack);
+    }
+    @Override
     public void updateStatus(){
         if(this.m_MaxTouch != null){
             if(this.getTargetPosition() >= this.getCurrentPosition() && this.m_MaxTouch.isPressed()){

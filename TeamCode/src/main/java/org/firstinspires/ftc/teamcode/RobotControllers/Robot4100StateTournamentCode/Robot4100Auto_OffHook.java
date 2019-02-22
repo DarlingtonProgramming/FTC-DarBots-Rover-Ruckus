@@ -46,7 +46,7 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
 
     protected void offHookAndDetectSample(){
         /*
-        this.m_RobotCore.getLinearActuator().setTargetPercent(Robot4100Setting.LINEARACTUATOR_HOOKPCT,Robot4100Setting.AUTONOMOUS_LINEARACTUATORSPEED,null);
+        this.m_RobotCore.getLinearActuator().setTargetPercent_FixedSpeed(Robot4100Setting.LINEARACTUATOR_HOOKPCT,Robot4100Setting.AUTONOMOUS_LINEARACTUATORSPEED,null);
         while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < (Robot4100Setting.LINEARACTUATOR_HOOKPCT - 0.05)){
 
 
@@ -122,11 +122,7 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
 
         this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(-deltaAng,0.1));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
-        /*
-        this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(-deltaAng,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
-        this.m_RobotCore.getMotionSystem().waitUntilFinish();
-        */
-        //this.m_RobotCore.getLinearActuator().setTargetPercent(0,Robot4100Setting.AUTONOMOUS_LINEARACTUATORSPEED,null);
+
         return;
     }
 }

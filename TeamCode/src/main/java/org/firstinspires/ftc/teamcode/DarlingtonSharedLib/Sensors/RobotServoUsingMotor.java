@@ -28,6 +28,7 @@ package org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors;
 import android.support.annotation.NonNull;
 
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotFixCountSpeedCtlTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.RobotMotorTasks.RobotFixCountTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.DebuggerAttachable;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotNonBlockingDevice;
@@ -93,8 +94,14 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         if(this.m_MotorCtl.getCurrentTask() == null){
             return this.getCurrentPosition();
         }
-        RobotFixCountTask CountsTask = (RobotFixCountTask) this.m_MotorCtl.getCurrentTask();
-        double absPos = ((double) CountsTask.getCounts() / this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev());
+        double absPos = 0;
+        if(this.m_MotorCtl.getCurrentTask() instanceof  RobotFixCountTask) {
+            RobotFixCountTask CountsTask = (RobotFixCountTask) this.m_MotorCtl.getCurrentTask();
+            absPos = ((double) CountsTask.getCounts() / this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev());
+        }else if(this.m_MotorCtl.getCurrentTask() instanceof RobotFixCountSpeedCtlTask){
+            RobotFixCountSpeedCtlTask CountsTask = (RobotFixCountSpeedCtlTask) this.m_MotorCtl.getCurrentTask();
+            absPos = ((double) CountsTask.getCounts() / this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev());
+        }
         return this.m_ZeroPos + absPos;
     }
     public double getTargetPercent(){
@@ -143,8 +150,54 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice, DebuggerAtt
         this.m_PositionCB = TaskCallBack;
         this.m_MotorCtl.replaceTask(new RobotFixCountTask(deltaCount,Speed,null));
     }
+    public void setTargetPosition_FixedSpeed(double Position,double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
+        if(Position >= this.getBiggestPos()){
+            if(Math.abs(this.getCurrentPosition() - this.getBiggestPos()) <= this.HOWMANYREVMARGIN) {
+                this.getMotorController().deleteAllTasks();
+                if(TaskCallBack != null)
+                    TaskCallBack.finish(this);
+                return;
+            }else{
+                Position = this.getBiggestPos();
+            }
+            Position = this.getBiggestPos();
+        }else if(Position <= this.getSmallestPos()){
+            if(Math.abs(this.getCurrentPosition() - this.getSmallestPos()) <= this.HOWMANYREVMARGIN){
+                this.getMotorController().deleteAllTasks();
+                if(TaskCallBack != null)
+                    TaskCallBack.finish(this);
+                return;
+            }else {
+                Position = this.getSmallestPos();
+            }
+            Position = this.getSmallestPos();
+        }
+        if(this.m_PreCheckCallBack != null){
+            if(!this.m_PreCheckCallBack.setPositionPreCheck(this,Position,Speed)){
+                this.stopMotion();
+                if(TaskCallBack != null)
+                    TaskCallBack.finish(this);
+                return;
+            }
+        }
+        if(this.isBusy()){
+            this.stopMotion();
+        }
+        double deltaPos = Position - this.getCurrentPosition();
+        int deltaCount = (int) Math.round(deltaPos * this.m_MotorCtl.getMotor().getMotorType().getCountsPerRev());
+        if(deltaCount == 0){
+            if(TaskCallBack != null)
+                TaskCallBack.finish(this);
+            return;
+        }
+        this.m_PositionCB = TaskCallBack;
+        this.m_MotorCtl.replaceTask(new RobotFixCountSpeedCtlTask(deltaCount,Speed,null,true));
+    }
     public void setTargetPercent(double Percent, double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
         this.setTargetPosition(this.convertPercentToPos(Percent),Speed, TaskCallBack);
+    }
+    public void setTargetPercent_FixedSpeed(double Percent, double Speed, RobotServoUsingMotorPositionCallBack TaskCallBack){
+        this.setTargetPosition_FixedSpeed(this.convertPercentToPos(Percent),Speed,TaskCallBack);
     }
     public double getBiggestPos(){
         return this.m_BiggestPos;
