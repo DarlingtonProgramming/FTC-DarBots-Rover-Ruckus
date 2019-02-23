@@ -162,21 +162,14 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(XYPlaneCalculations.normalizeDeg(-(tempAng-startAng)),0.1));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
-            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(20,0.1));
-            while(this.m_RobotCore.getMotionSystem().isBusy()){
-                if(!this.opModeIsActive()){
-                    return;
-                }
-                this.m_RobotCore.getMotionSystem().updateStatus();
-            }
-            this.m_RobotCore.getGyro().updateData();
-            startAng = this.m_RobotCore.getGyro().getHeading();
 
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(-50,0.15));
-            while(this.m_RobotCore.getMotionSystem().isBusy()){
-                if(!this.opModeIsActive()){
-                    return;
-                }
+
+
+            RobotMotionSystemTeleOpControlTask ParkingTeleOp = this.m_RobotCore.getMotionSystem().getTeleOpTask();
+            this.m_RobotCore.getMotionSystem().addTask(ParkingTeleOp);
+            ParkingTeleOp.setDriveXSpeed(0.05);
+            ParkingTeleOp.setDriveZSpeed(-0.1);
+            while(this.opModeIsActive()){
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
             /*
