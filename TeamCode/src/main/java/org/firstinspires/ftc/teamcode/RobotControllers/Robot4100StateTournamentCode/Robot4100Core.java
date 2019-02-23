@@ -65,6 +65,7 @@ public class Robot4100Core extends RobotCore {
         this.m_MotionSystem.setLinearMotionFrictionFactor(Robot4100Setting.MOTIONSYSTEM_ROTATIONALFRICTION);
 
         RobotMotorWithEncoder LinearActuatorMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.LINEARACTUATOR_CONFIGURATIONNAME),Robot4100Setting.LINEARACTUATOR_MOTORTYPE);
+        LinearActuatorMotor.setDirectionReversed(true);
         this.m_LinearActuator = new RobotServoUsingMotor(new RobotMotorController(LinearActuatorMotor,Robot4100Setting.LINEARACTUATOR_TIMEOUTCONTROL,Robot4100Setting.LINEARACTUATOR_TIMEOUTFACTOR),0,Robot4100Setting.LINEARACTUATOR_MAX,Robot4100Setting.LINEARACTUATOR_MIN);
 
         RobotMotorWithEncoder DrawerSlideMotor = new RobotMotorWithEncoder(ControllingOpMode.hardwareMap.dcMotor.get(Robot4100Setting.DRAWERSLIDEAPPROACH_CONFIGURATIONNAME),Robot4100Setting.DRAWERSLIDEAPPROACH_MOTORTYPE);
@@ -279,11 +280,17 @@ public class Robot4100Core extends RobotCore {
         RobotMotionSystemTeleOpControlTask m_FixedSpeedTask = this.getMotionSystem().getTeleOpTask();
         this.getMotionSystem().replaceTask(m_FixedSpeedTask);
         m_FixedSpeedTask.setDriveXSpeed(RunSpeed);
-        while(this.m_RightSideDistance.getDistance(DistanceUnit.CM) > 40){
+        while(this.m_RightSideDistance.getDistance(DistanceUnit.CM) > 25){
             this.getMotionSystem().updateStatus();
         }
 
-        RobotMotionSystemFixedXDistanceTask m_FixedXTask = this.getMotionSystem().getFixedXDistanceTask(50,ApproachSpeed);
+        RobotMotionSystemFixedXDistanceTask m_FixedXTask = this.getMotionSystem().getFixedXDistanceTask(45,ApproachSpeed);
+        this.getMotionSystem().replaceTask(m_FixedXTask);
+        this.getMotionSystem().waitUntilFinish();
+    }
+
+    public void goLeftToWall(double ApproachSpeed) {
+        RobotMotionSystemFixedXDistanceTask m_FixedXTask = this.getMotionSystem().getFixedXDistanceTask(-45,ApproachSpeed);
         this.getMotionSystem().replaceTask(m_FixedXTask);
         this.getMotionSystem().waitUntilFinish();
     }

@@ -87,8 +87,8 @@ public class Robot4100Setting {
     public static final double DRAWESLIDE_SAFEPCT = 42.43;
 
     public static final String DUMPERSLIDE_CONFIGURATIONNAME = "dumperSlideMotor";
-    public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark3103();
-    public static final double DUMPERSLIDE_MAX = 5.060, DUMPERSLIDE_MIN = 0;
+    public static final RobotMotorType DUMPERSLIDE_MOTORTYPE = new AndyMark2964();
+    public static final double DUMPERSLIDE_MAX = 5.260, DUMPERSLIDE_MIN = 0;
     public static final boolean DUMPERSLIDE_TIMEOUTCONTROL = true;
     public static final double DUMPERSLIDE_TIMEOUTFACTOR = 1.2;
     public static final String DUMPERSLIDE_MAXTOUCHSENSOR_CONFIGURATIONNAME = "dumperSlideMaxTouch";

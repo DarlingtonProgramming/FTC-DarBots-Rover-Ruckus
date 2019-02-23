@@ -15,6 +15,7 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
     protected Robot4100Core m_RobotCore;
     protected FTC2018GameSpecificFunctions.GoldPosType m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
     protected String AutonomousState = "";
+    protected double startAng = 0;
     protected void hardwareInit(){
         this.m_RobotCore = new Robot4100Core(this,new Robot2DPositionIndicator(0,0,0),false,false,true);
         this.m_GoldPosition = FTC2018GameSpecificFunctions.GoldPosType.Unknown;
@@ -45,8 +46,9 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
     }
 
     protected void offHookAndDetectSample(){
-        /*
+
         this.m_RobotCore.getLinearActuator().setTargetPercent_FixedSpeed(Robot4100Setting.LINEARACTUATOR_HOOKPCT,Robot4100Setting.AUTONOMOUS_LINEARACTUATORSPEED,null);
+
         while(this.m_RobotCore.isBusy() && this.m_RobotCore.getLinearActuator().getCurrentPercent() < (Robot4100Setting.LINEARACTUATOR_HOOKPCT - 0.05)){
 
 
@@ -82,7 +84,8 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
                 }
             }
         }
-        */
+        /*
+
         while(this.m_GoldPosition == FTC2018GameSpecificFunctions.GoldPosType.Unknown) {
             FTC2018GameSpecificFunctions.MineralInformation[] infos = this.m_RobotCore.get2018MineralDetection().detectAllBlocksInCamera();
             if (infos == null || infos.length != 2) {
@@ -108,13 +111,15 @@ public class Robot4100Auto_OffHook extends LinearOpMode {
                 }
             }
         }
+        */
+
 
         m_RobotCore.getGyro().updateData();
-        double startAng = m_RobotCore.getGyro().getHeading();
+        startAng = m_RobotCore.getGyro().getHeading();
 
-        this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-15,0.1));
-        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(15,0.1));
-        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(18,0.1));
+        this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-15,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(15,0.3));
+        this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(18,0.3));
         this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
         m_RobotCore.getGyro().updateData();
