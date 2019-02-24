@@ -33,6 +33,9 @@ public class Robot4100TeleOp extends Gamepad1Drive {
     @Override
     public void runOpMode() {
         this.hardwareInit();
+        if(this.get4100Core().getLinearActuator().getCurrentPercent() < 5){
+            this.get4100Core().getLinearActuator().adjustCurrentPercent(Robot4100Setting.LINEARACTUATOR_HOOKPCT);
+        }
         this.get4100Core().getDebugger().addDebug(new RobotDebugger.RobotDebuggerInformation("Status","Initialized"));
         this.get4100Core().updateStatus();
         waitForStart();

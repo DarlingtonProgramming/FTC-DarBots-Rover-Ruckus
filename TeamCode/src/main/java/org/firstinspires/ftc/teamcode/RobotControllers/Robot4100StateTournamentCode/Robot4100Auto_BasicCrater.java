@@ -33,7 +33,7 @@ public class Robot4100Auto_BasicCrater extends Robot4100Auto_OffHook {
                 sampleXDistance = 0;
             }
             AutonomousState = "Sampling - Forwarding & Moving";
-            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(40,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
+            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(45,Robot4100Setting.AUTONOMOUS_BIGGESTDRIVINGSPEED));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getGyro().updateData();
             double tempAng = this.m_RobotCore.getGyro().getHeading();

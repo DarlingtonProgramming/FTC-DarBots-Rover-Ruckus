@@ -28,14 +28,14 @@ public class Robot4100Auto_Depot extends Robot4100Auto_OffHook {
             AutonomousState = "Sampling Start";
             double sampleXDistance = 0;
             if(super.m_GoldPosition == FTC2018GameSpecificFunctions.GoldPosType.Left){
-                sampleXDistance = -80;
+                sampleXDistance = -76;
             }else if(super.m_GoldPosition == FTC2018GameSpecificFunctions.GoldPosType.Right){
-                sampleXDistance = 80;
+                sampleXDistance = 76;
             }else{
                 sampleXDistance = 0;
             }
             AutonomousState = "Sampling - Forwarding & Moving";
-            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(40,0.6));
+            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(45,0.6));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getGyro().updateData();
             double tempAng = this.m_RobotCore.getGyro().getHeading();
@@ -54,6 +54,7 @@ public class Robot4100Auto_Depot extends Robot4100Auto_OffHook {
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
             AutonomousState = "Sampling - Pushing Sample";
+            this.m_RobotCore.getDrawerSlide().setTargetPercent(65,1.0,null);
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(75,0.45));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
                 if(!this.opModeIsActive()){
@@ -65,15 +66,14 @@ public class Robot4100Auto_Depot extends Robot4100Auto_OffHook {
             tempAng = this.m_RobotCore.getGyro().getHeading();
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(XYPlaneCalculations.normalizeDeg(-(tempAng-startAng)),0.1));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
-
             this.m_RobotCore.setCollectorServoToCollect(2);
-            sleep(200);
+            sleep(500);
 
             this.m_RobotCore.getCollectorSweeper().setPower(-1);
 
             sleep(500);
             this.m_RobotCore.setCollectorServoToCollect(0);
-
+            this.m_RobotCore.getDrawerSlide().setTargetPercent(0,Robot4100Setting.AUTONOMOUS_DRAWERSLIDESPEED,null);
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(-75,0.45));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
                 if(!this.opModeIsActive()){
@@ -81,6 +81,7 @@ public class Robot4100Auto_Depot extends Robot4100Auto_OffHook {
                 }
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
+            this.m_RobotCore.getCollectorSweeper().setPower(0);
             this.m_RobotCore.getGyro().updateData();
             tempAng = this.m_RobotCore.getGyro().getHeading();
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(XYPlaneCalculations.normalizeDeg(-(tempAng-startAng)),0.1));
@@ -137,19 +138,11 @@ public class Robot4100Auto_Depot extends Robot4100Auto_OffHook {
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
 
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(80,1.0));
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(60,1.0));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
                 if(!this.opModeIsActive()){
                     return;
                 }
-                this.m_RobotCore.getMotionSystem().updateStatus();
-            }
-
-            RobotMotionSystemTeleOpControlTask ParkingTeleOp = this.m_RobotCore.getMotionSystem().getTeleOpTask();
-            this.m_RobotCore.getMotionSystem().addTask(ParkingTeleOp);
-            ParkingTeleOp.setDriveXSpeed(0.05);
-            ParkingTeleOp.setDriveZSpeed(0.1);
-            while(this.opModeIsActive()){
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
         }

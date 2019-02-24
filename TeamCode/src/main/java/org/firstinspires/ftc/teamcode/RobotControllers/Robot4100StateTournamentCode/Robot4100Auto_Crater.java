@@ -7,6 +7,7 @@ import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Calculations.XYPlaneCa
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.ChassisControllers.OmniWheel4SideDiamondShaped;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.IntegratedFunctions.RobotDebugger;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Sensors.RobotServoUsingMotor;
+import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTask;
 import org.firstinspires.ftc.teamcode.DarlingtonSharedLib.Templates.RobotMotionSystemTeleOpControlTask;
 
 @Autonomous(name = "Robot4100Auto-Crater",group = "4100")
@@ -35,7 +36,7 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
                 sampleXDistance = 0;
             }
             AutonomousState = "Sampling - Forwarding & Moving";
-            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(40,0.6));
+            this.m_RobotCore.getMotionSystem().replaceTask(this.m_RobotCore.getMotionSystem().getFixedZDistanceTask(45,0.6));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
             this.m_RobotCore.getGyro().updateData();
             double tempAng = this.m_RobotCore.getGyro().getHeading();
@@ -125,15 +126,17 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }
 
+            this.m_RobotCore.getDrawerSlide().setTargetPercent(Robot4100Setting.DRAWESLIDE_SAFEPCT,Robot4100Setting.AUTONOMOUS_DRAWERSLIDESPEED,null);
             this.m_RobotCore.setCollectorServoToCollect(2);
-            sleep(200);
+            sleep(500);
 
             this.m_RobotCore.getCollectorSweeper().setPower(-1);
 
             sleep(500);
             this.m_RobotCore.setCollectorServoToCollect(0);
+            this.m_RobotCore.getDrawerSlide().setTargetPercent(0,Robot4100Setting.AUTONOMOUS_DRAWERSLIDESPEED,null);
 
-            this.m_RobotCore.getGyro().updateData();
+            /*this.m_RobotCore.getGyro().updateData();
             tempAng = this.m_RobotCore.getGyro().getHeading();
             startAng = tempAng;
             this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedXDistanceTask(-10,0.2));
@@ -147,10 +150,32 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
             tempAng = this.m_RobotCore.getGyro().getHeading();
             this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(XYPlaneCalculations.normalizeDeg(-(tempAng-startAng)),0.1));
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
+            */
 
             this.m_RobotCore.getCollectorSweeper().setPower(0);
+            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(15,0.1));
+            while(this.m_RobotCore.getMotionSystem().isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.getMotionSystem().updateStatus();
+            }
+            this.m_RobotCore.getGyro().updateData();
+            startAng = this.m_RobotCore.getGyro().getHeading();
 
-            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(-240,1.0));
+            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedXDistanceTask(-15,0.1));
+            while(this.m_RobotCore.getMotionSystem().isBusy()){
+                if(!this.opModeIsActive()){
+                    return;
+                }
+                this.m_RobotCore.getMotionSystem().updateStatus();
+            }
+            this.m_RobotCore.getGyro().updateData();
+            tempAng = this.m_RobotCore.getGyro().getHeading();
+            this.m_RobotCore.getMotionSystem().addTask(this.m_RobotCore.getMotionSystem().getFixedTurnTask(XYPlaneCalculations.normalizeDeg(-(tempAng-startAng)),0.1));
+            this.m_RobotCore.getMotionSystem().waitUntilFinish();
+
+            this.m_RobotCore.getMotionSystem().addTask(m_RobotCore.getMotionSystem().getFixedZDistanceTask(-245,1.0));
             while(this.m_RobotCore.getMotionSystem().isBusy()){
                 if(!this.opModeIsActive()){
                     return;
@@ -163,12 +188,9 @@ public class Robot4100Auto_Crater extends Robot4100Auto_OffHook {
             this.m_RobotCore.getMotionSystem().waitUntilFinish();
 
 
-
-
-            RobotMotionSystemTeleOpControlTask ParkingTeleOp = this.m_RobotCore.getMotionSystem().getTeleOpTask();
+            this.m_RobotCore.getDrawerSlide().setTargetPercent(98,1.0,null);
+            RobotMotionSystemTask ParkingTeleOp = this.m_RobotCore.getMotionSystem().getFixedTurnTask(170,0.3);
             this.m_RobotCore.getMotionSystem().addTask(ParkingTeleOp);
-            ParkingTeleOp.setDriveXSpeed(0.05);
-            ParkingTeleOp.setDriveZSpeed(-0.1);
             while(this.opModeIsActive()){
                 this.m_RobotCore.getMotionSystem().updateStatus();
             }

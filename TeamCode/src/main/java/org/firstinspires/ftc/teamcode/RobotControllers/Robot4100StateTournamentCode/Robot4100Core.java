@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.TouchSensor;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
@@ -280,7 +281,8 @@ public class Robot4100Core extends RobotCore {
         RobotMotionSystemTeleOpControlTask m_FixedSpeedTask = this.getMotionSystem().getTeleOpTask();
         this.getMotionSystem().replaceTask(m_FixedSpeedTask);
         m_FixedSpeedTask.setDriveXSpeed(RunSpeed);
-        while(this.m_RightSideDistance.getDistance(DistanceUnit.CM) > 25){
+        ElapsedTime mTime = new ElapsedTime(ElapsedTime.Resolution.SECONDS);
+        while(this.m_RightSideDistance.getDistance(DistanceUnit.CM) > 25 && mTime.seconds() < 3.5){
             this.getMotionSystem().updateStatus();
         }
 
