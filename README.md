@@ -12,7 +12,7 @@ To use this code, download / clone the entire project to your local computer.
 |Team Number|Current Achievement|Is playing|
 |-|-|-|
 |5100|Northern Georgia Finalist Alliance|No|
-|4100|Advanced to State Tournament|Yes|
+|4100|Georgia State Championship Winning Alliance|No|
 
 ## Library Status
 
