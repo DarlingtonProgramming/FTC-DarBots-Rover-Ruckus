@@ -18,4 +18,8 @@ public class FTCFileIO {
     public static File getSettingFile(String fileName){
         return AppUtil.getInstance().getSettingsFile(fileName);
     }
+    public static File getFirstFolderFile(String filename){
+        return new File(AppUtil.FIRST_FOLDER,filename);
+    }
+
 }

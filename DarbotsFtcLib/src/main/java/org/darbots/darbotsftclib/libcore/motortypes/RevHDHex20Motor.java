@@ -1,6 +1,6 @@
 package org.darbots.darbotsftclib.libcore.motortypes;
 
-import org.darbots.darbotsftclib.libcore.templates.MotorType;
+import org.darbots.darbotsftclib.libcore.templates.motor_related.MotorType;
 
 public class RevHDHex20Motor implements MotorType {
 

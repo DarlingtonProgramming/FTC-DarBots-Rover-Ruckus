@@ -31,8 +31,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-import org.darbots.darbotsftclib.libcore.templates.MotorType;
-import org.darbots.darbotsftclib.libcore.templates.RobotMotor;
+import org.darbots.darbotsftclib.libcore.templates.motor_related.MotorType;
+import org.darbots.darbotsftclib.libcore.templates.motor_related.RobotMotor;
 
 
 public class RobotMotorWithoutEncoder implements RobotMotor {

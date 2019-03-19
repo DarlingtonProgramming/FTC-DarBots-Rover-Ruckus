@@ -1,4 +1,4 @@
-package org.darbots.darbotsftclib.libcore.templates;
+package org.darbots.darbotsftclib.libcore.templates.motor_related;
 
 import org.darbots.darbotsftclib.libcore.integratedfunctions.RobotLogger;
 

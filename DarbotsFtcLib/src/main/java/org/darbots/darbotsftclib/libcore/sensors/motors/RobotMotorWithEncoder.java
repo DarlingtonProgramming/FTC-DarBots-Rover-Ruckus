@@ -30,8 +30,8 @@ import android.support.annotation.NonNull;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.darbots.darbotsftclib.libcore.templates.MotorType;
-import org.darbots.darbotsftclib.libcore.templates.RobotMotor;
+import org.darbots.darbotsftclib.libcore.templates.motor_related.MotorType;
+import org.darbots.darbotsftclib.libcore.templates.motor_related.RobotMotor;
 
 
 public class RobotMotorWithEncoder implements RobotMotor {

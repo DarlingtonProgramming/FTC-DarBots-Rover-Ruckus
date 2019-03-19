@@ -3,7 +3,7 @@ package org.darbots.darbotsftclib.libcore.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.darbots.darbotsftclib.libcore.runtime.GlobalRegister;
-import org.darbots.darbotsftclib.libcore.templates.RobotCore;
+import org.darbots.darbotsftclib.libcore.templates.motor_related.RobotCore;
 
 public abstract class basicOpMode extends LinearOpMode {
     public abstract RobotCore getRobotCore();
@@ -23,5 +23,6 @@ public abstract class basicOpMode extends LinearOpMode {
         this.getRobotCore().getLogger().saveLogsToFile();
         this.getRobotCore().stop();
         this.hardwareDestroy();
+        GlobalRegister.runningOpMode = null;
     }
 }

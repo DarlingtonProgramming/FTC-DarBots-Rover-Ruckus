@@ -1,8 +1,10 @@
-package org.darbots.darbotsftclib.libcore.templates;
+package org.darbots.darbotsftclib.libcore.templates.motor_related;
 
 import android.support.annotation.NonNull;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.darbots.darbotsftclib.libcore.templates.RobotNonBlockingDevice;
 
 public interface RobotMotor extends RobotNonBlockingDevice {
     enum MovingType{
