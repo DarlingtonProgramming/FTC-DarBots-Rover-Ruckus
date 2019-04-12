@@ -54,7 +54,8 @@ public class RobotFixCountTask extends RobotMotorTask {
 
     public void setSpeed(double Speed){
         if(this.isBusy()){
-            throw new RuntimeException("You cannot change the speed of a task when the task has started");
+            this.getMotorController().getMotor().setPower(this.m_Speed);
+            __recalculateFineTime();
         }
         this.m_Speed = Speed;
     }
@@ -65,19 +66,14 @@ public class RobotFixCountTask extends RobotMotorTask {
 
     public void setCounts(int Count){
         if(this.isBusy()){
-            throw new RuntimeException("You cannot change the count of a task when the task has started");
+            this.getMotorController().getMotor().setTargetCount(super.getStartCount() + this.m_Count);
+            __recalculateFineTime();
         }
         this.m_Count = Count;
     }
 
-    @Override
-    protected void __startTask() {
-        this.getMotorController().getMotor().setTargetCount(super.getMotorController().getMotor().getCurrentCount() + this.m_Count);
-        this.getMotorController().getMotor().setPower(this.m_Speed);
-        this.getMotorController().getMotor().setCurrentMovingType(RobotMotor.MovingType.toCount);
-
-        //Calculate Fine time
-        double DistanceTravelled = (this.getCounts() / this.getMotorController().getMotor().getMotorType().getCountsPerRev());
+    protected void __recalculateFineTime(){
+        double DistanceTravelled = ((super.getStartCount() + this.getCounts() - super.getMotorController().getMotor().getCurrentCount()) / this.getMotorController().getMotor().getMotorType().getCountsPerRev());
         double speed = this.getMotorController().getMotor().getMotorType().getRevPerSec() * this.getSpeed();
         double FineTime = Math.abs(DistanceTravelled / speed);
         if(this.isTimeControlEnabled()){
@@ -85,7 +81,15 @@ public class RobotFixCountTask extends RobotMotorTask {
         }else{
             FineTime = 0;
         }
-        this.m_FineTime = FineTime;
+        this.m_FineTime = super.getSecondsSinceStart() + FineTime;
+    }
+
+    @Override
+    protected void __startTask() {
+        this.getMotorController().getMotor().setTargetCount(super.getStartCount() + this.m_Count);
+        this.getMotorController().getMotor().setPower(this.m_Speed);
+        this.getMotorController().getMotor().setCurrentMovingType(RobotMotor.MovingType.toCount);
+        __recalculateFineTime();
     }
 
     @Override

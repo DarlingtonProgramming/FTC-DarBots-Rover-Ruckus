@@ -73,7 +73,7 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
     @Override
     public double getProgressRatio() {
         if(this.m_TimeInSeconds > 0){
-            return super.getSecondsSinceStart() / m_TimeInSeconds;
+            return super.getSecondsSinceStart() / this.m_TimeInSeconds;
         }else{
             return 0;
         }

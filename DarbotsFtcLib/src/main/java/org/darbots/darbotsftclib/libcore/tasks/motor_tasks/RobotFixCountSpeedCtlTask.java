@@ -55,24 +55,23 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     }
 
     public void setCounts(int Count){
-        if(this.isBusy()){
-            throw new RuntimeException("You cannot change the count of a task when the task has started");
-        }
         this.m_Count = Count;
+        if(this.isBusy()){
+            this.fixCounts();
+        }
     }
 
     protected void fixCounts(){
-        double rev = ((double) this.getCounts()) / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
+        double rev = ((double) super.getStartCount() + this.getCounts() - super.getMotorController().getMotor().getCurrentCount()) / super.getMotorController().getMotor().getMotorType().getCountsPerRev();
         double speed = this.getSpeed() * super.getMotorController().getMotor().getMotorType().getRevPerSec();
         double FineTime = Math.abs(rev / speed);
-        if(this.m_CountCtl){
-            if(super.isTimeControlEnabled()) {
-                FineTime *= Math.abs(super.getTimeOutFactor());
-            }else{
-                FineTime = 0;
-            }
+        if(super.isTimeControlEnabled()) {
+            FineTime *= Math.abs(super.getTimeOutFactor());
+        }else{
+            FineTime = 0;
         }
-        this.setTimeInSeconds(FineTime);
+        double FineTimeAfter = FineTime == 0 ? 0 : super.getSecondsSinceStart() + FineTime;
+        this.setTimeInSeconds(FineTimeAfter);
         super.setSpeed(fixSpeed(super.getSpeed()));
     }
 
@@ -82,7 +81,7 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
     }
 
     protected double fixSpeed(double speed){
-        if(m_Count < 0){
+        if(super.getStartCount() + this.m_Count < 0){
             return -Math.abs(speed);
         }else{
             return Math.abs(this.getSpeed());
@@ -118,7 +117,11 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
 
     @Override
     public double getProgressRatio(){
-        double countMoved = this.getMotorController().getMotor().getCurrentCount() - super.getStartCount();
-        return Math.abs(countMoved / this.m_Count);
+        if(!this.isCountCtl()) {
+            double countMoved = this.getMotorController().getMotor().getCurrentCount() - super.getStartCount();
+            return Math.abs(countMoved / this.m_Count);
+        }else{
+            return super.getProgressRatio();
+        }
     }
 }

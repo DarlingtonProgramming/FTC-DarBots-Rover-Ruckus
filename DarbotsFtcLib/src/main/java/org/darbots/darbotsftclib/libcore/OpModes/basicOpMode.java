@@ -5,7 +5,8 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.darbots.darbotsftclib.libcore.runtime.GlobalRegister;
 import org.darbots.darbotsftclib.libcore.templates.motor_related.RobotCore;
 
-public abstract class basicOpMode extends LinearOpMode {
+public abstract class basicOpMode<CoreType extends RobotCore> extends LinearOpMode {
+    public abstract CoreType getSpecificRobotCore();
     public abstract RobotCore getRobotCore();
     public abstract void hardwareInitialize();
     public abstract void hardwareDestroy();
