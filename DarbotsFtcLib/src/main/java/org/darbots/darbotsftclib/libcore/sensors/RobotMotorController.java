@@ -85,7 +85,7 @@ public class RobotMotorController implements RobotNonBlockingDevice {
         }
     }
 
-    public void checkTasks(){
+    public void __checkTasks(){
         if(this.m_TaskLists.isEmpty()){
             this.stopMotor();
             return;

@@ -105,7 +105,7 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice {
         if(this.m_TaskCallBack != null) {
             this.m_TaskCallBack.finishRunning(this.m_Controller,timedOut,timeUsed,deltaCount);
         }
-        this.m_Controller.checkTasks();
+        this.m_Controller.__checkTasks();
     }
 
     public int getStartCount(){
