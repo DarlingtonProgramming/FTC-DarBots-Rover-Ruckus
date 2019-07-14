@@ -23,10 +23,11 @@ SOFTWARE.
 
 */
 
-package org.darbots.darbotsftclib.libcore.templates.motor_related;
+package org.darbots.darbotsftclib.libcore.templates;
 
-import org.darbots.darbotsftclib.libcore.sensors.motors.RobotMotorController;
+import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 
-public interface RobotMotorTaskCallBack {
-    void finishRunning(RobotMotorController Controller, boolean timeOut, double timeUsedInSec, int CountsMoved);
+public interface RobotCamera {
+    VuforiaLocalizer getVuforia();
+    boolean isPreview();
 }

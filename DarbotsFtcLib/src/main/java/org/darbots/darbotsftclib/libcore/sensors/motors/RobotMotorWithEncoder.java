@@ -159,4 +159,14 @@ public class RobotMotorWithEncoder implements RobotMotor {
             return;
         }
     }
+    @Override
+    public String getMotorStatusString(){
+        String result = "DeviceType: RobotMotorWithEncoder, ";
+        result += "DeviceName: " + this.getDcMotor().getDeviceName() + ", ";
+        result += "RunningState: " + this.getCurrentMovingType().name() + ", ";
+        result += "CurrentCount: " + this.getCurrentCount() + ", ";
+        result += "TargetCount: " + this.getTargetCount() + ", ";
+        result += "Power: " + this.getPower();
+        return result;
+    }
 }

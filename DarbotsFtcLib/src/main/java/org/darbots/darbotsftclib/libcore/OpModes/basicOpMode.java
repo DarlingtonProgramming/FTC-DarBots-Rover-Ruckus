@@ -3,7 +3,7 @@ package org.darbots.darbotsftclib.libcore.OpModes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.darbots.darbotsftclib.libcore.runtime.GlobalRegister;
-import org.darbots.darbotsftclib.libcore.templates.motor_related.RobotCore;
+import org.darbots.darbotsftclib.libcore.templates.RobotCore;
 
 public abstract class basicOpMode<CoreType extends RobotCore> extends LinearOpMode {
     public abstract CoreType getSpecificRobotCore();

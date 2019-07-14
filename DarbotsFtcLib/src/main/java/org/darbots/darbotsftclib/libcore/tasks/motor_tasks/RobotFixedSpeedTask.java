@@ -80,6 +80,14 @@ public class RobotFixedSpeedTask extends RobotMotorTask {
     }
 
     @Override
+    public String getTaskDetailString() {
+        String result="TaskType: RobotFixSpeedTask, ";
+        result += "TimeInSeconds: " + this.getTimeInSeconds() + ", ";
+        result += "Speed: " + this.getSpeed();
+        return result;
+    }
+
+    @Override
     public void updateStatus() {
         if(this.getSecondsSinceStart() >= this.m_TimeInSeconds && this.m_TimeInSeconds > 0){
             this.endTask(true);

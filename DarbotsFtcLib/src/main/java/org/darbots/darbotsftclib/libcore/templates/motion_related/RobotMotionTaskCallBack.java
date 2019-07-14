@@ -23,10 +23,10 @@ SOFTWARE.
 
 */
 
-package org.darbots.darbotsftclib.libcore.templates.motor_related;
+package org.darbots.darbotsftclib.libcore.templates.motion_related;
 
-import org.darbots.darbotsftclib.libcore.sensors.motors.RobotMotorController;
+import org.darbots.darbotsftclib.libcore.sensors.motion_related.RobotMotion;
 
-public interface RobotMotorTaskCallBack {
-    void finishRunning(RobotMotorController Controller, boolean timeOut, double timeUsedInSec, int CountsMoved);
+public abstract class RobotMotionTaskCallBack {
+    public abstract void finishRunning(RobotMotion Motion, boolean timeOut, double timeUsedInSec, int CountsMoved, double DistanceMoved);
 }

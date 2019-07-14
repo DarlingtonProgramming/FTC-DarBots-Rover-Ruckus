@@ -23,7 +23,7 @@ SOFTWARE.
 
 */
 
-package org.darbots.darbotsftclib.libcore.sensors;
+package org.darbots.darbotsftclib.libcore.sensors.motors;
 
 import android.support.annotation.NonNull;
 

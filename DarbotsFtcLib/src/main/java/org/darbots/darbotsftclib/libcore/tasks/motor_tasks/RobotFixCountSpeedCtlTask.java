@@ -124,4 +124,14 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
             return super.getProgressRatio();
         }
     }
+
+    @Override
+    public String getTaskDetailString() {
+        String result="TaskType: RobotFixCountSpeedCtlTask, ";
+        result += "TimeInSeconds: " + this.getTimeInSeconds() + ", ";
+        result += "Speed: " + this.getSpeed() + ", ";
+        result += "Count: " + this.getCounts() + ", ";
+        result += "CountControl: " + (this.isCountCtl() ? "Enabled" : "Disabled");
+        return result;
+    }
 }

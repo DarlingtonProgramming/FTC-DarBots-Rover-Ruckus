@@ -99,6 +99,14 @@ public class RobotFixCountTask extends RobotMotorTask {
     }
 
     @Override
+    public String getTaskDetailString() {
+        String result="TaskType: RobotFixCountTask, ";
+        result += "Count: " + this.getCounts() + ", ";
+        result += "Speed: " + this.getSpeed();
+        return result;
+    }
+
+    @Override
     public void updateStatus() {
         if(this.isBusy()){
             if(!this.getMotorController().getMotor().isBusy()){

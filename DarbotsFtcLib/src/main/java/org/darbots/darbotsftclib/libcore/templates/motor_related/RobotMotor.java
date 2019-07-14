@@ -25,4 +25,5 @@ public interface RobotMotor extends RobotNonBlockingDevice {
     void setZeroPowerBehavior(DcMotor.ZeroPowerBehavior ZeroPwrBehavior);
     MovingType getCurrentMovingType();
     void setCurrentMovingType(MovingType movingType);
+    String getMotorStatusString();
 }
