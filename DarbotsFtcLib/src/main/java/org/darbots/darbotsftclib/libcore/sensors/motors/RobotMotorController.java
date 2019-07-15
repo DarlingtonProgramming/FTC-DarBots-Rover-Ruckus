@@ -90,7 +90,7 @@ public class RobotMotorController implements RobotNonBlockingDevice {
             this.stopMotor();
             return;
         }
-        if(!this.m_TaskLists.get(0).isBusy()){
+        else if(!this.m_TaskLists.get(0).isBusy()){
             this.deleteCurrentTask();
         }
     }

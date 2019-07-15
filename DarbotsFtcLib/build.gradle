@@ -23,12 +23,13 @@ repositories {
 
 dependencies {
     implementation project(':FtcRobotController')
-    implementation (name:'Inspection-release', ext: 'aar')
-    implementation (name:'Blocks-release', ext: 'aar')
-    implementation (name:'RobotCore-release', ext: 'aar')
-    implementation (name:'Hardware-release', ext: 'aar')
-    implementation (name:'FtcCommon-release', ext: 'aar')
-    implementation (name:'WirelessP2p-release', ext:'aar')
+    implementation (name: 'RobotCore-release', ext: 'aar')
+    implementation (name: 'Hardware-release', ext: 'aar')
+    implementation (name: 'FtcCommon-release', ext: 'aar')
+    implementation (name: 'WirelessP2p-release', ext:'aar')
+    implementation (name: 'tfod-release', ext:'aar')
+    implementation (name: 'tensorflow-lite-0.0.0-nightly', ext:'aar')
+
     implementation (name:'json-simple-1.1.1', ext:'jar')
     implementation 'com.android.support:support-annotations:24.2.0'
 }
