@@ -53,6 +53,8 @@ public abstract class RobotServoUsingMotorTask implements RobotNonBlockingDevice
         if(this.isBusy()){
             return;
         }
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotServoUsingMotorTask","BeforeTaskStatus",this.getServoUsingMotor().getStatusString());
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotServoUsingMotorTask","TaskInfo", this.getTaskDetailString());
         this.m_IsBusy = true;
         this.m_StartPos = this.getServoUsingMotor().getCurrentPosition();
         this.m_Time.reset();
@@ -62,9 +64,11 @@ public abstract class RobotServoUsingMotorTask implements RobotNonBlockingDevice
         if(!this.isBusy()){
             return;
         }
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotServoUsingMotorTask","AfterTask","Task ends, " + (timeOut ? "timed out!" : "normally finished"));
         double timeConsumed = this.m_Time.seconds();
         this.m_IsBusy = false;
         this.__finishTask();
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotServoUsingMotorTask","AfterTaskStatus",this.getServoUsingMotor().getStatusString());
         if(this.m_CallBack != null){
             this.m_CallBack.JobFinished(timeOut,this,this.m_StartPos,timeConsumed);
         }
@@ -99,4 +103,6 @@ public abstract class RobotServoUsingMotorTask implements RobotNonBlockingDevice
             return 0;
         }
     }
+    public abstract String getTaskDetailString();
+
 }

@@ -29,6 +29,12 @@ public class TargetPosTask extends RobotServoUsingMotorTask {
 
     public void setPower(double power){
         this.m_Power = power;
+        if(this.isBusy()){
+            if(this.getServoUsingMotor().getMotorController().getCurrentTask() != null){
+                RobotFixCountTask fixCountTask = (RobotFixCountTask) this.getServoUsingMotor().getMotorController().getCurrentTask();
+                fixCountTask.setSpeed(power);
+            }
+        }
     }
 
     public double getTargetPos(){
@@ -37,6 +43,14 @@ public class TargetPosTask extends RobotServoUsingMotorTask {
 
     public void setTargetPos(double targetPos){
         this.m_TargetPos = targetPos;
+        if(this.isBusy()){
+            if(this.getServoUsingMotor().getMotorController().getCurrentTask() != null){
+                RobotFixCountTask fixCountTask = (RobotFixCountTask) this.getServoUsingMotor().getMotorController().getCurrentTask();
+                double deltaPos = this.getTargetPos() - super.getTaskStartPos();
+                int deltaCount = (int) Math.round(deltaPos * this.getServoUsingMotor().getMotorController().getMotor().getMotorType().getCountsPerRev());
+                fixCountTask.setCounts(deltaCount);
+            }
+        }
     }
 
     @Override
@@ -44,7 +58,7 @@ public class TargetPosTask extends RobotServoUsingMotorTask {
         if((getTargetPos() > this.getServoUsingMotor().getMaxPos() || getTargetPos() < this.getServoUsingMotor().getMinPos()) && this.getServoUsingMotor().isBorderContorl()){
             this.endTask(false);
         }
-        double deltaPos = this.getTargetPos() - this.getServoUsingMotor().getCurrentPosition();
+        double deltaPos = this.getTargetPos() - super.getTaskStartPos();
         int deltaCount = (int) Math.round(deltaPos * this.getServoUsingMotor().getMotorController().getMotor().getMotorType().getCountsPerRev());
         RobotFixCountTask fixCountTask = new RobotFixCountTask(deltaCount,this.getPower(),null);
         this.getServoUsingMotor().getMotorController().replaceTask(fixCountTask);
@@ -62,5 +76,13 @@ public class TargetPosTask extends RobotServoUsingMotorTask {
                 this.endTask(false);
             }
         }
+    }
+
+    @Override
+    public String getTaskDetailString() {
+        String result="TaskType: TargetPosTask, ";
+        result += "TargetPos: " + this.getTargetPos() + ", ";
+        result += "Power: " + this.getPower();
+        return result;
     }
 }

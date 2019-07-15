@@ -29,6 +29,12 @@ public class TargetPosSpeedCtlTask extends RobotServoUsingMotorTask {
 
     public void setPower(double power){
         this.m_Power = power;
+        if(this.isBusy()){
+            if(this.getServoUsingMotor().getMotorController().getCurrentTask() != null){
+                RobotFixCountSpeedCtlTask fixCountSpeedCtlTask = (RobotFixCountSpeedCtlTask) this.getServoUsingMotor().getMotorController().getCurrentTask();
+                fixCountSpeedCtlTask.setSpeed(power);
+            }
+        }
     }
 
     public double getTargetPos(){
@@ -37,6 +43,14 @@ public class TargetPosSpeedCtlTask extends RobotServoUsingMotorTask {
 
     public void setTargetPos(double targetPos){
         this.m_TargetPos = targetPos;
+        if(this.isBusy()){
+            if(this.getServoUsingMotor().getMotorController().getCurrentTask() != null){
+                RobotFixCountSpeedCtlTask fixCountSpeedCtlTask = (RobotFixCountSpeedCtlTask) this.getServoUsingMotor().getMotorController().getCurrentTask();
+                double deltaPos = this.getTargetPos() - super.getTaskStartPos();
+                int deltaCount = (int) Math.round(deltaPos * this.getServoUsingMotor().getMotorController().getMotor().getMotorType().getCountsPerRev());
+                fixCountSpeedCtlTask.setCounts(deltaCount);
+            }
+        }
     }
 
     @Override
@@ -44,7 +58,7 @@ public class TargetPosSpeedCtlTask extends RobotServoUsingMotorTask {
         if((getTargetPos() > this.getServoUsingMotor().getMaxPos() || getTargetPos() < this.getServoUsingMotor().getMinPos()) && this.getServoUsingMotor().isBorderContorl()){
             this.endTask(false);
         }
-        double deltaPos = this.getTargetPos() - this.getServoUsingMotor().getCurrentPosition();
+        double deltaPos = this.getTargetPos() - super.getTaskStartPos();
         int deltaCount = (int) Math.round(deltaPos * this.getServoUsingMotor().getMotorController().getMotor().getMotorType().getCountsPerRev());
         RobotFixCountSpeedCtlTask fixCountSpeedCtlTask = new RobotFixCountSpeedCtlTask(deltaCount,this.getPower(),null,true);
         this.getServoUsingMotor().getMotorController().replaceTask(fixCountSpeedCtlTask);
@@ -63,5 +77,14 @@ public class TargetPosSpeedCtlTask extends RobotServoUsingMotorTask {
                 this.endTask(false);
             }
         }
+    }
+
+    @Override
+    public String getTaskDetailString() {
+        String result = "TaskType: TargetPosSpeedCtlTask, ";
+        result += "TargetPos: " + this.getTargetPos() + ", ";
+        result += "Power: " + this.getPower();
+        return result;
+
     }
 }

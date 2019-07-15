@@ -72,12 +72,15 @@ public class RobotFixCountSpeedCtlTask extends RobotFixedSpeedTask {
         }
         double FineTimeAfter = FineTime == 0 ? 0 : super.getSecondsSinceStart() + FineTime;
         this.setTimeInSeconds(FineTimeAfter);
-        super.setSpeed(fixSpeed(super.getSpeed()));
+        this.setSpeed(super.getSpeed());
     }
 
     @Override
     public void setSpeed(double Speed){
         super.setSpeed(fixSpeed(Speed));
+        if(this.isBusy()) {
+            this.fixCounts();
+        }
     }
 
     protected double fixSpeed(double speed){

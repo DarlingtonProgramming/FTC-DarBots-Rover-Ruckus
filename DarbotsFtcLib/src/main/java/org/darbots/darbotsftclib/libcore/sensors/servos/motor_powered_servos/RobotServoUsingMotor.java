@@ -162,4 +162,12 @@ public class RobotServoUsingMotor implements RobotNonBlockingDevice {
     public double posFromPercent(double percent){
         return (percent / 100 * (this.getMaxPos() - this.getMinPos())) + this.getMinPos();
     }
+    public String getStatusString(){
+        String result = "CurrentPos: " + this.getCurrentPosition() + ", ";
+        result += "CurrentPct: " + this.getCurrentPercent() + ", ";
+        result += "MinPos: " + this.getMinPos() + ", ";
+        result += "MaxPos: " + this.getMaxPos() + ", ";
+        result += "BorderControl: " + (this.isBorderContorl() ? "Enabled" : "Disabled");
+        return result;
+    }
 }
