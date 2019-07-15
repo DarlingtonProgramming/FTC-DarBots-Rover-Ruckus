@@ -90,20 +90,20 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice {
         if(this.m_IsWorking) {
             return;
         }
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","BeforeTaskStatus=" + this.getMotorController().getMotor().getMotorStatusString());
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","TaskInfo=" + this.getTaskDetailString());
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","BeforeTaskStatus", this.getMotorController().getMotor().getMotorStatusString());
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","TaskInfo", this.getTaskDetailString());
         this.m_IsWorking = true;
         this.m_StartCount = this.getMotorController().getMotor().getCurrentCount();
         this.m_Time.reset();
         this.__startTask();
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","DuringTaskStatus=" + this.getMotorController().getMotor().getMotorStatusString());
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","DuringTaskStatus", this.getMotorController().getMotor().getMotorStatusString());
     }
     protected abstract void __startTask();
     public void endTask(boolean timedOut){
         if(!this.m_IsWorking){
             return;
         }
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","Task ends, " + (timedOut ? "timed out!" : "normally finished"));
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","AfterTask","Task ends, " + (timedOut ? "timed out!" : "normally finished"));
         this.m_IsWorking = false;
         int endCount = this.getMotorController().getMotor().getCurrentCount();
         int deltaCount = endCount - this.m_StartCount;
@@ -111,7 +111,7 @@ public abstract class RobotMotorTask implements RobotNonBlockingDevice {
         if(this.m_TaskCallBack != null) {
             this.m_TaskCallBack.finishRunning(this.m_Controller,timedOut,timeUsed,deltaCount);
         }
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","AfterTaskStatus=" + this.getMotorController().getMotor().getMotorStatusString());
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotorTask","AfterTaskStatus", this.getMotorController().getMotor().getMotorStatusString());
         this.m_Controller.__checkTasks();
     }
 

@@ -75,13 +75,14 @@ public class RobotLogger {
     public List getLogs(){
         return m_Logs;
     }
-    public void addLog(String caption, String content){
+    public void addLog(String module, String caption, String content){
         if(!isDebugOn()){
             return;
         }
         JSONObject logContent = new JSONObject();
         Calendar currentTime = Calendar.getInstance();
         String currentTimeStr = DateFormat.getInstance().format(currentTime.getTime());
+        logContent.put("module",module);
         logContent.put("caption",caption);
         logContent.put("timeStamp",currentTimeStr);
         logContent.put("content",content);

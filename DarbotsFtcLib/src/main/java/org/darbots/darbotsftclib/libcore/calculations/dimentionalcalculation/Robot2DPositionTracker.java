@@ -150,7 +150,7 @@ public class Robot2DPositionTracker {
     }
 
     public void drive_MoveThroughFieldAngle(double angleInDeg, double distance) {
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","driveThroughFieldAngle(Angle=" + angleInDeg + ",Distance=" + distance + ")");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","driveThroughFieldAngle","Angle=" + angleInDeg + ",Distance=" + distance);
         double angleInRad = Math.toRadians(angleInDeg);
         double xMoved = Math.cos(angleInRad) * distance, yMoved = Math.sin(angleInRad) * distance;
         this.offsetPosition(new Robot2DPositionIndicator(xMoved, yMoved, 0));
@@ -158,7 +158,7 @@ public class Robot2DPositionTracker {
     }
 
     public void drive_MoveThroughRobotAngle(double angleInDeg, double distance) {
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","driveThroughRobotAngle(Angle=" + angleInDeg + ",Distance=" + distance + ")");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","driveThroughRobotAngle","Angle=" + angleInDeg + ",Distance=" + distance);
         Robot2DPositionIndicator tempRobotIndicator = new Robot2DPositionIndicator(0, 0, angleInDeg);
         Robot2DPositionIndicator tempFieldIndicator = this.toFieldAxis(tempRobotIndicator);
         this.drive_MoveThroughFieldAngle(tempFieldIndicator.getRotationY(), distance);
@@ -172,7 +172,7 @@ public class Robot2DPositionTracker {
     }
 
     public void drive_RotateAroundFieldPoint(Robot2DPositionIndicator fieldPointAndRotation) {
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundFieldPoint(X=" + fieldPointAndRotation.getX() + ",Z=" + fieldPointAndRotation.getZ() + ",Angle=" + fieldPointAndRotation.getRotationY() + ")");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundFieldPoint","X=" + fieldPointAndRotation.getX() + ",Z=" + fieldPointAndRotation.getZ() + ",Angle=" + fieldPointAndRotation.getRotationY());
         if (fieldPointAndRotation.getX() == this.getPosition().getX() && fieldPointAndRotation.getZ() == this.getPosition().getZ()) {
             this.offsetPosition(new Robot2DPositionIndicator(0, 0, fieldPointAndRotation.getRotationY()));
         } else {
@@ -185,26 +185,26 @@ public class Robot2DPositionTracker {
     }
 
     public void drive_RotateAroundRobotAxisPoint(Robot2DPositionIndicator robotPointAndRotation) {
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundRobotPoint(X=" + robotPointAndRotation.getX() + ",Z=" + robotPointAndRotation.getZ() + ",Angle=" + robotPointAndRotation.getRotationY() + ")");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundRobotPoint","X=" + robotPointAndRotation.getX() + ",Z=" + robotPointAndRotation.getZ() + ",Angle=" + robotPointAndRotation.getRotationY());
         Robot2DPositionIndicator tempFieldPointAndRotation = this.toFieldAxis(robotPointAndRotation);
         tempFieldPointAndRotation.setRotationY(robotPointAndRotation.getRotationY());
         this.drive_RotateAroundFieldPoint(tempFieldPointAndRotation);
     }
 
     public void drive_RotateAroundFieldPointWithRadiusAndPowerPoint(Robot2DPositionIndicator fieldPoint, double Radius, double DistanceCounterClockwise) {
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundFieldPointWithRadiusAndPowerPoint(FieldX=" + fieldPoint.getX() + ",FieldZ=" + fieldPoint.getZ() + ",Radius=" + Radius + ",DistanceCounterClockwise=" + DistanceCounterClockwise + ")");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundFieldPointWithRadiusAndPowerPoint", "FieldX=" + fieldPoint.getX() + ",FieldZ=" + fieldPoint.getZ() + ",Radius=" + Radius + ",DistanceCounterClockwise=" + DistanceCounterClockwise);
         double moveAngleRad = DistanceCounterClockwise / Radius;
         double moveAngleDeg = Math.toDegrees(moveAngleRad);
         this.drive_RotateAroundFieldPoint(new Robot2DPositionIndicator(fieldPoint.getX(), fieldPoint.getZ(), moveAngleDeg));
     }
     public void drive_RotateAroundRobotPointWithRadiusAndPowerPoint(Robot2DPositionIndicator robotAxisPoint, double Radius, double DistanceCounterClockwise){
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundRobotPointWithRadiusAndPowerPoint(RobotX=" + robotAxisPoint.getX() + ",FieldZ=" + robotAxisPoint.getZ() + ",Radius=" + Radius + ",DistanceCounterClockwise=" + DistanceCounterClockwise + ")");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","rotateAroundRobotPointWithRadiusAndPowerPoint","RobotX=" + robotAxisPoint.getX() + ",FieldZ=" + robotAxisPoint.getZ() + ",Radius=" + Radius + ",DistanceCounterClockwise=" + DistanceCounterClockwise);
         double moveAngleRad = DistanceCounterClockwise / Radius;
         double moveAngleDeg = Math.toDegrees(moveAngleRad);
         this.drive_RotateAroundRobotAxisPoint(new Robot2DPositionIndicator(robotAxisPoint.getX(), robotAxisPoint.getZ(), moveAngleDeg));
     }
     protected void __putCurrentPosIntoLog(){
         Robot2DPositionIndicator Robot2DPos = this.getPosition();
-        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","CurrentPos:(" + Robot2DPos.getX() + "," + Robot2DPos.getZ() + ")[" + Robot2DPos.getRotationY() + "]");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("Robot2DPositionTracker","RobotPos","(" + Robot2DPos.getX() + "," + Robot2DPos.getZ() + ")[" + Robot2DPos.getRotationY() + "]");
     }
 }
