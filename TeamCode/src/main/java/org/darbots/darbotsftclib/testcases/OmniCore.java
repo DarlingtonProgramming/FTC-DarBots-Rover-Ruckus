@@ -1,4 +1,4 @@
-package org.darbots.darbotsftclib.testcases.OmniDriveTest;
+package org.darbots.darbotsftclib.testcases;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;

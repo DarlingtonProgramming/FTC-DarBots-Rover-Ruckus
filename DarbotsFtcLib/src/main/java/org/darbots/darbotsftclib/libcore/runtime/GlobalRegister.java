@@ -1,8 +1,8 @@
 package org.darbots.darbotsftclib.libcore.runtime;
 
-import org.darbots.darbotsftclib.libcore.OpModes.BasicOpMode;
+import org.darbots.darbotsftclib.libcore.OpModes.DarbotsBasicOpMode;
 
 public class GlobalRegister {
-    public static BasicOpMode runningOpMode = null;
+    public static DarbotsBasicOpMode runningOpMode = null;
 
 }

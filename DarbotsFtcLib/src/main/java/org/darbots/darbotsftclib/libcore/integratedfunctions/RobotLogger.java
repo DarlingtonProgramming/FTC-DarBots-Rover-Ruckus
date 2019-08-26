@@ -1,7 +1,5 @@
 package org.darbots.darbotsftclib.libcore.integratedfunctions;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-
 import org.darbots.darbotsftclib.libcore.runtime.GlobalRegister;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,8 +46,12 @@ public class RobotLogger {
         }else {
             JSONParser Parser = new JSONParser();
             try {
-                JSONArray ParsedContent = (JSONArray) Parser.parse(logFileContent);
-                m_Array = ParsedContent;
+                Object ParsedContent = Parser.parse(logFileContent);
+                if(ParsedContent instanceof JSONArray) {
+                    m_Array = (JSONArray) ParsedContent;
+                }else{
+                    m_Array = new JSONArray();
+                }
             } catch (ParseException e) {
                 m_Array = new JSONArray();
             } catch (Exception e) {

@@ -1,2 +1,3 @@
-include ':FtcRobotController', ':DarbotsFtcLib'
+include ':FtcRobotController'
+include ':DarbotsFtcLib'
 include ':TeamCode'

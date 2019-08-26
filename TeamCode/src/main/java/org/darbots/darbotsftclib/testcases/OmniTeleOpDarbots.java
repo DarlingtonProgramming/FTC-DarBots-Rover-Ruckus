@@ -1,13 +1,12 @@
-package org.darbots.darbotsftclib.testcases.OmniDriveTest;
+package org.darbots.darbotsftclib.testcases;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.darbots.darbotsftclib.libcore.OpModes.BasicOpMode;
+import org.darbots.darbotsftclib.libcore.OpModes.DarbotsBasicOpMode;
 import org.darbots.darbotsftclib.libcore.chassiscontrollers.OmniDrive;
-import org.darbots.darbotsftclib.libcore.templates.RobotCore;
 
 @TeleOp(group = "DarbotsLib-TestCases", name = "OmniTest")
-public class OmniTeleOp extends BasicOpMode<org.darbots.darbotsftclib.testcases.OmniDriveTest.OmniCore> {
+public class OmniTeleOpDarbots extends DarbotsBasicOpMode<OmniCore> {
     private OmniCore m_RobotCore;
     @Override
     public OmniCore getRobotCore() {
