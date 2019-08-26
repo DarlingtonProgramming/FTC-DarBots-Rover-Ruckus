@@ -33,40 +33,37 @@ import org.darbots.darbotsftclib.libcore.templates.RobotNonBlockingDevice;
 import java.util.ArrayList;
 
 public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
-    public static final double SlowDownFactor = 1.0;
-    public static final double SlowDownTime = 0.1;
-    public static final double SlowDownSmallest = 10;
-    protected ArrayList<RobotMotionSystemTask> m_TaskLists;
-    protected Robot2DPositionTracker m_PosTracker;
-    protected double m_LinearMotionFrictionFactor;
-    protected double m_RotationalMotionFrictionFactor;
+    private ArrayList<RobotMotionSystemTask> m_TaskLists;
+    private Robot2DPositionTracker m_PosTracker;
+    private double m_LinearMotionDistanceFactor;
+    private double m_RotationalMotionDistanceFactor;
     public RobotMotionSystem(Robot2DPositionTracker PositionTracker){
         this.m_TaskLists = new ArrayList<>();
         this.m_PosTracker = PositionTracker;
-        this.m_LinearMotionFrictionFactor = 1;
-        this.m_RotationalMotionFrictionFactor = 1;
+        this.m_LinearMotionDistanceFactor = 1;
+        this.m_RotationalMotionDistanceFactor = 1;
     }
     public RobotMotionSystem(RobotMotionSystem MotionSystem){
         this.m_TaskLists = new ArrayList<>();
         this.m_PosTracker = MotionSystem.m_PosTracker;
-        this.m_LinearMotionFrictionFactor = MotionSystem.m_LinearMotionFrictionFactor;
-        this.m_RotationalMotionFrictionFactor = MotionSystem.m_RotationalMotionFrictionFactor;
+        this.m_LinearMotionDistanceFactor = MotionSystem.m_LinearMotionDistanceFactor;
+        this.m_RotationalMotionDistanceFactor = MotionSystem.m_RotationalMotionDistanceFactor;
     }
 
-    public double getLinearMotionFrictionFactor(){
-        return this.m_LinearMotionFrictionFactor;
+    public double getLinearMotionDistanceFactor(){
+        return this.m_LinearMotionDistanceFactor;
     }
 
-    public void setLinearMotionFrictionFactor(double Factor){
-        this.m_LinearMotionFrictionFactor = Factor;
+    public void setLinearMotionDistanceFactor(double Factor){
+        this.m_LinearMotionDistanceFactor = Factor;
     }
 
-    public double getRotationalMotionFrictionFactor(){
-        return this.m_RotationalMotionFrictionFactor;
+    public double getRotationalMotionDistanceFactor(){
+        return this.m_RotationalMotionDistanceFactor;
     }
 
-    public void setRotationalMotionFrictionFactor(double Factor){
-        this.m_RotationalMotionFrictionFactor = Factor;
+    public void setRotationalMotionDistanceFactor(double Factor){
+        this.m_RotationalMotionDistanceFactor = Factor;
     }
 
     public Robot2DPositionTracker getPositionTracker(){
@@ -116,6 +113,7 @@ public abstract class RobotMotionSystem implements RobotNonBlockingDevice {
         RobotMotionSystemTask currentTask = this.m_TaskLists.get(0);
         this.m_TaskLists.get(0).stopTask();
         this.m_TaskLists.clear();
+        this.__stopMotion();
     }
 
     public void __checkTasks(){

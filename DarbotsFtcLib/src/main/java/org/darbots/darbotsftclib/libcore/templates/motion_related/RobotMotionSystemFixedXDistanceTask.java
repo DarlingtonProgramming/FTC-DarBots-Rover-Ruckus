@@ -25,4 +25,11 @@ public abstract class RobotMotionSystemFixedXDistanceTask extends RobotMotionSys
     public void setXDistance(double Distance){
         this.m_XDistance = Distance;
     }
+    @Override
+    public String getTaskDetailString(){
+        String result = "TaskType: MotionSystemFixedXDistanceTask, ";
+        result += "Speed: " + this.getSpeed() + ", ";
+        result += "XDistance: " + this.getXDistance();
+        return result;
+    }
 }

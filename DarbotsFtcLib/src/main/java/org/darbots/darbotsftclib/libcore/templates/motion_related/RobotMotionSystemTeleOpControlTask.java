@@ -82,4 +82,12 @@ public abstract class RobotMotionSystemTeleOpControlTask extends RobotMotionSyst
             this.__updateDriveSpeedAndPositionTracker();
         }
     }
+    @Override
+    public String getTaskDetailString(){
+        String result = "TaskType: MotionSystemTeleOpControlTask, ";
+        result += "DriveXSpeed: " + this.getDriveXSpeed() + ", ";
+        result += "DriveZSpeed: " + this.getDriveZSpeed() + ", ";
+        result += "TurnSpeed: " + this.getDriveRotationSpeed();
+        return result;
+    }
 }

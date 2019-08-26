@@ -6,8 +6,7 @@ import org.darbots.darbotsftclib.libcore.runtime.GlobalRegister;
 import org.darbots.darbotsftclib.libcore.templates.RobotCore;
 
 public abstract class BasicOpMode<CoreType extends RobotCore> extends LinearOpMode {
-    public abstract CoreType getSpecificRobotCore();
-    public abstract RobotCore getRobotCore();
+    public abstract CoreType getRobotCore();
     public abstract void hardwareInitialize();
     public abstract void hardwareDestroy();
     public abstract void RunThisOpMode();

@@ -25,4 +25,11 @@ public abstract class RobotMotionSystemFixedTurnTask extends RobotMotionSystemTa
     public void setTurnDeg(double TurnDeg){
         this.m_TurnDeg = TurnDeg;
     }
+    @Override
+    public String getTaskDetailString(){
+        String result = "TaskType: MotionSystemFixedTurnTask, ";
+        result += "Speed: " + this.getSpeed() + ", ";
+        result += "TurnDeg: " + this.getTurnDeg();
+        return result;
+    }
 }

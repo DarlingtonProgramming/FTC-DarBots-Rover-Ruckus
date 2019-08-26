@@ -27,6 +27,7 @@ package org.darbots.darbotsftclib.libcore.templates.motion_related;
 
 import android.support.annotation.NonNull;
 
+import org.darbots.darbotsftclib.libcore.runtime.GlobalRegister;
 import org.darbots.darbotsftclib.libcore.templates.RobotNonBlockingDevice;
 
 public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
@@ -50,6 +51,8 @@ public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
             return;
         }
         this.m_IsWorking = true;
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotionSystemTask","BeforeTask","");
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotionSystemTask","TaskInfo",this.getTaskDetailString());
         this.__startTask();
     }
     protected abstract void __startTask();
@@ -58,6 +61,7 @@ public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
         if(!this.m_IsWorking){
             return;
         }
+        GlobalRegister.runningOpMode.getRobotCore().getLogger().addLog("RobotMotionSystemTask","AfterTask","Task ends");
         this.m_IsWorking = false;
         this.__taskFinished();
         this.m_MotionSystem.__checkTasks();
@@ -72,4 +76,5 @@ public abstract class RobotMotionSystemTask implements RobotNonBlockingDevice {
             this.updateStatus();
         }
     }
+    public abstract String getTaskDetailString();
 }

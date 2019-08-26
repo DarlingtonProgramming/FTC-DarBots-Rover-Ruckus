@@ -25,4 +25,11 @@ public abstract class RobotMotionSystemFixedZDistanceTask extends RobotMotionSys
     public void setZDistance(double Distance){
         this.m_ZDistance = Distance;
     }
+    @Override
+    public String getTaskDetailString(){
+        String result = "TaskType: MotionSystemFixedZDistanceTask, ";
+        result += "Speed: " + this.getSpeed() + ", ";
+        result += "ZDistance: " + this.getZDistance();
+        return result;
+    }
 }
